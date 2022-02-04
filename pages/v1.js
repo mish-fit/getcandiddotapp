@@ -4,49 +4,25 @@ import { StickyProvider } from "contexts/app/app.provider";
 import theme from "theme";
 import SEO from "components/seo";
 import Layout from "components/layout";
-import Banner from "sections/banner";
+
 import Features from "sections/features";
-import FaqOne from "sections/faq-one";
+
 import FaqTwo from "sections/faq-two";
-import Video from "sections/video";
+
 import Pricing from "sections/pricing";
-import Services from "sections/services";
+
 import ProductFeature from "sections/product-feature";
-import CustomerSupport from "sections/customer-support";
+
 import Banner1 from "sections/banner1";
 import { useRouter } from "next/router";
-import { initOptimize } from "analytics/go";
 
-const useExperiment = (experimentId) => {
-  const [variant, setVariant] = React.useState();
-  React.useEffect(() => {
-    (async () => {
-      if (window.dataLayer) {
-        await window.dataLayer.push({ event: "optimize.activate" });
-      }
-      const intervalId = setInterval(() => {
-        if (window.google_optimize !== undefined) {
-          // Set the variant to the state.
-          setVariant(window.google_optimize.get(experimentId));
-          clearInterval(intervalId);
-        }
-      }, 100);
-    })();
-  });
-  return variant;
-};
-
-export default function IndexPage() {
+export default function V1() {
   const router = useRouter();
-  const variant = useExperiment("65elEA0zTVyfg-IGET3tYA");
 
-  React.useEffect(async () => {
-    initOptimize();
-    console.log("Variant", variant);
+  React.useEffect(() => {
     const handleRouteChange = (url) => {
       pageview(url);
     };
-
     //When the component is mounted, subscribe to router changes
     //and log those page views
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -56,17 +32,16 @@ export default function IndexPage() {
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
-  }, [router.events, variant]);
-
+  }, [router.events]);
   return (
     <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
           <SEO
             title="Get your free CNDD link"
-            description="Now claim your candid store and share product recommendations seamlessly. Earn money when people buy from your store"
+            description="Become affiliate marketer in 2 mins"
           />
-          {variant ? <Banner1 /> : <Banner />}
+          <Banner1 />
           <Features />
           {/* <FaqOne /> */}
           <ProductFeature />
