@@ -5,7 +5,7 @@ import { Box, Input, Button } from '@chakra-ui/react';
 
 // Sign in with Phone button
 export function SignInPhoneButton() {
-	const [mynumber, setNumber] = useState('');
+	const [mynumber, setNumber] = useState('+91');
 	const [otp, setOtp] = useState('');
 	const [show, setShow] = useState(false);
 	const [final, setFinal] = useState('');

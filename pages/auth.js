@@ -1,26 +1,42 @@
-import { useContext } from 'react';
-import { UserContext } from '../lib/context';
+import { Button, Link } from '@chakra-ui/react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../lib/UserDataProvider';
 import { SignInGoogleButton } from '../src/components/auth/SignInGoogleButton';
 import { SignInPhoneButton } from '../src/components/auth/SignInPhoneButton';
 import { SignOutButton } from '../src/components/auth/SignOutButton';
-import { UsernameForm } from '../src/components/auth/UsernameForm';
+// import { Onboard } from '../src/components/auth/Onboard';
+import { useRouter } from 'next/router'
 
 export default function Auth(props) {
-	const { user, username } = useContext(UserContext);
-	// console.log(user, "xo", username);
+	const router = useRouter()
 
+	const ctx = useContext(UserContext);
+	const [ otherways, setOtherways ] = useState(true);
+	// console.log("xo", ctx.userData.username);
+
+	// useEffect((router, user, username) => {
+	// 	if(user && !username){
+	// 		router.push('/onboard');
+	// 	}
+	// 	else if(user && username) {
+	// 		router.push('/admin')
+	// 	}
+	//   },[user, username]);
+	console.log(ctx.userSignInInfo.username);
 	return (
 		<div>
-			{user ? (
-				!username ? (
-					<UsernameForm />
-				) : (
-					<SignOutButton />
-				)
+			{ctx.userSignInInfo.username ? (
+				<SignOutButton />
 			) : (
 				<>
-					<SignInPhoneButton />
-					<SignInGoogleButton />
+					{otherways ? <SignInPhoneButton /> : <SignInGoogleButton />}
+					<Button
+						onClick={() => {
+							setOtherways(!otherways);
+						}}
+					>
+						See other ways to Sign In
+					</Button>
 				</>
 			)}
 		</div>
