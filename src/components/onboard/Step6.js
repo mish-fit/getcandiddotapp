@@ -17,7 +17,6 @@ import {
     const submitHandler = (e) => {
         e.preventDefault();
       };
-    const { values, handleChange } = props;
   
       return(
         <>
