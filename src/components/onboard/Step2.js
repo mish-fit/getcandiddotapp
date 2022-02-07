@@ -13,7 +13,6 @@ import { UserContext } from '../../lib/UserDataProvider';
 const Step2 = (props) => {
   const name= useRef();
   const mail=useRef();
-  // const [formValue, setFormValue] = useState('');
   const ctx = useContext(UserContext)
 	console.log('Step2', ctx.userData);
   const next = (e) => {

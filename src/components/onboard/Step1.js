@@ -7,8 +7,7 @@ import { Box, Input, Heading, Text, Button, FormControl, FormLabel } from '@chak
 
 const Step1 = (props) => {
 
-  const ctx = useContext(UserContext);
-
+  const ctx = useContext(UserContext);`12390-]=[-p0i8u7yswqa bk[]\]`
 	const [formValue, setFormValue] = useState('');
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -23,8 +22,8 @@ const Step1 = (props) => {
 
 	const batch = firestore.batch();
 	// console.log(ctx.userData.username);
-	console.log(ctx.userSignInInfo.user.email);
-	console.log(ctx.userSignInInfo.user.phoneNumber);
+	// console.log(ctx.userSignInInfo.user.email);
+	// console.log(ctx.userSignInInfo.user.phoneNumber);
 	
 	// sending data to firebase when user logged in with phone
 	if(ctx.userSignInInfo.user.email===null){
@@ -59,7 +58,6 @@ const Step1 = (props) => {
 
 	const onChange = (e) => {
 		const val = e.target.value.toLowerCase();
-		console.log(val);
 		const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
 
 		if (val.length > 3) {

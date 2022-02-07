@@ -7,7 +7,7 @@ import {
   FormHelperText,
   Button,
 } from '@chakra-ui/react'
-import { useState, useContext, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
 const Step3 = (props) => {
   const phone = useRef();
@@ -16,6 +16,7 @@ const Step3 = (props) => {
   const next = (e) => {
     e.preventDefault();
     ctx.setPhone(phone.current.value);
+    props.nextStep();
   }
 
   const back = (e) => {
