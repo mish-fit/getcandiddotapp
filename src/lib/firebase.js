@@ -24,7 +24,7 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig1);
 }
 
 export const auth = firebase.auth();
