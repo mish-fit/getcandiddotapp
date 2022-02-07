@@ -1,24 +1,21 @@
-/** Uncomment the below codeblock if you want to add google analytics for more info please visit our docs analytics section */
-/** 
-import { useEffect } from 'react';
-import Router from 'next/router';
-import { initGA, logPageView } from 'analytics';
-*/
+import '../styles/globals.css';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '../src/theme';
+import '../src/theme/styles.css';
 
-import 'rc-drawer/assets/index.css';
-import 'assets/css/react-slick.css';
-import 'react-modal-video/css/modal-video.min.css';
-import 'typeface-bree-serif';
-import 'typeface-dm-sans';
+import { useUserData } from '../src/lib/hooks';
+import UserDataProvider from '../src/lib/UserDataProvider';
 
-export default function CustomApp({ Component, pageProps }) {
-  /** 
-   useEffect(() => {
-     initGA();
-     logPageView();
-     Router.events.on('routeChangeComplete', logPageView);
-   }, []);
-   */
-
-  return <Component {...pageProps} />;
+function MyApp({ Component, pageProps }) {
+	const userData = useUserData();
+	return (
+	<UserDataProvider>
+			<ChakraProvider theme={theme}>
+				<Component {...pageProps} />
+			</ChakraProvider>
+			</UserDataProvider>
+		
+	);
 }
+
+export default MyApp;

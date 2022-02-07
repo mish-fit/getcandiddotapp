@@ -1,82 +1,162 @@
-import React from "react";
-import { ThemeProvider } from "theme-ui";
-import { StickyProvider } from "contexts/app/app.provider";
-import theme from "theme";
-import SEO from "components/seo";
-import Layout from "components/layout";
-import Banner from "sections/banner";
-import Features from "sections/features";
-import FaqOne from "sections/faq-one";
-import FaqTwo from "sections/faq-two";
-import Video from "sections/video";
-import Pricing from "sections/pricing";
-import Services from "sections/services";
-import ProductFeature from "sections/product-feature";
-import CustomerSupport from "sections/customer-support";
-import Banner1 from "sections/banner1";
-import { useRouter } from "next/router";
-import { initOptimize } from "analytics/go";
+import Head from 'next/head'
+import Image from 'next/image'
+import React from 'react'
+import { Container,Flex, Box,VStack , HStack , Button , Input , Select , Heading, Text, SimpleGrid, FormControl , FormLabel ,AspectRatio ,useColorMode, useColorModeValue, Tabs, TabList, TabPanels, Tab, TabPanel, Spacer ,Modal,ModalOverlay, ModalContent, ModalHeader,ModalFooter,ModalBody, ModalCloseButton, useDisclosure} from '@chakra-ui/react'
+import AddRecommendation from '../src/components/admin/AddRecommendation'
+import PhoneScreen from '../src/components/admin/PhoneScreen'
+import MobileAppDownloadCard from '../src/components/admin/MobileAppDownloadCard'
+import GettingStartedCard from '../src/components/admin/GettingStartedCard'
+import ShareCard from '../src/components/admin/ShareCard'
+import UserNameShare from '../src/components/admin/UserNameShare'
+import CurrentRecommendations from '../src/components/admin/CurrentRecommendations'
+import { useRouter } from 'next/router'
+import { language} from '../src/translation/admin'
 
-const useExperiment = (experimentId) => {
-  const [variant, setVariant] = React.useState();
-  React.useEffect(() => {
-    (async () => {
-      if (window.dataLayer) {
-        await window.dataLayer.push({ event: "optimize.activate" });
-      }
-      const intervalId = setInterval(() => {
-        if (window.google_optimize !== undefined) {
-          // Set the variant to the state.
-          setVariant(window.google_optimize.get(experimentId));
-          clearInterval(intervalId);
-        }
-      }, 100);
-    })();
-  });
-  return variant;
-};
+export default function Home() {
+  //state hooks
+  const [activeAddReco,setActiveAddReco] = React.useState(false)
 
-export default function IndexPage() {
-  const router = useRouter();
-  const variant = useExperiment("65elEA0zTVyfg-IGET3tYA");
+  //ref hooks
+  const initialRef = React.useRef()
+  const finalRef = React.useRef()
 
-  React.useEffect(async () => {
-    initOptimize();
-    console.log("Variant", variant);
-    const handleRouteChange = (url) => {
-      pageview(url);
-    };
+//other hooks
+  const {toggleColorMode} = useColorMode()
+  const bgColor = useColorModeValue("gray.50","gray.800")
+  const { router,locale, locales, defaultLocale } = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  
 
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
-    router.events.on("routeChangeComplete", handleRouteChange);
+//props
+  const tabprops = {w : "150px",borderColor : "gray.200",borderWidth : 1,}
+  const selectedTabprops = {color: 'brand.700', fontWeight : 'bold', bg: 'brand.200' }
+  const hoverTabprops = {bg: 'brand.100'}
+  const addRecoButtonprops = {p:0, w:'full',h: 'full', colorScheme:"brand", variant:"primary"}
 
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events, variant]);
+  const lang = language[locale]
 
+//functions
+  //1
+  const funcAddReco = () => {
+    setActiveAddReco(!activeAddReco)
+  }
+  //2
+  const funcOnClickUserName = () => {
+    console.log("user name click")
+  }
+  //3
+  const funcOnClickShare = () => {
+    console.log("Share click")
+  }
+ 
   return (
-    <ThemeProvider theme={theme}>
-      <StickyProvider>
-        <Layout>
-          <SEO
-            title="Get your free CNDD link"
-            description="Now claim your candid store and share product recommendations seamlessly. Earn money when people buy from your store"
-          />
-          {variant ? <Banner1 /> : <Banner />}
-          <Features />
-          {/* <FaqOne /> */}
-          <ProductFeature />
-          {/* <Services /> */}
-          <Pricing />
-          {/* <CustomerSupport />
-          <Video /> */}
-          <FaqTwo />
-        </Layout>
-      </StickyProvider>
-    </ThemeProvider>
-  );
+      <Container maxW = "container.xl" p = {0} bg="brand.50" w="full" >
+       <Tabs colorScheme={"brand"} >
+        <Flex h='100vh' py={0} bg="brand.50" w='66%'>
+          <VStack w='full' h='full' spacing={10} alignItems = 'flex-start' bg="brand.10" flex = {2}>
+            <Flex w='full' bg="brand.50" direction = 'row' justify = 'space-between'>
+                <Container maxW="container.lg" w= 'full'  bg='brand.50' h='50px' p={0}>
+                <TabList w='full' h='50px' justify="center">
+                  <Tab {...tabprops} _selected={{...selectedTabprops}} _hover={{...hoverTabprops}}>{lang.tabTitles.tab1}</Tab>
+                  <Tab {...tabprops} _selected={{...selectedTabprops}} _hover={{...hoverTabprops}}>{lang.tabTitles.tab2}</Tab>
+                  <Tab {...tabprops} _selected={{...selectedTabprops}} _hover={{...hoverTabprops}}>{lang.tabTitles.tab3}</Tab>
+                </TabList>
+                </Container>
+            </Flex>
+         
+            <Flex w='full' justifyItems = 'space-between' mx={0} px='5%' bg="brand.50" direction = 'row'>
+              <Container maxW="container.sm" w= '30%'  bg='brand.50' h='40px' />      
+              <Spacer />       
+              <Container maxW="container.sm" w= '30%' bg='brand.150' h='40px' p={0}>
+                <Button {...addRecoButtonprops} onClick={onOpen}>{lang.addRecoButton}</Button>
+              </Container>
+            </Flex>
+
+            {activeAddReco ? <Flex w='full' bg="brand.50" direction = 'row' mt={10} justify = 'space-between'>
+                <Container maxW="container.lg" w= '90%'  bg='brand.150' h='150px'>
+                  <AddRecommendation />
+                </Container>
+            </Flex> : null }
+
+            <Flex w='full' bg="brand.50" direction = 'row' mt={10} justify = 'space-between'>
+                <Container maxW="container.lg" w= '90%'  bg='brand.150' h='150px'>
+                  <CurrentRecommendations />
+                </Container>
+            </Flex>
+
+            <Flex w='full' direction="column" bg="brand.50">
+              <Flex w='full' bg="brand.50" direction = 'row' mt={10} justify = 'space-between'>
+                <Container maxW="container.lg" w= '40%'  bg='brand.150' h='200px'>
+                  <GettingStartedCard />
+                </Container>
+                <Container maxW="container.lg" w= '40%' bg='brand.250' h='200px'>
+                  <MobileAppDownloadCard />
+                </Container>
+              </Flex>
+              <Flex w='full' bg="brand.50" direction = 'row' mt={10} justify = 'space-between'>
+                <Container maxW="container.lg" w= '40%'  bg='brand.150' h='200px'>
+                  <ShareCard />
+                </Container>
+              </Flex>
+            </Flex>
+          </VStack>
+        </Flex>
+      </Tabs>            
+          
+      <VStack w='34%' h='full' 
+      spacing={10} alignItems = 'flex-start' 
+      bg="brand.50" flex = {1} pos='fixed' zIndex = {100} 
+      top = {0} bottom = {0} right = {0} 
+      borderLeftWidth={1} borderLeftColor={"gray.300"}>
+          <Flex w='full' bg="brand.50" direction = 'row' justify = 'space-between' 
+            p={0} m={0}>
+            <Container w='full'  bg='brand.50' h='60px' p={0} m={0}>
+              <UserNameShare 
+                link="https://www.getcandid.app/username" 
+                onClickUserName = {funcOnClickUserName}
+                onClickShare = {funcOnClickShare}
+                />
+            </Container>
+          </Flex>
+          <Flex bg="brand.50" flex={1} w='full' h='full' justify='center' alignItems = 'center'>
+            <Box w = '200px' h='400px' bg="brand.100" borderColor = 'gray.400' borderWidth = {2} borderRadius = {32} >
+              <Box w = '100%' h='100%' bg="brand.50" borderColor = 'black' borderWidth = {8} borderRadius = {30} p={2}>
+                <PhoneScreen />
+              </Box> 
+            </Box> 
+          </Flex>            
+        </VStack>
+        <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>{language.addRecoButton[locale]}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>First name</FormLabel>
+              <Input ref={initialRef} placeholder='First name' />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Last name</FormLabel>
+              <Input placeholder='Last name' />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      </Container>
+   
+  )
 }
