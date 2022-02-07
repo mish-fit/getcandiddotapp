@@ -69,7 +69,7 @@ const userDataReducer = (state, action)=>{
         return {
             ...state,
             userData:{
-                ...userData,
+                ...state.userData,
                 photoURL: action.payload            
             }    
         }
@@ -77,8 +77,8 @@ const userDataReducer = (state, action)=>{
         return {
             ...state,
             userData:{
-                ...userData,
-                affiliateCodes: affiliateCodes.append(action.payload)           
+                ...state.userData,
+                affiliateCodes: action.payload           
             }    
         }
     }
@@ -139,7 +139,8 @@ const UserDataProvider = (props) => {
         setMail,
         setPhone,
         setPhoto,
-        setPhotoURL
+        setPhotoURL,
+        setAffiliateCodes
         }
 
   return <UserContext.Provider value={userDataContext}>
