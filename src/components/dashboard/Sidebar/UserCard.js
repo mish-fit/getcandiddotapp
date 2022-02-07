@@ -16,8 +16,10 @@ export function UserCard() {
 
   return (
     <Container>
+      <Text>Cover Photo</Text>
       <Text>User Image</Text>
       <Text>UserName</Text>
+      <Text>About me </Text>
     </Container>
   );
 }
