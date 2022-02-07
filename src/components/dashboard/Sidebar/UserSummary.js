@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
@@ -15,9 +15,37 @@ export function UserSummary() {
   };
 
   return (
-    <Container>
-      <Text>Products Recommended</Text>
-      <Text>Links</Text>
+    <Container sx={style.container}>
+      <Flex sx={style.buttonContainer}>
+        <Button>Products</Button>
+        <Button>Links</Button>
+      </Flex>
+      <Flex sx={style.summaryView}>
+        <Text>Products</Text>
+        <Text>20</Text>
+      </Flex>
+      <Flex sx={style.summaryView}>
+        <Text>Links</Text>
+        <Text>10</Text>
+      </Flex>
     </Container>
   );
 }
+
+const style = {
+  container: {
+    justifyContent: "flex-start",
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  buttonContainer: {
+    justifyContent: "space-evenly",
+    mr: "20%",
+  },
+  summaryView: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    mr: "20%",
+  },
+};
