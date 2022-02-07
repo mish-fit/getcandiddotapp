@@ -1,126 +1,363 @@
-import {extendTheme , theme as base , withDefaultColorScheme, withDefaultVariant} from '@chakra-ui/react'
-import {mode} from '@chakra-ui/theme-tools'
+export default {
+  breakpoints: ["376px", "576px", "768px", "992px", "1200px", "1650px"],
+  // example colors with dark mode
+  colors: {
+    text: "#343D48", // body color and primary color
+    text_secondary: "#02073E", // secondary body color
+    heading: "#0F2137", // primary heading color
+    heading_secondary: "#343D48", // heading color
+    background: "#FFFFFF", // body background color
+    background_secondary: "#F9FBFD", // secondary background color
+    border_color: "#E9EDF5", // border color
+    primary: "#d95f76", // primary button and link color
+    secondary: "#d7354a", // secondary color - can be used for hover states
+    muted: "#7B8188", // muted color
+    accent: "#609", // a contrast color for emphasizing UI
 
-const brandRing = {
-    _focus : {
-        ring : 2,
-        ringColor : 'brand.500'
+    // highlight	a background color for highlighting text
+    modes: {
+      dark: {
+        text: "#fff",
+        background: "#000",
+        primary: "#0cf",
+        secondary: "#09c",
+        muted: "#111",
+      },
     },
-}
-
-
-const inputSelectStyles = {
-    variants : {
-        filled : {
-            field : {
-                _focus : {
-                    borderColor : 'brand.500'
-                },
-            },
-        },
+  },
+  fonts: {
+    body: "DM Sans",
+    // body:
+    //   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    heading: "DM Sans",
+    // heading: 'Bree Serif',
+    monospace: "Menlo, monospace",
+  },
+  fontSizes: [
+    12, // 0
+    14, // 1
+    16, // 2
+    18, // 3
+    20, // 4
+    22, // 5
+    24, // 6
+    26, // 7
+    28, // 8
+    30, // 9
+    32, // 10
+    36, // 11
+    40, // 12
+    42, // 13
+    48, // 14
+    52, // 15
+    64, // 16
+  ],
+  fontWeights: {
+    body: "normal",
+    // body: 400,
+    heading: 500,
+    // heading: 700,
+    bold: 700,
+  },
+  lineHeights: {
+    body: "30px",
+    // body: 1.5,
+    heading: "50px",
+    // heading: 1.125,
+  },
+  letterSpacings: {
+    body: "normal",
+    caps: "0.2em",
+    heading: "-0.5px",
+  },
+  space: [
+    0, // 0
+    5, // 1
+    10, // 2
+    15, // 3
+    20, // 4
+    25, // 5
+    30, // 6
+    35, // 7
+    40, // 8
+    45, // 9
+    50, // 10
+    55, // 11
+    60, // 12
+    65, // 13
+    70, // 14
+    80, // 15
+    90, // 16
+    100, // 17
+    110, // 18
+    120, // 19
+    130, // 20
+    140, // 21
+    150, // 22
+    160, // 23
+  ],
+  sizes: {
+    container: ["1170px"],
+  },
+  // variants can use custom, user-defined names
+  layout: {
+    container: {
+      px: ["20px", null, "30px", null, null, "15px", "0"],
     },
-    sizes : {
-        md : {
-            field : {
-                borderRadius : 'none'
-            },
-        },
+    header: {
+      color: "#02073E",
+      fontWeight: "normal",
+      py: 3,
     },
-}
-
-const checkboxStyles = {
-    baseStyle : {
-        control : {
-            borderRadius : 'none', 
-            ...brandRing
-        },
+    toolbar: {
+      display: "flex",
+      alignItems: "center",
+      // justifyContent: 'space-between',
     },
-}
-
-const buttonStyles = {
-    variants : {
-        primary : (props)=>({
-            rounded : 'none',
-            ...brandRing,
-            color : mode('white','gray.800')(props),
-            backgroundColor : mode('brand.500','brand.200')(props),
-            
-            _hover : {
-                backgroundColor : mode('brand.600','brand.300')(props),
-            },
-
-            _active : {
-                backgroundColor : mode('brand.700','brand.400')(props),
-            }
-        }),
+    main: {},
+    footer: {
+      backgroundColor: "background_secondary",
     },
-}
-
-const tabStyles = {
-    variants : {
-        primary : (props)=>({
-            rounded : 'none',
-            ...brandRing,
-            color : mode('white','gray.800')(props),
-            backgroundColor : mode('brand.500','brand.200')(props),
-            
-            _hover : {
-                backgroundColor : mode('brand.600','brand.300')(props),
-            },
-
-            _active : {
-                backgroundColor : mode('brand.700','brand.400')(props),
-            }
-        }),
+  },
+  section: {
+    banner: {
+      borderTop: (t) => `1px solid ${t.colors.border_color}`,
+      borderBottom: (t) => `1px solid ${t.colors.border_color}`,
+      backgroundColor: "background_secondary",
+      py: [3, 5],
     },
-}
-
-const brandColors = {
-    50 : '#ffffff',
-    100 : '#f7d7db',
-    150 : '#f3c2c9',
-    200 : '#efaeb7',
-    250 : '#eb9aa5',
-    300 : '#e78692',
-    350 : '#e37280',
-    400 : '#df5d6e',
-    450 : '#db495c',
-    500 : '#d7354a',
-    550 : '#c23043',
-    600 : '#ac2a3b',
-    650 : '#972534',
-    700 : '#81202c',
-    750 : '#6c1b25',
-    800 : '#56151e',
-    850 : '#401016',
-    900 : '#2b0b0f'
-}
-
-const theme = extendTheme(
-    {
-        fonts : {
-            heading : `Montserrat, ${base.fonts?.heading}`,
-            body : `Inter, ${base.fonts?.body}`
-        },
-        colors : {
-            brand : {...brandColors}
-        },
-        components : {
-            Input : {...inputSelectStyles},
-            Select : {...inputSelectStyles},
-            Checkbox : {...checkboxStyles},
-            Button : {...buttonStyles},
-            Tab : {...tabStyles}
-        },
+    feature: {
+      py: 5,
     },
-    withDefaultColorScheme({
-        colorScheme : 'brand',
-        components : ['Checkbox']
-    }),
-    withDefaultVariant({
-        variant : 'filled',
-        components : ['Input', 'Select']
-    })
-)
+    workflow: {
+      py: 5,
+    },
+    product: {
+      borderTop: (t) => `1px solid ${t.colors.border_color}`,
+      borderBottom: (t) => `1px solid ${t.colors.border_color}`,
+      backgroundColor: "background_color",
+      py: 5,
+    },
+    offer: {
+      py: 5,
+    },
+    package: {
+      py: 5,
+    },
+    support: {
+      py: 5,
+    },
+    testimonial: {
+      py: 5,
+    },
+    faq: {
+      py: 5,
+    },
+  },
+  text: {
+    heading: {
+      fontFamily: "heading",
+      lineHeight: "heading",
+      fontWeight: "heading",
+      fontSize: 4,
+      letterSpacing: "heading",
+      color: "heading",
+    },
+    heroPrimary: {
+      fontSize: [5, 55],
+      fontWeight: "normal",
+      lineHeight: ["40px", "80px"],
+      letterSpacing: "-1px",
+      textAlign: ["center", "left"],
+    },
+    title: {
+      // extends the text.heading styles
+      variant: "text.heading",
+      // fontSize: [6, 7, 8],
+      // fontWeight: 'display',
+      fontWeight: "bold",
+      fontSize: 18,
+      lineHeight: "30px",
+      color: "#0F2137",
+    },
+    heroSecondary: {
+      color: "text_secondary",
+      lineHeight: ["30px", "42px"],
+      letterSpacing: "0.1em",
+      textAlign: ["center", "left"],
+    },
+    lead: {
+      fontSize: 40,
+      fontFamily: "DM Sans",
+      fontWeight: "500",
+      lineHeight: "60px",
+      letterSpacing: "-1.5px",
+      color: "#0F2137",
+    },
+    muted: {
+      lineHeight: "26px",
+      color: "muted",
+    },
+    secondary: {
+      fontWeight: 500,
+      color: "#d7354a",
+      lineHeight: "40px",
+    },
+  },
+  links: {
+    bold: {
+      fontWeight: "bold",
+    },
+    nav: {
+      display: ["none", null, "inline-block"],
+      p: 2,
+      // transitionProperty: 'background-color',
+      // transitionTimingFunction: 'ease-out',
+      // transitionDuration: '.2s',
+      // borderRadius: 2,
+      // '&:hover': {
+      //   bg: 'highlight',
+      // },
+      // '&.active': {
+      //   color: 'primary',
+      //   bg: 'highlight',
+      // },
+    },
+    logo: {
+      mt: "5px",
+    },
+    footer: {
+      display: "block",
+      px: 0,
+      color: "inherit",
+      textDecoration: "none",
+    },
+  },
+  images: {
+    avatar: {
+      width: 48,
+      height: 48,
+      borderRadius: 99999,
+    },
+  },
+  // variants for buttons
+  buttons: {
+    menu: {
+      display: [null, null, "none"],
+    }, // default variant for MenuButton
+    // you can reference other values defined in the theme
+    primary: {
+      fontWeight: "bold",
+      color: "white",
+      bg: "primary",
+      "&:hover": {
+        bg: "dark",
+      },
+    },
+    secondary: {
+      color: "text",
+      bg: "secondary",
+    },
+    text: {
+      backgroundColor: "transparent",
+      color: "#3183FF",
+      pl: 0,
+    },
+  },
+  cards: {
+    primary: {
+      padding: 2,
+      borderRadius: 4,
+      // boxShadow: '0 0 4px 1px rgba(0, 0, 0, 0.5)',
+    },
+    offer: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      flex: ["1 1 calc(50% - 16px)", "1 1 20%"],
+      minHeight: 130,
+      m: 2,
+      background: "#FFFFFF",
+      border: "1px solid #EDEFF6",
+      borderRadius: 5,
+    },
+    featureCard: {
+      display: "flex",
+      alignItems: ["center", "flex-start"],
+      flexDirection: ["column", "row"],
+      p: [0, 3],
+    },
+  },
+  forms: {
+    label: {
+      fontSize: 1,
+      fontWeight: "bold",
+    },
+    input: {
+      borderRadius: 8,
+      borderColor: "border_color",
+      height: 60,
+      "&:focus": {
+        borderColor: "primary",
+        boxShadow: (t) => `0 0 0 2px ${t.colors.primary}`,
+        outline: "none",
+      },
+    },
+  },
 
-export default theme
+  badges: {
+    primary: {
+      color: "background",
+      bg: "#28A5FF",
+      borderRadius: 30,
+      p: "3px 11px",
+      fontSize: 1,
+      letterSpacing: "-0.5px",
+    },
+    outline: {
+      color: "primary",
+      bg: "transparent",
+      boxShadow: "inset 0 0 0 1px",
+    },
+  },
+
+  styles: {
+    // To add base, top-level styles to the <body> element, use theme.styles.root.
+    root: {
+      fontFamily: "body",
+      lineHeight: "body",
+      fontWeight: "body",
+      WebkitFontSmoothing: "antialiased",
+      button: {
+        cursor: "pointer",
+      },
+      a: {
+        cursor: "pointer",
+        textDecoration: "none",
+      },
+    },
+    // Divider styles
+    hr: {
+      border: 0,
+      borderBottom: "1px solid",
+      borderColor: "#D9E0E7",
+    },
+    // also you can use other HTML elements style here
+    ul: {
+      listStyle: "none",
+    },
+    srOnly: {
+      border: "0 !important",
+      clip: "rect(1px, 1px, 1px, 1px) !important",
+      clipPath: "inset(50%) !important",
+      height: "1px !important",
+      margin: "-1px !important",
+      overflow: "hidden !important",
+      padding: "0 !important",
+      position: "absolute !important",
+      width: "1px !important",
+      whiteSpace: "nowrap !important",
+    },
+  },
+};
