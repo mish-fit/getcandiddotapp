@@ -39,19 +39,19 @@ const styles = {
     maxWidth: "100%",
     display: "flex",
     flexDirection: ["column", "column", "row", "row", "row", "row"],
-    alignItems: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
   },
   mainscreen: {
     flex: [1, 1, 2, 2, 3, 3],
-    backgroundColor: "red",
+    pr: "10px",
   },
   sidebar: {
     flex: 1,
-    text: {
-      color: "red",
-    },
-    pt: "10px",
     pl: "10px",
+    pt: "20px",
+    alignItems: "center",
+    justifyContent: "center",
   },
   headerBtn: {
     backgroundColor: "#f29183",

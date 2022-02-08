@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Box } from "theme-ui";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../lib/firebase";
 import { Button } from "@chakra-ui/react";
@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { UserCard } from "./Sidebar/UserCard";
 import { UserSummary } from "./Sidebar/UserSummary";
 import { SocialHandles } from "./Sidebar/SocialHandles";
-import { AddButtons } from "./Sidebar/AddButtons";
+import { AddButtons } from "./MainScreen/AddButtons";
 
 // Add a custom Link
 export function Sidebar() {
@@ -19,11 +19,16 @@ export function Sidebar() {
   };
 
   return (
-    <Container sx={{}}>
+    <Box
+      sx={{
+        backgroundColor: "white",
+        borderRadius: "20px",
+        boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
+      }}
+    >
       <UserCard />
       <UserSummary />
       <SocialHandles />
-      <AddButtons />
-    </Container>
+    </Box>
   );
 }

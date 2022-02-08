@@ -41,8 +41,10 @@ export function UserCard() {
 const style = {
   container: {
     width: "100%",
+    borderTopRadius: "20px",
   },
   coverPhotoView: {
+    borderTopRadius: "20px",
     backgroundColor: "yellow",
     width: "450px",
     height: "250px",
@@ -75,6 +77,7 @@ const style = {
   },
   coverPhoto: {
     textAlign: "center",
+    borderRadius: "20px",
   },
   userImage: {
     textAlign: "center",

@@ -62,7 +62,6 @@ const style = {
     width: "450px",
     justifyContent: "space-around",
     mb: "10px",
-    mx: "auto",
   },
   summaryView: {
     flexDirection: "row",
@@ -73,13 +72,13 @@ const style = {
   button: {
     backgroundColor: "#FF5151",
     borderRadius: "30px",
-    borderColor: "orange",
-    width: "150px",
+    borderColor: "#FF5151",
     py: "10px",
     color: "white",
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "15px",
+    width: "150px",
   },
   summaryText: {
     fontWeight: "bold",
