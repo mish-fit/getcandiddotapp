@@ -25,14 +25,6 @@ export default {
       },
     },
   },
-  fonts: {
-    body: "DM Sans",
-    // body:
-    //   'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    heading: "DM Sans",
-    // heading: 'Bree Serif',
-    monospace: "Menlo, monospace",
-  },
   fontSizes: [
     12, // 0
     14, // 1
@@ -52,12 +44,15 @@ export default {
     52, // 15
     64, // 16
   ],
+  fonts: {
+    body: "Poppins",
+    heading: "Poppins",
+    monospace: "Poppins",
+  },
   fontWeights: {
-    body: "normal",
-    // body: 400,
-    heading: 500,
-    // heading: 700,
-    bold: 700,
+    body: 400,
+    heading: 600,
+    primary: 300,
   },
   lineHeights: {
     body: "30px",
@@ -156,7 +151,7 @@ export default {
   },
   text: {
     heading: {
-      fontFamily: "heading",
+      fontFamily: "Poppins",
       lineHeight: "heading",
       fontWeight: "heading",
       fontSize: 4,
@@ -188,7 +183,7 @@ export default {
     },
     lead: {
       fontSize: 40,
-      fontFamily: "DM Sans",
+      fontFamily: "Poppins",
       fontWeight: "500",
       lineHeight: "60px",
       letterSpacing: "-1.5px",
@@ -249,7 +244,7 @@ export default {
     primary: {
       fontWeight: "bold",
       color: "white",
-      bg: "primary",
+      bg: "green",
       "&:hover": {
         bg: "dark",
       },
@@ -325,7 +320,7 @@ export default {
   styles: {
     // To add base, top-level styles to the <body> element, use theme.styles.root.
     root: {
-      fontFamily: "body",
+      fontFamily: "Poppins",
       lineHeight: "body",
       fontWeight: "body",
       WebkitFontSmoothing: "antialiased",

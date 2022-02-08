@@ -42,7 +42,7 @@ const styles = {
     alignItems: "center",
   },
   mainscreen: {
-    flex: [1, 1, 2, 3, 3, 3],
+    flex: [1, 1, 2, 2, 3, 3],
     backgroundColor: "red",
   },
   sidebar: {

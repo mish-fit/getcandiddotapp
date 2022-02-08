@@ -16,13 +16,13 @@ export function AddButtons() {
 
   return (
     <Container as="container" sx={styles.container}>
-      <Button as="addButton" sx={styles.addButton}>
+      <Button as="addbutton" sx={styles.addbutton}>
         Add Social Link
       </Button>
-      <Button as="addButton" sx={styles.addButton}>
+      <Button as="addbutton" sx={styles.addbutton}>
         Recommend Product
       </Button>
-      <Button as="addButton" sx={styles.addButton}>
+      <Button as="addbutton" sx={styles.addbutton}>
         Add Custom Link
       </Button>
     </Container>
@@ -33,15 +33,19 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "column",
+    mt: "20px",
+    px: "20%",
   },
-  addButton: {
+  addbutton: {
     p: "10px",
-    backgroundColor: "red",
-    maxWidth: "80%",
+    backgroundColor: "#FF5151",
     mt: "20px",
     borderRadius: "20px",
     borderWidth: "2px",
     borderColor: "#000",
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "15px",
   },
   button: {
     fontSize: "16px",
