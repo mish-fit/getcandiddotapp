@@ -19,7 +19,7 @@ export function Sidebar() {
   };
 
   return (
-    <Container sx={{ pl: "10%", pr: "10%" }}>
+    <Container sx={{}}>
       <UserCard />
       <UserSummary />
       <SocialHandles />

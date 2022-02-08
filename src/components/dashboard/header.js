@@ -88,6 +88,7 @@ const styles = {
     position: "fixed",
     top: 0,
     left: 0,
+    zIndex: 100,
 
     "&.sticky": {
       backgroundColor: "background",

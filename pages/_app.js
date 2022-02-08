@@ -5,11 +5,12 @@ import Router from 'next/router';
 import { initGA, logPageView } from 'analytics';
 */
 
-import 'rc-drawer/assets/index.css';
-import 'assets/css/react-slick.css';
-import 'react-modal-video/css/modal-video.min.css';
-import 'typeface-bree-serif';
-import 'typeface-dm-sans';
+import "rc-drawer/assets/index.css";
+import "assets/css/react-slick.css";
+import "react-modal-video/css/modal-video.min.css";
+import "typeface-bree-serif";
+import "typeface-dm-sans";
+import "@fontsource/poppins";
 
 export default function CustomApp({ Component, pageProps }) {
   /** 

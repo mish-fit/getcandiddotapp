@@ -5,6 +5,8 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { ShowProducts } from "./MainScreen/ShowProducts";
+import { ShowLinks } from "./MainScreen/ShowLinks";
 
 // Add a custom Link
 export function MainScreen() {
@@ -15,8 +17,11 @@ export function MainScreen() {
   };
 
   return (
-    <Container>
-      <Text>HI</Text>
+    <Container sx={{ backgroundColor: "white" }}>
+      <ShowProducts />
+      <ShowLinks />
     </Container>
   );
 }
+
+const style = {};

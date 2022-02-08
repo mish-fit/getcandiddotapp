@@ -1120,6 +1120,11 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.4.1.tgz#600f2275ff54739ad5ac0102f1467b8963cd5f71"
   integrity sha512-0yPjzuzGMkW1GkrC8yWsiN7vt1OzkMIi9HgxRmKREZl2wnNPOKo/yScTjXf/O57HM8dltqxPF6jlNLFVtc2qdw==
 
+"@fontsource/poppins@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.1.tgz#0e2f112dff4319cd04a6622473f23496086a9587"
+  integrity sha512-7GlOGkOElhBVE5RHT33p7w9YDgiXHwx6W5TfBx2UDba8sydY17CRcAnY912/SfaAfkoDU71i+RbIwGfQMQxNlw==
+
 "@grpc/grpc-js@^1.0.0":
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@grpc/grpc-js/-/grpc-js-1.5.4.tgz#dd0237ad7df80a7a24766fe516d7e4a22cb4855e"
