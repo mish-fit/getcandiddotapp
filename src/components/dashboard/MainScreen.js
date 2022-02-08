@@ -18,7 +18,7 @@ export function MainScreen() {
   };
 
   return (
-    <Container sx={{ backgroundColor: "white" }}>
+    <Container sx={{ backgroundColor: "white", px: "0px" }}>
       <AddButtons />
       <ShowProducts />
       <ShowLinks />

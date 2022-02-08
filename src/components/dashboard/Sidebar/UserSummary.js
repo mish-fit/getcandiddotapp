@@ -29,12 +29,17 @@ export function UserSummary() {
     <Container sx={style.container}>
       <Container>
         <Flex sx={style.buttonContainer}>
-          <Button sx={style.button} onClick={onClickProducts}>
-            Products
-          </Button>
-          <Button sx={style.button} onClick={onClickLinks}>
-            Links
-          </Button>
+          <Flex sx={style.button}>
+            <Button onClick={onClickProducts} sx={style.buttonText}>
+              Products
+            </Button>
+          </Flex>
+
+          <Flex sx={style.button}>
+            <Button onClick={onClickLinks} sx={style.buttonText}>
+              Links
+            </Button>
+          </Flex>
         </Flex>
       </Container>
 
@@ -74,15 +79,22 @@ const style = {
     borderRadius: "30px",
     borderColor: "#FF5151",
     py: "10px",
-    color: "white",
-    fontWeight: "bold",
-    fontFamily: "Poppins",
-    fontSize: "15px",
+
     width: "150px",
   },
   summaryText: {
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "18px",
+  },
+  buttonText: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    borderWidth: "0px",
+    color: "white",
+    fontWeight: "bold",
+    fontFamily: "Poppins",
+    fontSize: "15px",
   },
 };

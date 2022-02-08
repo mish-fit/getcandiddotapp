@@ -58,28 +58,6 @@ export default function IndexPage() {
   return (
     <ThemeProvider theme={theme}>
       <StickyProvider>
-        <Global
-          styles={css`
-            @font-face {
-              font-family: "Poppins";
-              src: url("fonts/Poppins-Medium.otf") format("opentype");
-              font-style: normal;
-              font-weight: 300;
-            }
-            @font-face {
-              font-family: "Poppins";
-              src: url("fonts/Poppins-Regular.otf") format("opentype");
-              font-style: normal;
-              font-weight: 400;
-            }
-            @font-face {
-              font-family: "Poppins";
-              src: url("fonts/Poppins-Bold.otf") format("opentype");
-              font-style: normal;
-              font-weight: 600;
-            }
-          `}
-        />
         <Layout>
           <SEO
             title="Get your free CNDD link"
