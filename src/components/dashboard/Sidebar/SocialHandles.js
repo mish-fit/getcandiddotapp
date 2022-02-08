@@ -5,6 +5,7 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { BsPlusLg } from "react-icons/bs";
 
 // Add a custom Link
 export function SocialHandles() {
@@ -15,7 +16,7 @@ export function SocialHandles() {
   };
 
   return (
-    <Container sx={{ px: "10%", mt: "10px" }}>
+    <Container sx={{ px: "10%", mt: "10px", pb: "20px" }}>
       <Text sx={style.heading}>Social Handles</Text>
       <Grid gap={2} columns={[3, 4, 5, 6, 6, 6]} sx={style.grid}>
         <Container sx={style.socialView}>
@@ -59,6 +60,20 @@ export function SocialHandles() {
           <Text sx={style.socialText}>Trell</Text>
         </Container>
       </Grid>
+      <Container sx={style.addContainer}>
+        <Button as="addbutton" sx={style.addbutton}>
+          <Flex
+            sx={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <BsPlusLg color="#FFFFFF" size={10} sx={{ mr: "5px" }} />
+            <Text sx={style.addbuttonText}>Social</Text>
+          </Flex>
+        </Button>
+      </Container>
     </Container>
   );
 }
@@ -82,5 +97,27 @@ const style = {
     fontFamily: "Poppins",
     fontSize: "13px",
     color: "#646464",
+  },
+  addbutton: {
+    p: "5px",
+    px: "15px",
+    backgroundColor: "#FF5151",
+    mt: "20px",
+    borderRadius: "20px",
+    borderWidth: "2px",
+    borderColor: "#fff",
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "12px",
+    color: "#fff",
+  },
+  addContainer: {
+    textAlign: "center",
+  },
+  addbuttonText: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "12px",
+    color: "#FFFFFF",
   },
 };

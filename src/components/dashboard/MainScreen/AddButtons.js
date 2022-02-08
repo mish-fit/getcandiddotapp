@@ -1,10 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Button } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Button, Grid } from "theme-ui";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { StylesProvider } from "@chakra-ui/react";
+
 import { useRouter } from "next/router";
+import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 // Add a custom Link
 export function AddButtons() {
@@ -15,37 +16,59 @@ export function AddButtons() {
   };
 
   return (
-    <Container as="container" sx={styles.container}>
+    <Flex as="container" sx={styles.container}>
       <Button as="addbutton" sx={styles.addbutton}>
-        Add Social Link
+        <Flex
+          sx={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BsPlusCircleFill color="#FF5151" sx={{ mr: "5px" }} />
+          <Text sx={styles.addbuttonText}>Recommend Products</Text>
+        </Flex>
       </Button>
       <Button as="addbutton" sx={styles.addbutton}>
-        Recommend Product
+        <Flex
+          sx={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <BsPlusCircleFill color="#FF5151" sx={{ mr: "5px" }} />
+          <Text sx={styles.addbuttonText}>Custom Links</Text>
+        </Flex>
       </Button>
-      <Button as="addbutton" sx={styles.addbutton}>
-        Add Custom Link
-      </Button>
-    </Container>
+    </Flex>
   );
 }
 
 const styles = {
   container: {
-    display: "flex",
-    flexDirection: "column",
-    mt: "20px",
-    px: "20%",
+    px: "10%",
+    mb: "20px",
+    justifyContent: "flex-end",
+    alignItems: "flex-start",
   },
   addbutton: {
-    p: "10px",
-    backgroundColor: "#FF5151",
     mt: "20px",
     borderRadius: "20px",
     borderWidth: "2px",
     borderColor: "#000",
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "15px",
+    fontSize: "18px",
+    ml: "15px",
+    color: "#FF5151",
+    flexDirection: "row",
+  },
+  addbuttonText: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "18px",
+    color: "#FF5151",
   },
   button: {
     fontSize: "16px",
