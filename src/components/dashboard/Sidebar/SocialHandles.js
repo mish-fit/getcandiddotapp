@@ -5,7 +5,7 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { BsPlusLg } from "react-icons/bs";
+import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 // Add a custom Link
 export function SocialHandles() {
@@ -59,21 +59,19 @@ export function SocialHandles() {
           <Image src={"social/trell.png"} sx={style.social} />
           <Text sx={style.socialText}>Trell</Text>
         </Container>
+
+        <Flex
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            mb: "10px",
+          }}
+        >
+          <Button as="addbutton" sx={style.addbutton}>
+            <BsPlusCircleFill color="#FF5151" size={30} />
+          </Button>
+        </Flex>
       </Grid>
-      <Container sx={style.addContainer}>
-        <Button as="addbutton" sx={style.addbutton}>
-          <Flex
-            sx={{
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <BsPlusLg color="#FFFFFF" size={10} sx={{ mr: "5px" }} />
-            <Text sx={style.addbuttonText}>Social</Text>
-          </Flex>
-        </Button>
-      </Container>
     </Container>
   );
 }
@@ -98,19 +96,7 @@ const style = {
     fontSize: "13px",
     color: "#646464",
   },
-  addbutton: {
-    p: "5px",
-    px: "15px",
-    backgroundColor: "#FF5151",
-    mt: "20px",
-    borderRadius: "20px",
-    borderWidth: "2px",
-    borderColor: "#fff",
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "12px",
-    color: "#fff",
-  },
+  addbutton: {},
   addContainer: {
     textAlign: "center",
   },

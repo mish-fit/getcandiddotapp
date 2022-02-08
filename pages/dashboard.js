@@ -43,8 +43,7 @@ const styles = {
     justifyContent: "flex-start",
   },
   mainscreen: {
-    flex: [1, 1, 2, 2, 3, 3],
-    pr: "10px",
+    flex: [1, 1, 2, 2, 2, 2],
   },
   sidebar: {
     flex: 1,
@@ -52,6 +51,9 @@ const styles = {
     pt: "20px",
     alignItems: "center",
     justifyContent: "center",
+    position: "sticky",
+    bottom: "10px",
+    alignSelf: "flex-end",
   },
   headerBtn: {
     backgroundColor: "#f29183",

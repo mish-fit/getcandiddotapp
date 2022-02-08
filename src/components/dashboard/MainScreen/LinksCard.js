@@ -7,7 +7,7 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 // Add a custom Link
-export function ProductsCard() {
+export function LinksCard() {
   const router = useRouter();
 
   const addLinks = () => {
@@ -16,22 +16,7 @@ export function ProductsCard() {
 
   return (
     <Flex sx={style.container}>
-      <Flex sx={style.imageMaster}>
-        <Flex sx={style.imageContainer}>
-          <Image src={"/user/mobile.png"} sx={style.image} />
-        </Flex>
-      </Flex>
-      <Flex sx={style.detailsContainer}>
-        <Flex sx={style.content}>
-          <Text sx={style.product}>Product Name</Text>
-          <Text sx={style.category}>Category Name</Text>
-        </Flex>
-        <Flex sx={style.buttonContainer}>
-          <Flex sx={style.button}>
-            <Button sx={style.buttonText}>Buy Now</Button>
-          </Flex>
-        </Flex>
-      </Flex>
+      <Text>Link Name</Text>
     </Flex>
   );
 }
