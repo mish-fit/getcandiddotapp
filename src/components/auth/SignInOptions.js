@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import firebase from 'firebase';
-import { auth } from '../../lib/firebase';
-import { Box, Input, Button } from '@chakra-ui/react';
+import { auth, googleAuthProvider } from '../../lib/firebase';
+import { Box, Text, Input, Button } from '@chakra-ui/react';
 
 import { useRouter } from 'next/router';
 // Sign in with Phone button
-export function SignInPhoneButton() {
+export function SignInOptions() {
 	const router = useRouter();
 	const [mynumber, setNumber] = useState('+91');
 	const [otp, setOtp] = useState('');
 	const [show, setShow] = useState(false);
+	const [googleShow, setGoogleShow]=useState(true);
 	const [final, setFinal] = useState('');
+
+	const signInWithGoogle = async () => {
+		await auth.signInWithPopup(googleAuthProvider).then((result) => {
+			router.push('/onboard');
+		});
+	};
 
 	// Validate OTP
 	const ValidatePhoneOTP = () => {
@@ -27,7 +34,6 @@ export function SignInPhoneButton() {
 
 	const signInWithPhone = async () => {
 		if (mynumber === '' || mynumber.length < 10) return;
-
 		let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 		auth
 			.signInWithPhoneNumber(mynumber, verify)
@@ -35,6 +41,7 @@ export function SignInPhoneButton() {
 				setFinal(result);
 				alert('OTP Sent');
 				setShow(true);
+				setGoogleShow(false);
 			})
 			.catch((err) => {
 				alert(err);
@@ -42,9 +49,15 @@ export function SignInPhoneButton() {
 			});
 	};
 
+	const setHandler=()=>{
+		setShow(!show);
+		setGoogleShow(!googleShow);
+	}
+
 	return (
 		<Box>
 			<Box style={{ display: !show ? 'block' : 'none' } }>
+			<Text>Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
 				<Input
 					value={mynumber}
 					onChange={(e) => {
@@ -54,7 +67,7 @@ export function SignInPhoneButton() {
 					width={200}
 				/>
 				<Box id='recaptcha-container'></Box>
-				<Button onClick={signInWithPhone}>Send OTP</Button>
+				<Button onClick={signInWithPhone}>Verify</Button>
 			</Box>
 			<Box style={{ display: show ? 'block' : 'none' }}>
 				<Input
@@ -66,7 +79,12 @@ export function SignInPhoneButton() {
 					width={200}
 				></Input>
 				<br />
-				<Button onClick={ValidatePhoneOTP}>Verify</Button>
+				<Button onClick={ValidatePhoneOTP}>Confirm</Button>
+				<Button onClick={setHandler}>Go Back</Button>
+			</Box>
+			<Box style={{display:googleShow?'block':'none'}}>
+			<Text> See other ways to Sign In </Text>
+			<Button onClick={signInWithGoogle}>Sign in with Google</Button>
 			</Box>
 		</Box>
 	);

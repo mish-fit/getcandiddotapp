@@ -9,6 +9,7 @@ import {
 	Button,
   } from '@chakra-ui/react'
 import { useContext } from 'react';
+import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 const Step6 = (props) => {
   const ctx=useContext(UserContext);
@@ -17,9 +18,20 @@ const Step6 = (props) => {
 	  e.preventDefault();
 	  props.prevStep();
 	};
-    const submitHandler = (e) => {
-        e.preventDefault();
-      };
+  const submitHandler = async(e) => {
+      const userDoc = firestore.doc(`users/${ctx.userSignInInfo.user.uid}`);
+      const batch = firestore.batch();
+      batch.set(userDoc,{
+        username: ctx.userData.username,
+        displayName: ctx.userData.name,
+        mail: ctx.userData.mail,
+        phone: ctx.userData.phone,
+        affiliateCodes: ctx.userData.affiliateCodes
+      });
+      await batch.commit();
+
+      e.preventDefault();
+    };
   
       return(
         <>

@@ -13,8 +13,13 @@ import { UserContext } from '../../lib/UserDataProvider';
 const Step4 = (props) => {
   const ctx = useContext(UserContext);
 	console.log(ctx.userData);
+	console.log(ctx.userSignInInfo);
   const next = (e) => {
     e.preventDefault();
+		if(ctx.userData.name===''){
+			ctx.setName(ctx.userSignInInfo.user.displayName);
+			ctx.setMail(ctx.userSignInInfo.user.email);
+		}
     props.nextStep();
   };
   
