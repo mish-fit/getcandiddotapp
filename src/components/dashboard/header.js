@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Button } from "theme-ui";
 import { Link } from "components/link";
 import { Link as ScrollLink } from "react-scroll";
 import Logo from "components/logo";
@@ -11,13 +11,21 @@ import menuItems from "./header.data";
 import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
+import React from "react";
 
-export default function Header({ className }) {
+export default function Header({ menu, menuActive }) {
   const { locale } = useRouter();
   const lang = translation[locale].HeaderSection.Header;
+  const [active, setActive] = React.useState(menuActive);
+
+  const onClickIcon = () => {
+    setActive(!active);
+    menu(!active);
+  };
+
   return (
     <DrawerProvider>
-      <header sx={styles.header} className={className}>
+      <header sx={styles.header}>
         <Container sx={styles.container}>
           <Flex as="logo" sx={styles.logoContainer}>
             <Logo />
@@ -26,10 +34,10 @@ export default function Header({ className }) {
           <Flex as="nav" sx={styles.nav}>
             <Text sx={styles.nav.navLink}>https://www.cndd.in/kandurisv</Text>
           </Flex>
-          <Flex as="signout" sx={styles.signoutContainer}>
-            <Link path="/" sx={styles.signoutContainer.loginBtn}>
-              <p sx={styles.signoutContainer.loginBtn.text}>Sign Out</p>
-            </Link>
+          <Flex as="signout" sx={styles.signout}>
+            <Button sx={styles.signoutBtn} onClick={onClickIcon}>
+              <Image sx={styles.userImage} src={"/user/profile.png"} />
+            </Button>
           </Flex>
 
           <MobileDrawer />
@@ -40,6 +48,19 @@ export default function Header({ className }) {
 }
 
 const styles = {
+  userImage: {
+    height: "50px",
+    width: "50px",
+    borderRadius: "50px",
+  },
+  signout: {
+    backgroundColor: "white",
+    mr: "20px",
+  },
+  signoutBtn: {
+    backgroundColor: "white",
+    cursor: "pointer",
+  },
   headerBtn: {
     backgroundColor: "#f29183",
     fontSize: "15px",
@@ -113,9 +134,10 @@ const styles = {
     alignItems: "center",
 
     navLink: {
-      fontSize: "32px",
-      color: "#02073E",
-      fontWeight: "400",
+      fontFamily: "Poppins",
+      fontSize: "24px",
+      color: "#323232",
+      fontWeight: "normal",
       cursor: "pointer",
       lineHeight: "1.2",
       mr: "48px",
@@ -132,21 +154,4 @@ const styles = {
     },
   },
   logoContainer: {},
-  signoutContainer: {
-    loginBtn: {
-      ml: "auto",
-      display: "inline-flex",
-      alignItems: "center",
-      fontSize: "15px",
-      color: "#0F2137",
-      fontWeight: 500,
-      mr: "20px",
-      img: {
-        mr: "9px",
-      },
-      text: {
-        color: "green",
-      },
-    },
-  },
 };

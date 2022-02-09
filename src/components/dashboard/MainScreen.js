@@ -22,20 +22,6 @@ export function MainScreen() {
       <AddButtons />
       <ShowProducts />
       <ShowLinks />
-
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
-      <ShowLinks />
     </Container>
   );
 }

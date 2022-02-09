@@ -77,6 +77,7 @@ const style = {
     fontWeight: "medium",
     fontFamily: "Poppins",
     fontSize: "15px",
+    cursor: "pointer",
   },
   button: {
     backgroundColor: "#FF5151",

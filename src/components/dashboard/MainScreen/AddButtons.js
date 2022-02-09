@@ -63,6 +63,7 @@ const styles = {
     ml: "15px",
     color: "#FF5151",
     flexDirection: "row",
+    cursor: "pointer",
   },
   addbuttonText: {
     fontFamily: "Poppins",

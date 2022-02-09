@@ -19,7 +19,7 @@ export function SocialHandles() {
     <Container sx={{ px: "10%", mt: "10px", pb: "20px" }}>
       <Text sx={style.heading}>Social Handles</Text>
       <Grid gap={2} columns={[3, 4, 5, 6, 6, 6]} sx={style.grid}>
-        <Container sx={style.socialView}>
+        <Container sx={style.socialView} onClick={() => console.log("Trell")}>
           <Image src={"social/trell.png"} sx={style.social} />
           <Text sx={style.socialText}>Trell</Text>
         </Container>
@@ -86,6 +86,7 @@ const style = {
   },
   socialView: {
     textAlign: "center",
+    cursor: "pointer",
   },
   social: {
     width: "30px",
