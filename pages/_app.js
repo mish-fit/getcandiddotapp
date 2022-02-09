@@ -12,6 +12,7 @@ import "typeface-bree-serif";
 import "typeface-dm-sans";
 import "@fontsource/poppins";
 import { ChakraProvider } from "@chakra-ui/react";
+import UserDataProvider from "lib/UserDataProvider";
 
 export default function CustomApp({ Component, pageProps }) {
   /** 
@@ -23,8 +24,10 @@ export default function CustomApp({ Component, pageProps }) {
    */
 
   return (
-    <ChakraProvider>
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <UserDataProvider>
+      <ChakraProvider>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </UserDataProvider>
   );
 }
