@@ -1,19 +1,15 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 // Add a custom Link
 export function LinksCard() {
   return (
-    <Button sx={style.button}>
+    <Flex sx={style.button}>
       <Flex sx={style.container}>
         <Text sx={style.link}>this this this</Text>
       </Flex>
-    </Button>
+    </Flex>
   );
 }
 

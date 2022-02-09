@@ -8,16 +8,20 @@ import { useRouter } from "next/router";
 import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 // Add a custom Link
-export function AddButtons() {
+export function AddButtons({ addLink, addProduct }) {
   const router = useRouter();
 
   const addLinks = () => {
-    console.log("add links");
+    addLink();
+  };
+
+  const addProducts = () => {
+    addProduct();
   };
 
   return (
     <Flex as="container" sx={styles.container}>
-      <Button as="addbutton" sx={styles.addbutton}>
+      <Button as="addbutton" sx={styles.addbutton} onClick={addProducts}>
         <Flex
           sx={{
             flexDirection: "row",
@@ -29,7 +33,7 @@ export function AddButtons() {
           <Text sx={styles.addbuttonText}>Recommend Products</Text>
         </Flex>
       </Button>
-      <Button as="addbutton" sx={styles.addbutton}>
+      <Button as="addbutton" sx={styles.addbutton} onClick={addLinks}>
         <Flex
           sx={{
             flexDirection: "row",

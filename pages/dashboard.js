@@ -9,8 +9,9 @@ import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
 import { MenuPopup } from "components/dashboard/MenuPopup";
+import { LinksModal } from "components/dashboard/Modals/LinksModal";
 
-export default function Onboard(props) {
+export default function Dashboard(props) {
   const ctx = useContext(UserContext);
   const [menuClick, setMenuClick] = React.useState(false);
 
@@ -28,8 +29,12 @@ export default function Onboard(props) {
     // }
   };
 
+  const onClose = () => {};
+
   return (
     <div>
+      <LinksModal />
+
       <Header menu={(item) => menuActivate(item)} menuActive={menuClick} />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>

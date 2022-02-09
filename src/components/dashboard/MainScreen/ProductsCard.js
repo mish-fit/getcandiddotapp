@@ -28,7 +28,7 @@ export function ProductsCard() {
         </Flex>
         <Flex sx={style.buttonContainer}>
           <Flex sx={style.button}>
-            <Button sx={style.buttonText}>Buy Now</Button>
+            <Text sx={style.buttonText}>Buy Now</Text>
           </Flex>
         </Flex>
       </Flex>
@@ -78,6 +78,7 @@ const style = {
     fontFamily: "Poppins",
     fontSize: "15px",
     cursor: "pointer",
+    textAlign: "center",
   },
   button: {
     backgroundColor: "#FF5151",
