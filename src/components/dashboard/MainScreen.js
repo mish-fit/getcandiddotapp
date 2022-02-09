@@ -10,6 +10,9 @@ import { AddButtons } from "./MainScreen/AddButtons";
 import React from "react";
 import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
+import * as Scroll from "react-scroll";
+
+let Element = Scroll.Element;
 
 // Add a custom Link
 export function MainScreen() {
@@ -40,8 +43,12 @@ export function MainScreen() {
         addLink={() => setOpenLinksModal(true)}
         addProduct={() => setOpenProductsModal(true)}
       />
-      <ShowProducts />
-      <ShowLinks />
+      <Element name="products">
+        <ShowProducts id="products" />
+      </Element>
+      <Element name="links">
+        <ShowLinks id="links" />
+      </Element>
     </Container>
   );
 }
