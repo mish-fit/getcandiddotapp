@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../src/lib/UserDataProvider";
@@ -8,18 +8,30 @@ import { firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
+import { MenuPopup } from "components/dashboard/MenuPopup";
 
 export default function Onboard(props) {
   const ctx = useContext(UserContext);
+  const [menuClick, setMenuClick] = React.useState(false);
 
   React.useEffect(() => {
     console.log("firestore", firestore);
     console.log("env", firebaseConfig1);
   }, []);
 
+  const menuActivate = (item) => {
+    setMenuClick(item);
+    // if (item) {
+    //   document.addEventListener("click", () => setMenuClick(false));
+    // } else {
+    //   document.removeEventListener("click", () => setMenuClick(false));
+    // }
+  };
+
   return (
     <div>
-      <Header />
+      <Header menu={(item) => menuActivate(item)} menuActive={menuClick} />
+      {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>
         <Flex as="sidebar" sx={styles.sidebar}>
           <Sidebar />

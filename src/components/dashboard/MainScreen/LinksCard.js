@@ -8,16 +8,12 @@ import { useRouter } from "next/router";
 
 // Add a custom Link
 export function LinksCard() {
-  const router = useRouter();
-
-  const addLinks = () => {
-    console.log("add links");
-  };
-
   return (
-    <Flex sx={style.container}>
-      <Text>Link Name</Text>
-    </Flex>
+    <Button sx={style.button}>
+      <Flex sx={style.container}>
+        <Text sx={style.link}>this this this</Text>
+      </Flex>
+    </Button>
   );
 }
 
@@ -25,71 +21,26 @@ const style = {
   container: {
     flexDirection: "row",
     p: "10px",
+    py: "20px",
     backgroundColor: "white",
-    borderRadius: "2px",
-    boxShadow: "0 1px 1px 1px rgba(0, 0, 0, 0.1)",
+    borderRadius: "20px",
+    boxShadow: "0 4px 4px 1px rgba(0, 0, 0, 0.5)",
     mx: "20px",
     width: "450px",
-    my: "20px",
-  },
-  imageMaster: {
-    backgroundColor: "white",
-  },
-  imageContainer: {
-    my: "25px",
-    mx: "10px",
-    backgroundColor: "white",
-  },
-  image: {
     height: "100px",
-    width: "150px",
-    borderRadius: "5px",
-  },
-  detailsContainer: {
-    backgroundColor: "white",
-    flexDirection: "column",
-    ml: "10px",
-    width: "250px",
-    justifyContent: "space-between",
-    py: "10px",
-  },
-  buttonText: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "transparent",
-    borderWidth: "0px",
-    color: "white",
-    fontWeight: "medium",
-    fontFamily: "Poppins",
-    fontSize: "15px",
+    my: "20px",
+    justifyContent: "center",
+    alignItems: "center",
   },
   button: {
-    backgroundColor: "#FF5151",
-    borderRadius: "30px",
-    borderColor: "#FF5151",
-    py: "5px",
-    width: "150px",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "transparent",
+    cursor: "pointer",
+    borderWidth: "0px",
   },
-  content: {
-    flexDirection: "column",
-  },
-  buttonContainer: {
-    justifyContent: "center",
-    width: "100%",
-  },
-  product: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "24px",
-    color: "#000",
-  },
-  category: {
+  link: {
     fontFamily: "Poppins",
     fontWeight: "medium",
     fontSize: "18px",
     color: "#D7354A",
   },
-  buynow: {},
 };

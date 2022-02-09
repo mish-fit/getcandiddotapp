@@ -96,5 +96,6 @@ const style = {
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "15px",
+    cursor: "pointer",
   },
 };

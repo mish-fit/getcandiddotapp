@@ -34,6 +34,7 @@
     "react-slick": "^0.27.13",
     "react-stickynode": "^3.0.4",
     "react-waypoint": "^9.0.3",
+    "reactjs-popup": "^2.0.5",
     "theme-ui": "^0.3.5",
     "typeface-bree-serif": "^1.1.13",
     "typeface-dm-sans": "^1.1.13"
