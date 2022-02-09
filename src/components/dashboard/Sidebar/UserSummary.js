@@ -5,6 +5,7 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { useRouter } from "next/router";
 import React from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 // Add a custom Link
 export function UserSummary() {
@@ -28,27 +29,60 @@ export function UserSummary() {
     <Container sx={style.container}>
       <Container>
         <Flex sx={style.buttonContainer}>
-          <Flex sx={style.button}>
-            <Button onClick={onClickProducts} sx={style.buttonText}>
-              Products
-            </Button>
-          </Flex>
-
-          <Flex sx={style.button}>
-            <Button onClick={onClickLinks} sx={style.buttonText}>
-              Links
-            </Button>
-          </Flex>
+          <ScrollLink
+            sx={{}}
+            to="products"
+            spy={true}
+            smooth={true}
+            offset={-200}
+            duration={500}
+            key={1}
+          >
+            <Flex sx={activeTab == 0 ? style.button : style.button1}>
+              <Button
+                onClick={onClickProducts}
+                sx={activeTab == 0 ? style.buttonText : style.buttonText1}
+              >
+                Products
+              </Button>
+            </Flex>
+          </ScrollLink>
+          <ScrollLink
+            sx={{}}
+            to="links"
+            spy={true}
+            smooth={true}
+            offset={-125}
+            duration={500}
+            key={2}
+          >
+            <Flex sx={activeTab > 0 ? style.button : style.button1}>
+              <Button
+                onClick={onClickLinks}
+                sx={activeTab > 0 ? style.buttonText : style.buttonText1}
+              >
+                Links
+              </Button>
+            </Flex>
+          </ScrollLink>
         </Flex>
       </Container>
 
       <Flex sx={style.summaryView}>
-        <Text sx={style.summaryText}>Products</Text>
-        <Text sx={style.summaryText}>20</Text>
+        <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
+          Products
+        </Text>
+        <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
+          20
+        </Text>
       </Flex>
       <Flex sx={style.summaryView}>
-        <Text sx={style.summaryText}>Links</Text>
-        <Text sx={style.summaryText}>10</Text>
+        <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
+          Links
+        </Text>
+        <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
+          10
+        </Text>
       </Flex>
     </Container>
   );
@@ -96,5 +130,35 @@ const style = {
     fontFamily: "Poppins",
     fontSize: "15px",
     cursor: "pointer",
+  },
+  button1: {
+    backgroundColor: "white",
+    borderRadius: "30px",
+    borderColor: "#FF5151",
+    py: "10px",
+    borderWidth: 1,
+    width: "150px",
+  },
+  buttonText1: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    borderWidth: "0px",
+    color: "#FF5151",
+    fontWeight: "bold",
+    fontFamily: "Poppins",
+    fontSize: "15px",
+    cursor: "pointer",
+  },
+  summaryView1: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    mx: "10%",
+    mt: "10px",
+  },
+  summaryText1: {
+    fontWeight: "medium",
+    fontFamily: "Poppins",
+    fontSize: "18px",
   },
 };
