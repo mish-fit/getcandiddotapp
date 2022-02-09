@@ -7,7 +7,7 @@ import { Box, Input, Heading, Text, Button, FormControl, FormLabel } from '@chak
 
 const Step1 = (props) => {
 
-  const ctx = useContext(UserContext);`12390-]=[-p0i8u7yswqa bk[]\]`
+  const ctx = useContext(UserContext);
 	const [formValue, setFormValue] = useState('');
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -22,11 +22,12 @@ const Step1 = (props) => {
 
 	const batch = firestore.batch();
 	// console.log(ctx.userData.username);
-	// console.log(ctx.userSignInInfo.user.email);
-	// console.log(ctx.userSignInInfo.user.phoneNumber);
+	console.log(ctx.userSignInInfo.user.email);
+	// console.log(ctx.userSignInInfo);
+	console.log(ctx.userSignInInfo.user.phoneNumber);
 	
 	// sending data to firebase when user logged in with phone
-	if(ctx.userSignInInfo.user.email===null){
+	if(ctx.userSignInInfo.user.email==null){
 		batch.set(userDoc, {
 			username: formValue,
 			phone: ctx.userSignInInfo.user.phoneNumber,
