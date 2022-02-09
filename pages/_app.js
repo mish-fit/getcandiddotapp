@@ -11,6 +11,7 @@ import "react-modal-video/css/modal-video.min.css";
 import "typeface-bree-serif";
 import "typeface-dm-sans";
 import "@fontsource/poppins";
+import { ChakraProvider } from "@chakra-ui/react";
 
 export default function CustomApp({ Component, pageProps }) {
   /** 
@@ -21,5 +22,9 @@ export default function CustomApp({ Component, pageProps }) {
    }, []);
    */
 
-  return <Component {...pageProps} />;
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  );
 }

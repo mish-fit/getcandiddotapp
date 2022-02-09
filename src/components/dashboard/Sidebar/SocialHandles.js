@@ -8,57 +8,57 @@ import { useRouter } from "next/router";
 import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 // Add a custom Link
-export function SocialHandles() {
+export function SocialHandles({ social }) {
   const router = useRouter();
 
-  const addLinks = () => {
-    console.log("add links");
+  const addSocial = () => {
+    social();
   };
 
   return (
     <Container sx={{ px: "10%", mt: "10px", pb: "20px" }}>
       <Text sx={style.heading}>Social Handles</Text>
       <Grid gap={2} columns={[3, 4, 5, 6, 6, 6]} sx={style.grid}>
-        <Container sx={style.socialView} onClick={() => console.log("Trell")}>
+        <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
           <Image src={"social/trell.png"} sx={style.social} />
           <Text sx={style.socialText}>Trell</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/koo.png"} sx={style.social} />
           <Text sx={style.socialText}>Koo</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/simsim.png"} sx={style.social} />
           <Text sx={style.socialText}>Simsim</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/bulbul.png"} sx={style.social} />
           <Text sx={style.socialText}>Bulbul</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/koo.png"} sx={style.social} />
           <Text sx={style.socialText}>Koo</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/trell.png"} sx={style.social} />
           <Text sx={style.socialText}>Trell</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/simsim.png"} sx={style.social} />
           <Text sx={style.socialText}>Simsim</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/bulbul.png"} sx={style.social} />
           <Text sx={style.socialText}>Bulbul</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/koo.png"} sx={style.social} />
           <Text sx={style.socialText}>Koo</Text>
-        </Container>
-        <Container sx={style.socialView}>
+        </Flex>
+        <Flex sx={style.socialView}>
           <Image src={"social/trell.png"} sx={style.social} />
           <Text sx={style.socialText}>Trell</Text>
-        </Container>
+        </Flex>
 
         <Flex
           sx={{
@@ -67,7 +67,7 @@ export function SocialHandles() {
             mb: "10px",
           }}
         >
-          <Button as="addbutton" sx={style.addbutton}>
+          <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
             <BsPlusCircleFill color="#FF5151" size={30} />
           </Button>
         </Flex>
@@ -87,6 +87,9 @@ const style = {
   socialView: {
     textAlign: "center",
     cursor: "pointer",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
   },
   social: {
     width: "30px",
@@ -96,8 +99,12 @@ const style = {
     fontFamily: "Poppins",
     fontSize: "13px",
     color: "#646464",
+    textAlign: "center",
   },
-  addbutton: {},
+  addbutton: {
+    cursor: "pointer",
+    backgroundColor: "transparent",
+  },
   addContainer: {
     textAlign: "center",
   },
