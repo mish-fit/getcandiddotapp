@@ -9,7 +9,16 @@ import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
 import { MenuPopup } from "components/dashboard/MenuPopup";
-import { LinksModal } from "components/dashboard/Modals/LinksModal";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 
 export default function Dashboard(props) {
   const ctx = useContext(UserContext);
@@ -33,8 +42,6 @@ export default function Dashboard(props) {
 
   return (
     <div>
-      <LinksModal />
-
       <Header menu={(item) => menuActivate(item)} menuActive={menuClick} />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>

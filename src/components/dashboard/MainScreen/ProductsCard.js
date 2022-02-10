@@ -81,9 +81,9 @@ const style = {
     textAlign: "center",
   },
   button: {
-    backgroundColor: "#FF5151",
+    backgroundColor: "#D7354A",
     borderRadius: "30px",
-    borderColor: "#FF5151",
+    borderColor: "#D7354A",
     py: "5px",
     width: "150px",
     alignItems: "center",

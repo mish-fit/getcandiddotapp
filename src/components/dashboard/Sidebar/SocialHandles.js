@@ -68,7 +68,7 @@ export function SocialHandles({ social }) {
           }}
         >
           <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
-            <BsPlusCircleFill color="#FF5151" size={30} />
+            <BsPlusCircleFill color="#D7354A" size={30} />
           </Button>
         </Flex>
       </Grid>

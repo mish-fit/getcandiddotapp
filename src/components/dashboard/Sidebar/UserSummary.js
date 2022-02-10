@@ -108,9 +108,9 @@ const style = {
     mt: "10px",
   },
   button: {
-    backgroundColor: "#FF5151",
+    backgroundColor: "#D7354A",
     borderRadius: "30px",
-    borderColor: "#FF5151",
+    borderColor: "#D7354A",
     py: "10px",
 
     width: "150px",
@@ -134,7 +134,7 @@ const style = {
   button1: {
     backgroundColor: "white",
     borderRadius: "30px",
-    borderColor: "#FF5151",
+    borderColor: "#D7354A",
     py: "10px",
     borderWidth: 1,
     width: "150px",
@@ -144,7 +144,7 @@ const style = {
     height: "100%",
     backgroundColor: "transparent",
     borderWidth: "0px",
-    color: "#FF5151",
+    color: "#D7354A",
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "15px",
