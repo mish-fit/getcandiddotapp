@@ -7,6 +7,7 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
+	Progress,
 	Button,
 } from '@chakra-ui/react';
 import { useContext, useState, useEffect } from 'react';
@@ -58,6 +59,7 @@ const Step6 = (props) => {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 	>
+			<Progress value={100} size={'sm'} width={100} borderRadius={50}/>
 			<FormControl>
 				<Heading size={'lg'} marginBottom="20px">Submit User details</Heading>
 				<Text>{ctx.userData.name}</Text>

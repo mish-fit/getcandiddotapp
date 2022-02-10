@@ -6,6 +6,7 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
+	Progress,
 	Button,
 } from '@chakra-ui/react';
 
@@ -46,6 +47,7 @@ const Step4 = (props) => {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 	>
+			<Progress value={60} size={'sm'} width={100} borderRadius={50}/>
 			<FormControl>
 				<Heading size={'lg'} marginBottom="20px" >Select Profile Picture</Heading>
 				<Input type='file' bg='white' w='200px' />

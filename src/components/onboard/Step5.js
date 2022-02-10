@@ -6,6 +6,7 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
+	Progress,
 	Button,
 	Select,
 } from '@chakra-ui/react';
@@ -66,6 +67,7 @@ const Step5 = (props) => {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 		>
+			<Progress value={80} size={'sm'} width={100} borderRadius={50}/>
 			<form onSubmit={next}>
 				<Heading size={'lg'} marginBottom="20px">Affiliate Codes</Heading>
 				<Flex marginBottom='10px'>

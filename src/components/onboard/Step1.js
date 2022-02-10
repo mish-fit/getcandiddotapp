@@ -18,6 +18,7 @@ import {
 	Button,
 	Container,
 	Stack,
+	Progress,
 	FormControl,
 	FormLabel,
 } from '@chakra-ui/react';
@@ -113,7 +114,7 @@ const Step1 = (props) => {
 <Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
 	bg='gray.50'
-	p={10}
+	p={5}
 	display={{ md: "flex" }}
 	maxWidth='26rem'
 	borderWidth={2}
@@ -124,9 +125,10 @@ const Step1 = (props) => {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 	>
+	<Progress value={20} size={'sm'} width={100} borderRadius={50} />
 			<Box>
 				<Heading
-				size={'lg'} marginBottom="10px">Choose Username</Heading>
+				size={'lg'} marginBottom="10px" >Choose Username</Heading>
 				<form onSubmit={next}>
 					<Input name='username' 
 					bg='white'

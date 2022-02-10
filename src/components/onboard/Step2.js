@@ -8,6 +8,7 @@ import {
 	FormErrorMessage,
 	FormHelperText,
 	Button,
+	Progress,
 } from '@chakra-ui/react';
 import { auth, googleAuthProvider } from '../../lib/firebase';
 import { useState, useContext, useRef, useEffect } from 'react';
@@ -118,8 +119,10 @@ const Step2 = (props) => {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 		>
+			<Progress value={40} size={'sm'} width={100} borderRadius={50}/>
 		<Box>
 			<form onSubmit={next}>
+			
 				<Heading size={'lg'} marginBottom="20px" >Enter User Details</Heading>
 				<FormLabel>Full Name</FormLabel>
 				<Input
@@ -146,9 +149,8 @@ const Step2 = (props) => {
 				/>
 				</Box>
 				<Text style={{ display: info ? 'block' : 'none' }} marginBottom='10px'>
-					Your email is taken from mailInput.
+					Your email is taken from gmail.
 				</Text>
-				
 				<Button
 				style={{ display: showLink ? 'block' : 'none' }}
 				marginTop='10px'
