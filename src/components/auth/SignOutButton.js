@@ -10,10 +10,12 @@ import {
   Button,
   Stack
 } from "@chakra-ui/react";
+import "@fontsource/poppins";
 // Sign out button
 export function SignOutButton() {
 	return (
 	<Button 
+  fontFamily={"Poppins"}
   borderRadius={50}
   color='white'
 	bg={'#ff5151'}

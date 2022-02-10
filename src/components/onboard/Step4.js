@@ -11,6 +11,7 @@ import {
 
 import { useState, useContext, useRef } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
+import "@fontsource/poppins";
 const Step4 = (props) => {
 	const ctx = useContext(UserContext);
 	console.log(ctx.userData);
@@ -31,12 +32,13 @@ const Step4 = (props) => {
 
 	return (
 		<>
-	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
 	p={10}
+	bg='gray.50'
 	display={{ md: "flex" }}
 	maxWidth='26rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 >	<Stack
 		align={{ base: "center", md: "stretch" }}
@@ -45,8 +47,8 @@ const Step4 = (props) => {
 		ml={{ md: 6 }}
 	>
 			<FormControl>
-				<Heading size={'lg'} >Select Image</Heading>
-				<Input type='file' w='200px' />
+				<Heading size={'lg'} marginBottom="20px" >Select Profile Picture</Heading>
+				<Input type='file' bg='white' w='200px' />
 				<br />
 				<Button 
 				borderRadius={50}
@@ -56,7 +58,7 @@ const Step4 = (props) => {
 				<br />
 				<Button 
 				borderRadius={50}
-				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} marginRight='10px' onClick={back}>
+				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} marginRight='5px' onClick={back}>
 					Back
 				</Button>
 				<Button 				borderRadius={50}

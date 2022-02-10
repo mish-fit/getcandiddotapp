@@ -12,6 +12,7 @@ import {
 import { useContext, useState, useEffect } from 'react';
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
+import "@fontsource/poppins";
 const Step6 = (props) => {
 	const ctx = useContext(UserContext);
 	const [showPhone, setShowPhone] = useState(true);
@@ -43,12 +44,13 @@ const Step6 = (props) => {
 	return (
 		<>
 
-	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
 	p={10}
+	bg='gray.50'
 	display={{ md: "flex" }}
 	maxWidth='26rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 >	<Stack
 		align={{ base: "center", md: "stretch" }}
@@ -57,8 +59,7 @@ const Step6 = (props) => {
 		ml={{ md: 6 }}
 	>
 			<FormControl>
-				<Heading size={'lg'}>Submit User details</Heading>
-				<br />
+				<Heading size={'lg'} marginBottom="20px">Submit User details</Heading>
 				<Text>{ctx.userData.name}</Text>
 				<Text>{ctx.userData.username}</Text>
 				<Text>{ctx.userData.mail}</Text>
