@@ -13,8 +13,10 @@ import "typeface-dm-sans";
 import "@fontsource/poppins";
 import { ChakraProvider } from "@chakra-ui/react";
 import UserDataProvider from "lib/UserDataProvider";
+import { useUserData } from '../src/lib/hooks';
 
 export default function CustomApp({ Component, pageProps }) {
+  const userData = useUserData();
   /** 
    useEffect(() => {
      initGA();
@@ -24,8 +26,8 @@ export default function CustomApp({ Component, pageProps }) {
    */
 
   return (
-    <UserDataProvider>
-      <ChakraProvider>
+    <UserDataProvider >
+      <ChakraProvider >
         <Component {...pageProps} />
       </ChakraProvider>
     </UserDataProvider>
