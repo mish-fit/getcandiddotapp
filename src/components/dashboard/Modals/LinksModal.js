@@ -37,7 +37,7 @@ export function LinksModal({ closeParent, isOpen }) {
             <Text sx={style.topHeader}>Add Link</Text>
             <Flex sx={style.saveContainer} onClick={save}>
               <Text sx={style.save}>Save </Text>
-              <BsCheckCircleFill color="#D7354A" size={13} sx={{ ml: "5px" }} />
+              <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "5px" }} />
             </Flex>
           </Flex>
           <Flex sx={style.row2}>
@@ -118,7 +118,7 @@ const style = {
   save: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "13px",
+    fontSize: "15px",
   },
   subHeaderContainer: {
     width: "50%",

@@ -33,24 +33,28 @@ function ListItem({ color, name, pick }) {
   return (
     <Flex
       sx={{
+        width: "100%",
         flexDirection: "row",
-        justifyContent: "center",
         p: "5x",
-        alignItems: "center",
+        justifyContent: "flex-start",
       }}
       onClick={pickColor}
     >
-      <ColorItem color={color} />
-      <Text
-        sx={{
-          ml: "10px",
-          fontFamily: "Poppins",
-          fontSize: "12px",
-          fontWeight: "bold",
-        }}
-      >
-        {name}
-      </Text>
+      <Flex>
+        <ColorItem color={color} />
+      </Flex>
+      <Flex sx={{ flex: 1 }}>
+        <Text
+          sx={{
+            ml: "10px",
+            fontFamily: "Poppins",
+            fontSize: "12px",
+            fontWeight: "bold",
+          }}
+        >
+          {name}
+        </Text>
+      </Flex>
     </Flex>
   );
 }
