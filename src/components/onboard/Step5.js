@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
-
+import "@fontsource/poppins";
 const Step5 = (props) => {
 	const ctx = useContext(UserContext);
 	const [selectedAffiliates, setSelectedAffiliates] = useState([]);
@@ -52,12 +52,13 @@ const Step5 = (props) => {
 	};
 	return (
 		<>
-	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
 	p={10}
+	bg='gray.50'
 	display={{ md: "flex" }}
 	maxWidth='32rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 	><Stack
 		align={{ base: "center", md: "stretch" }}
@@ -66,8 +67,8 @@ const Step5 = (props) => {
 		ml={{ md: 6 }}
 		>
 			<form onSubmit={next}>
-				<Heading>Affiliate codes</Heading>
-				<Flex>
+				<Heading size={'lg'} marginBottom="20px">Affiliate Codes</Heading>
+				<Flex marginBottom='10px'>
 				<Box w='150px' >
 				<Select placeholder='Affiliates' ref={affiliateBrand}>
 					{brandArray.map((item, id) => (
@@ -78,7 +79,7 @@ const Step5 = (props) => {
 				</Select>
 				</Box>
 				<Box w='150px'>
-				<Input type='text'  ref={affiliateCode} />
+				<Input type='text' bg='white' ref={affiliateCode} />
 				</Box>
 				<Button
 				borderRadius={50}
@@ -90,8 +91,6 @@ const Step5 = (props) => {
 					Add
 				</Button>
 				</Flex>
-
-			<br />
 				<Button 
 				borderRadius={50}
 				color='white' bg={'#ff5151'} marginRight='5px' _hover={{ bg: '#D7354A' }} onClick={back}>

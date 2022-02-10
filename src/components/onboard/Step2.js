@@ -12,6 +12,8 @@ import {
 import { auth, googleAuthProvider } from '../../lib/firebase';
 import { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
+import { AiFillGoogleCircle } from 'react-icons/ai';
+import "@fontsource/poppins";
 const Step2 = (props) => {
 	// const name= useRef();
 	// const mail=useRef();
@@ -19,15 +21,19 @@ const Step2 = (props) => {
 		name: '',
 		mail: '',
 	});
-	const [isGmail, setIsGmail] = useState(false);
+	const [showLink, setShowLink] = useState(false);
+	const [mailInput, setMailInput] = useState(true);
 	const [info, setInfo] = useState(false);
 	const ctx = useContext(UserContext);
 	// console.log('Step2', ctx.userData);
 
 	useEffect(() => {
-		if (ctx.userSignInInfo.user.mail !== null) {
-			setInfo(true);
+		if(ctx.userData.phone==='+91'){
+			setMailInput(false);
 		}
+		
+		setShowLink(false);
+		setInfo(false);
 	}, [ctx.userSignInInfo.user.mail]);
 
 	const SignInWithGoogle = () => {
@@ -37,14 +43,18 @@ const Step2 = (props) => {
 				// var credential = result.credential;
 				// var u = result.user;
 				// ctx.setMail(result.user.email);
+				setMailInput(false);
+				setShowLink(false);
+				setInfo(true);
 				setState({
 					...state,
 					mail: result.user.email,
 				});
-				console.log('hh', mail);
-				console.log('jj', result.user.mail);
+				console.log('reached');
+				// console.log('hh', mail);
+				// console.log('jj', result.user.email);
 				// ctx.setMail((result.user.email));
-				setIsGmail(false);
+				setMailInput(false);
 				setInfo(true);
 				console.log(result.user);
 			})
@@ -71,12 +81,12 @@ const Step2 = (props) => {
 			[e.target.name]: e.target.value,
 		});
 		console.log(e.target.value);
-		const regex = /^[a-z0-9](\.?[a-z0-9]){5,}@gmail\.com$/;
+		const regex = /^[a-z0-9](\.?[a-z0-9]){3,}@gmail\.com$/;
 		if (regex.test(e.target.value)) {
-			setIsGmail(true);
+			setShowLink(true);
 		}
 		if (!regex.test(e.target.value)) {
-			setIsGmail(false);
+			setShowLink(false);
 		}
 	};
 
@@ -94,12 +104,13 @@ const Step2 = (props) => {
 
 	return (
 		<>
-	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
 	p={10}
+	bg='gray.50'
 	display={{ md: "flex" }}
 	maxWidth='26rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 	><Stack
 		align={{ base: "center", md: "stretch" }}
@@ -109,45 +120,49 @@ const Step2 = (props) => {
 		>
 		<Box>
 			<form onSubmit={next}>
-				<Heading size={'lg'} >Enter User Details</Heading>
+				<Heading size={'lg'} marginBottom="20px" >Enter User Details</Heading>
 				<FormLabel>Full Name</FormLabel>
 				<Input
 					name='name'
+					bg='white'
+					marginBottom='10px'
+					focusBorderColor='#ff5151'
 					defaultValue={ctx.userSignInInfo.user.displayName}
 					type='text'
 					w='200px'
 					onChange={onChangeName}
 				/>
-				<FormLabel style={{ display: !info ? 'block' : 'none' }}>
+				<Box style={{ display: mailInput ? 'block' : 'none' }}>
+				<FormLabel >
 					E-Mail
 				</FormLabel>
 				<Input
-					style={{ display: !info ? 'block' : 'none' }}
 					name='mail'
+					bg='white'
+					focusBorderColor='#ff5151'
 					type='email'
 					w='200px'
 					onChange={onChange}
 				/>
-				<br />
+				</Box>
 				<Text style={{ display: info ? 'block' : 'none' }} marginBottom='10px'>
-					Your email is taken from gmail.
+					Your email is taken from mailInput.
 				</Text>
+				
 				<Button
-					bg={'#ff5151'}
-					borderRadius={50}
-					_hover={{ bg: '#D7354A' }}
-					onClick={SignInWithGoogle}
-					style={{ display: isGmail ? 'block' : 'none' }}
-				>
-					{' '}
-					Link Google Account
-				</Button>
-
+				style={{ display: showLink ? 'block' : 'none' }}
+				marginTop='10px'
+				borderRadius={50}
+				color='white'
+				bg={'#007AFF'}
+				_hover={{ bg: '#005AFF'}}
+				onClick={SignInWithGoogle}> &nbsp; Link Google Account</Button>
+				<br/>
 			<Button bg={'#ff5151'} 
-					borderRadius={50} marginRight='10px' color='white' _hover={{ bg: '#D7354A' }} onClick={back}>
+					borderRadius={50} marginRight='5px'  color='white' _hover={{ bg: '#D7354A' }} onClick={back}>
 				Back
 			</Button>
-				<Button bg={'#ff5151'} color='white' _hover={{ bg: '#D7354A' }} 
+				<Button bg={'#ff5151'} color='white'  _hover={{ bg: '#D7354A' }} 
 					borderRadius={50} type='submit'>
 					Next
 				</Button>

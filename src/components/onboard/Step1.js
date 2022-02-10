@@ -9,7 +9,7 @@ import {
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 import debounce from 'lodash.debounce';
-
+import "@fontsource/poppins";
 import {
 	Box,
 	Input,
@@ -21,7 +21,7 @@ import {
 	FormControl,
 	FormLabel,
 } from '@chakra-ui/react';
-
+import { AiOutlineCheckCircle } from "react-icons/ai";
 const Step1 = (props) => {
 	const ctx = useContext(UserContext);
 	const [formValue, setFormValue] = useState('');
@@ -110,12 +110,13 @@ const Step1 = (props) => {
 
 	return (
 		<>
-<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
 	<Box
+	bg='gray.50'
 	p={10}
 	display={{ md: "flex" }}
 	maxWidth='26rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 >	<Stack
 		align={{ base: "center", md: "stretch" }}
@@ -125,11 +126,14 @@ const Step1 = (props) => {
 	>
 			<Box>
 				<Heading
-				size={'lg'} >Choose Username</Heading>
+				size={'lg'} marginBottom="10px">Choose Username</Heading>
 				<form onSubmit={next}>
 					<Input name='username' 
-				marginTop='10px' 
-				marginBottom='10px' onChange={onChange} width={200} />
+					bg='white'
+					focusBorderColor='#ff5151'
+					// marginBottom='10px'
+					 onChange={onChange} display="inline"	width={200} />
+					{/* <AiOutlineCheckCircle color='#ff5151' margin={20} size ={25} style={{ display: isValid ? 'inline' : 'none' }}/> */}
 					<UsernameMessage
 						username={formValue}
 						isValid={isValid}
@@ -138,6 +142,7 @@ const Step1 = (props) => {
 					<Button
 				borderRadius={50}
 				color='white'
+				marginTop={'10px'}
 						bg={'#ff5151'}
 						_hover={{ bg: '#D7354A' }}
 						type='submit'

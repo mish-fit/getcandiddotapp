@@ -2,8 +2,10 @@ import { useState } from 'react';
 import firebase from 'firebase';
 import { auth, googleAuthProvider } from '../../lib/firebase';
 import { Box, Text, Input, Flex,Button, Container,Stack, Center } from '@chakra-ui/react';
-
+import "@fontsource/poppins";
 import { useRouter } from 'next/router';
+
+import { AiFillGoogleCircle } from "react-icons/ai";
 // Sign in with Phone button
 export function SignInOptions() {
 	const router = useRouter();
@@ -56,12 +58,13 @@ export function SignInOptions() {
 
 	return (
 
-	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
-	<Box
+	<Container  fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Box 
+	bg='gray.50'
 	p={10}
 	display={{ md: "flex" }}
 	maxWidth='26rem'
-	borderWidth={1}
+	borderWidth={2}
 	margin={4}
 >	<Stack
 		align={{ base: "center", md: "stretch" }}
@@ -69,12 +72,14 @@ export function SignInOptions() {
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 	>
-		<Box>
+		<Box >
 			<Box style={{ display: !show ? 'block' : 'none' } }>
 			<Text>Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
 				<Input
 					value={mynumber}
+					bg='white'
 					marginTop='10px'
+					focusBorderColor='#ff5151'
 					onChange={(e) => {
 						setNumber(e.target.value);
 					}}
@@ -82,10 +87,10 @@ export function SignInOptions() {
 					width={200}
 				/>
 				<Box id='recaptcha-container'></Box>
+
 				<Button 
 				bg={'#ff5151'}
 				marginTop='10px'
-
 				marginBottom='10px'
 				borderRadius={50}
 				color='white'
@@ -95,6 +100,8 @@ export function SignInOptions() {
 			<Box style={{ display: show ? 'block' : 'none' }}>
 				<Input
 					type='text'
+					bg='white'
+					focusBorderColor='#ff5151'
 					placeholder={'Enter your OTP'}
 					marginBottom='10px'
 					onChange={(e) => {
@@ -102,8 +109,10 @@ export function SignInOptions() {
 					}}
 					width={200}
 				></Input>
-				<br />
+				
 				<Button 
+				display='inline'
+				marginLeft='5px'
 				borderRadius={50}
 				color='white'
 				bg={'#ff5151'}
@@ -122,10 +131,9 @@ export function SignInOptions() {
 			<Button
 				borderRadius={50}
 				color='white'
-			bg={'#ff5151'}
-			_hover={{ bg: '#D7354A'}}
-			
-			onClick={signInWithGoogle}>Sign in with Google</Button>
+			bg={'#007AFF'}
+				_hover={{ bg: '#005AFF'}}
+			onClick={signInWithGoogle}> <AiFillGoogleCircle size={20} /> &nbsp; Continue with Google</Button>
 			</Box>
 		</Box>
 		</Stack>
