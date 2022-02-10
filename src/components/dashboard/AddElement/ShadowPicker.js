@@ -33,41 +33,51 @@ function ListItem({ color, name, pick }) {
   return (
     <Flex
       sx={{
+        width: "100%",
         flexDirection: "row",
-        justifyContent: "center",
         p: "5x",
-        alignItems: "center",
+        justifyContent: "flex-start",
       }}
       onClick={pickColor}
     >
-      <ColorItem color={color} />
-      <Text
-        sx={{
-          ml: "10px",
-          fontFamily: "Poppins",
-          fontSize: "12px",
-          fontWeight: "bold",
-        }}
-      >
-        {name}
-      </Text>
+      <Flex>
+        <ColorItem color={color} />
+      </Flex>
+      <Flex sx={{ flex: 1 }}>
+        <Text
+          sx={{
+            ml: "10px",
+            fontFamily: "Poppins",
+            fontSize: "12px",
+            fontWeight: "bold",
+          }}
+        >
+          {name}
+        </Text>
+      </Flex>
     </Flex>
   );
 }
 
 export function ShadowPicker({ borderShadowColor }) {
-  const [color, setColor] = React.useState("black");
+  const [color, setColor] = React.useState("#00000088");
+  const [name, setName] = React.useState("Default Shadow Color");
 
   const selectedColor = (color, name) => {
     console.log(color, name);
     setColor(color);
+    setName(name);
     borderShadowColor(color);
   };
 
   return (
     <Menu>
       <MenuButton>
-        <ColorItem color={color} />
+        <ListItem
+          color={color}
+          name={name}
+          pick={(color, name) => selectedColor(color, name)}
+        />
       </MenuButton>
       <MenuList>
         <MenuItem>
