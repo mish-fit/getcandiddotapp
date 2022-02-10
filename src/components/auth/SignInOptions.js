@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import firebase from 'firebase';
 import { auth, googleAuthProvider } from '../../lib/firebase';
-import { Box, Text, Input, Button } from '@chakra-ui/react';
+import { Box, Text, Input, Flex,Button, Container,Stack, Center } from '@chakra-ui/react';
 
 import { useRouter } from 'next/router';
 // Sign in with Phone button
@@ -55,6 +55,20 @@ export function SignInOptions() {
 	}
 
 	return (
+
+	<Container maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
+	<Box
+	p={10}
+	display={{ md: "flex" }}
+	maxWidth='26rem'
+	borderWidth={1}
+	margin={4}
+>	<Stack
+		align={{ base: "center", md: "stretch" }}
+		textAlign={{ base: "center", md: "left" }}
+		mt={{ base: 4, md: 0 }}
+		ml={{ md: 6 }}
+	>
 		<Box>
 			<Box style={{ display: !show ? 'block' : 'none' } }>
 			<Text>Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
@@ -67,7 +81,12 @@ export function SignInOptions() {
 					width={200}
 				/>
 				<Box id='recaptcha-container'></Box>
-				<Button onClick={signInWithPhone}>Verify</Button>
+				<Button 
+				bg={'#ff5151'}
+				borderRadius={50}
+				color='white'
+				_hover={{ bg: '#D7354A'}}
+				onClick={signInWithPhone}>Verify</Button>
 			</Box>
 			<Box style={{ display: show ? 'block' : 'none' }}>
 				<Input
@@ -79,13 +98,31 @@ export function SignInOptions() {
 					width={200}
 				></Input>
 				<br />
-				<Button onClick={ValidatePhoneOTP}>Confirm</Button>
-				<Button onClick={setHandler}>Go Back</Button>
+				<Button 
+				borderRadius={50}
+				color='white'
+				bg={'#ff5151'}
+				_hover={{ bg: '#D7354A'}}
+				onClick={ValidatePhoneOTP}>Confirm</Button>
+				<Button
+				borderRadius={50}
+				color='white'
+				bg={'#ff5151'}
+				_hover={{ bg: '#D7354A'}}
+				onClick={setHandler}>Go Back</Button>
 			</Box>
 			<Box style={{display:googleShow?'block':'none'}}>
 			<Text> See other ways to Sign In </Text>
-			<Button onClick={signInWithGoogle}>Sign in with Google</Button>
+			<Button
+				borderRadius={50}
+				color='white'
+			bg={'#ff5151'}
+			_hover={{ bg: '#D7354A'}}
+			
+			onClick={signInWithGoogle}>Sign in with Google</Button>
 			</Box>
 		</Box>
+		</Stack>
+</Box></Container>
 	);
 }
