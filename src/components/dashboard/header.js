@@ -12,6 +12,16 @@ import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
 import React from "react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
+} from "@chakra-ui/react";
 
 export default function Header({ menu, menuActive }) {
   const { locale } = useRouter();
@@ -23,6 +33,10 @@ export default function Header({ menu, menuActive }) {
     menu(!active);
   };
 
+  const editProfile = () => {};
+
+  const signout = () => {};
+
   return (
     <DrawerProvider>
       <header sx={styles.header}>
@@ -32,14 +46,22 @@ export default function Header({ menu, menuActive }) {
           </Flex>
 
           <Flex as="nav" sx={styles.nav}>
-            <Text sx={styles.nav.navLink}>https://www.cndd.in/kandurisv</Text>
+            <Text sx={styles.nav.navLink}>cndd.in/kandurisv</Text>
           </Flex>
-          <Flex as="signout" sx={styles.signout}>
+          {/* <Flex as="signout" sx={styles.signout}>
             <Button sx={styles.signoutBtn} onClick={onClickIcon}>
               <Image sx={styles.userImage} src={"/user/profile.png"} />
             </Button>
-          </Flex>
-
+          </Flex> */}
+          <Menu>
+            <MenuButton as={Button}>
+              <Image sx={styles.userImage} src={"/user/profile.png"} />
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={editProfile}>Edit Profile</MenuItem>
+              <MenuItem onClick={signout}>Sign Out</MenuItem>
+            </MenuList>
+          </Menu>
           <MobileDrawer />
         </Container>
       </header>
