@@ -50,13 +50,13 @@ const Step4 = (props) => {
 				<br />
 				<Button 
 				borderRadius={50}
-				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} type='submit'>
+				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} marginTop='10px' marginBottom='10px' type='submit'>
 					Upload
 				</Button>
 				<br />
 				<Button 
 				borderRadius={50}
-				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} onClick={back}>
+				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} marginRight='10px' onClick={back}>
 					Back
 				</Button>
 				<Button 				borderRadius={50}

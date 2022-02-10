@@ -9,12 +9,18 @@ import {
 	FormHelperText,
 	Button,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 const Step6 = (props) => {
 	const ctx = useContext(UserContext);
+	const [showPhone, setShowPhone] = useState(true);
 	console.log(ctx.userData);
+	useEffect(()=>{
+		if(ctx.userData.phone==='+91'){
+			setShowPhone(false)
+		}
+	})
 	const back = (e) => {
 		e.preventDefault();
 		props.prevStep();
@@ -56,11 +62,11 @@ const Step6 = (props) => {
 				<Text>{ctx.userData.name}</Text>
 				<Text>{ctx.userData.username}</Text>
 				<Text>{ctx.userData.mail}</Text>
-				<Text>{ctx.userData.phone}</Text>
-				<Text>{ctx.userData.affiliateCodes}</Text>
+				<Text style={{ display: showPhone ? 'block' : 'none' }}>{ctx.userData.phone}</Text>
+				<Text marginBottom='10px'>{ctx.userData.affiliateCodes}</Text>
 				<Button 
 				borderRadius={50}
-				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} onClick={back}>
+				color='white' bg={'#ff5151'} marginRight='5px' _hover={{ bg: '#D7354A' }} onClick={back}>
 					Back
 				</Button>
 				<Button 

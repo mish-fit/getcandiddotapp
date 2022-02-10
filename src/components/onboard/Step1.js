@@ -127,7 +127,9 @@ const Step1 = (props) => {
 				<Heading
 				size={'lg'} >Choose Username</Heading>
 				<form onSubmit={next}>
-					<Input name='username' onChange={onChange} width={200} />
+					<Input name='username' 
+				marginTop='10px' 
+				marginBottom='10px' onChange={onChange} width={200} />
 					<UsernameMessage
 						username={formValue}
 						isValid={isValid}

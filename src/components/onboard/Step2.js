@@ -129,11 +129,12 @@ const Step2 = (props) => {
 					onChange={onChange}
 				/>
 				<br />
-				<Text style={{ display: info ? 'block' : 'none' }}>
+				<Text style={{ display: info ? 'block' : 'none' }} marginBottom='10px'>
 					Your email is taken from gmail.
 				</Text>
 				<Button
 					bg={'#ff5151'}
+					borderRadius={50}
 					_hover={{ bg: '#D7354A' }}
 					onClick={SignInWithGoogle}
 					style={{ display: isGmail ? 'block' : 'none' }}
@@ -141,13 +142,16 @@ const Step2 = (props) => {
 					{' '}
 					Link Google Account
 				</Button>
-				<Button bg={'#ff5151'} _hover={{ bg: '#D7354A' }} type='submit'>
+
+			<Button bg={'#ff5151'} 
+					borderRadius={50} marginRight='10px' color='white' _hover={{ bg: '#D7354A' }} onClick={back}>
+				Back
+			</Button>
+				<Button bg={'#ff5151'} color='white' _hover={{ bg: '#D7354A' }} 
+					borderRadius={50} type='submit'>
 					Next
 				</Button>
 			</form>
-			<Button bg={'#ff5151'} _hover={{ bg: '#D7354A' }} onClick={back}>
-				Back
-			</Button>
 			</Box>
 			</Stack>
 		</Box>
