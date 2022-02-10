@@ -74,6 +74,7 @@ export function SignInOptions() {
 			<Text>Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
 				<Input
 					value={mynumber}
+					marginTop='10px'
 					onChange={(e) => {
 						setNumber(e.target.value);
 					}}
@@ -83,6 +84,9 @@ export function SignInOptions() {
 				<Box id='recaptcha-container'></Box>
 				<Button 
 				bg={'#ff5151'}
+				marginTop='10px'
+
+				marginBottom='10px'
 				borderRadius={50}
 				color='white'
 				_hover={{ bg: '#D7354A'}}
@@ -92,6 +96,7 @@ export function SignInOptions() {
 				<Input
 					type='text'
 					placeholder={'Enter your OTP'}
+					marginBottom='10px'
 					onChange={(e) => {
 						setOtp(e.target.value);
 					}}
@@ -103,6 +108,7 @@ export function SignInOptions() {
 				color='white'
 				bg={'#ff5151'}
 				_hover={{ bg: '#D7354A'}}
+				marginRight='10px'
 				onClick={ValidatePhoneOTP}>Confirm</Button>
 				<Button
 				borderRadius={50}

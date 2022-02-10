@@ -1,7 +1,7 @@
 import {
 	Input,
 	Heading,
-	Container,Box,Stack,
+	Container,Box,Stack,Flex,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -56,7 +56,7 @@ const Step5 = (props) => {
 	<Box
 	p={10}
 	display={{ md: "flex" }}
-	maxWidth='26rem'
+	maxWidth='32rem'
 	borderWidth={1}
 	margin={4}
 	><Stack
@@ -67,14 +67,19 @@ const Step5 = (props) => {
 		>
 			<form onSubmit={next}>
 				<Heading>Affiliate codes</Heading>
-				<Select placeholder='Affiliates' w='200px' ref={affiliateBrand}>
+				<Flex>
+				<Box w='150px' >
+				<Select placeholder='Affiliates' ref={affiliateBrand}>
 					{brandArray.map((item, id) => (
 						<option value={item} key={id}>
 							{item}
 						</option>
 					))}
 				</Select>
-				<Input type='text' w='200px' ref={affiliateCode} />
+				</Box>
+				<Box w='150px'>
+				<Input type='text'  ref={affiliateCode} />
+				</Box>
 				<Button
 				borderRadius={50}
 				color='white'
@@ -84,11 +89,12 @@ const Step5 = (props) => {
 				>
 					Add
 				</Button>
-			</form>
+				</Flex>
+
 			<br />
-			<Button 
+				<Button 
 				borderRadius={50}
-				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} onClick={back}>
+				color='white' bg={'#ff5151'} marginRight='5px' _hover={{ bg: '#D7354A' }} onClick={back}>
 				Back
 			</Button>
 			<Button 
@@ -96,6 +102,8 @@ const Step5 = (props) => {
 				color='white' bg={'#ff5151'} _hover={{ bg: '#D7354A' }} onClick={next}>
 				Next
 			</Button>
+			</form>
+			
 			</Stack>
 		</Box>
 		</Container>
