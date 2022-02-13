@@ -4,6 +4,7 @@ import {
   withDefaultColorScheme,
   withDefaultVariant,
 } from "@chakra-ui/react";
+import '@fontsource/poppins'
 import { mode } from "@chakra-ui/theme-tools";
 
 const brandRing = {
@@ -17,16 +18,18 @@ const inputSelectStyles = {
   variants: {
     filled: {
       field: {
+        borderColor: "brand.950",
         _focus: {
           borderColor: "brand.500",
         },
+        borderRadius:'10'
       },
     },
   },
   sizes: {
     md: {
       field: {
-        borderRadius: "none",
+        borderRadius: "10",
       },
     },
   },
@@ -42,21 +45,42 @@ const checkboxStyles = {
 };
 
 const buttonStyles = {
+  color:'brand.50',
+  backgroundColor:'brand.500',
+  borderRadius:'10',
+  _hover:{
+    backgroundColor:'brand.550'
+  },
   variants: {
-    primary: (props) => ({
-      rounded: "none",
-      ...brandRing,
-      color: mode("white", "gray.800")(props),
-      backgroundColor: mode("brand.500", "brand.200")(props),
+    // primary: (props) => ({
+    //   rounded: "none",
+    //   ...brandRing,
+    //   color: mode("white", "gray.800")(props),
+    //   backgroundColor: mode("brand.500", "brand.200")(props),
+    //   borderRadius:'10',
+    //   // color='brand.50',
+    //   _hover: {
+    //     backgroundColor: mode("brand.600", "brand.300")(props),
+    //   },
 
-      _hover: {
-        backgroundColor: mode("brand.600", "brand.300")(props),
-      },
-
-      _active: {
-        backgroundColor: mode("brand.700", "brand.400")(props),
-      },
-    }),
+    //   _active: {
+    //     backgroundColor: mode("brand.700", "brand.400")(props),
+    //   },
+    // }),
+    // secondary: (props) => ({
+    //   backgroundColor:'#D7354A',
+    //   _hover:{ bg: '#D0054A'},
+    //   borderRadius:10,
+    //   color:'white'
+    // })
+    primary:{
+      color:'brand.50',
+      backgroundColor:'brand.500',
+      borderRadius:'10',
+      _hover:{
+        backgroundColor:'brand.550'
+      }
+    }
   },
 };
 
@@ -98,13 +122,14 @@ const brandColors = {
   800: "#56151e",
   850: "#401016",
   900: "#2b0b0f",
+  950: "#E2EFF0"
 };
 
 const theme = extendTheme(
-  {
+    {
     fonts: {
-      heading: `Montserrat, ${base.fonts?.heading}`,
-      body: `Inter, ${base.fonts?.body}`,
+      heading: `Poppins, ${base.fonts?.heading}`,
+      body: `Poppins, ${base.fonts?.body}`,
     },
     colors: {
       brand: { ...brandColors },
@@ -113,7 +138,23 @@ const theme = extendTheme(
       Input: { ...inputSelectStyles },
       Select: { ...inputSelectStyles },
       Checkbox: { ...checkboxStyles },
-      Button: { ...buttonStyles },
+      Button: {
+        variants: {
+          primary: (props) => ({
+            rounded: 'none',
+            ...brandRing,
+            color: mode('white', 'gray.800')(props),
+            backgroundColor: mode('brand.500', 'brand.200')(props),
+
+            _hover: {
+              backgroundColor: mode('brand.600', 'brand.300')(props),
+            },
+            _active: {
+              backgroundColor: mode('brand.700', 'brand.400')(props),
+            },
+          }),
+        },
+      },
       Tab: { ...tabStyles },
     },
   },

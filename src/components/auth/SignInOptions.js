@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import firebase from 'firebase';
 import { auth, googleAuthProvider } from '../../lib/firebase';
-import { Box, Text, Input, Flex,Button, Container,Stack, Center } from '@chakra-ui/react';
+import { Flex, Text, Input,Button, Container,Stack, Center, InputGroup, InputLeftAddon } from '@chakra-ui/react';
 import "@fontsource/poppins";
 import { useRouter } from 'next/router';
-
+import Header from 'components/onboard/Header';
 import { AiFillGoogleCircle } from "react-icons/ai";
 // Sign in with Phone button
 export function SignInOptions() {
@@ -21,6 +21,9 @@ export function SignInOptions() {
 		});
 	};
 
+	// useEffect(()=>{
+	// 	setNumber
+	// })
 	// Validate OTP
 	const ValidatePhoneOTP = () => {
 		if (otp === null || final === null) return;
@@ -37,8 +40,9 @@ export function SignInOptions() {
 	const signInWithPhone = async () => {
 		if (mynumber === '' || mynumber.length < 10) return;
 		let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+		let newnumber = '+91' + mynumber;
 		auth
-			.signInWithPhoneNumber(mynumber, verify)
+			.signInWithPhoneNumber(newnumber, verify)
 			.then((result) => {
 				setFinal(result);
 				alert('OTP Sent');
@@ -58,50 +62,76 @@ export function SignInOptions() {
 
 	return (
 
-	<Container  fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
-	<Box 
-	bg='gray.50'
-	p={10}
-	display={{ md: "flex" }}
-	maxWidth='26rem'
-	borderWidth={2}
-	margin={4}
->	<Stack
+		<Container
+			fontFamily={'Poppins'}
+			maxW={'container.md'}
+			p={0}
+			align='center'
+		>
+		<Header />
+		<Flex
+			display={{ md: 'flex' }}
+		><Stack
 		align={{ base: "center", md: "stretch" }}
 		textAlign={{ base: "center", md: "left" }}
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 	>
-		<Box >
-			<Box style={{ display: !show ? 'block' : 'none' } }>
-			<Text>Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
-				<Input
+		<Flex flexDirection={'column'}>
+			<Flex style={{ display: !show ? 'block' : 'none' } }>
+			<Text >Verify your phone number to sign in or <br/>create a new Candid Account.</Text>
+				{/* <Input
 					value={mynumber}
 					bg='white'
 					marginTop='10px'
-					focusBorderColor='#ff5151'
+					focusBorderColor='#D7354A'
+					height={50}
+					fontSize={18}
+					width={250}					
 					onChange={(e) => {
 						setNumber(e.target.value);
 					}}
-					placeholder='Enter phone number'
-					width={200}
-				/>
-				<Box id='recaptcha-container'></Box>
-
+				/> */}
+				<InputGroup 
+				marginTop='20px'>
+					<InputLeftAddon children='+91'
+					height={50}
+					fontSize={18}
+ 				/>
+					<Input type='tel'
+					// value={mynumber}
+					bg='white'
+					focusBorderColor='#E78692'
+					height={50}
+					fontSize={18}
+					width={190}
+					onChange={(e) => {
+						setNumber(e.target.value);
+					}}/>
+				</InputGroup>
+				<Flex id='recaptcha-container'></Flex>
 				<Button 
-				bg={'#ff5151'}
+				bg={'#D7354A'}
+				_hover={{ bg: '#C23043' }}
+				borderRadius={10}
+				color='white'
+				width={250}				
+				height={50}
+				fontSize={18}
 				marginTop='10px'
 				marginBottom='10px'
-				borderRadius={50}
-				color='white'
-				_hover={{ bg: '#D7354A'}}
 				onClick={signInWithPhone}>Verify</Button>
-			</Box>
-			<Box style={{ display: show ? 'block' : 'none' }}>
+			</Flex>
+			<Flex style={{ display: show ? 'block' : 'none' }}>
 				<Input
 					type='text'
-					bg='white'
-					focusBorderColor='#ff5151'
+					bg='white'					
+					focusBorderColor='#E78692'
+					_hover={ {borderColor:'#E78592'}}
+					borderColor='#E78592'
+					height={50}
+					width={200}
+					fontSize={18}
 					placeholder={'Enter your OTP'}
 					marginBottom='10px'
 					onChange={(e) => {
@@ -111,32 +141,45 @@ export function SignInOptions() {
 				></Input>
 				
 				<Button 
-				display='inline'
-				marginLeft='5px'
-				borderRadius={50}
+				display='block'
+				bg={'#D7354A'}
+				_hover={{ bg: '#C23043' }}
+				borderRadius={10}
 				color='white'
-				bg={'#ff5151'}
-				_hover={{ bg: '#D7354A'}}
-				marginRight='10px'
+				width={200}				
+				height={50}
+				fontSize={18}
+				marginTop='10px'
+				marginBottom='10px'
 				onClick={ValidatePhoneOTP}>Confirm</Button>
 				<Button
-				borderRadius={50}
+				bg={'#D7354A'}
+				_hover={{ bg: '#C23043' }}
+				borderRadius={10}
 				color='white'
-				bg={'#ff5151'}
-				_hover={{ bg: '#D7354A'}}
+				width={200}				
+				height={50}
+				fontSize={18}
+				marginTop='10px'
+				marginBottom='10px'
 				onClick={setHandler}>Go Back</Button>
-			</Box>
-			<Box style={{display:googleShow?'block':'none'}}>
-			<Text> See other ways to Sign In </Text>
+			</Flex>
+			<Flex style={{display:googleShow?'block':'none'}}>
+			<Text marginTop='10px' marginLeft='25px' fontWeight={'bold'}> See other ways to Sign In </Text>
 			<Button
-				borderRadius={50}
 				color='white'
-			bg={'#007AFF'}
-				_hover={{ bg: '#005AFF'}}
-			onClick={signInWithGoogle}> <AiFillGoogleCircle size={20} /> &nbsp; Continue with Google</Button>
-			</Box>
-		</Box>
+				borderRadius={10}
+				width={250}				
+				height={50}
+				fontSize={18}
+				bg={'#1A8BF7'}
+				_hover={{ bg: '#1A7BF7'}}
+				onClick={signInWithGoogle}>
+				{/* <AiFillGoogleCircle size={20} />  */}
+				Continue with Google</Button>
+			</Flex>
+		</Flex>
 		</Stack>
-</Box></Container>
+</Flex></Container>
 	);
 }

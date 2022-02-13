@@ -1,7 +1,7 @@
 import {
 	Input,
 	Heading,
-	Container,Box,Stack,Flex,
+	Container,Stack,Flex,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -13,6 +13,7 @@ import {
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
 import "@fontsource/poppins";
+import Header from './Header';
 const Step5 = (props) => {
 	const ctx = useContext(UserContext);
 	const [selectedAffiliates, setSelectedAffiliates] = useState([]);
@@ -53,25 +54,26 @@ const Step5 = (props) => {
 	};
 	return (
 		<>
-	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
-	<Box
-	p={10}
-	bg='gray.50'
-	display={{ md: "flex" }}
-	maxWidth='32rem'
-	borderWidth={2}
-	margin={4}
-	><Stack
+		<Container
+			fontFamily={'Poppins'}
+			maxW={'container.md'}
+			p={0}
+			align='center'
+		>
+		<Header value={100} />
+		<Flex
+			display={{ md: 'flex' }}
+		>
+		<Stack
 		align={{ base: "center", md: "stretch" }}
 		textAlign={{ base: "center", md: "left" }}
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 		>
-			<Progress value={80} size={'sm'} width={100} borderRadius={50}/>
 			<form onSubmit={next}>
 				<Heading size={'lg'} marginBottom="20px">Affiliate Codes</Heading>
 				<Flex marginBottom='10px'>
-				<Box w='150px' >
+				<Flex w='150px' >
 				<Select placeholder='Affiliates' ref={affiliateBrand}>
 					{brandArray.map((item, id) => (
 						<option value={item} key={id}>
@@ -79,10 +81,10 @@ const Step5 = (props) => {
 						</option>
 					))}
 				</Select>
-				</Box>
-				<Box w='150px'>
+				</Flex>
+				<Flex w='150px'>
 				<Input type='text' bg='white' ref={affiliateCode} />
-				</Box>
+				</Flex>
 				<Button
 				borderRadius={50}
 				color='white'
@@ -104,9 +106,9 @@ const Step5 = (props) => {
 				Next
 			</Button>
 			</form>
-			
+		
 			</Stack>
-		</Box>
+		</Flex>
 		</Container>
 		</>
 	);
