@@ -2,7 +2,7 @@ import {
 	Input,
 	Text,
 	Heading,
-	Box,Stack, Container,
+	Flex,Stack, Container,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -15,6 +15,7 @@ import { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from '../../lib/UserDataProvider';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import "@fontsource/poppins";
+import Header from './Header';
 const Step2 = (props) => {
 	// const name= useRef();
 	// const mail=useRef();
@@ -105,73 +106,110 @@ const Step2 = (props) => {
 
 	return (
 		<>
-	<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
-	<Box
-	p={10}
-	bg='gray.50'
-	display={{ md: "flex" }}
-	maxWidth='26rem'
-	borderWidth={2}
-	margin={4}
-	><Stack
+		<Container
+			fontFamily={'Poppins'}
+			maxW={'container.md'}
+			p={0}
+			align='center'
+		>
+		<Header value={50} />
+		<Flex
+			display={{ md: 'flex' }}
+		>
+		<Stack
 		align={{ base: "center", md: "stretch" }}
 		textAlign={{ base: "center", md: "left" }}
 		mt={{ base: 4, md: 0 }}
 		ml={{ md: 6 }}
 		>
-			<Progress value={40} size={'sm'} width={100} borderRadius={50}/>
-		<Box>
+		<Flex>
 			<form onSubmit={next}>
-			
-				<Heading size={'lg'} marginBottom="20px" >Enter User Details</Heading>
-				<FormLabel>Full Name</FormLabel>
+				{/* <Heading size={'lg'} marginBottom="20px" >Enter User Details</Heading> */}
+				<Heading size={'lg'}>Tell Us About You</Heading>
+				<FormLabel
+					size={'md'}
+					margin='10px'
+					marginLeft='0px'
+					paddingBottom='1rem'
+				>
+					Using your real name will help people confirm that they are
+					interacting with you.
+				</FormLabel>
+				<FormLabel fontSize={18}>Full Name</FormLabel>
 				<Input
 					name='name'
 					bg='white'
+					display='block'
+					focusBorderColor='#E78692'
+					_hover={ {borderColor:'#E78592'}}
+					borderColor='#E78592'
+					height={50}
+					width={250}
+					fontSize={18}
 					marginBottom='10px'
-					focusBorderColor='#ff5151'
 					defaultValue={ctx.userSignInInfo.user.displayName}
 					type='text'
-					w='200px'
 					onChange={onChangeName}
 				/>
-				<Box style={{ display: mailInput ? 'block' : 'none' }}>
-				<FormLabel >
+				<Flex style={{ display: mailInput ? 'block' : 'none' }}>
+				<FormLabel fontSize={18}>
 					E-Mail
 				</FormLabel>
 				<Input
 					name='mail'
-					bg='white'
-					focusBorderColor='#ff5151'
 					type='email'
-					w='200px'
+					bg='white'
+					focusBorderColor='#E78692'
+					_hover={ {borderColor:'#E78592'}}
+					borderColor='#E78592'
+					height={50}
+					width={250}
+					fontSize={18}
+					marginBottom='10px'
 					onChange={onChange}
 				/>
-				</Box>
+				</Flex>
 				<Text style={{ display: info ? 'block' : 'none' }} marginBottom='10px'>
 					Your email is taken from gmail.
 				</Text>
 				<Button
 				style={{ display: showLink ? 'block' : 'none' }}
-				marginTop='10px'
-				borderRadius={50}
 				color='white'
-				bg={'#007AFF'}
-				_hover={{ bg: '#005AFF'}}
-				onClick={SignInWithGoogle}> &nbsp; Link Google Account</Button>
-				<br/>
+				borderRadius={10}
+				width={250}				
+				height={50}
+				fontSize={18}
+				marginBottom='10px'
+				bg={'#1A8BF7'}
+				_hover={{ bg: '#1A7BF7'}}
+				onClick={SignInWithGoogle}> Link Google Account</Button>
 			<Button bg={'#ff5151'} 
-					borderRadius={50} marginRight='5px'  color='white' _hover={{ bg: '#D7354A' }} onClick={back}>
+					bg={'#D7354A'}
+					_hover={{ bg: '#C23043' }}
+					borderRadius={10}
+					color='white'
+					width={120}				
+					height={50}
+					fontSize={18}
+					marginRight='10px'
+					onClick={back}>
 				Back
 			</Button>
-				<Button bg={'#ff5151'} color='white'  _hover={{ bg: '#D7354A' }} 
-					borderRadius={50} type='submit'>
+				<Button 
+					bg={'#D7354A'}
+					_hover={{ bg: '#C23043' }}
+					borderRadius={10}
+					color='white'
+					width={120}				
+					height={50}
+					fontSize={18}
+					type='submit'>
 					Next
 				</Button>
 			</form>
-			</Box>
+			</Flex>
 			</Stack>
-		</Box>
+		</Flex>
 		</Container>
 		</>
 	);

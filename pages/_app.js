@@ -11,6 +11,7 @@ import "react-modal-video/css/modal-video.min.css";
 import "typeface-bree-serif";
 import "typeface-dm-sans";
 import "@fontsource/poppins";
+import theme from "theme/chakra";
 import { ChakraProvider } from "@chakra-ui/react";
 import UserDataProvider from "lib/UserDataProvider";
 import { useUserData } from '../src/lib/hooks';
@@ -27,7 +28,7 @@ export default function CustomApp({ Component, pageProps }) {
 
   return (
     <UserDataProvider >
-      <ChakraProvider >
+      <ChakraProvider>
         <Component {...pageProps} />
       </ChakraProvider>
     </UserDataProvider>

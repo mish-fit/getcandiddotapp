@@ -9,7 +9,8 @@ import {
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 import debounce from 'lodash.debounce';
-import "@fontsource/poppins";
+import Header from './Header';
+import '@fontsource/poppins'
 import {
 	Box,
 	Input,
@@ -19,10 +20,11 @@ import {
 	Container,
 	Stack,
 	Progress,
+	Flex,
 	FormControl,
 	FormLabel,
 } from '@chakra-ui/react';
-import { AiOutlineCheckCircle } from "react-icons/ai";
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 const Step1 = (props) => {
 	const ctx = useContext(UserContext);
 	const [formValue, setFormValue] = useState('');
@@ -111,63 +113,93 @@ const Step1 = (props) => {
 
 	return (
 		<>
-<Container fontFamily={"Poppins"} maxW={'container.lg'} h={'100vh'} p={0} pt='10' align='center'>
-	<Box
-	bg='gray.50'
-	p={5}
-	display={{ md: "flex" }}
-	maxWidth='26rem'
-	borderWidth={2}
-	margin={4}
->	<Stack
-		align={{ base: "center", md: "stretch" }}
-		textAlign={{ base: "center", md: "left" }}
-		mt={{ base: 4, md: 0 }}
-		ml={{ md: 6 }}
-	>
-	<Progress value={20} size={'sm'} width={100} borderRadius={50} />
-			<Box>
-				<Heading
-				size={'lg'} marginBottom="10px" >Choose Username</Heading>
-				<form onSubmit={next}>
-					<Input name='username' 
-					bg='white'
-					focusBorderColor='#ff5151'
-					// marginBottom='10px'
-					 onChange={onChange} display="inline"	width={200} />
-					{/* <AiOutlineCheckCircle color='#ff5151' margin={20} size ={25} style={{ display: isValid ? 'inline' : 'none' }}/> */}
-					<UsernameMessage
-						username={formValue}
-						isValid={isValid}
-						loading={loading}
-					/>
-					<Button
-				borderRadius={50}
-				color='white'
-				marginTop={'10px'}
-						bg={'#ff5151'}
-						_hover={{ bg: '#D7354A' }}
-						type='submit'
-						disabled={!isValid}
+			<Container
+				fontFamily={'Poppins'}
+				maxW={'container.md'}
+				p={0}
+				align='center'
+			>
+				<Header value={25} />
+				<Flex
+					// p={5}
+					display={{ md: 'flex' }}
+					// maxWidth='26rem'
+					// margin={4}
+				>
+					<Stack
+						align={{ base: 'center', md: 'stretch' }}
+						textAlign={{ base: 'center', md: 'left' }}
+						mt={{ base: 4, md: 0 }}
+						ml={{ md: 6 }}
 					>
-						Choose & Next
-					</Button>
-				</form>
-			</Box>
-			</Stack>
-</Box></Container>
+						<Flex flexDirection={'column'}>
+							<Heading size={'lg'}>Choose a Username</Heading>
+							<FormLabel
+								size={'md'}
+								margin='10px'
+								marginLeft='0px'
+								paddingBottom='1rem'
+							>
+								This will become your personal Candid URL. You can change this later in Settings.
+							</FormLabel>
+							<form onSubmit={next}>
+								<Flex flexDirection={'row'} alignItems={'center'}>
+									<Input
+										name='username'
+										bg='white'			
+										focusBorderColor='#E78692'
+										_hover={ {borderColor:'#E78592'}}
+										borderColor='#E78592'
+										height={50}
+										width={200}
+										fontSize={18}
+										onChange={onChange}
+										display='inline'
+										width={200}
+										placeholder='Username...'
+									/> &nbsp;
+									<AiOutlineCheckCircle
+										color='#D7354A'
+										size={30}
+										style={{ display: isValid ? 'inline' : 'none' }}
+									/>
+								</Flex>
+								<UsernameMessage
+									username={formValue}
+									isValid={isValid}
+									loading={loading}
+								/>
+								<Button
+									bg={'#D7354A'}
+									_hover={{ bg: '#C23043' }}
+									borderRadius={10}
+									color='white'
+									width={200}				
+									height={50}
+									fontSize={18}
+									marginTop={'10px'}
+									type='submit'
+									disabled={!isValid}
+								>
+									Next
+								</Button>
+							</form>
+						</Flex>
+					</Stack>
+				</Flex>
+			</Container>
 		</>
 	);
 };
 function UsernameMessage({ username, isValid, loading }) {
 	if (loading) {
-		return <Text>Checking...</Text>;
+		return <Text  fontSize={15}>Checking...</Text>;
 	} else if (isValid) {
-		return <Text className='text-success'>{username} is available!</Text>;
+		return <Text  fontSize={15} className='text-success'>{username} is available!</Text>;
 	} else if (username && !isValid) {
-		return <Text className='text-danger'>That username is taken!</Text>;
+		return <Text  fontSize={15} className='text-danger'>That username is taken!</Text>;
 	} else {
-		return <Text></Text>;
+		return <Text fontSize={15}>Usernames can contain letters, numbers, underscores, and periods.</Text>;
 	}
 }
 export default Step1;
