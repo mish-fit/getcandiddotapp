@@ -4,7 +4,7 @@ import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../src/lib/UserDataProvider";
-import { firebaseConfig1, firestore } from "lib/firebase";
+import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
@@ -19,6 +19,11 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from "@chakra-ui/react";
+import * as jose from "jose";
+import { createSecretKey } from "crypto";
+import { getAuth } from "firebase/auth";
+import axios from "axios";
+import { nonauthapi } from "lib/api";
 
 export default function Dashboard(props) {
   const ctx = useContext(UserContext);
@@ -27,6 +32,12 @@ export default function Dashboard(props) {
   React.useEffect(() => {
     console.log("firestore", firestore);
     console.log("env", firebaseConfig1);
+
+    auth.onAuthStateChanged((user) => {
+      console.log(JSON.stringify(user.toJSON().stsTokenManager.accessToken));
+      console.log("api", nonauthapi);
+      localStorage.setItem("jwt", user.toJSON().stsTokenManager.accessToken);
+    });
   }, []);
 
   const menuActivate = (item) => {
