@@ -9,6 +9,8 @@ import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
 import { MenuPopup } from "components/dashboard/MenuPopup";
+import nookies from "nookies";
+
 import {
   Menu,
   MenuButton,
@@ -19,23 +21,51 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from "@chakra-ui/react";
-import * as jose from "jose";
-import { createSecretKey } from "crypto";
-import { getAuth } from "firebase/auth";
+
 import axios from "axios";
 import { nonauthapi } from "lib/api";
+import { convertChangesToDMP } from "prettier";
+import { firebaseAdmin } from "lib/firebaseadmin";
+// import { firebaseAdmin } from "lib/firebaseadmin";
 
-export default function Dashboard(props) {
+export default function Dashboard({
+  links,
+  recos,
+  buckets,
+  user,
+  socials,
+  currentUser,
+  cookie,
+}) {
   const ctx = useContext(UserContext);
   const [menuClick, setMenuClick] = React.useState(false);
+  const [summary, setSummary] = React.useState({});
 
   React.useEffect(() => {
-    console.log("firestore", firestore);
-    console.log("env", firebaseConfig1);
+    console.log(
+      "FIRESTORE",
+      firestore,
+      " env",
+      firebaseConfig1,
+      "LINKS",
+      links,
+      " RECOS",
+      recos,
+      " Buckets",
+      buckets,
+      " Users",
+      user,
+      " Socials",
+      socials,
+      " current user",
+      currentUser,
+      " cookie",
+      cookie
+    );
+
+    setSummary({ products: recos.length, links: links.length });
 
     auth.onAuthStateChanged((user) => {
-      console.log(JSON.stringify(user.toJSON().stsTokenManager.accessToken));
-      console.log("api", nonauthapi);
       localStorage.setItem("jwt", user.toJSON().stsTokenManager.accessToken);
     });
   }, []);
@@ -53,18 +83,61 @@ export default function Dashboard(props) {
 
   return (
     <div>
-      <Header menu={(item) => menuActivate(item)} menuActive={menuClick} />
+      <Header
+        menu={(item) => menuActivate(item)}
+        menuActive={menuClick}
+        user={user}
+      />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>
         <Flex as="sidebar" sx={styles.sidebar}>
-          <Sidebar />
+          <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
-          <MainScreen />
+          <MainScreen links={links} recos={recos} />
         </Flex>
       </Flex>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let currentUser = [];
+  let cookie = [];
+
+  try {
+    const cookies = nookies.get(context).token;
+    const token = await firebaseAdmin.auth().verifyIdToken(cookies);
+    console.log("cookies", cookies);
+    console.log("token", token);
+    currentUser.push(token.uid);
+    cookie.push(cookies);
+  } catch (e) {
+    console.log(e);
+  }
+
+  // const { search } = context.params;
+
+  // Fetch data from external API
+  const res1 = await fetch(nonauthapi + "links" + "?u_id=" + currentUser[0]);
+  const links = await res1.json();
+
+  const res2 = await fetch(nonauthapi + "socials" + "?u_id=" + currentUser[0]);
+  const socials = await res2.json();
+
+  const res3 = await fetch(nonauthapi + "recos" + "?u_id=" + currentUser[0]);
+  const recos = await res3.json();
+
+  const res4 = await fetch(nonauthapi + "buckets" + "?u_id=" + currentUser[0]);
+  const buckets = await res4.json();
+
+  const res5 = await fetch(nonauthapi + "user" + "?u_id=" + currentUser[0]);
+  const user = await res5.json();
+
+  // Pass data to the page via props
+  return {
+    props: { links, socials, recos, buckets, user, currentUser, cookie },
+  };
 }
 
 const styles = {
