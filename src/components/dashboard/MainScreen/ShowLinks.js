@@ -5,8 +5,14 @@ import { useRouter } from "next/router";
 import { LinksBucket } from "./LinksBucket";
 
 // Add a custom Link
-export function ShowLinks() {
+export function ShowLinks({ data }) {
   const router = useRouter();
+  const buckets = [];
+  data.map((item) => {
+    if (buckets.indexOf(item.bucket) === -1) {
+      buckets.push(item.bucket);
+    }
+  });
 
   const addLinks = () => {
     console.log("add links");
@@ -14,8 +20,14 @@ export function ShowLinks() {
 
   return (
     <Container sx={{ width: "95%" }}>
-      <LinksBucket />
-      <LinksBucket />
+      {buckets.map((item, index) => {
+        return (
+          <LinksBucket
+            bucketName={buckets[index]}
+            data={data.filter((item) => item.bucket === buckets[index])}
+          />
+        );
+      })}
     </Container>
   );
 }

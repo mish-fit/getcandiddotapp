@@ -41,7 +41,7 @@ export function SocialModal({ closeParent, isOpen }) {
 
 const style = {
   container: {
-    my: "10px",
+    my: "8px",
     width: "100%",
     backgroundColor: "white",
   },
@@ -52,7 +52,7 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "25px",
-    py: "10px",
+    fontSize: "24px",
+    py: "8px",
   },
 };

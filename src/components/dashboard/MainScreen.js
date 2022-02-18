@@ -11,11 +11,12 @@ import React from "react";
 import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
 import * as Scroll from "react-scroll";
+import { Divider } from "@chakra-ui/react";
 
 let Element = Scroll.Element;
 
 // Add a custom Link
-export function MainScreen() {
+export function MainScreen({ links, recos, buckets }) {
   const [isOpenLinksModal, setOpenLinksModal] = React.useState(false);
   const [isOpenProductsModal, setOpenProductsModal] = React.useState(false);
 
@@ -34,20 +35,23 @@ export function MainScreen() {
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
+        buckets={buckets.filter((item) => item.type == "Links")}
       />
       <ProductsModal
         isOpen={isOpenProductsModal}
         closeParent={(item) => onCloseProductsModal(item)}
+        buckets={buckets.filter((item) => item.type == "Recos")}
       />
       <AddButtons
         addLink={() => setOpenLinksModal(true)}
         addProduct={() => setOpenProductsModal(true)}
       />
       <Element name="products">
-        <ShowProducts id="products" />
+        <ShowProducts id="products" data={recos} />
       </Element>
+      <Divider />
       <Element name="links">
-        <ShowLinks id="links" />
+        <ShowLinks id="links" data={links} />
       </Element>
     </Container>
   );

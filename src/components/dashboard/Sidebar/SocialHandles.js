@@ -7,8 +7,19 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
+const SocialElement = ({ item }) => (
+  <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
+    <Image src={"social/trell.png"} sx={style.social} />
+    <Text sx={style.socialText}>
+      {item.social_name.length > 9
+        ? item.social_name.slice(0, 10) + ".."
+        : item.social_name}
+    </Text>
+  </Flex>
+);
+
 // Add a custom Link
-export function SocialHandles({ social }) {
+export function SocialHandles({ social, data }) {
   const router = useRouter();
 
   const addSocial = () => {
@@ -16,37 +27,12 @@ export function SocialHandles({ social }) {
   };
 
   return (
-    <Container sx={{ px: "10%", mt: "10px", pb: "20px" }}>
+    <Container sx={{ px: "10%", mt: "8px", pb: "16px" }}>
       <Text sx={style.heading}>Social Handles</Text>
       <Grid gap={2} columns={[3, 4, 5, 6, 6, 6]} sx={style.grid}>
-        <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
-          <Image src={"social/trell.png"} sx={style.social} />
-          <Text sx={style.socialText}>Trell</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/koo.png"} sx={style.social} />
-          <Text sx={style.socialText}>Koo</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/simsim.png"} sx={style.social} />
-          <Text sx={style.socialText}>Simsim</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/bulbul.png"} sx={style.social} />
-          <Text sx={style.socialText}>Bulbul</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/koo.png"} sx={style.social} />
-          <Text sx={style.socialText}>Koo</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/trell.png"} sx={style.social} />
-          <Text sx={style.socialText}>Trell</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/simsim.png"} sx={style.social} />
-          <Text sx={style.socialText}>Simsim</Text>
-        </Flex>
+        {data.map((item, index) => {
+          return <SocialElement item={item} key={index} />;
+        })}
         <Flex sx={style.socialView}>
           <Image src={"social/bulbul.png"} sx={style.social} />
           <Text sx={style.socialText}>Bulbul</Text>
@@ -64,7 +50,7 @@ export function SocialHandles({ social }) {
           sx={{
             justifyContent: "center",
             alignItems: "center",
-            mb: "10px",
+            mb: "8px",
           }}
         >
           <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
@@ -81,8 +67,8 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "25px",
-    py: "10px",
+    fontSize: "24px",
+    py: "8px",
   },
   socialView: {
     textAlign: "center",
@@ -92,12 +78,12 @@ const style = {
     alignItems: "center",
   },
   social: {
-    width: "30px",
-    height: "30px",
+    width: "24px",
+    height: "24px",
   },
   socialText: {
     fontFamily: "Poppins",
-    fontSize: "13px",
+    fontSize: "11px",
     color: "#646464",
     textAlign: "center",
   },

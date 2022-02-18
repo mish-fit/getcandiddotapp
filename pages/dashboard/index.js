@@ -3,7 +3,7 @@
 import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../src/lib/UserDataProvider";
+import { UserContext } from "../../src/lib/UserDataProvider";
 import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
@@ -86,7 +86,7 @@ export default function Dashboard({
       <Header
         menu={(item) => menuActivate(item)}
         menuActive={menuClick}
-        user={user}
+        data={user}
       />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>
@@ -94,7 +94,7 @@ export default function Dashboard({
           <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
-          <MainScreen links={links} recos={recos} />
+          <MainScreen links={links} recos={recos} buckets={buckets} />
         </Flex>
       </Flex>
     </div>
@@ -108,8 +108,8 @@ export async function getServerSideProps(context) {
   try {
     const cookies = nookies.get(context).token;
     const token = await firebaseAdmin.auth().verifyIdToken(cookies);
-    console.log("cookies", cookies);
-    console.log("token", token);
+    // console.log("cookies", cookies);
+    // console.log("token", token);
     currentUser.push(token.uid);
     cookie.push(cookies);
   } catch (e) {
@@ -142,7 +142,7 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    mt: "90px",
+    mt: "96px",
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -155,27 +155,27 @@ const styles = {
   },
   sidebar: {
     flex: 1,
-    pl: "10px",
-    pt: "20px",
+    pl: "8px",
+    pt: "16px",
     alignItems: "center",
     justifyContent: "center",
     position: "sticky",
-    bottom: "10px",
+    bottom: "8px",
     alignSelf: "flex-end",
   },
   headerBtn: {
     backgroundColor: "#f29183",
-    fontSize: "15px",
+    fontSize: "16px",
     fontWeight: "normal",
     letterSpacing: "-0.16px",
-    borderRadius: "5px",
+    borderRadius: "6px",
     color: "#ffffff",
     borderWidth: "4px",
     borderColor: "black",
     padding: "4.0px 16px",
     display: ["none", null, null, null, "inline-block"],
     ml: ["0", null, null, "auto", "0"],
-    mr: ["0", null, null, "20px", "0"],
+    mr: ["0", null, null, "16px", "0"],
     transition: "all 500ms ease",
     "&:hover": {
       color: "#fff",
@@ -187,12 +187,12 @@ const styles = {
     fontSize: "16px",
     fontWeight: "bold",
     letterSpacing: "-0.16px",
-    borderRadius: "5px",
+    borderRadius: "8px",
     color: "#ffffff",
-    padding: "6.5px 24px",
+    padding: "8px 24px",
     display: ["none", null, null, null, "inline-block"],
     ml: ["0", null, null, "auto", "0"],
-    mr: ["20px", "20px", "20px", "20px", "0"],
+    mr: ["16px", "16px", "16px", "16px", "0"],
     transition: "all 500ms ease",
     "&:hover": {
       color: "#fff",
@@ -203,7 +203,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: "20px",
+    py: "16px",
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
@@ -215,7 +215,7 @@ const styles = {
     "&.sticky": {
       backgroundColor: "background",
       color: "text",
-      py: "15px",
+      py: "16px",
       boxShadow: "0 1px 2px rgba(0, 0, 0, 0.06)",
     },
   },
@@ -225,12 +225,12 @@ const styles = {
       ml: "auto",
       display: "inline-flex",
       alignItems: "center",
-      fontSize: "15px",
+      fontSize: "16px",
       color: "#0F2137",
       fontWeight: 500,
-      mr: "20px",
+      mr: "16px",
       img: {
-        mr: "9px",
+        mr: "8px",
       },
       text: {
         color: "green",

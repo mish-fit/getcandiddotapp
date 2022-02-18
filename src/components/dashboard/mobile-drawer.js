@@ -20,7 +20,7 @@ const MobileDrawer = () => {
 
   return (
     <Drawer
-      width="320px"
+      width="316px"
       drawerHandler={
         <Box sx={styles.handler}>
           <IoMdMenu size="22px" />
@@ -56,7 +56,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     flexShrink: "0",
-    width: "26px",
+    width: "24px",
 
     "@media screen and (min-width: 960px)": {
       display: "none",
@@ -74,8 +74,8 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    top: "30px",
-    right: "30px",
+    top: "24px",
+    right: "24px",
     zIndex: "1",
   },
 
@@ -84,22 +84,22 @@ const styles = {
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    pt: "30px",
-    pb: "40px",
-    px: "30px",
+    pt: "24px",
+    pb: "32px",
+    px: "24px",
   },
 
   menu: {
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    marginTop: "30px",
+    marginTop: "24px",
 
     a: {
       fontSize: "16px",
       fontWeight: "400",
       color: "black",
-      py: "5px",
+      py: "6px",
       cursor: "pointer",
     },
   },
@@ -113,10 +113,10 @@ const styles = {
   },
 
   button: {
-    fontSize: "15px",
+    fontSize: "16px",
     fw: "700",
     height: "48px",
-    borderRadius: "3px",
+    borderRadius: "4px",
     cursor: "pointer",
     width: "100%",
     display: "flex",

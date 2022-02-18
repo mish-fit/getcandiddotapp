@@ -15,7 +15,7 @@ import {
   ModalCloseButton,
 } from "@chakra-ui/react";
 // Add a custom Link
-export function ProductsModal({ closeParent, isOpen }) {
+export function ProductsModal({ closeParent, isOpen, buckets }) {
   const router = useRouter();
 
   const closeModal = () => {
@@ -41,7 +41,7 @@ export function ProductsModal({ closeParent, isOpen }) {
 
 const style = {
   container: {
-    my: "10px",
+    my: "8px",
     width: "100%",
     backgroundColor: "white",
   },
@@ -52,7 +52,7 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "25px",
-    py: "10px",
+    fontSize: "24px",
+    py: "8px",
   },
 };

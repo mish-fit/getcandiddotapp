@@ -1,13 +1,41 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
+import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
 
 // Add a custom Link
-export function LinksCard() {
+export function LinksCard({ item }) {
+  const onClickLink = () => {
+    window.open(item.link, "_blank");
+  };
+
   return (
-    <Flex sx={style.button}>
-      <Flex sx={style.container}>
-        <Text sx={style.link}>this this this</Text>
+    <Flex sx={style.button} onClick={onClickLink}>
+      <Flex
+        sx={merge(style.container, {
+          boxShadow: "0 4px 4px 1px " + item.shadow_color,
+          "&:hover": {
+            p: {
+              color: "#fff",
+            },
+            backgroundColor: item.shadow_color,
+          },
+        })}
+      >
+        {item.photo && item.photo != "" ? (
+          <Image src={item.photo} sx={style.image} />
+        ) : null}
+        <Flex
+          sx={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <Text as="p" sx={merge(style.link, { color: item.font_color })}>
+            {item.title}
+          </Text>
+        </Flex>
       </Flex>
     </Flex>
   );
@@ -16,15 +44,15 @@ export function LinksCard() {
 const style = {
   container: {
     flexDirection: "row",
-    p: "10px",
-    py: "20px",
+    p: "8px",
+    py: "16px",
     backgroundColor: "white",
-    borderRadius: "20px",
-    boxShadow: "0 4px 4px 1px rgba(0, 0, 0, 0.5)",
-    mx: "20px",
-    width: "450px",
-    height: "100px",
-    my: "20px",
+    borderRadius: "16px",
+
+    mx: "16px",
+    width: "448px",
+    height: "96px",
+    my: "16px",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -36,7 +64,15 @@ const style = {
   link: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#D7354A",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: "48px",
+    height: "48px",
+    borderRadius: "48px",
   },
 };

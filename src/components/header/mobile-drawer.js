@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { Button, Box } from 'theme-ui';
-import { Scrollbars } from 'react-custom-scrollbars';
-import Drawer from 'components/drawer';
-import { DrawerContext } from 'contexts/drawer/drawer.context';
-import { IoMdClose, IoMdMenu } from 'react-icons/io';
-import { Link as ScrollLink } from 'react-scroll';
-import menuItems from './header.data';
-import Logo from 'components/logo';
+import React, { useContext } from "react";
+import { Button, Box } from "theme-ui";
+import { Scrollbars } from "react-custom-scrollbars";
+import Drawer from "components/drawer";
+import { DrawerContext } from "contexts/drawer/drawer.context";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
+import { Link as ScrollLink } from "react-scroll";
+import menuItems from "./header.data";
+import Logo from "components/logo";
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
@@ -14,13 +14,13 @@ const MobileDrawer = () => {
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
     dispatch({
-      type: 'TOGGLE',
+      type: "TOGGLE",
     });
   }, [dispatch]);
 
   return (
     <Drawer
-      width="320px"
+      width="316px"
       drawerHandler={
         <Box sx={styles.handler}>
           <IoMdMenu size="22px" />
@@ -64,79 +64,79 @@ const MobileDrawer = () => {
 
 const styles = {
   handler: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: '0',
-    width: '26px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: "0",
+    width: "24px",
 
-    '@media screen and (min-width: 960px)': {
-      display: 'none',
+    "@media screen and (min-width: 960px)": {
+      display: "none",
     },
   },
 
   drawer: {
-    width: '100%',
-    height: '100%',
-    background: '#fff',
+    width: "100%",
+    height: "100%",
+    background: "#fff",
   },
 
   close: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    top: '30px',
-    right: '30px',
-    zIndex: '1',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    top: "24px",
+    right: "24px",
+    zIndex: "1",
   },
 
   content: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    pt: '30px',
-    pb: '40px',
-    px: '30px',
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    pt: "24px",
+    pb: "32px",
+    px: "24px",
   },
 
   menu: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: '30px',
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "24px",
 
     a: {
-      fontSize: '16px',
-      fontWeight: '400',
-      color: 'black',
-      py: '5px',
-      cursor: 'pointer',
+      fontSize: "16px",
+      fontWeight: "400",
+      color: "black",
+      py: "6px",
+      cursor: "pointer",
     },
   },
 
   menuFooter: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    mt: 'auto',
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    mt: "auto",
   },
 
   button: {
-    fontSize: '15px',
-    fw: '700',
-    height: '48px',
-    borderRadius: '3px',
-    cursor: 'pointer',
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    py: '0',
-    backgroundColor: 'black',
-    color: '#fff',
+    fontSize: "16px",
+    fw: "700",
+    height: "48px",
+    borderRadius: "4px",
+    cursor: "pointer",
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    py: "0",
+    backgroundColor: "black",
+    color: "#fff",
   },
 };
 

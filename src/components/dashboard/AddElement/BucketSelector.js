@@ -16,8 +16,8 @@ import React from "react";
 import { BucketsModal } from "../Modals/BucketModal";
 import { IoChevronDownCircleOutline } from "react-icons/io5";
 
-export function BucketSelector() {
-  const [a, setA] = React.useState(["bucket1", "bucket2", "bucket3"]);
+export function BucketSelector({ buckets }) {
+  const [a, setA] = React.useState(JSON.parse(buckets));
   const [input, setInput] = React.useState(false);
   const [name, setName] = React.useState("Select your bucket");
 
@@ -37,6 +37,10 @@ export function BucketSelector() {
   const onSelectItem = (item) => {
     setName(item);
   };
+
+  React.useEffect(() => {
+    console.log(JSON.parse(buckets));
+  }, []);
 
   return (
     <Menu>
@@ -58,9 +62,9 @@ export function BucketSelector() {
         <Text>{name}</Text>
       </MenuButton>
       <MenuList>
-        {a.map((item) => {
+        {a.map((item, index) => {
           return (
-            <MenuItem>
+            <MenuItem key={index.toString()}>
               <Flex onClick={() => onSelectItem(item)}>
                 <Text>{item}</Text>
               </Flex>

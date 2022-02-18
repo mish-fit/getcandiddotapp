@@ -1,8 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Button, Text } from 'theme-ui';
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
-import { Fragment } from 'react';
+import { jsx, Button, Text } from "theme-ui";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { Fragment } from "react";
 
 const SlickArrow = ({ className, onClick, control }) => {
   return (
@@ -12,7 +12,7 @@ const SlickArrow = ({ className, onClick, control }) => {
       className={className}
       sx={styles.paginationButton}
     >
-      {control === 'prev' ? (
+      {control === "prev" ? (
         <Fragment>
           <Text as="span" variant="styles.srOnly">
             Prev
@@ -35,29 +35,29 @@ export default SlickArrow;
 
 const styles = {
   paginationButton: {
-    minHeight: '30px',
+    minHeight: "24px",
     padding: 0,
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    ':focus': {
-      outline: '0 none',
+    ":focus": {
+      outline: "0 none",
     },
     svg: {
-      transition: 'all 0.2s ease-in-out 0s',
+      transition: "all 0.2s ease-in-out 0s",
     },
-    '&.slick-disabled': {
-      color: '#BBC7D7',
+    "&.slick-disabled": {
+      color: "#BBC7D7",
       svg: {
-        transform: 'scale(0.8)',
+        transform: "scale(0.8)",
       },
     },
-    '&.slick-prev': {
-      left: 'calc(50% - 16px)',
-      transform: 'translateX(-50%)',
+    "&.slick-prev": {
+      left: "calc(50% - 16px)",
+      transform: "translateX(-50%)",
     },
-    '&.slick-next': {
-      transform: 'translateX(50%)',
-      right: 'calc(50% - 16px)',
+    "&.slick-next": {
+      transform: "translateX(50%)",
+      right: "calc(50% - 16px)",
     },
   },
 };

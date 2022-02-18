@@ -11,37 +11,65 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { BiLink } from "react-icons/bi";
 import { BucketSelector } from "./BucketSelector";
 import { BucketsModal } from "../Modals/BucketModal";
+import { AddImage } from "./AddImage";
 // Add a custom Link
-export function AddLink() {
-  const [titleColor, setTitleColor] = React.useState("black");
-  const [shadowColor, setShadowColor] = React.useState("rgba(0,0,0,0.5)");
+export function AddLink({ buckets, values, onRefresh, onValuesChange }) {
+  const [titleColor, setTitleColor] = React.useState(values.titleColor);
+  const [shadowColor, setShadowColor] = React.useState(values.shadowColor);
+  const [title, setTitle] = React.useState(values.title);
+  const [link, setLink] = React.useState(values.link);
+
+  const refresh = () => {
+    console.log("Refresh");
+    setTitleColor("black");
+    setShadowColor("rgba(0,0,0,0.5)");
+    setTitle("");
+    setLink("");
+    onRefresh();
+  };
 
   const fontColor = (color) => {
     setTitleColor(color);
+    onValuesChange({ ...values, titleColor: color });
   };
 
   const borderShadowColor = (color) => {
     setShadowColor(color);
+    onValuesChange({ ...values, shadowColor: color });
+  };
+
+  const handleUpdate = (image) => {
+    console.log(image);
+    const formData = new FormData();
+    formData.append("image", image.raw);
+
+    //     await fetch("YOUR_URL", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "multipart/form-data"
+    //       },
+    //       body: formData
+    //     });
+    //   };
   };
 
   return (
     <Flex sx={style.container}>
       <Flex sx={style.leftContainer}>
-        <Text sx={style.imageContainer}>Image</Text>
-        <Text sx={style.addImage}>Add Button</Text>
+        <AddImage handleUpdate={(image) => handleUpdate(image)} />
       </Flex>
       <Flex
         sx={{
           flex: 1,
           boxShadow: `1px 1px 2px 2px ${shadowColor}`,
           flexDirection: "column",
-          borderRadius: "10px",
+          borderRadius: "8px",
         }}
       >
         <Flex sx={style.titleContainer}>
           <Flex sx={{ flex: 1 }}>
             <Flex
-              sx={{ justifyContent: "center", alignItems: "center", p: "10px" }}
+              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
             >
               <MdOutlineDriveFileRenameOutline size={20} />
             </Flex>
@@ -50,16 +78,18 @@ export function AddLink() {
               sx={{ color: titleColor }}
               placeholder="Enter Custom Link Title"
               variant="flushed"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
             />
           </Flex>
-          <Flex sx={{ p: "10px", px: "15px" }}>
+          <Flex sx={{ p: "8px", px: "16px" }}>
             <TextColorPicker textColor={(color) => fontColor(color)} />
           </Flex>
         </Flex>
         <Flex sx={style.titleContainer}>
           <Flex sx={{ flex: 1 }}>
             <Flex
-              sx={{ justifyContent: "center", alignItems: "center", p: "10px" }}
+              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
             >
               <BiLink size={20} />
             </Flex>
@@ -68,12 +98,14 @@ export function AddLink() {
               sx={{ color: "black" }}
               placeholder="Enter Custom Link Address"
               variant="flushed"
+              onChange={(e) => setLink(e.target.value)}
+              value={link}
             />
           </Flex>
         </Flex>
         <Flex sx={style.pickerContainer}>
-          <Flex sx={{ flex: 2, mr: "20px" }}>
-            <BucketSelector />
+          <Flex sx={{ flex: 2, mr: "16px" }}>
+            <BucketSelector buckets={buckets} />
           </Flex>
           <Flex sx={{ flex: 1, justifyContent: "flex-end" }}>
             <ShadowPicker
@@ -83,8 +115,8 @@ export function AddLink() {
         </Flex>
       </Flex>
       <Flex sx={style.rightContainer}>
-        <Flex sx={style.delete}>
-          <IoCloseCircleOutline />
+        <Flex sx={style.delete} onClick={refresh}>
+          <IoCloseCircleOutline size={20} />
         </Flex>
       </Flex>
     </Flex>
@@ -99,10 +131,13 @@ const style = {
   },
   leftContainer: {
     flexDirection: "column",
+    width: "64px",
+    height: "64px",
+    mx: "8px",
   },
   rightContainer: {
     flexDirection: "column",
-    ml: "10px",
+    ml: "8px",
   },
   imageContainer: {},
   addImage: {},
@@ -112,25 +147,27 @@ const style = {
 
   dragIcon: {
     cursor: "grab",
-    p: "10px",
+    p: "8px",
     backgroundColor: "gray",
   },
   link: {},
   bucket: {},
   delete: {
     cursor: "pointer",
+    mt: "8px",
+    p: "2px",
   },
   pickerContainer: {
     flexDirection: "row",
-    mx: "40px",
-    py: "10px",
+    mx: "32px",
+    py: "8px",
     justifyContent: "center",
     alignItems: "center",
   },
   titleContainer: {
     width: "100%",
-    height: "50px",
-    mt: "10px",
-    pr: "10px",
+    height: "48px",
+    mt: "8px",
+    pr: "8px",
   },
 };

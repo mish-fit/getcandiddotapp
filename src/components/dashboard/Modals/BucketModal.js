@@ -34,7 +34,7 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
     <Modal isOpen={isOpen} isCentered>
       <ModalOverlay bg="rgba(255,255,255)" />
       <ModalContent>
-        <Flex sx={{ pt: "20px", pl: "20px", justifyContent: "space-between" }}>
+        <Flex sx={{ pt: "16px", pl: "16px", justifyContent: "space-between" }}>
           <Box sx={style.subHeaderContainer}>
             <Text sx={style.subHeader}>New Bucket</Text>
           </Box>
@@ -51,7 +51,7 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
               </Text>
             </Flex>
             <Flex
-              sx={{ cursor: "pointer", ml: "10px", mr: "10px" }}
+              sx={{ cursor: "pointer", ml: "8px", mr: "8px" }}
               onClick={saveBucket}
             >
               <Text
@@ -69,7 +69,7 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
         <Flex sx={style.titleContainer}>
           <Flex sx={{ flex: 1 }}>
             <Flex
-              sx={{ justifyContent: "center", alignItems: "center", p: "10px" }}
+              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
             >
               <MdOutlineCategory size={25} />
             </Flex>
@@ -95,9 +95,9 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
 const style = {
   titleContainer: {
     width: "100%",
-    height: "50px",
-    mt: "30px",
-    pr: "10px",
+    height: "48px",
+    mt: "24px",
+    pr: "8px",
   },
   subHeaderContainer: {
     width: "50%",
