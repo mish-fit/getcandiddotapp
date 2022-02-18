@@ -30,4 +30,25 @@ export const UploadImageToS3WithNativeSdk = (file, name) => {
     .send((err) => {
       if (err) console.log(err);
     });
+
+  // const options = {
+  //   headers: {
+  //     "Content-Type": "multipart/form-data",
+  //     "x-amz-acl": "public-read",
+  //   },
+  // };
+
+  // axios(
+  //   {
+  //     method: "post",
+  //     url: signedURL,
+  //     data: formData,
+  //     options: options,
+  //   },
+  //   { timeout: 5000 }
+  // )
+  //   .then((res) => {
+  //     console.log("Image Uplaoded", res.data);
+  //   })
+  //   .catch((e) => console.log(e));
 };
