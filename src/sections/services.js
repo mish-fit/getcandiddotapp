@@ -1,40 +1,40 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Container } from 'theme-ui';
-import SectionHeading from 'components/section-heading';
-import ServiceCard from 'components/service-card';
+import { jsx, Box, Container } from "theme-ui";
+import SectionHeading from "components/section-heading";
+import ServiceCard from "components/service-card";
 
 const services = [
   {
-    title: 'Cloud Hosting',
+    title: "Cloud Hosting",
     price: 0.63,
   },
   {
-    title: 'Web Hosting',
+    title: "Web Hosting",
     price: 0.75,
   },
   {
-    title: 'VPS Hosting',
+    title: "VPS Hosting",
     price: 0.68,
   },
   {
-    title: 'Wordpress Hosting',
+    title: "Wordpress Hosting",
     price: 0.72,
   },
   {
-    title: 'Domains',
+    title: "Domains",
     price: 0.63,
   },
   {
-    title: 'Email Hosting',
+    title: "Email Hosting",
     price: 0.56,
   },
   {
-    title: 'VPN Service',
+    title: "VPN Service",
     price: 0.69,
   },
   {
-    title: 'Image Cloud',
+    title: "Image Cloud",
     price: 0.75,
   },
 ];
@@ -61,21 +61,21 @@ export default Services;
 
 const styles = {
   section: {
-    pt: ['70px', null, null, null, '100px', null, '140px'],
+    pt: ["72px", null, null, null, "96px", null, "132px"],
     pb: [12, null, null, null, null, 15],
   },
   grid: {
     gap: [3, null, null, 4],
-    display: 'grid',
-    justifyContent: 'center',
+    display: "grid",
+    justifyContent: "center",
     gridTemplateColumns: [
-      'repeat(2, 1fr)',
+      "repeat(2, 1fr)",
       null,
       null,
-      'repeat(3, 1fr)',
+      "repeat(3, 1fr)",
       null,
-      'repeat(4, 1fr)',
-      'repeat(4, 300px)',
+      "repeat(4, 1fr)",
+      "repeat(4, 300px)",
     ],
   },
 };

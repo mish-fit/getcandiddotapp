@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { ProductsCard } from "./ProductsCard";
 
 // Add a custom Link
-export function ProductsBucket() {
+export function ProductsBucket({ bucketName, data }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -17,12 +17,11 @@ export function ProductsBucket() {
 
   return (
     <Container sx={style.container}>
-      <Text sx={style.heading}>Bucket 1</Text>
+      <Text sx={style.heading}>{bucketName}</Text>
       <Flex sx={style.grid}>
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
-        <ProductsCard />
+        {data.map((item, index) => {
+          return <ProductsCard key={index} item={item} />;
+        })}
       </Flex>
     </Container>
   );
@@ -30,7 +29,7 @@ export function ProductsBucket() {
 
 const style = {
   container: {
-    my: "10px",
+    my: "8px",
     width: "100%",
     backgroundColor: "white",
   },
@@ -41,7 +40,7 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "25px",
-    py: "10px",
+    fontSize: "24px",
+    py: "8px",
   },
 };

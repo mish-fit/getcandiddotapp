@@ -21,7 +21,7 @@ export default function V1() {
 
   React.useEffect(() => {
     const handleRouteChange = (url) => {
-      pageview(url);
+      // pageview(url);
     };
     //When the component is mounted, subscribe to router changes
     //and log those page views

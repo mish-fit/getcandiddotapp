@@ -380,7 +380,7 @@ const styles = {
     pr: 0,
   },
   heading: {
-    mb: ["0px", null, null, "70px"],
+    mb: ["0px", null, null, "72px"],
     px: [6, null, null, 0],
     h3: {},
   },
@@ -390,7 +390,7 @@ const styles = {
     gridTemplateColumns: [null, null, null, null, "repeat(3, 1fr)"],
     alignItems: [null, null, null, null, "flex-end"],
     ".slick-slide > div": {
-      p: ["35px", "40px", null, "35px 23px 23px", 0],
+      p: ["32px", "32px", null, "32px 23px 23px", 0],
     },
     ".slick-arrow": {
       bottom: -5,

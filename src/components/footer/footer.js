@@ -22,8 +22,8 @@ export default function Footer() {
           variant: 'layout.toolbar',
           alignItems: 'stretch',
           flexWrap: 'wrap',
-          pt: ['30px', null, null, null, '70px'],
-          pb: ['60px', null, null, null, '90px'],
+          pt: ['24px', null, null, null, '72px'],
+          pb: ['60px', null, null, null, '96px'],
           borderBottom: '1px solid #D9E0E7',
         }}
       >
@@ -31,7 +31,7 @@ export default function Footer() {
           <Box
             sx={{
               flex: ['1 1 50%', null, null, '0 0 33.33%', '1'],
-              mt: ['30px'],
+              mt: ['24px'],
             }}
             key={i}
           >
@@ -52,7 +52,7 @@ export default function Footer() {
         sx={{
           variant: "layout.toolbar",
           flexDirection: ["column", null, null, null, "row"],
-          py: "40px",
+          py: "32px",
         }}
       >
         <Logo />
@@ -72,7 +72,7 @@ export default function Footer() {
 const styles = {
   title: {
     color: "#0F2137",
-    fontSize: "18px",
+    fontSize: "16px",
     fontWeight: 500,
     letterSpacing: "-0.5px",
     mb: "0",
@@ -92,20 +92,20 @@ const styles = {
     color: "#0F2137",
     opacity: 0.6,
     fontSize: "14px",
-    ml: ["10px"],
+    ml: ["8px"],
   },
   bottomMenu: {
     display: "flex",
     marginLeft: [0, null, null, null, "auto"],
-    mt: ["10px", null, null, null, 0],
+    mt: ["8px", null, null, null, 0],
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
     a: {
       color: "#02073E",
-      fontSize: "15px",
+      fontSize: "16px",
       "+a": {
-        ml: ["10px", "30px"],
+        ml: ["8px", "24px"],
       },
     },
   },

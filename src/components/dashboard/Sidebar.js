@@ -30,7 +30,7 @@ export function Sidebar({ socials, user, summary }) {
     <Box
       sx={{
         backgroundColor: "white",
-        borderRadius: "20px",
+        borderRadius: "16px",
         boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
       }}
     >

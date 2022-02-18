@@ -17,9 +17,9 @@ function ColorItem({ color }) {
   return (
     <Container
       sx={{
-        borderRadius: "20px",
-        height: "20px",
-        width: "20px",
+        borderRadius: "16px",
+        height: "16px",
+        width: "16px",
         backgroundColor: color,
       }}
     />
@@ -46,7 +46,7 @@ function ListItem({ color, name, pick }) {
       <Flex sx={{ flex: 1 }}>
         <Text
           sx={{
-            ml: "10px",
+            ml: "8px",
             fontFamily: "Poppins",
             fontSize: "12px",
             fontWeight: "bold",

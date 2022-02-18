@@ -7,7 +7,7 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 // Add a custom Link
-export function ProductsCard() {
+export function ProductsCard({ item }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -23,8 +23,8 @@ export function ProductsCard() {
       </Flex>
       <Flex sx={style.detailsContainer}>
         <Flex sx={style.content}>
-          <Text sx={style.product}>Product Name</Text>
-          <Text sx={style.category}>Category Name</Text>
+          <Text sx={style.product}>{item.prod_name}</Text>
+          <Text sx={style.category}>{item.cat_name}</Text>
         </Flex>
         <Flex sx={style.buttonContainer}>
           <Flex sx={style.button}>
@@ -39,34 +39,33 @@ export function ProductsCard() {
 const style = {
   container: {
     flexDirection: "row",
-    p: "10px",
+    p: "8px",
     backgroundColor: "white",
-    borderRadius: "2px",
-    boxShadow: "0 1px 1px 1px rgba(0, 0, 0, 0.1)",
-    mx: "20px",
-    width: "450px",
-    my: "20px",
+    borderRadius: "16px",
+    boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
+    mx: "16px",
+    width: "448px",
+    my: "16px",
   },
   imageMaster: {
     backgroundColor: "white",
   },
   imageContainer: {
-    my: "25px",
-    mx: "10px",
+    mx: "8px",
     backgroundColor: "white",
   },
   image: {
-    height: "100px",
-    width: "150px",
-    borderRadius: "5px",
+    height: "96px",
+    width: "148px",
+    borderRadius: "6px",
   },
   detailsContainer: {
     backgroundColor: "white",
     flexDirection: "column",
-    ml: "10px",
-    width: "250px",
+    ml: "8px",
+    width: "248px",
     justifyContent: "space-between",
-    py: "10px",
+    py: "8px",
   },
   buttonText: {
     width: "100%",
@@ -76,16 +75,16 @@ const style = {
     color: "white",
     fontWeight: "medium",
     fontFamily: "Poppins",
-    fontSize: "15px",
+    fontSize: "16px",
     cursor: "pointer",
     textAlign: "center",
   },
   button: {
     backgroundColor: "#D7354A",
-    borderRadius: "30px",
+    borderRadius: "24px",
     borderColor: "#D7354A",
-    py: "5px",
-    width: "150px",
+    py: "4px",
+    width: "148px",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -105,7 +104,7 @@ const style = {
   category: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#D7354A",
   },
   buynow: {},

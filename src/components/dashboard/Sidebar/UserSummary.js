@@ -8,7 +8,7 @@ import React from "react";
 import { Link as ScrollLink } from "react-scroll";
 
 // Add a custom Link
-export function UserSummary() {
+export function UserSummary({ data }) {
   const router = useRouter();
 
   const [activeTab, setActiveTab] = React.useState(0);
@@ -73,7 +73,7 @@ export function UserSummary() {
           Products
         </Text>
         <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
-          20
+          {data.products}
         </Text>
       </Flex>
       <Flex sx={style.summaryView}>
@@ -81,7 +81,7 @@ export function UserSummary() {
           Links
         </Text>
         <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
-          10
+          {data.links}
         </Text>
       </Flex>
     </Container>
@@ -94,31 +94,31 @@ const style = {
     width: "100%",
     display: "flex",
     flexDirection: "column",
-    mt: "20px",
+    mt: "16px",
   },
   buttonContainer: {
-    width: "450px",
+    width: "448px",
     justifyContent: "space-around",
-    mb: "10px",
+    mb: "8px",
   },
   summaryView: {
     flexDirection: "row",
     justifyContent: "space-between",
     mx: "10%",
-    mt: "10px",
+    mt: "8px",
   },
   button: {
     backgroundColor: "#D7354A",
-    borderRadius: "30px",
+    borderRadius: "24px",
     borderColor: "#D7354A",
-    py: "10px",
+    py: "8px",
 
-    width: "150px",
+    width: "148px",
   },
   summaryText: {
     fontWeight: "bold",
     fontFamily: "Poppins",
-    fontSize: "18px",
+    fontSize: "16px",
   },
   buttonText: {
     width: "100%",
@@ -128,16 +128,16 @@ const style = {
     color: "white",
     fontWeight: "bold",
     fontFamily: "Poppins",
-    fontSize: "15px",
+    fontSize: "16px",
     cursor: "pointer",
   },
   button1: {
     backgroundColor: "white",
-    borderRadius: "30px",
+    borderRadius: "24px",
     borderColor: "#D7354A",
-    py: "10px",
+    py: "8px",
     borderWidth: 1,
-    width: "150px",
+    width: "148px",
   },
   buttonText1: {
     width: "100%",
@@ -147,18 +147,18 @@ const style = {
     color: "#D7354A",
     fontWeight: "bold",
     fontFamily: "Poppins",
-    fontSize: "15px",
+    fontSize: "16px",
     cursor: "pointer",
   },
   summaryView1: {
     flexDirection: "row",
     justifyContent: "space-between",
     mx: "10%",
-    mt: "10px",
+    mt: "8px",
   },
   summaryText1: {
     fontWeight: "medium",
     fontFamily: "Poppins",
-    fontSize: "18px",
+    fontSize: "16px",
   },
 };
