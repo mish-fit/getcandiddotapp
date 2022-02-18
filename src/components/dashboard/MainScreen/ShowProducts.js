@@ -27,6 +27,7 @@ export function ShowProducts({ data }) {
       {buckets.map((item, index) => {
         return (
           <ProductsBucket
+            key={index}
             bucketName={buckets[index]}
             data={data.filter((item) => item.bucket === buckets[index])}
           />

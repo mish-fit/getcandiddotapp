@@ -12,7 +12,7 @@ export function LinksCard({ item }) {
     <Flex sx={style.button} onClick={onClickLink}>
       <Flex
         sx={merge(style.container, {
-          boxShadow: "0 4px 4px 1px " + item.shadow_color,
+          boxShadow: "0 0 4px 1px " + item.shadow_color,
           "&:hover": {
             p: {
               color: "#fff",

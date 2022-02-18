@@ -91,10 +91,21 @@ export default function Dashboard({
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>
         <Flex as="sidebar" sx={styles.sidebar}>
-          <Sidebar socials={socials} user={user} summary={summary} />
+          <Sidebar
+            socials={socials}
+            user={user}
+            summary={summary}
+            cookie={cookie[0]}
+          />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
-          <MainScreen links={links} recos={recos} buckets={buckets} />
+          <MainScreen
+            links={links}
+            recos={recos}
+            buckets={buckets}
+            user={user}
+            cookie={cookie[0]}
+          />
         </Flex>
       </Flex>
     </div>

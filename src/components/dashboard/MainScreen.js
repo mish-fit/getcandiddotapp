@@ -16,9 +16,13 @@ import { Divider } from "@chakra-ui/react";
 let Element = Scroll.Element;
 
 // Add a custom Link
-export function MainScreen({ links, recos, buckets }) {
+export function MainScreen({ links, recos, buckets, user, cookie }) {
   const [isOpenLinksModal, setOpenLinksModal] = React.useState(false);
   const [isOpenProductsModal, setOpenProductsModal] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log("sort id ", Math.max(...links.map((o) => o.sort_id), 0));
+  }, []);
 
   const onCloseLinksModal = (item) => {
     console.log("close");
@@ -36,11 +40,17 @@ export function MainScreen({ links, recos, buckets }) {
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
         buckets={buckets.filter((item) => item.type == "Links")}
+        maxSortId={Math.max(...links.map((o) => o.sort_id), 0)}
+        user={user}
+        cookie={cookie}
       />
       <ProductsModal
         isOpen={isOpenProductsModal}
         closeParent={(item) => onCloseProductsModal(item)}
         buckets={buckets.filter((item) => item.type == "Recos")}
+        maxSortId={Math.max(...recos.map((o) => o.sort_id), 0)}
+        user={user}
+        cookie={cookie}
       />
       <AddButtons
         addLink={() => setOpenLinksModal(true)}

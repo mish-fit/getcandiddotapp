@@ -12,7 +12,7 @@ import {
   MenuItem,
 } from "@chakra-ui/react";
 import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
-import React from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
@@ -23,10 +23,21 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { BiLink } from "react-icons/bi";
 import { BucketsModal } from "./BucketModal";
 import { nanoid } from "nanoid";
-import { s3url } from "lib/api";
+import { authapi, s3url } from "lib/api";
+import { UserContext } from "lib/UserDataProvider";
+import axios from "axios";
+import { UploadImageToS3WithNativeSdk, uploadToS3 } from "lib/aws";
 
 // Add a custom Link
-export function LinksModal({ closeParent, isOpen, buckets }) {
+export function LinksModal({
+  closeParent,
+  isOpen,
+  buckets,
+  user,
+  maxSortId,
+  cookie,
+}) {
+  const ctx = useContext(UserContext);
   const router = useRouter();
   const [refreshScreen, setRefreshScreen] = React.useState(false);
   const [a, setA] = React.useState(JSON.parse(buckets[0].u_buckets));
@@ -34,21 +45,37 @@ export function LinksModal({ closeParent, isOpen, buckets }) {
   const [image, setImage] = React.useState({ preview: "", raw: "" });
   const [imageName, setImageName] = React.useState(nanoid());
   const [imageSelected, setImageSelected] = React.useState(false);
+  const [sortId, setSortId] = React.useState(maxSortId + 1);
+  const [signedURL, setSignedURL] = React.useState("");
 
   let hiddenInput = null;
 
   const [values, setValues] = React.useState({
-    u_id: "",
-    u_name: "",
+    id: "",
+    u_id: user[0].u_id,
+    u_name: user[0].u_name,
     title: "",
     link: "",
     bucket: "Select your bucket",
-    photo: imageSelected ? s3url + imageName + ".png" : "",
+    photo: "",
     font_color: "black",
     shadow_color: "rgba(0,0,0,.5)",
-    sort_id: 1,
+    sort_id: sortId,
     others: {},
   });
+
+  React.useEffect(() => {
+    console.log("bUCKETR STRING", imageName);
+    axios
+      .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
+      .then((res) => {
+        console.log(res.data);
+        setSignedURL(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [imageName]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -73,14 +100,27 @@ export function LinksModal({ closeParent, isOpen, buckets }) {
     const formData = new FormData();
     formData.append("image", image.raw);
 
-    //     await fetch("YOUR_URL", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "multipart/form-data"
-    //       },
-    //       body: formData
-    //     });
-    //   };
+    UploadImageToS3WithNativeSdk(image.raw, imageName);
+    // const options = {
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //     "x-amz-acl": "public-read",
+    //   },
+    // };
+
+    // axios(
+    //   {
+    //     method: "post",
+    //     url: signedURL,
+    //     data: formData,
+    //     options: options,
+    //   },
+    //   { timeout: 5000 }
+    // )
+    //   .then((res) => {
+    //     console.log("Image Uplaoded", res.data);
+    //   })
+    //   .catch((e) => console.log(e));
   };
 
   const onCancelImage = () => {
@@ -105,22 +145,44 @@ export function LinksModal({ closeParent, isOpen, buckets }) {
     setValues({ ...values, bucket: item });
   };
 
-  React.useEffect(() => {
-    console.log("bUCKETR STRING", JSON.parse(buckets[0].u_buckets));
-  }, []);
-
   const closeModal = () => {
     closeParent(true);
   };
 
   const savenadd = () => {
-    console.log(values);
-    setRefreshScreen(!refreshScreen);
+    const body = {
+      ...values,
+      photo: imageSelected ? s3url + imageName + ".png" : "",
+    };
+
+    const options = {
+      headers: {
+        Authorization: `bearer ${cookie}`,
+        Origin: "localhost:3000",
+      },
+    };
+    axios(
+      {
+        method: "post",
+        url: `${authapi}links`,
+        data: { links_array: JSON.stringify([body]) },
+        options: options,
+      },
+      { timeout: 5000 }
+    )
+      .then((res) => {
+        console.log("Sucess", res.data);
+        setSortId((id) => id + 1);
+      })
+      .catch((e) => console.log(e));
   };
 
   const savenclose = () => {
-    console.log(values);
-    setRefreshScreen(!refreshScreen);
+    const body = {
+      ...values,
+      photo: imageSelected ? s3url + imageName + ".png" : "",
+    };
+    console.log(body);
   };
 
   const onRefresh = () => {
@@ -228,7 +290,7 @@ export function LinksModal({ closeParent, isOpen, buckets }) {
                 </Flex>
                 <Flex
                   sx={merge(style.middleContainer, {
-                    boxShadow: `1px 1px 2px 2px ${values.shadow_color}`,
+                    boxShadow: `0 0 4px 1px ${values.shadow_color}`,
                   })}
                 >
                   <Flex sx={style.titleContainer}>
@@ -335,8 +397,10 @@ export function LinksModal({ closeParent, isOpen, buckets }) {
               </Flex>
             </Flex>
           </Flex>
-          <Flex sx={style.row4} onClick={savenadd}>
-            <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
+          <Flex sx={style.row4}>
+            <Flex onClick={savenadd} sx={{ cursor: "pointer" }}>
+              <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
+            </Flex>
           </Flex>
         </Container>
       </ModalContent>

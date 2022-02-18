@@ -20,7 +20,7 @@ export function ProductsBucket({ bucketName, data }) {
       <Text sx={style.heading}>{bucketName}</Text>
       <Flex sx={style.grid}>
         {data.map((item, index) => {
-          return <ProductsCard item={item} />;
+          return <ProductsCard key={index} item={item} />;
         })}
       </Flex>
     </Container>
