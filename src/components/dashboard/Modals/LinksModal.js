@@ -10,6 +10,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  useToast,
 } from "@chakra-ui/react";
 import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import React, { useContext } from "react";
@@ -39,6 +40,7 @@ export function LinksModal({
 }) {
   const ctx = useContext(UserContext);
   const router = useRouter();
+  const toast = useToast();
   const [refreshScreen, setRefreshScreen] = React.useState(false);
   const [a, setA] = React.useState(JSON.parse(buckets[0].u_buckets));
   const [input, setInput] = React.useState(false);
@@ -56,7 +58,7 @@ export function LinksModal({
     u_name: user[0].u_name,
     title: "",
     link: "",
-    bucket: "Select your bucket",
+    bucket: "My Links",
     photo: "",
     font_color: "black",
     shadow_color: "rgba(0,0,0,.5)",
@@ -101,26 +103,6 @@ export function LinksModal({
     formData.append("image", image.raw);
 
     UploadImageToS3WithNativeSdk(image.raw, imageName);
-    // const options = {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //     "x-amz-acl": "public-read",
-    //   },
-    // };
-
-    // axios(
-    //   {
-    //     method: "post",
-    //     url: signedURL,
-    //     data: formData,
-    //     options: options,
-    //   },
-    //   { timeout: 5000 }
-    // )
-    //   .then((res) => {
-    //     console.log("Image Uplaoded", res.data);
-    //   })
-    //   .catch((e) => console.log(e));
   };
 
   const onCancelImage = () => {
@@ -150,49 +132,109 @@ export function LinksModal({
   };
 
   const savenadd = () => {
-    const body = {
-      ...values,
-      photo: imageSelected ? s3url + imageName + ".png" : "",
-    };
+    if (values.title && values.link) {
+      const body = {
+        ...values,
+        photo: imageSelected ? s3url + imageName + ".png" : "",
+      };
 
-    const options = {
-      headers: {
-        Authorization: `bearer ${cookie}`,
-        Origin: "localhost:3000",
-      },
-    };
-    axios(
-      {
-        method: "post",
-        url: `${authapi}links`,
-        data: { links_array: JSON.stringify([body]) },
-        options: options,
-      },
-      { timeout: 5000 }
-    )
-      .then((res) => {
-        console.log("Sucess", res.data);
-        setSortId((id) => id + 1);
-      })
-      .catch((e) => console.log(e));
+      const options = {
+        headers: {
+          Authorization: `bearer ${cookie}`,
+          Origin: "localhost:3000",
+        },
+      };
+
+      axios(
+        {
+          method: "post",
+          url: `${authapi}links`,
+          data: { links_array: JSON.stringify([body]) },
+          options: options,
+        },
+        { timeout: 5000 }
+      )
+        .then((res) => {
+          console.log("Sucess", res.data);
+          setSortId((id) => id + 1);
+          toast({
+            title: "New Link Added",
+            description: "",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
+          onRefresh();
+        })
+        .catch((e) => console.log(e));
+    } else {
+      toast({
+        title: "Title and Link are mandatory",
+        description: "Add a catchy title to grab eyeballs",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
   };
 
   const savenclose = () => {
-    const body = {
-      ...values,
-      photo: imageSelected ? s3url + imageName + ".png" : "",
-    };
-    console.log(body);
+    if (values.title && values.link) {
+      const body = {
+        ...values,
+        photo: imageSelected ? s3url + imageName + ".png" : "",
+      };
+
+      const options = {
+        headers: {
+          Authorization: `bearer ${cookie}`,
+          Origin: "localhost:3000",
+        },
+      };
+
+      axios(
+        {
+          method: "post",
+          url: `${authapi}links`,
+          data: { links_array: JSON.stringify([body]) },
+          options: options,
+        },
+        { timeout: 1000 }
+      )
+        .then((res) => {
+          console.log("Sucess", res.data);
+          setSortId((id) => id + 1);
+          toast({
+            title: "New Link Added",
+            description: "",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
+          closeModal();
+        })
+        .catch((e) => console.log(e));
+    } else {
+      toast({
+        title: "Title and Link are mandatory",
+        description: "Add a catchy title to grab eyeballs",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
   };
 
   const onRefresh = () => {
+    setImageName(nanoid());
+    setImageSelected(false);
     setValues({
       u_id: "",
       u_name: "",
       title: "",
       link: "",
-      bucket: "",
-      photo: s3url + nanoid() + ".png",
+      bucket: "My Links",
+      photo: "",
       font_color: "black",
       shadow_color: "rgba(0,0,0,.5)",
       sort_id: 1,
