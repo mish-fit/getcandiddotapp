@@ -6,7 +6,6 @@ import {
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
-	Progress,
 	Button,
 } from '@chakra-ui/react';
 import Header from './Header';
@@ -14,8 +13,6 @@ import { useState, useContext, useRef } from 'react';
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 import "@fontsource/poppins";
-
-import { ChakraProvider } from "@chakra-ui/react";
 import { CUIAutoComplete } from "chakra-ui-autocomplete";
 import { useRouter } from 'next/router';
 
@@ -64,6 +61,7 @@ const Step4 = (props) => {
   const next = async(e) => {
 		e.preventDefault();
     ctx.setAffiliateCodes(affiliates);
+    console.log(ctx.userData);
     const userDoc = firestore.doc(`users/${ctx.userSignInInfo.user.uid}`);
 		const batch = firestore.batch();
 		batch.set(userDoc, {
