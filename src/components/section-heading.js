@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Heading, Text, Image } from 'theme-ui';
+import { jsx, Box, Heading, Text, Image } from "theme-ui";
 
 const SectionHeading = ({ title, slogan, description, emoji, ...props }) => {
   return (
@@ -27,35 +27,35 @@ export default SectionHeading;
 
 const styles = {
   heading: {
-    textAlign: 'center',
+    textAlign: "center",
     maxWidth: 660,
-    margin: '0 auto 50px',
+    margin: "0 auto 48px",
   },
   slogan: {
-    color: '#d7354a',
+    color: "#d7354a",
     fontWeight: 500,
     fontSize: 2,
     lineHeight: 2.5,
   },
   title: {
-    color: 'heading',
+    color: "heading",
     fontWeight: 600,
     fontSize: [4, null, null, 6],
     lineHeight: [1.33, 1.33, 1.5],
-    letterSpacing: [null, null, null, 'heading'],
+    letterSpacing: [null, null, null, "heading"],
     img: {
-      ml: ['15px'],
-      position: 'relative',
-      top: '8px',
-      maxWidth: [25, null, null, '100%'],
+      ml: ["16px"],
+      position: "relative",
+      top: "8px",
+      maxWidth: [25, null, null, "100%"],
     },
   },
   description: {
-    color: 'heading',
-    fontSize: ['14px', null, '16px'],
+    color: "heading",
+    fontSize: ["16px", null, "16px"],
     lineHeight: [1.86, null, 2.2],
     mt: [5],
     maxWidth: 610,
-    m: ['10px auto 0'],
+    m: ["8px auto 0"],
   },
 };

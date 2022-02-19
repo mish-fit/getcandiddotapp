@@ -29,7 +29,7 @@ export function AddButtons({ addLink, addProduct }) {
             alignItems: "center",
           }}
         >
-          <BsPlusCircleFill color="#D7354A" sx={{ mr: "5px" }} />
+          <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
           <Text sx={styles.addbuttonText}>Recommend Products</Text>
         </Flex>
       </Button>
@@ -41,7 +41,7 @@ export function AddButtons({ addLink, addProduct }) {
             alignItems: "center",
           }}
         >
-          <BsPlusCircleFill color="#D7354A" sx={{ mr: "5px" }} />
+          <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
           <Text sx={styles.addbuttonText}>Custom Links</Text>
         </Flex>
       </Button>
@@ -52,19 +52,19 @@ export function AddButtons({ addLink, addProduct }) {
 const styles = {
   container: {
     px: "10%",
-    mb: "20px",
+    mb: "16px",
     justifyContent: "flex-end",
     alignItems: "flex-start",
   },
   addbutton: {
-    mt: "20px",
-    borderRadius: "20px",
+    mt: "16px",
+    borderRadius: "16px",
     borderWidth: "2px",
     borderColor: "#000",
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "18px",
-    ml: "15px",
+    fontSize: "16px",
+    ml: "16px",
     color: "#D7354A",
     flexDirection: "row",
     cursor: "pointer",
@@ -72,7 +72,7 @@ const styles = {
   addbuttonText: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#D7354A",
   },
   button: {
@@ -80,7 +80,7 @@ const styles = {
     color: "#ffff",
     fontWeight: 700,
     borderRadius: "8px",
-    height: ["50px", null, null, null, null, "55px", "60px"],
+    height: ["48px", null, null, null, null, "60px", "60px"],
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",

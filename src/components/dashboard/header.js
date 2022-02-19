@@ -17,16 +17,15 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
+  useToast,
 } from "@chakra-ui/react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-export default function Header({ menu, menuActive }) {
+export default function Header({ menu, menuActive, data }) {
   const { locale } = useRouter();
   const lang = translation[locale].HeaderSection.Header;
   const [active, setActive] = React.useState(menuActive);
+  const toast = useToast();
 
   const onClickIcon = () => {
     setActive(!active);
@@ -37,6 +36,16 @@ export default function Header({ menu, menuActive }) {
 
   const signout = () => {};
 
+  const linkClick = () => {
+    toast({
+      title: "Link Copied",
+      description: "Add you Candid link to Instagram Bio",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
+
   return (
     <DrawerProvider>
       <header sx={styles.header}>
@@ -44,18 +53,21 @@ export default function Header({ menu, menuActive }) {
           <Flex as="logo" sx={styles.logoContainer}>
             <Logo />
           </Flex>
-
-          <Flex as="nav" sx={styles.nav}>
-            <Text sx={styles.nav.navLink}>cndd.in/kandurisv</Text>
-          </Flex>
-          {/* <Flex as="signout" sx={styles.signout}>
-            <Button sx={styles.signoutBtn} onClick={onClickIcon}>
-              <Image sx={styles.userImage} src={"/user/profile.png"} />
-            </Button>
-          </Flex> */}
+          <CopyToClipboard text={"cndd.in/" + data[0].u_name}>
+            <Flex as="nav" sx={styles.nav} onClick={linkClick}>
+              <Text sx={styles.nav.navLink}>{"cndd.in/" + data[0].u_name}</Text>
+            </Flex>
+          </CopyToClipboard>
           <Menu>
             <MenuButton as={Button}>
-              <Image sx={styles.userImage} src={"/user/profile.png"} />
+              <Image
+                sx={styles.userImage}
+                src={
+                  data[0].u_profile_image && data[0].u_profile_image != ""
+                    ? data[0].u_profile_image
+                    : "/user/profile.png"
+                }
+              />
             </MenuButton>
             <MenuList>
               <MenuItem onClick={editProfile}>Edit Profile</MenuItem>
@@ -71,13 +83,13 @@ export default function Header({ menu, menuActive }) {
 
 const styles = {
   userImage: {
-    height: "50px",
-    width: "50px",
-    borderRadius: "50px",
+    height: "48px",
+    width: "48px",
+    borderRadius: "48px",
   },
   signout: {
     backgroundColor: "white",
-    mr: "20px",
+    mr: "16px",
   },
   signoutBtn: {
     backgroundColor: "white",
@@ -85,17 +97,17 @@ const styles = {
   },
   headerBtn: {
     backgroundColor: "#f29183",
-    fontSize: "15px",
+    fontSize: "16px",
     fontWeight: "normal",
     letterSpacing: "-0.16px",
-    borderRadius: "5px",
+    borderRadius: "6px",
     color: "#ffffff",
     borderWidth: "4px",
     borderColor: "black",
     padding: "4.0px 16px",
     display: ["none", null, null, null, "inline-block"],
     ml: ["0", null, null, "auto", "0"],
-    mr: ["0", null, null, "20px", "0"],
+    mr: ["0", null, null, "16px", "0"],
     transition: "all 500ms ease",
     "&:hover": {
       color: "#fff",
@@ -107,12 +119,12 @@ const styles = {
     fontSize: "16px",
     fontWeight: "bold",
     letterSpacing: "-0.16px",
-    borderRadius: "5px",
+    borderRadius: "6px",
     color: "#ffffff",
-    padding: "6.5px 24px",
+    padding: "8px 24px",
     display: ["none", null, null, null, "inline-block"],
     ml: ["0", null, null, "auto", "0"],
-    mr: ["20px", "20px", "20px", "20px", "0"],
+    mr: ["16px", "16px", "16px", "16px", "0"],
     transition: "all 500ms ease",
     "&:hover": {
       color: "#fff",
@@ -123,7 +135,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: "20px",
+    py: "16px",
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
@@ -136,18 +148,18 @@ const styles = {
     "&.sticky": {
       backgroundColor: "background",
       color: "text",
-      py: "15px",
+      py: "16px",
       boxShadow: "0 1px 2px rgba(0, 0, 0, 0.06)",
     },
   },
   container: {
     display: "flex",
     alignItems: "center",
-    maxWidth: ["100%", null, null, null, null, "1170px", "1280px"],
+    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
     flex: 1,
-    mx: "auto",
+    mr: "200px",
     px: "auto",
     justifyContent: "center",
     "@media screen and (max-width: 960px)": {
@@ -159,13 +171,13 @@ const styles = {
       fontFamily: "Poppins",
       fontSize: "24px",
       color: "#323232",
-      fontWeight: "normal",
+      fontWeight: "bold",
       cursor: "pointer",
       lineHeight: "1.2",
       mr: "48px",
       transition: "500ms",
       "@media(max-width:1024px)": {
-        mr: "30px",
+        mr: "24px",
       },
       ":last-child": {
         mr: "0",

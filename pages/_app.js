@@ -14,10 +14,14 @@ import "@fontsource/poppins";
 import theme from "theme/chakra";
 import { ChakraProvider } from "@chakra-ui/react";
 import UserDataProvider from "lib/UserDataProvider";
-import { useUserData } from '../src/lib/hooks';
+import { useUserData } from "../src/lib/hooks";
+import { createStore } from "redux";
+import { rootreducer } from "redux-lib/reducer";
+import { Provider } from "react-redux";
 
 export default function CustomApp({ Component, pageProps }) {
   const userData = useUserData();
+  const store = createStore(rootreducer);
   /** 
    useEffect(() => {
      initGA();
@@ -27,10 +31,12 @@ export default function CustomApp({ Component, pageProps }) {
    */
 
   return (
-    <UserDataProvider >
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </UserDataProvider>
+    <Provider store={store}>
+      <UserDataProvider>
+        <ChakraProvider>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </UserDataProvider>
+    </Provider>
   );
 }

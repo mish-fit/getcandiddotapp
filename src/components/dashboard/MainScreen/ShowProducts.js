@@ -9,8 +9,14 @@ import { ProductsCard } from "./ProductsCard";
 import { ProductsBucket } from "./ProductsBucket";
 
 // Add a custom Link
-export function ShowProducts() {
+export function ShowProducts({ data }) {
   const router = useRouter();
+  const buckets = [];
+  data.map((item) => {
+    if (buckets.indexOf(item.bucket) === -1) {
+      buckets.push(item.bucket);
+    }
+  });
 
   const addLinks = () => {
     console.log("add links");
@@ -18,8 +24,15 @@ export function ShowProducts() {
 
   return (
     <Container sx={{ width: "95%" }}>
-      <ProductsBucket />
-      <ProductsBucket />
+      {buckets.map((item, index) => {
+        return (
+          <ProductsBucket
+            key={index}
+            bucketName={buckets[index]}
+            data={data.filter((item) => item.bucket === buckets[index])}
+          />
+        );
+      })}
     </Container>
   );
 }

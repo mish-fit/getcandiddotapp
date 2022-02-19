@@ -9,7 +9,7 @@ import { ProductsCard } from "./ProductsCard";
 import { LinksCard } from "./LinksCard";
 
 // Add a custom Link
-export function LinksBucket() {
+export function LinksBucket({ bucketName, data }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -18,12 +18,11 @@ export function LinksBucket() {
 
   return (
     <Container sx={style.container}>
-      <Text sx={style.heading}>Bucket 1</Text>
+      <Text sx={style.heading}>{bucketName}</Text>
       <Flex sx={style.grid}>
-        <LinksCard />
-        <LinksCard />
-        <LinksCard />
-        <LinksCard />
+        {data.map((item, index) => {
+          return <LinksCard item={item} />;
+        })}
       </Flex>
     </Container>
   );
@@ -31,7 +30,7 @@ export function LinksBucket() {
 
 const style = {
   container: {
-    my: "10px",
+    my: "8px",
     width: "100%",
     backgroundColor: "white",
   },
@@ -42,7 +41,7 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "25px",
-    py: "10px",
+    fontSize: "24px",
+    py: "8px",
   },
 };

@@ -1,5 +1,5 @@
 export default {
-  breakpoints: ["376px", "576px", "768px", "992px", "1200px", "1650px"],
+  breakpoints: ["376px", "576px", "768px", "992px", "1200px", "1648px"],
   // example colors with dark mode
   colors: {
     text: "#343D48", // body color and primary color
@@ -55,9 +55,9 @@ export default {
     primary: 300,
   },
   lineHeights: {
-    body: "30px",
+    body: "24px",
     // body: 1.5,
-    heading: "50px",
+    heading: "48px",
     // heading: 1.125,
   },
   letterSpacings: {
@@ -92,12 +92,12 @@ export default {
     160, // 23
   ],
   sizes: {
-    container: ["1170px"],
+    container: ["1172px"],
   },
   // variants can use custom, user-defined names
   layout: {
     container: {
-      px: ["20px", null, "30px", null, null, "15px", "0"],
+      px: ["16px", null, "24px", null, null, "16px", "0"],
     },
     header: {
       color: "#02073E",
@@ -161,7 +161,7 @@ export default {
     heroPrimary: {
       fontSize: [5, 55],
       fontWeight: "normal",
-      lineHeight: ["40px", "80px"],
+      lineHeight: ["32px", "80px"],
       letterSpacing: "-1px",
       textAlign: ["center", "left"],
     },
@@ -172,12 +172,12 @@ export default {
       // fontWeight: 'display',
       fontWeight: "bold",
       fontSize: 18,
-      lineHeight: "30px",
+      lineHeight: "24px",
       color: "#0F2137",
     },
     heroSecondary: {
       color: "text_secondary",
-      lineHeight: ["30px", "42px"],
+      lineHeight: ["24px", "40px"],
       letterSpacing: "0.1em",
       textAlign: ["center", "left"],
     },
@@ -190,13 +190,13 @@ export default {
       color: "#0F2137",
     },
     muted: {
-      lineHeight: "26px",
+      lineHeight: "24px",
       color: "muted",
     },
     secondary: {
       fontWeight: 500,
       color: "#d7354a",
-      lineHeight: "40px",
+      lineHeight: "32px",
     },
   },
   links: {
@@ -219,7 +219,7 @@ export default {
       // },
     },
     logo: {
-      mt: "5px",
+      mt: "6px",
     },
     footer: {
       display: "block",
@@ -306,7 +306,7 @@ export default {
       color: "background",
       bg: "#28A5FF",
       borderRadius: 30,
-      p: "3px 11px",
+      p: "4px 12px",
       fontSize: 1,
       letterSpacing: "-0.5px",
     },
