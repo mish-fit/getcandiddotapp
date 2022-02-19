@@ -59,7 +59,8 @@ export function BucketSelector({ buckets }) {
         _expanded={{ bg: "blue.400" }}
         _focus={{ boxShadow: "outline" }}
       >
-        <Text>{name}</Text>
+        {/* <Text>{name}</Text> */}
+        <Input placeholder="HI" variant="flushed" />
       </MenuButton>
       <MenuList>
         {a.map((item, index) => {

@@ -121,6 +121,37 @@ export function LinksModal({
     setValues({ ...values, bucket: item });
     setA([...a, item]);
     setInput(false);
+    const options = {
+      headers: {
+        Authorization: `bearer ${cookie}`,
+        Origin: "localhost:3000",
+      },
+    };
+
+    axios(
+      {
+        method: "post",
+        url: `${authapi}buckets`,
+        data: {
+          id: buckets[0].id,
+          u_id: buckets[0].u_id,
+          type: buckets[0].type,
+          u_buckets: JSON.stringify([...a, item]),
+        },
+        options: options,
+      },
+      { timeout: 5000 }
+    )
+      .then((res) => {
+        toast({
+          title: "New Bucket Added",
+          description: "",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((e) => console.log(e));
   };
 
   const onSelectItem = (item) => {
@@ -256,7 +287,7 @@ export function LinksModal({
       <ModalContent maxW={"1000px"}>
         <Container sx={style.container}>
           <Flex sx={style.row1}>
-            <Text sx={style.topHeader}>Add Link</Text>
+            <Text sx={style.topHeader}>Enter Custom</Text>
             <Flex sx={style.saveContainer} onClick={savenclose}>
               <Text sx={style.save}>Save </Text>
               <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
@@ -264,7 +295,7 @@ export function LinksModal({
           </Flex>
           <Flex sx={style.row2}>
             <Box sx={style.subHeaderContainer}>
-              <Text sx={style.subHeader}>Custom Links</Text>
+              <Text sx={style.subHeader}>Links</Text>
             </Box>
           </Flex>
           <Flex sx={style.row3}>

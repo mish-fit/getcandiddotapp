@@ -19,15 +19,20 @@ import smm from "../../../../public/lottie/smm.json";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
 import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { RiCouponLine } from "react-icons/ri";
 import { Input } from "@chakra-ui/react";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { BiLink } from "react-icons/bi";
+import {
+  MdOutlineDriveFileRenameOutline,
+  MdOutlineRecommend,
+} from "react-icons/md";
+import { BiCategoryAlt, BiLink } from "react-icons/bi";
 import { BucketsModal } from "./BucketModal";
 import { nanoid } from "nanoid";
 import { authapi, s3url } from "lib/api";
 import { UserContext } from "lib/UserDataProvider";
 import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
+import debounce from "lodash.debounce";
 
 // Add a custom Link
 export function ProductsModal({
@@ -49,6 +54,11 @@ export function ProductsModal({
   const [imageSelected, setImageSelected] = React.useState(false);
   const [sortId, setSortId] = React.useState(maxSortId + 1);
   const [signedURL, setSignedURL] = React.useState("");
+  const [catArray, setCatArray] = React.useState([]);
+  const [prodArray, setProdArray] = React.useState([]);
+
+  const [catActive, setCatActive] = React.useState(false);
+  const [prodActive, setProdActive] = React.useState(false);
 
   let hiddenInput = null;
 
@@ -77,7 +87,102 @@ export function ProductsModal({
       .catch((error) => {
         console.log(error);
       });
+    axios
+      .get(
+        `${authapi}search/categories`,
+        { params: { category_text: values.cat_name } },
+        { timeout: 1000 }
+      )
+      .then((res) => {
+        setCatArray(res.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
   }, [imageName]);
+
+  const ProdItem = ({ item }) => {
+    return (
+      <Flex
+        sx={{
+          my: "4px",
+          py: "8px",
+          px: "4px",
+          height: "32px",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "#EEE",
+          },
+          alignItems: "center",
+        }}
+        onMouseDown={(e) => {
+          console.log(item.prod_name);
+          setValues({ ...values, prod_name: item.prod_name });
+          setProdActive(false);
+
+          return false;
+        }}
+      >
+        <Text
+          sx={{ fontStyle: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+        >
+          {item.prod_name}
+        </Text>
+      </Flex>
+    );
+  };
+
+  const CatItem = ({ item }) => {
+    return (
+      <Flex
+        sx={{
+          my: "4px",
+          py: "8px",
+          px: "4px",
+          height: "32px",
+          cursor: "pointer",
+          "&:hover": {
+            backgroundColor: "#EEE",
+          },
+          alignItems: "center",
+        }}
+        onMouseDown={(e) => {
+          console.log(item.cat_name);
+          setValues({
+            ...values,
+            cat_name: item.cat_name,
+            cat_id: item.cat_id,
+          });
+          setCatActive(false);
+          axios
+            .get(
+              `${authapi}search/products`,
+              {
+                params: {
+                  product_text: "",
+                  cat_id: item.cat_id,
+                },
+              },
+              { timeout: 1000 }
+            )
+            .then((res) => {
+              setProdArray(res.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          return false;
+        }}
+      >
+        <Text
+          sx={{ fontStyle: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+        >
+          {item.cat_name}
+        </Text>
+      </Flex>
+    );
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -120,6 +225,37 @@ export function ProductsModal({
     setValues({ ...values, bucket: item });
     setA([...a, item]);
     setInput(false);
+    const options = {
+      headers: {
+        Authorization: `bearer ${cookie}`,
+        Origin: "localhost:3000",
+      },
+    };
+
+    axios(
+      {
+        method: "post",
+        url: `${authapi}buckets`,
+        data: {
+          id: buckets[0].id,
+          u_id: buckets[0].u_id,
+          type: buckets[0].type,
+          u_buckets: JSON.stringify([...a, item]),
+        },
+        options: options,
+      },
+      { timeout: 5000 }
+    )
+      .then((res) => {
+        toast({
+          title: "New Bucket Added",
+          description: "",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((e) => console.log(e));
   };
 
   const onSelectItem = (item) => {
@@ -243,13 +379,66 @@ export function ProductsModal({
     });
   };
 
+  const categorySearch = React.useMemo(
+    () =>
+      debounce(async () => {
+        console.log(values.cat_name);
+        if (values.cat_name.length >= 0) {
+          axios
+            .get(
+              `${authapi}search/categories`,
+              { params: { category_text: values.cat_name } },
+              { timeout: 1000 }
+            )
+            .then((res) => {
+              setCatArray(res.data);
+            })
+
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }, 500),
+    [values.cat_name]
+  );
+
+  const productSearch = React.useMemo(
+    () =>
+      debounce(async () => {
+        if (values.prod_name.length >= 3) {
+          axios
+            .get(
+              `${authapi}search/products`,
+              {
+                params: {
+                  product_text: values.prod_name,
+                  cat_id: values.cat_id,
+                },
+              },
+              { timeout: 1000 }
+            )
+            .then((res) => {
+              setProdArray(res.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+      }, 500),
+    [values.prod_name]
+  );
+
+  const onChangeCategory = () => {};
+
+  const onChangeProduct = () => {};
+
   return (
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
-      <ModalContent maxW={"1000px"}>
+      <ModalContent maxW={"1000px"} sx={{ mb: "20%" }}>
         <Container sx={style.container}>
           <Flex sx={style.row1}>
-            <Text sx={style.topHeader}>Add Products</Text>
+            <Text sx={style.topHeader}>Add Product</Text>
             <Flex sx={style.saveContainer} onClick={savenclose}>
               <Text sx={style.save}>Save </Text>
               <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
@@ -328,7 +517,9 @@ export function ProductsModal({
                     boxShadow: `0 0 1px 1px rgba(0,0,0,0.5)`,
                   })}
                 >
-                  <Flex sx={style.titleContainer}>
+                  <Flex
+                    sx={merge(style.titleContainer, { position: "relative" })}
+                  >
                     <Flex sx={{ flex: 1 }}>
                       <Flex
                         sx={{
@@ -337,126 +528,196 @@ export function ProductsModal({
                           p: "8px",
                         }}
                       >
-                        <MdOutlineDriveFileRenameOutline size={20} />
-                      </Flex>
-
-                      <Input
-                        sx={{ color: "#323232" }}
-                        placeholder="Enter Product Name"
-                        variant="flushed"
-                        onChange={(e) =>
-                          setValues({ ...values, prod_name: e.target.value })
-                        }
-                        value={values.prod_name}
-                      />
-                    </Flex>
-                  </Flex>
-                  <Flex sx={style.titleContainer}>
-                    <Flex sx={{ flex: 1 }}>
-                      <Flex
-                        sx={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                          p: "8px",
-                        }}
-                      >
-                        <BiLink size={20} />
+                        <BiCategoryAlt size={20} />
                       </Flex>
 
                       <Input
                         sx={{ color: "#323232" }}
                         placeholder="Enter Category Name"
                         variant="flushed"
-                        onChange={(e) =>
-                          setValues({ ...values, cat_name: e.target.value })
-                        }
+                        onChange={(e) => {
+                          setValues((values) => ({
+                            ...values,
+                            cat_name: e.target.value,
+                          }));
+                          onChangeCategory(e.target.value);
+                          categorySearch();
+                        }}
                         value={values.cat_name}
+                        onFocus={() => setCatActive(true)}
+                        onBlur={() => setCatActive(false)}
+                        autoFocus
                       />
                     </Flex>
-                  </Flex>
-                  <Flex sx={style.titleContainer}>
-                    <Flex sx={{ flex: 1 }}>
+                    {catActive ? (
                       <Flex
                         sx={{
-                          justifyContent: "center",
-                          alignItems: "center",
+                          flex: 1,
+
+                          height: "250px",
+                          width: "100%",
+                          position: "absolute",
+                          top: "50%",
+                          mt: "30px",
+                          flexDirection: "column",
                           p: "8px",
+                          backgroundColor: "white",
+                          borderRadius: "8px",
+                          borderWidth: 1,
+                          boxShadow: `0 0 1px 1px rgba(0,0,0,0.5)`,
                         }}
                       >
-                        <BiLink size={20} />
+                        {catArray.map((item, index) => {
+                          return <CatItem key={index} item={item} />;
+                        })}
                       </Flex>
-
-                      <Input
-                        sx={{ color: "#323232" }}
-                        placeholder="Enter Product Link"
-                        variant="flushed"
-                        onChange={(e) =>
-                          setValues({ ...values, link: e.target.value })
-                        }
-                        value={values.link}
-                      />
-                    </Flex>
+                    ) : null}
                   </Flex>
-                  <Flex sx={style.pickerContainer}>
-                    <Flex sx={{ flex: 1 }}>
-                      <Flex
-                        sx={{
-                          justifyContent: "center",
-                          alignItems: "center",
-                          p: "8px",
-                        }}
-                      >
-                        <BiLink size={20} />
-                      </Flex>
-
-                      <Input
-                        sx={{ color: "#323232" }}
-                        placeholder="Enter your affiliate code"
-                        variant="flushed"
-                        onChange={(e) =>
-                          setValues({ ...values, aff_code: e.target.value })
-                        }
-                        value={values.aff_code}
-                      />
-                    </Flex>
-                    <Flex sx={{ mr: "16px" }}>
-                      <Menu>
-                        <BucketsModal
-                          isOpen={input}
-                          onClose={onCancelBucket}
-                          onSave={(item) => onSaveBucket(item)}
-                        />
-                        <MenuButton
-                          px={4}
-                          py={2}
-                          transition="all 0.2s"
-                          borderRadius="md"
-                          borderWidth="1px"
-                          _hover={{ bg: "gray.400" }}
-                          _expanded={{ bg: "blue.400" }}
-                          _focus={{ boxShadow: "outline" }}
+                  {catActive ? null : (
+                    <Flex
+                      sx={merge(style.titleContainer, { position: "relative" })}
+                    >
+                      <Flex sx={{ flex: 1 }}>
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            p: "8px",
+                          }}
                         >
-                          <Text>{values.bucket}</Text>
-                        </MenuButton>
-                        <MenuList>
-                          {a.map((item, index) => {
-                            return (
-                              <MenuItem key={index.toString()}>
-                                <Flex onClick={() => onSelectItem(item)}>
-                                  <Text>{item}</Text>
-                                </Flex>
-                              </MenuItem>
-                            );
+                          <MdOutlineRecommend size={20} />
+                        </Flex>
+
+                        <Input
+                          sx={{ color: "#323232" }}
+                          placeholder="Enter Product Name"
+                          variant="flushed"
+                          onChange={(e) => {
+                            setValues((values) => ({
+                              ...values,
+                              prod_name: e.target.value,
+                            }));
+                            onChangeProduct();
+                            productSearch();
+                          }}
+                          value={values.prod_name}
+                          onFocus={() => setProdActive(true)}
+                          onBlur={() => setProdActive(false)}
+                        />
+                      </Flex>
+                      {prodActive && values.cat_id ? (
+                        <Flex
+                          sx={{
+                            flex: 1,
+                            height: "450px",
+                            width: "100%",
+                            position: "absolute",
+                            top: "50%",
+                            mt: "30px",
+                            flexDirection: "column",
+                            p: "8px",
+                            backgroundColor: "white",
+                            borderRadius: "8px",
+                            borderWidth: 1,
+                            boxShadow: `0 0 1px 1px rgba(0,0,0,0.5)`,
+                          }}
+                        >
+                          {prodArray.map((item, index) => {
+                            return <ProdItem key={index} item={item} />;
                           })}
-                          <MenuItem>
-                            <Flex onClick={() => onAddBucket()}>
-                              <Text sx={{ color: "red" }}>+ Add a Bucket</Text>
-                            </Flex>
-                          </MenuItem>
-                        </MenuList>
-                      </Menu>
+                        </Flex>
+                      ) : null}
                     </Flex>
-                  </Flex>
+                  )}
+                  {catActive || (prodActive && values.cat_id) ? null : (
+                    <Flex sx={style.titleContainer}>
+                      <Flex sx={{ flex: 1 }}>
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            p: "8px",
+                          }}
+                        >
+                          <BiLink size={20} />
+                        </Flex>
+
+                        <Input
+                          sx={{ color: "#323232" }}
+                          placeholder="Enter Product Link"
+                          variant="flushed"
+                          onChange={(e) =>
+                            setValues({ ...values, link: e.target.value })
+                          }
+                          value={values.link}
+                        />
+                      </Flex>
+                    </Flex>
+                  )}
+                  {catActive || (prodActive && values.cat_id) ? null : (
+                    <Flex sx={style.pickerContainer}>
+                      <Flex sx={{ flex: 1 }}>
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            p: "8px",
+                          }}
+                        >
+                          <RiCouponLine size={20} />
+                        </Flex>
+
+                        <Input
+                          sx={{ color: "#323232" }}
+                          placeholder="Enter your affiliate code"
+                          variant="flushed"
+                          onChange={(e) =>
+                            setValues({ ...values, aff_code: e.target.value })
+                          }
+                          value={values.aff_code}
+                        />
+                      </Flex>
+                      <Flex sx={{ mr: "16px" }}>
+                        <Menu>
+                          <BucketsModal
+                            isOpen={input}
+                            onClose={onCancelBucket}
+                            onSave={(item) => onSaveBucket(item)}
+                          />
+                          <MenuButton
+                            px={4}
+                            py={2}
+                            transition="all 0.2s"
+                            borderRadius="md"
+                            borderWidth="1px"
+                            _hover={{ bg: "gray.400" }}
+                            _expanded={{ bg: "blue.400" }}
+                            _focus={{ boxShadow: "outline" }}
+                          >
+                            <Text>{values.bucket}</Text>
+                          </MenuButton>
+                          <MenuList>
+                            {a.map((item, index) => {
+                              return (
+                                <MenuItem key={index.toString()}>
+                                  <Flex onClick={() => onSelectItem(item)}>
+                                    <Text>{item}</Text>
+                                  </Flex>
+                                </MenuItem>
+                              );
+                            })}
+                            <MenuItem>
+                              <Flex onClick={() => onAddBucket()}>
+                                <Text sx={{ color: "red" }}>
+                                  + Add a Bucket
+                                </Text>
+                              </Flex>
+                            </MenuItem>
+                          </MenuList>
+                        </Menu>
+                      </Flex>
+                    </Flex>
+                  )}
                 </Flex>
                 <Flex sx={style.rightContainer}>
                   <Flex sx={style.delete} onClick={onRefresh}>
@@ -482,6 +743,7 @@ const style = {
     p: "16px",
     backgroundColor: "white",
     borderRadius: "6px",
+    flexGrow: 1,
   },
   row1: {
     justifyContent: "space-between",
@@ -564,7 +826,7 @@ const style = {
   },
   middleContainer: {
     flex: 1,
-
+    flexGrow: 1,
     flexDirection: "column",
     borderRadius: "8px",
   },
