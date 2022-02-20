@@ -21,7 +21,7 @@ export function LinksBucket({ bucketName, data }) {
       <Text sx={style.heading}>{bucketName}</Text>
       <Flex sx={style.grid}>
         {data.map((item, index) => {
-          return <LinksCard item={item} />;
+          return <LinksCard key={index} item={item} />;
         })}
       </Flex>
     </Container>
