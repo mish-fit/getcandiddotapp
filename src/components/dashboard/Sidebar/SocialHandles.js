@@ -11,7 +11,7 @@ const SocialElement = ({ item }) => (
   <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
     <Image src={"social/trell.png"} sx={style.social} />
     <Text sx={style.socialText}>
-      {item.social_name.length > 9
+      {item && item.social_name && item.social_name.length > 9
         ? item.social_name.slice(0, 10) + ".."
         : item.social_name}
     </Text>

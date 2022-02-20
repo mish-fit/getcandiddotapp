@@ -1,39 +1,473 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button, useDisclosure } from "@chakra-ui/react";
+import { jsx, Container, Flex, Image, Text, Grid, Box, merge } from "theme-ui";
 import { useRouter } from "next/router";
 import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useToast,
+  InputGroup,
+  InputLeftAddon,
 } from "@chakra-ui/react";
+import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
+import React, { useContext } from "react";
+import Lottie from "lottie-react";
+import smm from "../../../../public/lottie/smm.json";
+import { TextColorPicker } from "../AddElement/TextColorPicker";
+import { ShadowPicker } from "../AddElement/ShadowPicker";
+import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { Input } from "@chakra-ui/react";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { BiLink } from "react-icons/bi";
+import { BucketsModal } from "./BucketModal";
+import { nanoid } from "nanoid";
+import { authapi, s3url } from "lib/api";
+import { UserContext } from "lib/UserDataProvider";
+import axios from "axios";
+import { UploadImageToS3WithNativeSdk, uploadToS3 } from "lib/aws";
+
+const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
+  React.useEffect(() => {}, []);
+
+  const socialClick = (item) => {
+    onClickItem(item);
+  };
+
+  return (
+    <Flex
+      sx={{
+        mt: "16px",
+        mr: "16px",
+        flexDirection: "column",
+      }}
+    >
+      <Flex
+        sx={{
+          width: "100%",
+          borderBottomWidth: 2,
+          borderBottomColor: "#D7354A",
+        }}
+      >
+        <Text sx={style.subHeader1}>{category}</Text>
+      </Flex>
+      <Flex sx={{ flexDirection: "row", mt: "16px", flexWrap: "wrap" }}>
+        {data.map((item, index) => {
+          return (
+            <Flex
+              key={index}
+              sx={style.socialView}
+              onClick={() => socialClick(item)}
+            >
+              <Image src={"social/bulbul.png"} sx={style.social} />
+              <Text sx={style.socialText}>{item.social_name}</Text>
+              <Text>
+                {currentSocials.filter(
+                  (item1, index1) => item1.social_id === item.social_id
+                ).length
+                  ? "Exists"
+                  : "Doesnt"}
+              </Text>
+            </Flex>
+          );
+        })}
+      </Flex>
+    </Flex>
+  );
+};
+
 // Add a custom Link
-export function SocialModal({ closeParent, isOpen }) {
-  const router = useRouter();
+export function SocialModal({
+  closeParent,
+  isOpen,
+  buckets,
+  user,
+  maxSortId,
+  cookie,
+  masterSocials,
+  data,
+}) {
+  const toast = useToast();
+
+  const [a, setA] = React.useState(JSON.parse(buckets[0].u_buckets));
+
+  const [image, setImage] = React.useState({ preview: "", raw: "" });
+  const [imageName, setImageName] = React.useState(nanoid());
+  const [imageSelected, setImageSelected] = React.useState(false);
+  const [sortId, setSortId] = React.useState(maxSortId + 1);
+  const [signedURL, setSignedURL] = React.useState("");
+
+  const [inputActive, setInputActive] = React.useState(false);
+  const [newInput, setNewInput] = React.useState(false);
+
+  const [inputPlaceholder, setInputPlaceholder] = React.useState("username");
+  const [inputLink, setInputLink] = React.useState("cndd.in/");
+  const [socialId, setSocialId] = React.useState(0);
+  const [userName, setUserName] = React.useState("");
+  const [activeItem, setActiveItem] = React.useState({});
+
+  let hiddenInput = null;
+
+  const uniqueCategories = [
+    ...new Set(masterSocials.map((item) => item.social_cat)),
+  ];
+
+  const [values, setValues] = React.useState([]);
+
+  React.useEffect(() => {
+    const a = [];
+
+    console.log("data", data);
+
+    data.map((item, index) => {
+      setValues((values) => [
+        ...values,
+        {
+          id: item.id,
+          u_id: user[0].u_id,
+          u_name: item.u_name,
+          social_id: item.social_id,
+          social_name: item.social_name,
+          social_logo: item.social_logo,
+          social_ulink: item.social_ulink,
+          sort_id: item.sort_id,
+          others: {},
+        },
+      ]);
+    });
+    axios
+      .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
+      .then((res) => {
+        console.log(res.data);
+        setSignedURL(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [imageName]);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.files[0]);
+    if (e.target.files.length) {
+      setImageSelected(true);
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+
+      handleUpdate({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+      e.target.value = null;
+    }
+  };
+
+  const handleUpdate = (image) => {
+    console.log(image);
+    const formData = new FormData();
+    formData.append("image", image.raw);
+
+    UploadImageToS3WithNativeSdk(image.raw, imageName);
+  };
+
+  const onCancelImage = () => {
+    setImageSelected(false);
+    setImage({ preview: "", raw: "" });
+  };
 
   const closeModal = () => {
     closeParent(true);
   };
 
+  const savenclose = () => {
+    console.log("values", values);
+    // const options = {
+    //   headers: {
+    //     Authorization: `bearer ${cookie}`,
+    //     Origin: "localhost:3000",
+    //   },
+    // };
+
+    // axios(
+    //   {
+    //     method: "post",
+    //     url: `${authapi}socials`,
+    //     data: { socials_array: JSON.stringify(values) },
+    //     options: options,
+    //   },
+    //   { timeout: 1000 }
+    // )
+    //   .then((res) => {
+    //     console.log("Sucess", res.data);
+    //     setSortId((id) => id + 1);
+    //     toast({
+    //       title: "Socials Updated",
+    //       description: "",
+    //       status: "success",
+    //       duration: 1000,
+    //       isClosable: true,
+    //     });
+    //     closeModal();
+    //   })
+    //   .catch((e) => console.log(e));
+  };
+
+  const onClickSocialItem = (socialItem) => {
+    console.log(socialItem);
+    setActiveItem(socialItem);
+    setInputActive(true);
+    setSocialId(socialItem.social_id);
+    setInputLink(
+      masterSocials
+        .filter((item, index) => item.social_id === socialItem.social_id)[0]
+        .social_ulink_format.replace("username", "")
+    );
+    setUserName(
+      data.filter((item, index) => item.social_id === socialItem.social_id)
+        .length
+        ? data.filter(
+            (item, index) => item.social_id === socialItem.social_id
+          )[0].u_name
+        : ""
+    );
+  };
+
+  const onChangeUserName = (e) => {
+    setUserName(e.target.value);
+    let currentSocialIds = [...new Set(values.map((item) => item.social_id))];
+    let arrayIndex = values.findIndex(
+      (item, index) => item.social_id === socialId
+    );
+    let newArray = [...values];
+    if (currentSocialIds.includes(socialId) && e.target.value.length > 0) {
+      newArray[arrayIndex] = {
+        id: newArray[arrayIndex].id,
+        u_id: user[0].u_id,
+        u_name: e.target.value,
+        social_id: newArray[arrayIndex].social_id,
+        social_name: newArray[arrayIndex].social_name,
+        social_logo: newArray[arrayIndex].social_logo,
+        social_ulink: newArray[arrayIndex].social_link,
+        sort_id: newArray[arrayIndex].sort_id,
+        others: {},
+      };
+      setValues(newArray);
+    } else if (e.target.value.length > 0) {
+      setValues([
+        ...values,
+        {
+          id: "",
+          u_id: user[0].u_id,
+          u_name: e.target.value,
+          social_id: activeItem.social_id,
+          social_name: activeItem.social_name,
+          social_logo: activeItem.social_logo,
+          social_ulink: activeItem.social_link,
+          sort_id: sortId,
+          others: {},
+        },
+      ]);
+      setSortId(sortId + 1);
+    }
+  };
+
   return (
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Modal Title</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <Text>Social</Text>
-        </ModalBody>
-        <ModalFooter>
-          <Button onClick={closeModal}>Close</Button>
-        </ModalFooter>
+      <ModalContent maxW={"1000px"}>
+        <Container sx={style.container}>
+          <Flex sx={style.row1}>
+            <Text sx={style.subHeader}>Add Social Handles </Text>
+            <Flex sx={style.saveContainer} onClick={savenclose}>
+              <Text sx={style.save}>Save </Text>
+              <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
+            </Flex>
+          </Flex>
+
+          <Flex sx={style.row3}>
+            <Flex sx={style.lottie}>
+              <Lottie animationData={smm} />
+            </Flex>
+            <Flex sx={style.linkView}>
+              <Flex
+                sx={{
+                  flexDirection: "row",
+                  flex: 1,
+                  flexWrap: "wrap",
+                  mb: "32px",
+                  maxHeight: "300px",
+                  overflowY: "scroll",
+                  "&::-webkit-scrollbar": {
+                    width: "0px",
+                    borderRadius: "8px",
+                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
+                  },
+                }}
+              >
+                {uniqueCategories.map((category, index) => {
+                  return (
+                    <SocialCategory
+                      key={index}
+                      category={category}
+                      data={masterSocials.filter(
+                        (item, i) => item.social_cat === uniqueCategories[index]
+                      )}
+                      onClickItem={(socialItem) =>
+                        onClickSocialItem(socialItem)
+                      }
+                      currentSocials={data}
+                    />
+                  );
+                })}
+              </Flex>
+              {inputActive && !newInput ? (
+                <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
+                  <Text
+                    sx={{
+                      mb: "8px",
+                      fontStyle: "Poppins",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                      color: "#D7354A",
+                    }}
+                  >
+                    Enter Username
+                  </Text>
+                  <InputGroup size="lg">
+                    <InputLeftAddon children={inputLink} />
+                    <Input
+                      placeholder={inputPlaceholder}
+                      value={userName}
+                      onChange={onChangeUserName}
+                    />
+                  </InputGroup>
+                </Flex>
+              ) : null}
+              {newInput ? (
+                <Flex sx={style.addlink}>
+                  <Flex sx={style.leftContainer}>
+                    <Flex sx={style.imageContainer}>
+                      {image.preview ? (
+                        <Flex
+                          sx={{
+                            position: "relative",
+                            flex: 1,
+                          }}
+                        >
+                          <Flex
+                            onClick={() => hiddenInput.click()}
+                            sx={{ flex: 1 }}
+                          >
+                            <Image
+                              src={image.preview}
+                              alt="dummy"
+                              sx={{
+                                width: "100%",
+                                height: "100%",
+                                borderRadius: "100%",
+                              }}
+                            />
+                          </Flex>
+                          <Flex
+                            sx={{
+                              position: "absolute",
+                              top: "-5%",
+                              right: "-5%",
+                              zIndex: 101,
+                              cursor: "pointer",
+                            }}
+                            onClick={onCancelImage}
+                          >
+                            <IoCloseCircle size={20} color="gray" />
+                          </Flex>
+                        </Flex>
+                      ) : (
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textAlign: "center",
+                            flex: 1,
+                          }}
+                          onClick={() => hiddenInput.click()}
+                        >
+                          <Text sx={{ fontSize: "12px" }}>Upload Logo</Text>
+                        </Flex>
+                      )}
+                      <input
+                        type="file"
+                        hidden
+                        onChange={handleChange}
+                        ref={(el) => (hiddenInput = el)}
+                      />
+                    </Flex>
+                  </Flex>
+                  <Flex
+                    sx={merge(style.middleContainer, {
+                      boxShadow: `0 0 4px 1px ${values.shadow_color}`,
+                    })}
+                  >
+                    <Flex sx={style.titleContainer}>
+                      <Flex sx={{ flex: 1 }}>
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            p: "8px",
+                          }}
+                        >
+                          <MdOutlineDriveFileRenameOutline size={20} />
+                        </Flex>
+
+                        <Input
+                          sx={{ color: values.font_color }}
+                          placeholder="Enter Social Link Name"
+                          variant="flushed"
+                          onChange={(e) =>
+                            setValues({ ...values, title: e.target.value })
+                          }
+                          value={values.title}
+                        />
+                      </Flex>
+                    </Flex>
+                    <Flex sx={style.titleContainer}>
+                      <Flex sx={{ flex: 1 }}>
+                        <Flex
+                          sx={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            p: "8px",
+                          }}
+                        >
+                          <BiLink size={20} />
+                        </Flex>
+
+                        <Input
+                          sx={{ color: "black" }}
+                          placeholder="Enter Social Link Address"
+                          variant="flushed"
+                          onChange={(e) =>
+                            setValues({ ...values, link: e.target.value })
+                          }
+                          value={values.link}
+                        />
+                      </Flex>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              ) : null}
+            </Flex>
+          </Flex>
+        </Container>
       </ModalContent>
     </Modal>
   );
@@ -41,18 +475,158 @@ export function SocialModal({ closeParent, isOpen }) {
 
 const style = {
   container: {
-    my: "8px",
-    width: "100%",
+    p: "16px",
     backgroundColor: "white",
+    borderRadius: "6px",
   },
-  grid: {
+  row1: {
+    justifyContent: "space-between",
+    mt: "8px",
+  },
+  row2: { mt: "16px" },
+  row3: { mt: "16px" },
+  row4: {
+    justifyContent: "center",
+    alignItems: "center",
+    mb: "24px",
+    mt: "16px",
+    ml: "250px",
+  },
+  addNew: {
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    cursor: "pointer",
+    backgroundColor: "#D7354A",
+    borderRadius: "48px",
+    borderColor: "#D7354A",
+    width: "48px",
+    height: "48px",
+  },
+  addNewText: {
+    color: "white",
+    fontWeight: "medium",
+    fontFamily: "Poppins",
+    fontSize: "32px",
+    textAlign: "center",
+  },
+  lottie: {
+    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
+    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
+  },
+  topHeader: {
+    fontFamily: "Poppins",
+    color: "#D7354A",
+    fontWeight: "Bold",
+    fontSize: "16px",
+  },
+  saveContainer: {
     flexDirection: "row",
-    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    cursor: "pointer",
   },
-  heading: {
+  save: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "16px",
+  },
+  subHeaderContainer: {
+    width: "100%",
+    borderBottomWidth: 2,
+    borderBottomColor: "#D7354A",
+  },
+  subHeader: {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "24px",
+  },
+  subHeader1: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "18px",
+  },
+  linkView: {
+    pl: "16px",
+    pr: "16px",
+    flex: 1,
+    flexDirection: "column",
+  },
+
+  addlink: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  leftContainer: {
+    flexDirection: "column",
+    width: "64px",
+    height: "64px",
+    mx: "8px",
+  },
+  middleContainer: {
+    flex: 1,
+    flexDirection: "column",
+    borderRadius: "8px",
+  },
+  rightContainer: {
+    flexDirection: "column",
+    ml: "8px",
+  },
+  imageContainer: {},
+  addImage: {},
+  titleContainer: {
+    flexDirection: "row",
+  },
+
+  dragIcon: {
+    cursor: "grab",
+    p: "8px",
+    backgroundColor: "gray",
+  },
+  link: {},
+  bucket: {},
+  delete: {
+    cursor: "pointer",
+    mt: "8px",
+    p: "2px",
+  },
+  pickerContainer: {
+    flexDirection: "row",
+    mx: "32px",
     py: "8px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleContainer: {
+    width: "100%",
+    height: "48px",
+    mt: "8px",
+    pr: "8px",
+  },
+  imageContainer: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "100%",
+    borderWidth: 1,
+    position: "relative",
+    cursor: "pointer",
+  },
+  socialView: {
+    textAlign: "center",
+    cursor: "pointer",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+    px: "8px",
+  },
+  social: {
+    width: "32px",
+    height: "32px",
+  },
+  socialText: {
+    fontFamily: "Poppins",
+    fontSize: "12px",
+    color: "#646464",
+    textAlign: "center",
   },
 };

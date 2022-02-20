@@ -23,7 +23,7 @@ import {
 } from "@chakra-ui/react";
 
 import axios from "axios";
-import { nonauthapi } from "lib/api";
+import { authapi, nonauthapi } from "lib/api";
 import { convertChangesToDMP } from "prettier";
 import { firebaseAdmin } from "lib/firebaseadmin";
 // import { firebaseAdmin } from "lib/firebaseadmin";
@@ -36,33 +36,13 @@ export default function Dashboard({
   socials,
   currentUser,
   cookie,
+  masterSocials,
 }) {
   const ctx = useContext(UserContext);
   const [menuClick, setMenuClick] = React.useState(false);
   const [summary, setSummary] = React.useState({});
 
   React.useEffect(() => {
-    console.log(
-      "FIRESTORE",
-      firestore,
-      " env",
-      firebaseConfig1,
-      "LINKS",
-      links,
-      " RECOS",
-      recos,
-      " Buckets",
-      buckets,
-      " Users",
-      user,
-      " Socials",
-      socials,
-      " current user",
-      currentUser,
-      " cookie",
-      cookie
-    );
-
     setSummary({ products: recos.length, links: links.length });
 
     auth.onAuthStateChanged((user) => {
@@ -96,6 +76,8 @@ export default function Dashboard({
             user={user}
             summary={summary}
             cookie={cookie[0]}
+            buckets={buckets}
+            masterSocials={masterSocials}
           />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
@@ -145,9 +127,21 @@ export async function getServerSideProps(context) {
   const res5 = await fetch(nonauthapi + "user" + "?u_id=" + currentUser[0]);
   const user = await res5.json();
 
+  const res6 = await fetch(authapi + "socials/master");
+  const masterSocials = await res6.json();
+
   // Pass data to the page via props
   return {
-    props: { links, socials, recos, buckets, user, currentUser, cookie },
+    props: {
+      links,
+      socials,
+      recos,
+      buckets,
+      user,
+      currentUser,
+      cookie,
+      masterSocials,
+    },
   };
 }
 

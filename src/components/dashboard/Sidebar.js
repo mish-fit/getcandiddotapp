@@ -13,12 +13,17 @@ import React from "react";
 import { SocialModal } from "./Modals/SocialModal";
 
 // Add a custom Link
-export function Sidebar({ socials, user, summary }) {
+export function Sidebar({
+  socials,
+  user,
+  summary,
+  cookie,
+  buckets,
+  masterSocials,
+}) {
   const [isOpenSocialModal, setOpenSocialModal] = React.useState(false);
 
-  React.useEffect(() => {
-    console.log(summary);
-  }, []);
+  React.useEffect(() => {}, []);
 
   const onCloseSocialModal = (item) => {
     console.log("close");
@@ -37,6 +42,12 @@ export function Sidebar({ socials, user, summary }) {
       <SocialModal
         isOpen={isOpenSocialModal}
         closeParent={(item) => onCloseSocialModal(item)}
+        user={user}
+        cookie={cookie}
+        maxSortId={Math.max(...socials.map((o) => o.sort_id), 0)}
+        data={socials}
+        buckets={buckets}
+        masterSocials={masterSocials}
       />
       <UserCard data={user} />
       <UserSummary data={summary} />
