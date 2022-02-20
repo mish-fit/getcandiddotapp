@@ -24,65 +24,68 @@ const Step1 = (props) => {
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
 
-	const ctx = useContext(UserContext);
+	const [userDataContext, user] = useContext(UserContext);
 
-	const checkUsername = useMemo(() => 
-		debounce(async (username) => {
-			if (username.length >= 3) {
-				const ref = firestore.doc(`usernames/${username}`);
-				const { exists } = await ref.get();
-				console.log('Firestore read executed!');
-				setIsValid(!exists);
-				setLoading(false);
-			}
-		}, 500),
+	const checkUsername = useMemo(
+		() =>
+			debounce(async (username) => {
+				if (username.length >= 3) {
+					const ref = firestore.doc(`usernames/${username}`);
+					const { exists } = await ref.get();
+					console.log('Firestore read executed!');
+					setIsValid(!exists);
+					setLoading(false);
+				}
+			}, 500),
 		[]
 	);
-	
+
 	useEffect(() => {
 		checkUsername(formValue);
 	}, [checkUsername, formValue]);
 
 	const next = async (e) => {
 		e.preventDefault();
-		ctx.setUsername(formValue);
+		userDataContext.setUsername(formValue);
 
-		// console.log(ctx.userData);
-		const userDoc = firestore.doc(`users/${ctx.userSignInInfo.user.uid}`);
+		// console.log(userDataContext.userData);
+		const userDoc = firestore.doc(
+			`users/${userDataContext.userSignInInfo.user.uid}`
+		);
 		const usernameDoc = firestore.doc(`usernames/${formValue}`);
 
 		const batch = firestore.batch();
-		// console.log(ctx.userData.username);
-		console.log(ctx.userSignInInfo.user.email);
-		// console.log(ctx.userSignInInfo);
-		console.log(ctx.userSignInInfo.user.phoneNumber);
+		// console.log(userDataContext.userData.username);
+		console.log(userDataContext.userSignInInfo.user.email);
+		// console.log(userDataContext.userSignInInfo);
+		console.log(userDataContext.userSignInInfo.user.phoneNumber);
 
 		// sending data to firebase when user logged in with phone
-		if (ctx.userSignInInfo.user.email == null) {
+		if (userDataContext.userSignInInfo.user.email == null) {
 			batch.set(userDoc, {
 				username: formValue,
-				phone: ctx.userSignInInfo.user.phoneNumber,
+				phone: userDataContext.userSignInInfo.user.phoneNumber,
 			});
-			batch.set(usernameDoc, { uid: ctx.userSignInInfo.user.uid });
+			batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
 			await batch.commit();
 		}
 		// sending data to firebase when user logged in with mail
 		else {
 			batch.set(userDoc, {
 				username: formValue,
-				mail: ctx.userSignInInfo.user.email,
-				photoURL: ctx.userSignInInfo.user.photoURL,
-				displayName: ctx.userSignInInfo.user.displayName,
+				mail: userDataContext.userSignInInfo.user.email,
+				photoURL: userDataContext.userSignInInfo.user.photoURL,
+				displayName: userDataContext.userSignInInfo.user.displayName,
 			});
-			batch.set(usernameDoc, { uid: ctx.userSignInInfo.user.uid });
+			batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
 			await batch.commit();
 		}
 
-		if (ctx.userSignInInfo.user.email === null) {
-			ctx.setPhone(ctx.userSignInInfo.user.phoneNumber);
+		if (userDataContext.userSignInInfo.user.email === null) {
+			userDataContext.setPhone(userDataContext.userSignInInfo.user.phoneNumber);
 		} else {
-			ctx.setName(ctx.userSignInInfo.user.name);
-			ctx.setMail(ctx.userSignInInfo.user.mail);
+			userDataContext.setName(userDataContext.userSignInInfo.user.name);
+			userDataContext.setMail(userDataContext.userSignInInfo.user.mail);
 		}
 		props.nextStep();
 	};
