@@ -1,7 +1,7 @@
 export const translation = {
   en: {
     HeaderSection: {
-      Header: ["Home", "Features", "Pricing", "FAQs"],
+      Header: ["Home", "Features", "FAQs"],
       Blog: "Blog",
       Title: "Single page for all your affiliate links",
       SubTitle:
