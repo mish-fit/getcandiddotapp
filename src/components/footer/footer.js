@@ -76,10 +76,12 @@ const styles = {
     fontWeight: 500,
     letterSpacing: "-0.5px",
     mb: "0",
+    fontFamily: "Poppins",
   },
   link: {
     color: "#02073E",
     fontSize: "14px",
+    fontFamily: "Poppins",
     lineHeight: 2.5,
     display: "block",
     opacity: 0.8,
@@ -93,6 +95,7 @@ const styles = {
     opacity: 0.6,
     fontSize: "14px",
     ml: ["8px"],
+    fontFamily: "Poppins",
   },
   bottomMenu: {
     display: "flex",

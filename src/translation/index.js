@@ -3,13 +3,12 @@ export const translation = {
     HeaderSection: {
       Header: ["Home", "Features", "Pricing", "FAQs"],
       Blog: "Blog",
-      Title: "Convert your page into a store front",
+      Title: "Single page for all your affiliate links",
       SubTitle:
-        "Recommend amazing products to your network and earn money when they buy from your store",
+        "Recommend amazing products to your network and earn money when they buy from your page",
       ImageTitle: "I love this product",
       ImageSubTitle: "Recommend to earn",
-      SignupTitle:
-        "Sign up for early access and get 6 months of influencer plan for free !",
+      SignupTitle: "",
       emailPlaceholder: "Your email address",
       signUpText: "Sign Up",
       signedUpSubTitle:

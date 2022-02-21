@@ -28,6 +28,7 @@ export default SectionHeading;
 const styles = {
   heading: {
     textAlign: "center",
+    fontFamily: "Poppins",
     maxWidth: 660,
     margin: "0 auto 48px",
   },
@@ -36,9 +37,11 @@ const styles = {
     fontWeight: 500,
     fontSize: 2,
     lineHeight: 2.5,
+    fontFamily: "Poppins",
   },
   title: {
     color: "heading",
+    fontFamily: "Poppins",
     fontWeight: 600,
     fontSize: [4, null, null, 6],
     lineHeight: [1.33, 1.33, 1.5],
@@ -52,6 +55,7 @@ const styles = {
   },
   description: {
     color: "heading",
+    fontFamily: "Poppins",
     fontSize: ["16px", null, "16px"],
     lineHeight: [1.86, null, 2.2],
     mt: [5],
