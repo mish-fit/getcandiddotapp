@@ -13,8 +13,9 @@ import {
   useToast,
   InputGroup,
   InputLeftAddon,
+  Button,
 } from "@chakra-ui/react";
-import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
+import { BsCheckCircleFill, BsCheckLg, BsPlusCircleFill } from "react-icons/bs";
 import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
@@ -60,18 +61,23 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
           return (
             <Flex
               key={index}
-              sx={style.socialView}
+              sx={merge(style.socialView, {})}
               onClick={() => socialClick(item)}
             >
-              <Image src={"social/bulbul.png"} sx={style.social} />
+              <Flex sx={{ position: "relative", backgroundColor: "gray" }}>
+                <Image src={"social/bulbul.png"} sx={style.social} />
+                <Flex
+                  style={{ position: "absolute", top: "-4px", right: "-4px" }}
+                >
+                  {currentSocials.filter(
+                    (item1, index1) => item1.social_id === item.social_id
+                  ).length ? (
+                    <BsCheckLg size={10} color="green" />
+                  ) : null}
+                </Flex>
+              </Flex>
+
               <Text sx={style.socialText}>{item.social_name}</Text>
-              <Text>
-                {currentSocials.filter(
-                  (item1, index1) => item1.social_id === item.social_id
-                ).length
-                  ? "Exists"
-                  : "Doesnt"}
-              </Text>
             </Flex>
           );
         })}
@@ -150,36 +156,36 @@ export function SocialModal({
       });
   }, [imageName]);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    console.log(e.target.files[0]);
-    if (e.target.files.length) {
-      setImageSelected(true);
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
+  // const handleChange = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.files[0]);
+  //   if (e.target.files.length) {
+  //     setImageSelected(true);
+  //     setImage({
+  //       preview: URL.createObjectURL(e.target.files[0]),
+  //       raw: e.target.files[0],
+  //     });
 
-      handleUpdate({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
-      e.target.value = null;
-    }
-  };
+  //     handleUpdate({
+  //       preview: URL.createObjectURL(e.target.files[0]),
+  //       raw: e.target.files[0],
+  //     });
+  //     e.target.value = null;
+  //   }
+  // };
 
-  const handleUpdate = (image) => {
-    console.log(image);
-    const formData = new FormData();
-    formData.append("image", image.raw);
+  // const handleUpdate = (image) => {
+  //   console.log(image);
+  //   const formData = new FormData();
+  //   formData.append("image", image.raw);
 
-    UploadImageToS3WithNativeSdk(image.raw, imageName);
-  };
+  //   UploadImageToS3WithNativeSdk(image.raw, imageName);
+  // };
 
-  const onCancelImage = () => {
-    setImageSelected(false);
-    setImage({ preview: "", raw: "" });
-  };
+  // const onCancelImage = () => {
+  //   setImageSelected(false);
+  //   setImage({ preview: "", raw: "" });
+  // };
 
   const closeModal = () => {
     closeParent(true);
@@ -187,35 +193,35 @@ export function SocialModal({
 
   const savenclose = () => {
     console.log("values", values);
-    // const options = {
-    //   headers: {
-    //     Authorization: `bearer ${cookie}`,
-    //     Origin: "localhost:3000",
-    //   },
-    // };
+    const options = {
+      headers: {
+        Authorization: `bearer ${cookie}`,
+        Origin: "localhost:3000",
+      },
+    };
 
-    // axios(
-    //   {
-    //     method: "post",
-    //     url: `${authapi}socials`,
-    //     data: { socials_array: JSON.stringify(values) },
-    //     options: options,
-    //   },
-    //   { timeout: 1000 }
-    // )
-    //   .then((res) => {
-    //     console.log("Sucess", res.data);
-    //     setSortId((id) => id + 1);
-    //     toast({
-    //       title: "Socials Updated",
-    //       description: "",
-    //       status: "success",
-    //       duration: 1000,
-    //       isClosable: true,
-    //     });
-    //     closeModal();
-    //   })
-    //   .catch((e) => console.log(e));
+    axios(
+      {
+        method: "post",
+        url: `${authapi}socials`,
+        data: { socials_array: JSON.stringify(values) },
+        options: options,
+      },
+      { timeout: 1000 }
+    )
+      .then((res) => {
+        console.log("Sucess", res.data);
+        setSortId((id) => id + 1);
+        toast({
+          title: "Socials Updated",
+          description: "",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+        closeModal();
+      })
+      .catch((e) => console.log(e));
   };
 
   const onClickSocialItem = (socialItem) => {
@@ -277,6 +283,10 @@ export function SocialModal({
     }
   };
 
+  // const addSocial = () => {
+  //   setNewInput(true);
+  // };
+
   return (
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
@@ -328,6 +338,39 @@ export function SocialModal({
                     />
                   );
                 })}
+                {/* <Flex
+                  sx={{
+                    mt: "16px",
+                    mr: "16px",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Flex
+                    sx={{
+                      width: "100%",
+                      borderBottomWidth: 2,
+                      borderBottomColor: "#D7354A",
+                    }}
+                  >
+                    <Text sx={style.subHeader1}>Add New</Text>
+                  </Flex>
+                  <Flex
+                    sx={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      mb: "8px",
+                      mt: "16px",
+                    }}
+                  >
+                    <Button
+                      as="addbutton"
+                      sx={style.addbutton}
+                      onClick={addSocial}
+                    >
+                      <BsPlusCircleFill color="#D7354A" size={30} />
+                    </Button>
+                  </Flex>
+                </Flex> */}
               </Flex>
               {inputActive && !newInput ? (
                 <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
@@ -352,119 +395,137 @@ export function SocialModal({
                   </InputGroup>
                 </Flex>
               ) : null}
-              {newInput ? (
-                <Flex sx={style.addlink}>
-                  <Flex sx={style.leftContainer}>
-                    <Flex sx={style.imageContainer}>
-                      {image.preview ? (
-                        <Flex
-                          sx={{
-                            position: "relative",
-                            flex: 1,
-                          }}
-                        >
-                          <Flex
-                            onClick={() => hiddenInput.click()}
-                            sx={{ flex: 1 }}
-                          >
-                            <Image
-                              src={image.preview}
-                              alt="dummy"
-                              sx={{
-                                width: "100%",
-                                height: "100%",
-                                borderRadius: "100%",
-                              }}
-                            />
-                          </Flex>
+              {/* {newInput ? (
+                <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
+                  <Text
+                    sx={{
+                      mb: "8px",
+                      fontStyle: "Poppins",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                      color: "#D7354A",
+                    }}
+                  >
+                    Add New
+                  </Text>
+                  <Flex sx={style.addlink}>
+                    <Flex sx={style.leftContainer}>
+                      <Flex sx={style.imageContainer}>
+                        {image.preview ? (
                           <Flex
                             sx={{
-                              position: "absolute",
-                              top: "-5%",
-                              right: "-5%",
-                              zIndex: 101,
-                              cursor: "pointer",
+                              position: "relative",
+                              flex: 1,
                             }}
-                            onClick={onCancelImage}
                           >
-                            <IoCloseCircle size={20} color="gray" />
+                            <Flex
+                              onClick={() => hiddenInput.click()}
+                              sx={{ flex: 1 }}
+                            >
+                              <Image
+                                src={image.preview}
+                                alt="dummy"
+                                sx={{
+                                  width: "100%",
+                                  height: "100%",
+                                  borderRadius: "100%",
+                                }}
+                              />
+                            </Flex>
+                            <Flex
+                              sx={{
+                                position: "absolute",
+                                top: "-5%",
+                                right: "-5%",
+                                zIndex: 101,
+                                cursor: "pointer",
+                              }}
+                              onClick={onCancelImage}
+                            >
+                              <IoCloseCircle size={20} color="gray" />
+                            </Flex>
                           </Flex>
-                        </Flex>
-                      ) : (
-                        <Flex
-                          sx={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                            textAlign: "center",
-                            flex: 1,
-                          }}
-                          onClick={() => hiddenInput.click()}
-                        >
-                          <Text sx={{ fontSize: "12px" }}>Upload Logo</Text>
-                        </Flex>
-                      )}
-                      <input
-                        type="file"
-                        hidden
-                        onChange={handleChange}
-                        ref={(el) => (hiddenInput = el)}
-                      />
-                    </Flex>
-                  </Flex>
-                  <Flex
-                    sx={merge(style.middleContainer, {
-                      boxShadow: `0 0 4px 1px ${values.shadow_color}`,
-                    })}
-                  >
-                    <Flex sx={style.titleContainer}>
-                      <Flex sx={{ flex: 1 }}>
-                        <Flex
-                          sx={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                            p: "8px",
-                          }}
-                        >
-                          <MdOutlineDriveFileRenameOutline size={20} />
-                        </Flex>
-
-                        <Input
-                          sx={{ color: values.font_color }}
-                          placeholder="Enter Social Link Name"
-                          variant="flushed"
-                          onChange={(e) =>
-                            setValues({ ...values, title: e.target.value })
-                          }
-                          value={values.title}
+                        ) : (
+                          <Flex
+                            sx={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              textAlign: "center",
+                              flex: 1,
+                            }}
+                            onClick={() => hiddenInput.click()}
+                          >
+                            <Text sx={{ fontSize: "12px" }}>Upload Logo</Text>
+                          </Flex>
+                        )}
+                        <input
+                          type="file"
+                          hidden
+                          onChange={handleChange}
+                          ref={(el) => (hiddenInput = el)}
                         />
                       </Flex>
                     </Flex>
-                    <Flex sx={style.titleContainer}>
-                      <Flex sx={{ flex: 1 }}>
-                        <Flex
-                          sx={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                            p: "8px",
-                          }}
-                        >
-                          <BiLink size={20} />
-                        </Flex>
+                    <Flex
+                      sx={merge(style.middleContainer, {
+                        boxShadow: `0 0 4px 1px ${values.shadow_color}`,
+                      })}
+                    >
+                      <Flex sx={style.titleContainer}>
+                        <Flex sx={{ flex: 1 }}>
+                          <Flex
+                            sx={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              p: "8px",
+                            }}
+                          >
+                            <MdOutlineDriveFileRenameOutline size={20} />
+                          </Flex>
 
-                        <Input
-                          sx={{ color: "black" }}
-                          placeholder="Enter Social Link Address"
-                          variant="flushed"
-                          onChange={(e) =>
-                            setValues({ ...values, link: e.target.value })
-                          }
-                          value={values.link}
-                        />
+                          <Input
+                            sx={{ color: values.font_color }}
+                            placeholder="Enter Social Link Name"
+                            variant="flushed"
+                            onChange={(e) =>
+                              setValues({ ...values, title: e.target.value })
+                            }
+                            value={values.title}
+                          />
+                        </Flex>
+                      </Flex>
+                      <Flex sx={style.titleContainer}>
+                        <Flex sx={{ flex: 1 }}>
+                          <Flex
+                            sx={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              p: "8px",
+                            }}
+                          >
+                            <BiLink size={20} />
+                          </Flex>
+
+                          <Input
+                            sx={{ color: "black" }}
+                            placeholder="Enter Social Link Address"
+                            variant="flushed"
+                            onChange={(e) =>
+                              setValues({ ...values, link: e.target.value })
+                            }
+                            value={values.link}
+                          />
+                        </Flex>
+                      </Flex>
+                    </Flex>
+                    <Flex sx={style.rightContainer}>
+                      <Flex sx={style.delete}>
+                        <BsCheckCircleFill size={20} />
                       </Flex>
                     </Flex>
                   </Flex>
                 </Flex>
-              ) : null}
+              ) : null} */}
             </Flex>
           </Flex>
         </Container>
@@ -628,5 +689,18 @@ const style = {
     fontSize: "12px",
     color: "#646464",
     textAlign: "center",
+  },
+  addbutton: {
+    cursor: "pointer",
+    backgroundColor: "transparent",
+  },
+  addContainer: {
+    textAlign: "center",
+  },
+  addbuttonText: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "12px",
+    color: "#FFFFFF",
   },
 };
