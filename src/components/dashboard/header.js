@@ -70,7 +70,7 @@ export default function Header({ menu, menuActive, data }) {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={editProfile}>Edit Profile</MenuItem>
+              {/* <MenuItem onClick={editProfile}>Edit Profile</MenuItem> */}
               <MenuItem onClick={signout}>Sign Out</MenuItem>
             </MenuList>
           </Menu>

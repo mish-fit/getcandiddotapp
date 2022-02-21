@@ -156,7 +156,7 @@ const styles = {
     justifyContent: "flex-start",
   },
   mainscreen: {
-    flex: [1, 1, 2, 2, 2, 2],
+    flex: [1, 1, 1, 2, 2, 2],
   },
   sidebar: {
     flex: 1,
