@@ -9,7 +9,7 @@ import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 const SocialElement = ({ item }) => (
   <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
-    <Image src={"social/trell.png"} sx={style.social} />
+    <Image src={item.social_logo} sx={style.social} />
     <Text sx={style.socialText}>
       {item && item.social_name && item.social_name.length > 9
         ? item.social_name.slice(0, 10) + ".."
@@ -33,18 +33,6 @@ export function SocialHandles({ social, data }) {
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
-        <Flex sx={style.socialView}>
-          <Image src={"social/bulbul.png"} sx={style.social} />
-          <Text sx={style.socialText}>Bulbul</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/koo.png"} sx={style.social} />
-          <Text sx={style.socialText}>Koo</Text>
-        </Flex>
-        <Flex sx={style.socialView}>
-          <Image src={"social/trell.png"} sx={style.social} />
-          <Text sx={style.socialText}>Trell</Text>
-        </Flex>
 
         <Flex
           sx={{
