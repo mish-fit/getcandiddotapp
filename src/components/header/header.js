@@ -60,6 +60,7 @@ const styles = {
   headerBtn: {
     backgroundColor: "#f29183",
     fontSize: "16px",
+    fontFamily: "Poppins",
     fontWeight: "normal",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -79,6 +80,7 @@ const styles = {
   blogBtn: {
     backgroundColor: "#d95f76",
     fontSize: "16px",
+    fontFamily: "Poppins",
     fontWeight: "bold",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -96,6 +98,7 @@ const styles = {
   loginBtn: {
     ml: "auto",
     display: "inline-flex",
+    fontFamily: "Poppins",
     alignItems: "center",
     fontSize: "16px",
     color: "#0F2137",
@@ -107,6 +110,7 @@ const styles = {
   },
   header: {
     color: "text_white",
+    fontFamily: "Poppins",
     fontWeight: "normal",
     py: "16px",
     width: "100%",
