@@ -232,11 +232,15 @@ const styles = {
   },
   signupButton: {
     borderRadius: "32px",
-    backgroundColor: "#888888",
+    backgroundColor: "#D7354A",
     px: "32px",
     py: "8px",
     justifyContent: "center",
     alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#d42a40",
+    },
+    cursor: "pointer",
   },
   signupButtonText: {
     fontFamily: "Poppins",
