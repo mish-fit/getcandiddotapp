@@ -11,14 +11,37 @@ import { SocialHandles } from "./Sidebar/SocialHandles";
 import { AddButtons } from "./MainScreen/AddButtons";
 import React from "react";
 import { SocialModal } from "./Modals/SocialModal";
+import axios from "axios";
+import { nonauthapi } from "lib/api";
 
 // Add a custom Link
-export function Sidebar({ socials, user, summary }) {
+export function Sidebar({
+  socials,
+  user,
+  summary,
+  cookie,
+  buckets,
+  masterSocials,
+}) {
   const [isOpenSocialModal, setOpenSocialModal] = React.useState(false);
+  const [currentSocials, setCurrentSocials] = React.useState(socials);
+  React.useEffect(() => {}, []);
 
   React.useEffect(() => {
-    console.log(summary);
-  }, []);
+    axios
+      .get(
+        `${nonauthapi}socials`,
+        { params: { u_id: user[0].u_id } },
+        { timeout: 3000 }
+      )
+      .then((res) => res.data)
+      .then((responseData) => {
+        setCurrentSocials(responseData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [isOpenSocialModal]);
 
   const onCloseSocialModal = (item) => {
     console.log("close");
@@ -37,10 +60,19 @@ export function Sidebar({ socials, user, summary }) {
       <SocialModal
         isOpen={isOpenSocialModal}
         closeParent={(item) => onCloseSocialModal(item)}
+        user={user}
+        cookie={cookie}
+        maxSortId={Math.max(...currentSocials.map((o) => o.sort_id), 0)}
+        data={currentSocials}
+        buckets={buckets}
+        masterSocials={masterSocials}
       />
       <UserCard data={user} />
       <UserSummary data={summary} />
-      <SocialHandles social={() => setOpenSocialModal(true)} data={socials} />
+      <SocialHandles
+        social={() => setOpenSocialModal(true)}
+        data={currentSocials}
+      />
     </Box>
   );
 }

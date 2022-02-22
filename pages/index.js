@@ -13,6 +13,7 @@ import Banner1 from "sections/banner1";
 import { useRouter } from "next/router";
 import { initOptimize } from "analytics/go";
 import "@fontsource/poppins";
+import { pageview } from "react-ga";
 
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
@@ -65,12 +66,7 @@ export default function IndexPage() {
           />
           {variant ? <Banner1 /> : <Banner />}
           <Features />
-          {/* <FaqOne /> */}
           <ProductFeature />
-          {/* <Services /> */}
-          <Pricing />
-          {/* <CustomerSupport />
-          <Video /> */}
           <FaqTwo />
         </Layout>
       </StickyProvider>

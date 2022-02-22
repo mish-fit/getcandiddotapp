@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image } from "theme-ui";
+import { jsx, Container, Flex, Image, Text } from "theme-ui";
 import { Link } from "components/link";
 import { Link as ScrollLink } from "react-scroll";
 import Logo from "components/logo";
@@ -19,8 +19,9 @@ export default function Header({ className }) {
     <DrawerProvider>
       <header sx={styles.header} className={className}>
         <Container sx={styles.container}>
-          <Logo />
-
+          <Flex>
+            <Logo />
+          </Flex>
           <Flex as="nav" sx={styles.nav}>
             {menuItems.map(({ path, label, offset }, i) => (
               <ScrollLink
@@ -37,17 +38,12 @@ export default function Header({ className }) {
               </ScrollLink>
             ))}
           </Flex>
-          <Link path="/" sx={styles.loginBtn}>
-            {/* <Image src={lock} alt="" />
-            Login */}
-          </Link>
 
-          <Link
-            sx={styles.loginBtn}
-            path="https://blog.getcandid.app/"
-            label={translation[locale].HeaderSection.Blog}
-            sx={styles.headerBtn}
-          />
+          <Flex sx={styles.signupButton}>
+            <Text sx={styles.signupButtonText}>
+              {translation[locale].HeaderSection.Blog}
+            </Text>
+          </Flex>
 
           <MobileDrawer />
         </Container>
@@ -60,6 +56,7 @@ const styles = {
   headerBtn: {
     backgroundColor: "#f29183",
     fontSize: "16px",
+    fontFamily: "Poppins",
     fontWeight: "normal",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -79,6 +76,7 @@ const styles = {
   blogBtn: {
     backgroundColor: "#d95f76",
     fontSize: "16px",
+    fontFamily: "Poppins",
     fontWeight: "bold",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -96,6 +94,7 @@ const styles = {
   loginBtn: {
     ml: "auto",
     display: "inline-flex",
+    fontFamily: "Poppins",
     alignItems: "center",
     fontSize: "16px",
     color: "#0F2137",
@@ -107,6 +106,7 @@ const styles = {
   },
   header: {
     color: "text_white",
+    fontFamily: "Poppins",
     fontWeight: "normal",
     py: "16px",
     width: "100%",
@@ -130,6 +130,7 @@ const styles = {
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
+    flex: 1,
     ml: "48px",
     "@media screen and (max-width: 960px)": {
       display: "none",
@@ -152,5 +153,23 @@ const styles = {
         color: "primary",
       },
     },
+  },
+  signupButton: {
+    borderRadius: "32px",
+    backgroundColor: "#D7354A",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#d42a40",
+    },
+    px: "32px",
+    py: "8px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  signupButtonText: {
+    fontFamily: "Poppins",
+    fontWeight: "medium",
+    fontSize: "16px",
+    color: "white",
   },
 };

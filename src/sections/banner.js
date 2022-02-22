@@ -81,24 +81,13 @@ const Banner = () => {
                   // id="email"
                 />
 
-                <Button onClick={signup}>
-                  {translation[locale].HeaderSection.signUpText}
-                </Button>
+                <Flex onClick={signup} sx={styles.signupButton}>
+                  <Text sx={styles.signupButtonText}>
+                    {translation[locale].HeaderSection.signUpText}
+                  </Text>
+                </Flex>
               </Box>
             )}
-            {/* <Box sx={styles.clients}>
-              <Text as="span">Our clients</Text>
-              {clients.map(({ link, image }, index) => (
-                <Link href={link} key={`client-image-key-${index}`}>
-                  <Image
-                    src={image}
-                    width="123"
-                    height="28"
-                    alt="client image"
-                  />
-                </Link>
-              ))}
-            </Box> */}
           </Box>
           <Box sx={styles.images}>
             <Image src={image} width="740" height="558" alt="section image" />
@@ -130,10 +119,10 @@ const styles = {
     textAlign: ["center", "left", null, "center", "left"],
     flex: ["0 0 100%", null, null, null, "0 0 50%", "0 0 40%"],
     h2: {
-      fontFamily: "Bree Serif",
       color: "#02073E",
       letterSpacing: "-1px",
-      fontSize: ["28px", null, "32px", null, null, "48px", "60px"],
+      fontSize: ["24px", null, "36px", null, null, "48px"],
+      fontFamily: "Poppins",
       lineHeight: 1.45,
       maxWidth: "546px",
       mb: "8px",
@@ -144,6 +133,7 @@ const styles = {
       lineHeight: [2, null, 2.62],
       color: "#02073E",
       maxWidth: "486px",
+      fontFamily: "Poppins",
     },
     h3: {
       fontSize: ["8px", null, "16px"],
@@ -151,6 +141,7 @@ const styles = {
       lineHeight: [2, null, 2.62],
       color: "#02073E",
       maxWidth: "486px",
+      fontFamily: "Poppins",
     },
     p: {
       fontSize: ["8px", null, "16px"],
@@ -159,6 +150,7 @@ const styles = {
       color: "#d95f76",
       maxWidth: "486px",
       fontStyle: "italic",
+      fontFamily: "Poppins",
     },
     form: {
       display: "flex",
@@ -174,6 +166,7 @@ const styles = {
         mb: ["8px", "0"],
         height: ["48px", null, null, null, null, "60px", "60px"],
         fontSize: "16px",
+        fontFamily: "Poppins",
         color: "rgba(2,7,62,.4)",
         backgroundColor: "#ffffff",
         px: "24px",
@@ -188,6 +181,7 @@ const styles = {
       },
       button: {
         fontSize: "16px",
+        fontFamily: "Poppins",
         color: "#ffff",
         fontWeight: 700,
         borderRadius: "8px",
@@ -235,5 +229,23 @@ const styles = {
         display: "block",
       },
     },
+  },
+  signupButton: {
+    borderRadius: "32px",
+    backgroundColor: "#D7354A",
+    px: "32px",
+    py: "8px",
+    justifyContent: "center",
+    alignItems: "center",
+    "&:hover": {
+      backgroundColor: "#d42a40",
+    },
+    cursor: "pointer",
+  },
+  signupButtonText: {
+    fontFamily: "Poppins",
+    fontWeight: "medium",
+    fontSize: "16px",
+    color: "white",
   },
 };

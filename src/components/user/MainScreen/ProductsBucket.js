@@ -6,10 +6,9 @@ import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ProductsCard } from "./ProductsCard";
-import { LinksCard } from "./LinksCard";
 
 // Add a custom Link
-export function LinksBucket({ bucketName, data }) {
+export function ProductsBucket({ bucketName, data }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -21,7 +20,7 @@ export function LinksBucket({ bucketName, data }) {
       <Text sx={style.heading}>{bucketName}</Text>
       <Flex sx={style.grid}>
         {data.map((item, index) => {
-          return <LinksCard key={index} item={item} />;
+          return <ProductsCard key={index} item={item} />;
         })}
       </Flex>
     </Container>

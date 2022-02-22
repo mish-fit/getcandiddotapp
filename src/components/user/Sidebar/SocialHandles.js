@@ -19,13 +19,7 @@ const SocialElement = ({ item }) => (
 );
 
 // Add a custom Link
-export function SocialHandles({ social, data }) {
-  const router = useRouter();
-
-  const addSocial = () => {
-    social();
-  };
-
+export function SocialHandles({ data }) {
   return (
     <Container sx={{ px: "10%", mt: "8px", pb: "16px" }}>
       <Text sx={style.heading}>Social Handles</Text>
@@ -33,18 +27,6 @@ export function SocialHandles({ social, data }) {
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
-
-        <Flex
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            mb: "8px",
-          }}
-        >
-          <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
-            <BsPlusCircleFill color="#D7354A" size={30} />
-          </Button>
-        </Flex>
       </Grid>
     </Container>
   );
