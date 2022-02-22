@@ -120,24 +120,25 @@ const Step2 = (props) => {
 				<Flex display={{ md: 'flex' }}>
 					<Stack
 						align={{ base: 'center', md: 'stretch' }}
-						textAlign={{ base: 'center', md: 'left' }}
-						mt={{ base: 4, md: 0 }}
-						ml={{ md: 6 }}
+						textAlign={{ base: 'left', md: 'left' }}
+						margin={6}
 					>
 						<Flex>
 							<form onSubmit={next}>
 								{/* <Heading size={'lg'} marginBottom="16px" >Enter User Details</Heading> */}
-								<Heading size={'lg'}>Tell Us About You</Heading>
+								<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
 								<FormLabel
 									size={'md'}
 									margin='8px'
 									marginLeft='0px'
 									paddingBottom='1rem'
+									textAlign={{base:'center', md:'left'}}
 								>
 									Using your real name will help people confirm that they are
 									interacting with you.
 								</FormLabel>
-								<FormLabel fontSize={18}>Full Name</FormLabel>
+								<FormLabel 
+									fontSize={'lg'}>Full Name</FormLabel>
 								<Input
 									name='name'
 									bg='white'
@@ -145,16 +146,17 @@ const Step2 = (props) => {
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
 									borderColor='#E78592'
-									height={50}
-									width={250}
-									fontSize={18}
+									height= {50}
+									width={'md'}
+									fontSize={'lg'}
 									marginBottom='8px'
 									defaultValue={userDataContext.userSignInInfo.user.displayName}
 									type='text'
 									onChange={onChangeName}
 								/>
 								<Flex style={{ display: mailInput ? 'block' : 'none' }}>
-									<FormLabel fontSize={18}>E-Mail</FormLabel>
+									<FormLabel 
+									fontSize={'lg'}>E-Mail</FormLabel>
 									<Input
 										name='mail'
 										type='email'
@@ -163,15 +165,15 @@ const Step2 = (props) => {
 										_hover={{ borderColor: '#E78592' }}
 										borderColor='#E78592'
 										height={50}
-										width={250}
-										fontSize={18}
-										marginBottom='8px'
+										width={'md'}
+										fontSize={'lg'}
+										marginBottom='20px'
 										onChange={onChange}
 									/>
 								</Flex>
 								<Text
 									style={{ display: info ? 'block' : 'none' }}
-									marginBottom='8px'
+									marginBottom='20px'
 								>
 									Your email is taken from gmail.
 								</Text>
@@ -179,27 +181,25 @@ const Step2 = (props) => {
 									style={{ display: showLink ? 'block' : 'none' }}
 									color='white'
 									borderRadius={10}
-									width={250}
+									width={'md'}
 									height={50}
-									fontSize={18}
-									marginBottom='8px'
+									fontSize={'lg'}
+									marginBottom='20px'
 									bg={'#1A8BF7'}
 									_hover={{ bg: '#1A7BF7' }}
 									onClick={SignInWithGoogle}
 								>
-									{' '}
 									Link Google Account
 								</Button>
+								<Flex justifyContent={'space-between'}>
 								<Button
-									bg={'#ff5151'}
 									bg={'#D7354A'}
 									_hover={{ bg: '#C23043' }}
 									borderRadius={10}
 									color='white'
+									fontSize={'lg'}
 									width={120}
 									height={50}
-									fontSize={18}
-									marginRight='8px'
 									onClick={back}
 								>
 									Back
@@ -207,15 +207,17 @@ const Step2 = (props) => {
 								<Button
 									bg={'#D7354A'}
 									_hover={{ bg: '#C23043' }}
-									borderRadius={10}
 									color='white'
+									borderRadius={10}
+									fontSize={'lg'}
 									width={120}
 									height={50}
-									fontSize={18}
+									mr={{base:'0', md:'200'}}
 									type='submit'
 								>
 									Next
 								</Button>
+								</Flex>
 							</form>
 						</Flex>
 					</Stack>

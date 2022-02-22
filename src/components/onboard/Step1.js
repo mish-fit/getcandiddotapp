@@ -114,23 +114,23 @@ const Step1 = (props) => {
 			fontFamily={'Poppins'}
 			maxW={'container.md'}
 			p={0}
-			align='center'
+			// align='left'
 		>
 			<Header value={25} />
 			<Flex display={{ md: 'flex' }}>
 				<Stack
 					align={{ base: 'center', md: 'stretch' }}
-					textAlign={{ base: 'center', md: 'left' }}
-					mt={{ base: 4, md: 0 }}
-					ml={{ md: 6 }}
+					textAlign={{ base: 'left', md: 'left' }}
+					margin={6}
 				>
-					<Flex flexDirection={'column'}>
-						<Heading size={'lg'}>Choose a Username</Heading>
+					<Flex flexDirection={'column'} w='100%'>
+						<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Choose a Username</Heading>
 						<FormLabel
 							size={'md'}
 							margin='10px'
 							marginLeft='0px'
 							paddingBottom='1rem'
+							textAlign={{base:'center', md:'left'}}
 						>
 							This will become your personal Candid URL. You can change this
 							later in Settings.
@@ -143,9 +143,9 @@ const Step1 = (props) => {
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
 									borderColor='#E78592'
+									width={'md'}
 									height={50}
-									width={200}
-									fontSize={18}
+									fontSize={'lg'}
 									display='inline'
 									placeholder='Username...'
 									value={formValue}
@@ -163,20 +163,22 @@ const Step1 = (props) => {
 								isValid={isValid}
 								loading={loading}
 							/>
+							<Flex justifyContent={'space-between'}>
 							<Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
-								width={200}
+								fontSize={'lg'}
+								width={'md'}
 								height={50}
-								fontSize={18}
 								marginTop={'10px'}
 								type='submit'
 								disabled={!isValid}
 							>
 								Next
 							</Button>
+							</Flex>
 						</form>
 					</Flex>
 				</Stack>
@@ -186,24 +188,24 @@ const Step1 = (props) => {
 };
 function UsernameMessage({ username, isValid, loading }) {
 	if (loading) {
-		return <Text fontSize={15}>Checking...</Text>;
+		return <FormLabel >Checking...</FormLabel>;
 	} else if (isValid) {
 		return (
-			<Text fontSize={15} className='text-success'>
+			<FormLabel >
 				{username} is available!
-			</Text>
+			</FormLabel>
 		);
 	} else if (username && !isValid) {
 		return (
-			<Text fontSize={15} className='text-danger'>
+			<FormLabel >
 				That username is taken!
-			</Text>
+			</FormLabel>
 		);
 	} else {
 		return (
-			<Text fontSize={15}>
-				Usernames can contain letters, numbers, underscores, and periods.
-			</Text>
+			<FormLabel fontSize={15}>
+				Usernames can only contain letters and numbers.
+			</FormLabel>
 		);
 	}
 }

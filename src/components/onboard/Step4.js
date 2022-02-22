@@ -14,7 +14,7 @@ import {
 import Header from './Header';
 import { useState, useContext, useRef } from 'react';
 import { firestore } from 'lib/firebase';
-import { UserContext } from 'lib/UserDataProvider';
+import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
 import '@fontsource/poppins';
 import { CUIAutoComplete } from 'chakra-ui-autocomplete';
 import { useRouter } from 'next/router';
@@ -31,7 +31,6 @@ const affiliates = [];
 const Step4 = (props) => {
 	const router = useRouter();
 	const [userDataContext, user] = useContext(UserContext);
-
 	const affiliateCode = useRef();
 	const affiliateBrand = useRef();
 	const [brandArray, setBrandArray] = useState(brands);
@@ -100,15 +99,22 @@ const Step4 = (props) => {
 				<Flex display={{ md: 'flex' }}>
 					<Stack
 						align={{ base: 'center', md: 'stretch' }}
-						textAlign={{ base: 'center', md: 'left' }}
-						mt={{ base: 4, md: 0 }}
-						ml={{ md: 6 }}
+						textAlign={{ base: 'left', md: 'left' }}
+						margin={6}
 					>
 						<Flex flexDirection={'column'}>
-							<Heading size={'lg'} marginBottom='20px'>
-								Affiliate Codes
-							</Heading>
-							<Flex width={'250px'} display='block'>
+						<Heading size={'lg'} 
+								textAlign={{base:'center', md:'left'}}>Affliate codes</Heading>
+								<FormLabel
+									size={'md'}
+									margin='8px'
+									marginLeft='0px'
+									paddingBottom='1rem'
+									textAlign={{base:'center', md:'left'}}
+								>
+									Add your all affiliate codes from below options.
+								</FormLabel>
+							<Flex width={'md'} display='block'>
 								<CUIAutoComplete
 									placeholder='Type a brand'
 									onCreateItem={handleCreateItem}
@@ -117,8 +123,8 @@ const Step4 = (props) => {
 										focusBorderColor: '#E78692',
 										_hover: { borderColor: '#E78692' },
 										borderColor: '#E78592',
-										width: '250px',
-										height: '50px',
+										width: 'lg',
+										height: '50',
 									}}
 									tagStyleProps={{
 										rounded: 'full',
@@ -139,7 +145,7 @@ const Step4 = (props) => {
 								/>
 							</Flex>
 							<Flex
-								width='200px'
+								width='md'
 								style={{ display: showInput ? 'inline' : 'none' }}
 							>
 								<Input
@@ -148,58 +154,58 @@ const Step4 = (props) => {
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
 									borderColor='#E78592'
-									width='250px'
+									width='md'
 									height='50px'
-									fontSize={15}
+									fontSize={'lg'}
 									marginBottom='10px'
 									ref={affiliateCode}
 								/>
 								<Button
 									borderRadius={50}
-									bg={'#ff5151'}
 									bg={'#D7354A'}
 									_hover={{ bg: '#C23043' }}
 									borderRadius={10}
 									color='white'
-									width='250px'
+									width='md'
 									height='50px'
-									fontSize={15}
+									marginBottom='10px'
+									fontSize={'lg'}
 									onClick={handleAffiliates}
 								>
 									Add
 								</Button>
 							</Flex>
 						</Flex>
+						<Flex>
 						{affiliates.map((item, id) => (
-							<Heading value={item} key={id} size='md'>
+							<Heading value={item} key={id} size='md' mb='10px'>
 								{item.brand + ' ' + item.code}
 							</Heading>
 						))}
-						<Flex>
+						</Flex>
+						<Flex justifyContent={'space-between'}>
+								<Button
+									bg={'#D7354A'}
+									_hover={{ bg: '#C23043' }}
+									borderRadius={10}
+									color='white'
+									fontSize={'lg'}
+									width={120}
+									height={50}
+									mr={{base:'40px', md:'0'}}
+									onClick={back}
+								>
+									Back
+								</Button>
 							<Button
-								borderRadius={50}
-								color='white'
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
+								color='white'
 								borderRadius={10}
-								color='white'
-								width='120px'
-								height='50px'
-								marginRight='5px'
-								_hover={{ bg: '#D7354A' }}
-								onClick={back}
-							>
-								Back
-							</Button>
-							<Button
-								borderRadius={50}
-								color='white'
-								bg={'#D7354A'}
-								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
-								color='white'
-								width='120px'
-								height='50px'
+								fontSize={'lg'}
+								width={120}
+								height={50}
+								ml={{base:'170px', md:'0'}}
 								onClick={next}
 							>
 								Submit

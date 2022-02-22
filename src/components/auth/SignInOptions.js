@@ -81,15 +81,14 @@ export function SignInOptions() {
 			<Flex display={{ md: 'flex' }}>
 				<Stack
 					align={{ base: 'center', md: 'stretch' }}
-					textAlign={{ base: 'center', md: 'left' }}
-					mt={{ base: 4, md: 0 }}
-					ml={{ md: 6 }}
+					textAlign={{ base: 'left', md: 'left' }}
+					margin={6}
 				>
 					<Flex flexDirection={'column'}>
 						<Flex style={{ display: !show ? 'block' : 'none' }}>
 							<Text>
-								Verify your phone number to sign in or <br />
-								create a new Candid Account.
+								Verify phone number to sign in or
+								create a new Account.
 							</Text>
 							{/* <Input
 					value={mynumber}
@@ -111,8 +110,8 @@ export function SignInOptions() {
 									bg='white'
 									focusBorderColor='#E78692'
 									height={50}
-									fontSize={18}
-									width={190}
+									fontSize={'lg'}
+									width={'sm'}
 									onChange={(e) => {
 										setNumber(e.target.value);
 									}}
@@ -124,9 +123,9 @@ export function SignInOptions() {
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
-								width={250}
 								height={50}
-								fontSize={18}
+								width={'md'}
+								fontSize={'lg'}
 								marginTop='8px'
 								marginBottom='8px'
 								onClick={signInWithPhone}
@@ -138,19 +137,19 @@ export function SignInOptions() {
 							<Input
 								type='text'
 								bg='white'
+								textAlign={'center'}
 								focusBorderColor='#E78692'
 								_hover={{ borderColor: '#E78592' }}
 								borderColor='#E78592'
+								width={'md'}
 								height={50}
-								width={200}
 								fontSize={18}
 								placeholder={'Enter your OTP'}
 								marginBottom='8px'
 								onChange={(e) => {
 									setOtp(e.target.value);
 								}}
-								width={200}
-							></Input>
+							/>
 
 							<Button
 								display='block'
@@ -158,7 +157,7 @@ export function SignInOptions() {
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
-								width={200}
+								width={'md'}
 								height={50}
 								fontSize={18}
 								marginTop='8px'
@@ -172,7 +171,7 @@ export function SignInOptions() {
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
-								width={200}
+								width={'md'}
 								height={50}
 								fontSize={18}
 								marginTop='8px'
@@ -183,14 +182,13 @@ export function SignInOptions() {
 							</Button>
 						</Flex>
 						<Flex style={{ display: googleShow ? 'block' : 'none' }}>
-							<Text marginTop='8px' marginLeft='24px' fontWeight={'bold'}>
-								{' '}
-								See other ways to Sign In{' '}
+							<Text align={'center'} mt={'20px'} mb={'5px'}>
+								See other ways to Sign In
 							</Text>
 							<Button
 								color='white'
 								borderRadius={10}
-								width={250}
+								width={'md'}
 								height={50}
 								fontSize={18}
 								bg={'#1A8BF7'}
