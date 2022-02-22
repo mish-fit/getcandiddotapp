@@ -166,9 +166,9 @@ const UserDataProvider = (props) => {
     setPhotoURL,
     setAffiliateCodes,
   };
-
+  
   return (
-    <UserContext.Provider value={(userDataContext, user)}>
+    <UserContext.Provider value={[userDataContext, user]}>
       {props.children}
     </UserContext.Provider>
   );
