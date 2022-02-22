@@ -23,6 +23,7 @@ export function ShowLinks({ data }) {
       {buckets.map((item, index) => {
         return (
           <LinksBucket
+            key={index}
             bucketName={buckets[index]}
             data={data.filter((item) => item.bucket === buckets[index])}
           />

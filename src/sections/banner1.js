@@ -47,9 +47,7 @@ const Banner1 = () => {
     image: sectionImage,
   };
 
-  React.useEffect(() => {
-    console.log(locale);
-  }, []);
+  React.useEffect(() => {}, []);
 
   const { title, text, clients, image, subcontent } = BANNER_DATA;
   return (

@@ -1,15 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 const SocialElement = ({ item }) => (
   <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
-    <Image src={item.social_logo} sx={style.social} />
+    <Image
+      src={item.social_logo}
+      alt="Logo for Social Network Websites"
+      sx={style.social}
+    />
     <Text sx={style.socialText}>
       {item && item.social_name && item.social_name.length > 9
         ? item.social_name.slice(0, 10) + ".."

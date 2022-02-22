@@ -18,6 +18,16 @@ import { useUserData } from "../src/lib/hooks";
 import { createStore } from "redux";
 import { rootreducer } from "redux-lib/reducer";
 import { Provider } from "react-redux";
+// import TagManager from "react-gtm-module";
+
+// const tagManagerArgs = {
+//   gtmId: "GTM-NHTWJBD",
+//   dataLayerName: "PageDataLayer",
+// };
+
+// if (typeof window === "undefined") {
+//   TagManager.initialize(tagManagerArgs);
+// }
 
 export default function CustomApp({ Component, pageProps }) {
   const userData = useUserData();

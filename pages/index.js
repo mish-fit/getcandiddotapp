@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { initOptimize } from "analytics/go";
 import "@fontsource/poppins";
 import { pageview } from "react-ga";
+import Script from "next/script";
 
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
@@ -38,7 +39,7 @@ export default function IndexPage() {
   const router = useRouter();
   const variant = useExperiment("65elEA0zTVyfg-IGET3tYA");
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     initOptimize();
     console.log("Variant", variant);
     const handleRouteChange = (url) => {

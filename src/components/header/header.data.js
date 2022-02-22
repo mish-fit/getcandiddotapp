@@ -1,4 +1,4 @@
-export default [
+const menuItems = [
   {
     path: "banner",
     label: "Home",
@@ -15,3 +15,5 @@ export default [
     offset: -70,
   },
 ];
+
+export default menuItems;
