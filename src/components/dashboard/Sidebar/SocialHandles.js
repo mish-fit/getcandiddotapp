@@ -9,7 +9,7 @@ import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 const SocialElement = ({ item }) => (
   <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
-    <Image src={item.social_logo} sx={style.social} />
+    <Image src={item.social_logo} alt={'social logo'} sx={style.social} />
     <Text sx={style.socialText}>
       {item && item.social_name && item.social_name.length > 9
         ? item.social_name.slice(0, 10) + ".."
@@ -29,7 +29,7 @@ export function SocialHandles({ social, data }) {
   return (
     <Container sx={{ px: "10%", mt: "8px", pb: "16px" }}>
       <Text sx={style.heading}>Social Handles</Text>
-      <Grid gap={2} columns={[3, 4, 5, 6, 6, 6]} sx={style.grid}>
+      <Grid gap={2} columns={[4, 4, 5, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}

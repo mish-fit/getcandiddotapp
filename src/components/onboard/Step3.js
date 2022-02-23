@@ -10,30 +10,31 @@ import {
 	FormErrorMessage,
 	FormHelperText,
 	Progress,
+	Image,
 	Button,
 } from '@chakra-ui/react';
 import Header from './Header';
 import { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from 'lib/UserDataProvider';
-import Image from 'next/image'
 import '@fontsource/poppins';
 import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
-
+import { authapi, s3url } from "lib/api";
 const Step3 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
-
   const [image, setImage] = useState({ preview: "", raw: "" });
-  const [imageName, setImageName] = useState('');
+  // const [imageName, setImageName] = useState('');
   const [imageSelected, setImageSelected] = useState(false);
 	// const [photo, setPhoto]=useState(null);
 
 	useEffect(()=>{
-		console.log(image);
+
+		console.log('Step3', userDataContext.userData);
+		// console.log(userDataContext.userSignInInfo.user.uid);
 		if(image.preview!==''){
 			setImageSelected(true);
 		}
-	},[image])
+	},[image, userDataContext.userData])
 	// console.log(userDataContext.userData);
 	// console.log(userDataContext.userSignInInfo);
 
@@ -57,12 +58,13 @@ const Step3 = (props) => {
     // console.log(image);
     const formData = new FormData();
     formData.append("image", image.raw);
-    UploadImageToS3WithNativeSdk(image.raw, imageName);
+    UploadImageToS3WithNativeSdk(image.raw, userDataContext.userSignInInfo.user.uid);
   };
 
 	const next = (e) => {
 		e.preventDefault();
 		// console.log(image.preview+image.raw+"jj"+imageName+"jj"+imageSelected);
+		userDataContext.setProfileImage(s3url+userDataContext.userData.username+".png");
 		if (userDataContext.userData.name === '') {
 			userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
@@ -107,7 +109,7 @@ const Step3 = (props) => {
 							</Flex>
 							{/* <Input type='file' bg='white' onChange={handleChange}/> */}
 							<Flex style={{ display: imageSelected ? 'block' : 'none' }} marginLeft='2px' marginBottom='10px'>
-								<img src={image.preview} width="240" height="240" alt="profile picture" />
+								<Image src={image.preview} width="240" height="240" alt="profile picture" />
 							</Flex>
 
 							{/* <Button

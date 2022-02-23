@@ -8,8 +8,7 @@ const userData = {
   username: "",
   mail: "",
   phone: "+91",
-  photo: null,
-  photoURL: "",
+  profile_image: "",
   affiliateCodes: [],
 };
 
@@ -65,12 +64,12 @@ const userDataReducer = (state, action) => {
         phone: action.payload,
       },
     };
-  } else if (action.type === "PHOTO_URL") {
+  } else if (action.type === "PROFILE_IMAGE") {
     return {
       ...state,
       userData: {
         ...state.userData,
-        photoURL: action.payload,
+        profile_image: action.payload,
       },
     };
   } else if (action.type === "SET_AFFILIATE_CODES") {
@@ -95,8 +94,7 @@ const initialState = {
   setUsername: () => {},
   setMail: () => {},
   setPhone: () => {},
-  setPhotoURL: () => {},
-  setPhoto: () => {},
+  setProfileImage: () => {},
   setAffiliateCodes: () => {},
 };
 export const UserContext = createContext(initialState);
@@ -145,11 +143,8 @@ const UserDataProvider = (props) => {
   const setPhone = (phone) => {
     dataDispatcher({ type: "PHONE", payload: phone });
   };
-  const setPhotoURL = (photoURL) => {
-    dataDispatcher({ type: "PHOTO_URL", payload: photoURL });
-  };
-  const setPhoto = (photo) => {
-    dataDispatcher({ type: "NAME", payload: photo });
+  const setProfileImage = (profile_image) => {
+    dataDispatcher({ type: "PROFILE_IMAGE", payload: profile_image });
   };
   const setAffiliateCodes = (affiliateCode) => {
     dataDispatcher({ type: "SET_AFFILIATE_CODES", payload: affiliateCode });
@@ -162,8 +157,7 @@ const UserDataProvider = (props) => {
     setUsername,
     setMail,
     setPhone,
-    setPhoto,
-    setPhotoURL,
+    setProfileImage,
     setAffiliateCodes,
   };
   

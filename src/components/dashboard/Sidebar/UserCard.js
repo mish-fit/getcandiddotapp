@@ -62,9 +62,9 @@ const style = {
   },
   coverPhotoView: {
     borderTopRadius: "16px",
-    backgroundColor: "yellow",
-    width: "448px",
-    height: "248px",
+    backgroundColor: "white",
+    width: ["0px","448px","448px","448px","448px","448px"],
+    height: ["50px", "248px","248px","248px","248px","248px"],
     justifyContent: "flex-start",
   },
   userPhotoView: {
@@ -93,6 +93,8 @@ const style = {
     fontWeight: "400",
   },
   coverPhoto: {
+    display:['none', 'inline', 'inline', 'inline', 'inline', 'inline'],
+    // mt: ["-150px" ,"0px","0px","0px","0px","0px"],
     textAlign: "center",
     borderRadius: "16px",
   },
@@ -101,6 +103,7 @@ const style = {
     borderRadius: "148px",
   },
   userName: {
+    mt: '-20px',
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "24px",
