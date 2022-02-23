@@ -34,7 +34,7 @@ const Step6 = (props) => {
     const batch = firestore.batch();
     batch.set(userDoc, {
       username: ctx.userData.username,
-      displayName: ctx.userData.name,
+      name: ctx.userData.name,
       mail: ctx.userData.mail,
       phone: ctx.userData.phone,
       affiliateCodes: ctx.userData.affiliateCodes,

@@ -23,8 +23,11 @@ const Step1 = (props) => {
 	const [formValue, setFormValue] = useState('');
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
-
 	const [userDataContext, user] = useContext(UserContext);
+
+	useEffect(()=>{
+		console.log('Step1', userDataContext.userData);
+	})
 
 	const checkUsername = useMemo(
 		() =>
@@ -74,8 +77,8 @@ const Step1 = (props) => {
 			batch.set(userDoc, {
 				username: formValue,
 				mail: userDataContext.userSignInInfo.user.email,
-				photoURL: userDataContext.userSignInInfo.user.photoURL,
-				displayName: userDataContext.userSignInInfo.user.displayName,
+				profile_image: userDataContext.userSignInInfo.user.photoURL,
+				name: userDataContext.userSignInInfo.user.displayName,
 			});
 			batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
 			await batch.commit();
@@ -84,8 +87,8 @@ const Step1 = (props) => {
 		if (userDataContext.userSignInInfo.user.email === null) {
 			userDataContext.setPhone(userDataContext.userSignInInfo.user.phoneNumber);
 		} else {
-			userDataContext.setName(userDataContext.userSignInInfo.user.name);
-			userDataContext.setMail(userDataContext.userSignInInfo.user.mail);
+			userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
+			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
 		}
 		props.nextStep();
 	};

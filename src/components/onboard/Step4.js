@@ -10,14 +10,18 @@ import {
 	FormErrorMessage,
 	FormHelperText,
 	Button,
+	useToast,
 } from '@chakra-ui/react';
 import Header from './Header';
-import { useState, useContext, useRef } from 'react';
 import { firestore } from 'lib/firebase';
+import { useState, useContext, useRef, useEffect } from 'react';
 import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
 import '@fontsource/poppins';
 import { CUIAutoComplete } from 'chakra-ui-autocomplete';
 import { useRouter } from 'next/router';
+import { nanoid } from 'nanoid';
+import { authapi } from "lib/api";
+import axios from 'axios';
 
 const brands = [
 	{ value: 'amazon', label: 'Amazon' },
@@ -26,16 +30,24 @@ const brands = [
 	{ value: 'myntra', label: 'Myntra' },
 ];
 
-const affiliates = [];
-
 const Step4 = (props) => {
 	const router = useRouter();
+	const toast=  useToast();
 	const [userDataContext, user] = useContext(UserContext);
 	const affiliateCode = useRef();
 	const affiliateBrand = useRef();
 	const [brandArray, setBrandArray] = useState(brands);
 	const [selectedItems, setSelectedItems] = useState([]);
 	const [showInput, setShowInput] = useState(false);
+	const [affiliates, setAffiliates]= useState({});
+	const [codes_array, set_code_array]=useState([]);
+	// const codes_array = [];
+	
+	useEffect(()=>{
+		console.log('AC', codes_array);
+		console.log('Step4', userDataContext.userData);
+	})
+
 	const handleCreateItem = (item) => {
 		setBrandArray((curr) => [...curr, item]);
 		setSelectedItems((curr) => [...curr, item]);
@@ -55,11 +67,22 @@ const Step4 = (props) => {
 		// console.log(affiliates);
 		// console.log(affiliateCode.current.value);
 		// console.log(selectedItems[selectedItems.length-1].value);
-		affiliates.push({
-			brand: selectedItems[selectedItems.length - 1].value,
-			code: affiliateCode.current.value,
-		});
-		console.log(affiliates);
+		affiliates[selectedItems[selectedItems.length - 1].value] = affiliateCode.current.value;
+		setAffiliates(affiliates);
+		const new_codes_array = codes_array;
+		new_codes_array.push({
+			'id':'',
+		 	'u_id':userDataContext.userSignInInfo.user.uid,
+			'u_name':userDataContext.userData.name,
+			'br_id':'',
+			'br_name': selectedItems[selectedItems.length - 1].value,
+			'aff_link': '',
+			'aff_code': affiliateCode.current.value,
+			'others':{}
+		})
+		set_code_array(new_codes_array);
+		// console.log(codes_array);
+		// console.log(affiliates);
 		setShowInput(false);
 	};
 
@@ -73,12 +96,74 @@ const Step4 = (props) => {
 		const batch = firestore.batch();
 		batch.set(userDoc, {
 			username: userDataContext.userData.username,
-			displayName: userDataContext.userData.name,
+			name: userDataContext.userData.name,
 			mail: userDataContext.userData.mail,
 			phone: userDataContext.userData.phone,
 			affiliateCodes: affiliates,
 		});
 		await batch.commit();
+		
+		const u_data =	{
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"u_name": userDataContext.userData.name,
+			"u_profile_image": userDataContext.userData.profile_image,
+			"u_cover_image": "",
+			"u_uuid": userDataContext.userData.username,
+			"u_email": userDataContext.userData.mail,
+			"u_phone": userDataContext.userData.phone,
+			"u_gender": "",
+			"u_dob": "",
+			"expo_token": "",
+			"device_token": "",
+			"u_language": "en",
+			"aff_ids":affiliates,
+			"others": {
+				"twitter": "",
+				"instagram": ""
+			}
+		}
+
+	axios(
+		{
+			method: "post",
+			url: `${authapi}user/add`,
+			data:  u_data ,
+			options: origin,
+		},
+		{ timeout: 5000 }
+	)
+		.then((res) => {
+			console.log("Success", res.data);
+			toast({
+				title: "New User Added",
+				description: "",
+				status: "success",
+				duration: 1000,
+				isClosable: true,
+			});
+		})
+
+		axios(
+			{
+				method: "post",
+				url: `${authapi}affcodes`,
+				data:  {codes_array: JSON.stringify(codes_array)} ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success", res.data);
+				toast({
+					title: "Aff codes Added",
+					description: "",
+					status: "success",
+					duration: 1000,
+					isClosable: true,
+				});
+			})
+		.catch((e) => console.log(e));
+
 		router.push('/dashboard');
 	};
 
@@ -139,7 +224,6 @@ const Step4 = (props) => {
 									}}
 									selectedItems={selectedItems}
 									onSelectedItemsChange={(changes) => {
-										// console.log(changes);
 										handleSelectedItemsChange(changes.selectedItems);
 									}}
 								/>
@@ -161,7 +245,6 @@ const Step4 = (props) => {
 									ref={affiliateCode}
 								/>
 								<Button
-									borderRadius={50}
 									bg={'#D7354A'}
 									_hover={{ bg: '#C23043' }}
 									borderRadius={10}
@@ -176,10 +259,11 @@ const Step4 = (props) => {
 								</Button>
 							</Flex>
 						</Flex>
-						<Flex>
-						{affiliates.map((item, id) => (
+						<Flex flexDirection={'column'}>
+						{Object.keys(affiliates).map((item, id) => (
 							<Heading value={item} key={id} size='md' mb='10px'>
-								{item.brand + ' ' + item.code}
+								{item+ ' ' +affiliates[item]}
+								<br></br>
 							</Heading>
 						))}
 						</Flex>

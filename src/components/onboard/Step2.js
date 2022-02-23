@@ -31,7 +31,9 @@ const Step2 = (props) => {
 
 	const [userDataContext, user] = useContext(UserContext);
 
-	// console.log('Step2', userDataContext.userData);
+	useEffect(()=>{
+		console.log('Step2', userDataContext.userData);
+	})
 
 	useEffect(() => {
 		if (userDataContext.userData.phone === '+91') {
@@ -40,7 +42,7 @@ const Step2 = (props) => {
 
 		setShowLink(false);
 		setInfo(false);
-	}, [userDataContext.userSignInInfo.user.mail]);
+	}, [userDataContext]);
 
 	const SignInWithGoogle = () => {
 		auth.currentUser
@@ -71,12 +73,13 @@ const Step2 = (props) => {
 		e.preventDefault();
 		if (userDataContext.userData.mail === null) {
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
+			// userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 		}
 		if (userDataContext.userData.mail !== null) {
 			userDataContext.setMail(state.mail);
 		}
 		userDataContext.setName(state.name);
-		// userDataContext.setMail(state.mail);
+		console.log('Next', userDataContext.userData);
 		props.nextStep();
 	};
 

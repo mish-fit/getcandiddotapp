@@ -12,6 +12,7 @@ import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
 import React from "react";
+import { auth } from 'lib/firebase';
 import {
   Menu,
   MenuButton,
@@ -23,6 +24,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 
 export default function Header({ menu, menuActive, data }) {
   const { locale } = useRouter();
+  const router = useRouter();
   const lang = translation[locale].HeaderSection.Header;
   const [active, setActive] = React.useState(menuActive);
   const toast = useToast();
@@ -34,16 +36,20 @@ export default function Header({ menu, menuActive, data }) {
 
   const editProfile = () => {};
 
-  const signout = () => {};
+  const signout = () => {
+    auth.signOut();
+    router.push('/auth');
+  };
 
   const linkClick = () => {
-    toast({
-      title: "Link Copied",
-      description: "Add you Candid link to Instagram Bio",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
+    router.push(data[0].u_name)
+    // toast({
+    //   title: "Link Copied",
+    //   description: "Add you Candid link to Instagram Bio",
+    //   status: "success",
+    //   duration: 5000,
+    //   isClosable: true,
+    // });
   };
 
   return (
@@ -83,6 +89,7 @@ export default function Header({ menu, menuActive, data }) {
 
 const styles = {
   userImage: {
+    display:['none', 'none', 'none', 'inline', 'inline', 'inline'],
     height: "48px",
     width: "48px",
     borderRadius: "48px",
@@ -135,7 +142,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: "16px",
+    py: [ "0px", "0px", "16px","16px","16px","16px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",

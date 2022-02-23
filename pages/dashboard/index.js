@@ -3,7 +3,8 @@
 import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../src/lib/UserDataProvider";
+// import { UserContext } from "../../src/lib/UserDataProvider";
+import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
 import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
@@ -38,7 +39,8 @@ export default function Dashboard({
   cookie,
   masterSocials,
 }) {
-  const ctx = useContext(UserContext);
+  const [userDataContext] = useContext(UserContext);
+  console.log(userDataContext.userSignInInfo.user);
   const [menuClick, setMenuClick] = React.useState(false);
   const [summary, setSummary] = React.useState({});
 

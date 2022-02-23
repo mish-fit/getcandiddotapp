@@ -7,9 +7,17 @@ import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { Link as ScrollLink } from "react-scroll";
 import menuItems from "./header.data";
 import Logo from "components/logo";
+import { auth } from 'lib/firebase';
+import { useRouter } from "next/router";
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
+  const router= useRouter();
+  
+  const signout = () => {
+    auth.signOut();
+    router.push('/auth');
+  };
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
@@ -40,7 +48,7 @@ const MobileDrawer = () => {
           </Box>
 
           <Box sx={styles.menuFooter}>
-            <Button variant="primary" sx={styles.button}>
+            <Button variant="primary" onClick={signout} sx={styles.button}>
               Sign Out
             </Button>
           </Box>

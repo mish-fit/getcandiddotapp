@@ -43,7 +43,7 @@ export function UserSummary({ data }) {
                 onClick={onClickProducts}
                 sx={activeTab == 0 ? style.buttonText : style.buttonText1}
               >
-                Products
+                {data.products} Products
               </Button>
             </Flex>
           </ScrollLink>
@@ -61,14 +61,14 @@ export function UserSummary({ data }) {
                 onClick={onClickLinks}
                 sx={activeTab > 0 ? style.buttonText : style.buttonText1}
               >
-                Links
+                {data.links} Links
               </Button>
             </Flex>
           </ScrollLink>
         </Flex>
       </Container>
 
-      <Flex sx={style.summaryView}>
+      {/* <Flex sx={style.summaryView}>
         <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
           Products
         </Text>
@@ -83,7 +83,7 @@ export function UserSummary({ data }) {
         <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
           {data.links}
         </Text>
-      </Flex>
+      </Flex> */}
     </Container>
   );
 }

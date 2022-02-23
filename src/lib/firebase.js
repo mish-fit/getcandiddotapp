@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
 
-export const firebaseConfig1 = {
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
@@ -14,18 +14,8 @@ export const firebaseConfig1 = {
   serviceAccountId: process.env.FIREBASE_SERVICE_ACCOUNT,
 };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBL9L1-5vFc80lqmq-BYr9FeQGdb2wK30s",
-  authDomain: "next-fb-a40b1.firebaseapp.com",
-  projectId: "next-fb-a40b1",
-  storageBucket: "next-fb-a40b1.appspot.com",
-  messagingSenderId: "257746265203",
-  appId: "1:257746265203:web:9044c10ded32f6bd1b7606",
-  measurementId: "G-HPKDN95PE9",
-};
-
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig1);
+  firebase.initializeApp(firebaseConfig);
 }
 
 export const auth = firebase.auth();
