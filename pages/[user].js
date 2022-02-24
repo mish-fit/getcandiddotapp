@@ -24,9 +24,24 @@ export default function User({ links, recos, user, socials }) {
 
   if (!recos.length && !links.length) {
     return (
-      <Flex sx={styles.lottie}>
-        <Lottie animationData={smm} />
-      </Flex>
+      <div>
+        <Flex as="container" sx={styles.container}>
+          <Flex as="sidebar" sx={styles.sidebar}>
+            <Sidebar socials={socials} user={user} summary={summary} />
+          </Flex>
+          <Flex as="mainscreen" sx={styles.mainscreen}>
+            <Flex
+              sx={{
+                height: ["400px", "400px", "400px", "700px", "800px", "900px"],
+                justifyContent: "center",
+                flex: 1,
+              }}
+            >
+              <Lottie animationData={smm} />
+            </Flex>
+          </Flex>
+        </Flex>
+      </div>
     );
   }
 
