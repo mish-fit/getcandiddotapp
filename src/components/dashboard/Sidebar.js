@@ -41,7 +41,7 @@ export function Sidebar({
       .catch((error) => {
         console.log(error);
       });
-  }, [isOpenSocialModal]);
+  }, [isOpenSocialModal, user]);
 
   const onCloseSocialModal = (item) => {
     console.log("close");
@@ -53,7 +53,7 @@ export function Sidebar({
     <Box
       sx={{
         backgroundColor: "white",
-        mr:["25px", "0px","0px","0px","0px","0px"],
+        mr:["50px", "0px","0px","0px","0px","0px"],
         borderRadius: "16px",
         boxShadow: [" " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)"],
       }}

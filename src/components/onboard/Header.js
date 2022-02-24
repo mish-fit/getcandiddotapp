@@ -1,5 +1,5 @@
-import { Box, Heading, Flex, Text, Button, Progress } from '@chakra-ui/react';
-import Logo from 'components/logo';
+import { Box, Heading, Flex, Button, Image, Progress } from '@chakra-ui/react';
+import logo from "assets/CaNDiD.png";
 import { useEffect, useState } from 'react';
 const Header = (props) => {
 	// const [zero, setZero]=useState(false);
@@ -22,14 +22,18 @@ const Header = (props) => {
 			// borderWidth={2}
 			// borderColor='gray'
 		>
-			{/* <Flex as="logo">
-            <Logo />
-          </Flex> */}
-			<Flex align='center' mr={5}>
-				<Heading as='h1' size='lg' color='#D7354A' letterSpacing={'-.1rem'}>
+			{/* <Flex align='center' mr={5}> */}
+			<Image
+				height={70}
+				w={210}
+        src={logo}
+        alt="startup landing logo"
+      />
+
+				{/* <Heading as='h1' size='lg' color='#D7354A' letterSpacing={'-.1rem'}>
 					Candid
-				</Heading>
-			</Flex>
+				</Heading> */}
+			{/* </Flex> */}
 			{/* <Flex style={{ display: zero ? 'block' : 'none' }}> */}
 			<Progress
 				value={props.value}

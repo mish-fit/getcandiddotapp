@@ -11,6 +11,7 @@ import menuItems from "./header.data";
 import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
+import { HStack } from "@chakra-ui/react";
 
 export default function Header({ className }) {
   const { locale } = useRouter();
@@ -19,8 +20,13 @@ export default function Header({ className }) {
     <DrawerProvider>
       <header sx={styles.header} className={className}>
         <Container sx={styles.container}>
-          <Flex>
+          <Flex justifyContent={'space-between'}>
+            <HStack>
             <Logo />
+            </HStack>
+            <HStack>
+            <MobileDrawer/>
+            </HStack>
           </Flex>
           <Flex as="nav" sx={styles.nav}>
             {menuItems.map(({ path, label, offset }, i) => (
@@ -44,8 +50,6 @@ export default function Header({ className }) {
               {translation[locale].HeaderSection.Blog}
             </Text>
           </Flex>
-
-          <MobileDrawer />
         </Container>
       </header>
     </DrawerProvider>

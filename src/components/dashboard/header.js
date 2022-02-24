@@ -68,6 +68,7 @@ export default function Header({ menu, menuActive, data }) {
             <MenuButton as={Button}>
               <Image
                 sx={styles.userImage}
+                alt={'profile img'}
                 src={
                   data[0].u_profile_image && data[0].u_profile_image != ""
                     ? data[0].u_profile_image

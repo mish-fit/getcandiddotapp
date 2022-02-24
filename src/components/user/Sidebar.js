@@ -18,8 +18,9 @@ export function Sidebar({ socials, user, summary }) {
     <Box
       sx={{
         backgroundColor: "white",
+        mr:["50px", "0px","0px","0px","0px","0px"],
         borderRadius: "16px",
-        boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.5)",
+        boxShadow: [" " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)"],
       }}
     >
       <UserCard data={user} />

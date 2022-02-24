@@ -13,7 +13,7 @@ export function UserCard({ data }) {
 
   React.useEffect(() => {
     console.log("user data", data);
-  }, []);
+  }, [data]);
 
   const addLinks = () => {
     console.log("add links");
@@ -24,6 +24,7 @@ export function UserCard({ data }) {
       <Container sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
+          alt={'cover img'}
           src={
             data[0].u_cover_image && data[0].u_cover_image != ""
               ? data[0].u_cover_image
@@ -34,6 +35,7 @@ export function UserCard({ data }) {
       <Container sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
+          alt={'profile img'}
           src={
             data[0].u_profile_image && data[0].u_profile_image != ""
               ? data[0].u_profile_image
