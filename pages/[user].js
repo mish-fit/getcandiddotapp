@@ -9,42 +9,37 @@ import { Sidebar } from "components/user/Sidebar";
 import { MainScreen } from "components/user/MainScreen";
 import Lottie from "lottie-react";
 import smm from "../public/lottie/smn.json";
+import { UserNotFound } from "components/user/UserNotFound";
 
 export default function User({ links, recos, user, socials }) {
   const [summary, setSummary] = React.useState({});
-  const [isExists, setExists] = React.useState(false);
-  const [isEmpty, setEmpty] = React.useState(false);
 
-  React.useEffect(() => {
-    console.log("user ", user, links, socials, recos);
-    setSummary({ products: recos.length, links: links.length });
-    if (user.length == 0) {
-      setExists(true);
-    } else if (recos.length == 0 && links.length == 0) {
-      setEmpty(true);
-    }
-  }, [recos, links]);
+  if (!user.length) {
+    return (
+      <Flex sx={{ width: "100%", height: "100%", flex: 1 }}>
+        <UserNotFound />
+      </Flex>
+    );
+  }
+
+  if (!recos.length && !links.length) {
+    return (
+      <Flex sx={styles.lottie}>
+        <Lottie animationData={smm} />
+      </Flex>
+    );
+  }
 
   return (
     <div>
-      {isExists ? (
-        <Flex sx={styles.lottie}>
-          <Lottie animationData={smm} />
+      <Flex as="container" sx={styles.container}>
+        <Flex as="sidebar" sx={styles.sidebar}>
+          <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
-      ) : isEmpty ? (
-        <Flex sx={styles.lottie}>
-          <Lottie animationData={smm} />
+        <Flex as="mainscreen" sx={styles.mainscreen}>
+          <MainScreen links={links} recos={recos} user={user} />
         </Flex>
-      ) : (
-        <Flex as="container" sx={styles.container}>
-          <Flex as="sidebar" sx={styles.sidebar}>
-            <Sidebar socials={socials} user={user} summary={summary} />
-          </Flex>
-          <Flex as="mainscreen" sx={styles.mainscreen}>
-            <MainScreen links={links} recos={recos} user={user} />
-          </Flex>
-        </Flex>
-      )}
+      </Flex>
     </div>
   );
 }

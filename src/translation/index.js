@@ -3,7 +3,7 @@ export const translation = {
     HeaderSection: {
       Header: ["Home", "Features", "FAQs"],
       Blog: "Blog",
-      Title: "Single page for all your affiliate links",
+      Title: "Single page for all your Recommendations",
       SubTitle:
         "Recommend amazing products to your network and earn money when they buy from your page",
       ImageTitle: "I love this product",
