@@ -65,7 +65,7 @@ export function UserSummary({ data }) {
           Products
         </Text>
         <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
-          {data.products}
+          {data.products || "0"}
         </Text>
       </Flex>
       <Flex sx={style.summaryView}>
@@ -73,7 +73,7 @@ export function UserSummary({ data }) {
           Links
         </Text>
         <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
-          {data.links}
+          {data.links || "0"}
         </Text>
       </Flex>
     </Container>
