@@ -20,14 +20,14 @@ const SocialElement = ({ item }) => (
 // Add a custom Link
 export function SocialHandles({ data }) {
   return (
-    <Container sx={{ px: "10%", mt: "8px", pb: "16px" }}>
+    <Flex sx={{ px: ["1%","1%","10%","10%","10%","10%"], mt: "8px", pb: "16px", flexDirection:"column"}}>
       <Text sx={style.heading}>Social Handles</Text>
-      <Grid gap={2} columns={[4, 4, 5, 6, 6, 6]} sx={style.grid}>
+      <Grid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
       </Grid>
-    </Container>
+    </Flex>
   );
 }
 
@@ -40,6 +40,7 @@ const style = {
     py: "8px",
   },
   socialView: {
+    ml:['50px','50px','50px','10px','10px','10px'],
     textAlign: "center",
     cursor: "pointer",
     justifyContent: "center",

@@ -15,17 +15,20 @@ export function Sidebar({ socials, user, summary }) {
   React.useEffect(() => {}, []);
 
   return (
-    <Box
+    <Flex
       sx={{
-        backgroundColor: "white",
-        mr:["50px", "0px","0px","0px","0px","0px"],
+        // mt:'-200px',
+        flexDirection: 'column',
+        // width:'100%',
+        // backgroundColor: "yellow",
+        // mr:["50px", "0px","0px","0px","0px","0px"],
         borderRadius: "16px",
-        boxShadow: [" " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)"],
+        boxShadow: [" " ," " ," " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)","0 0 4px 1px rgba(0, 0, 0, 0.5)","0 0 4px 1px rgba(0, 0, 0, 0.5)"],
       }}
     >
       <UserCard data={user} />
       <UserSummary data={summary} />
       <SocialHandles data={currentSocials} />
-    </Box>
+    </Flex>
   );
 }

@@ -18,7 +18,7 @@ export function ProductsCard({ item }) {
     <Flex sx={style.container}>
       <Flex sx={style.imageMaster}>
         <Flex sx={style.imageContainer}>
-          <Image src={"/user/mobile.png"} sx={style.image} />
+          <Image src={"/user/mobile.png"} alt='img' sx={style.image} />
         </Flex>
       </Flex>
       <Flex sx={style.detailsContainer}>
@@ -40,11 +40,12 @@ const style = {
   container: {
     flexDirection: "row",
     p: "8px",
+    py: "16px",
     backgroundColor: "white",
     borderRadius: "16px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
-    mx: "16px",
     width: ["448px", "448px", "350px", "350px", "448px", "448px"],
+    mx: "16px",
     my: "16px",
   },
   imageMaster: {

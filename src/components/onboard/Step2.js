@@ -5,6 +5,7 @@ import {
 	Flex,
 	Stack,
 	Container,
+	Textarea,
 	FormControl,
 	FormLabel,
 	FormErrorMessage,
@@ -24,6 +25,7 @@ const Step2 = (props) => {
 	const [state, setState] = useState({
 		name: '',
 		mail: '',
+		about: ''
 	});
 	const [showLink, setShowLink] = useState(false);
 	const [mailInput, setMailInput] = useState(true);
@@ -33,7 +35,7 @@ const Step2 = (props) => {
 
 	useEffect(()=>{
 		console.log('Step2', userDataContext.userData);
-	})
+	},[])
 
 	useEffect(() => {
 		if (userDataContext.userData.phone === '+91') {
@@ -75,15 +77,17 @@ const Step2 = (props) => {
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
 			// userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 		}
-		if (userDataContext.userData.mail !== null) {
-			userDataContext.setMail(state.mail);
-		}
+		// if (userDataContext.userData.mail !== null) {
+		// 	userDataContext.setMail(state.mail);
+		// }
+		
 		userDataContext.setName(state.name);
+		userDataContext.setAbout(state.about);
 		console.log('Next', userDataContext.userData);
 		props.nextStep();
 	};
 
-	const onChange = (e) => {
+	const onChangeMail = (e) => {
 		// console.log(state.name, state.mail);
 		setState({
 			...state,
@@ -106,6 +110,15 @@ const Step2 = (props) => {
 		});
 		console.log(e.target.value);
 	};
+
+	const onChangeAbout = (e) => {
+		setState({
+			...state,
+			[e.target.name]: e.target.value,
+		});
+		console.log(e.target.value);
+	};
+
 	const back = (e) => {
 		e.preventDefault();
 		props.prevStep();
@@ -126,8 +139,7 @@ const Step2 = (props) => {
 						textAlign={{ base: 'left', md: 'left' }}
 						margin={6}
 					>
-						<Flex>
-							<form onSubmit={next}>
+						<Flex flexDirection={'column'}>
 								{/* <Heading size={'lg'} marginBottom="16px" >Enter User Details</Heading> */}
 								<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
 								<FormLabel
@@ -152,10 +164,27 @@ const Step2 = (props) => {
 									height= {50}
 									width={'md'}
 									fontSize={'lg'}
-									marginBottom='8px'
+									marginBottom='20px'
 									defaultValue={userDataContext.userSignInInfo.user.displayName}
 									type='text'
 									onChange={onChangeName}
+								/>
+								<FormLabel 
+									fontSize={'lg'}>About</FormLabel>
+								<Textarea
+									name='about'
+									type='text'
+									bg='white'
+									display='block'
+									focusBorderColor='#E78692'
+									_hover={{ borderColor: '#E78592' }}
+									borderColor='#E78592'
+									fontSize={'lg'}
+									width={'md'}
+									height={100}
+									placeholder='Tell us about you'
+									marginBottom='20px'
+									onChange={onChangeAbout}
 								/>
 								<Flex style={{ display: mailInput ? 'block' : 'none' }}>
 									<FormLabel 
@@ -171,7 +200,7 @@ const Step2 = (props) => {
 										width={'md'}
 										fontSize={'lg'}
 										marginBottom='20px'
-										onChange={onChange}
+										onChange={onChangeMail}
 									/>
 								</Flex>
 								<Text
@@ -216,12 +245,11 @@ const Step2 = (props) => {
 									width={120}
 									height={50}
 									mr={{base:'0', md:'200'}}
-									type='submit'
+									onClick={next}
 								>
 									Next
 								</Button>
 								</Flex>
-							</form>
 						</Flex>
 					</Stack>
 				</Flex>

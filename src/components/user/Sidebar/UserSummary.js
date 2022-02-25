@@ -4,9 +4,10 @@ import { jsx, Container, Flex, Image, Text, Grid, Button } from "theme-ui";
 
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
-
+import { useMediaQuery } from '@chakra-ui/react';
 // Add a custom Link
 export function UserSummary({ data }) {
+  const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
   const [activeTab, setActiveTab] = React.useState(0);
 
   const onClickProducts = () => {
@@ -35,7 +36,7 @@ export function UserSummary({ data }) {
                 onClick={onClickProducts}
                 sx={activeTab == 0 ? style.buttonText : style.buttonText1}
               >
-                {data.products} Products
+                { isLargerThan768 ? '' : data.products } Products
               </Button>
             </Flex>
           </ScrollLink>
@@ -53,14 +54,14 @@ export function UserSummary({ data }) {
                 onClick={onClickLinks}
                 sx={activeTab > 0 ? style.buttonText : style.buttonText1}
               >
-                {data.links} Links
+                { isLargerThan768 ? '' : data.links } Links
               </Button>
             </Flex>
           </ScrollLink>
         </Flex>
       </Container>
 
-      {/* <Flex sx={style.summaryView}>
+      <Flex sx={style.summaryView}>
         <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
           Products
         </Text>
@@ -75,7 +76,7 @@ export function UserSummary({ data }) {
         <Text sx={activeTab > 0 ? style.summaryText : style.summaryText1}>
           {data.links || "0"}
         </Text>
-      </Flex> */}
+      </Flex>
     </Container>
   );
 }
@@ -89,11 +90,12 @@ const style = {
     mt: "16px",
   },
   buttonContainer: {
-    width: "448px",
     justifyContent: "space-around",
-    mb: "8px",
+    // mx: ["5%","5%","5%","-5%","-5%","-5%"],
+    my: "2%",
   },
   summaryView: {
+    // display:['none', 'none', 'block', 'block', 'block', 'block'],
     flexDirection: "row",
     justifyContent: "space-between",
     mx: "10%",
@@ -101,13 +103,14 @@ const style = {
   },
   button: {
     backgroundColor: "#D7354A",
+    // mr:"50px",
     borderRadius: "24px",
     borderColor: "#D7354A",
     py: "8px",
-
     width: "148px",
   },
   summaryText: {
+    display:['none', 'none', 'inline', 'inline', 'inline', 'inline'],
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "16px",
@@ -124,6 +127,7 @@ const style = {
     cursor: "pointer",
   },
   button1: {
+    // ml:"50px",
     backgroundColor: "white",
     borderRadius: "24px",
     borderColor: "#D7354A",
@@ -149,6 +153,7 @@ const style = {
     mt: "8px",
   },
   summaryText1: {
+    display:['none', 'none', 'inline', 'inline', 'inline', 'inline'],
     fontWeight: "medium",
     fontFamily: "Poppins",
     fontSize: "16px",

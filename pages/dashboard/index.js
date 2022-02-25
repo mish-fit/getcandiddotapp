@@ -50,7 +50,7 @@ export default function Dashboard({
     auth.onAuthStateChanged((user) => {
       localStorage.setItem("jwt", user.toJSON().stsTokenManager.accessToken);
     });
-  }, []);
+  }, [links.length, recos.length]);
 
   const menuActivate = (item) => {
     setMenuClick(item);
@@ -149,7 +149,8 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    mt: "96px",
+    // backgroundColor:'green',
+    mt: ["","","100px","100px","100px","100px"],
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -161,6 +162,9 @@ const styles = {
     flex: [1, 1, 1, 2, 2, 2],
   },
   sidebar: {
+    mt: "96px",
+    width:'100%',
+    // backgroundColor:'red',
     flex: 1,
     pl: "8px",
     pt: "16px",

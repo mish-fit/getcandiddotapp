@@ -36,6 +36,7 @@ export function AddButtons({ addLink, addProduct }) {
       <Button as="addbutton" sx={styles.addbutton} onClick={addLinks}>
         <Flex
           sx={{
+            ml:["80px", "80px","0px","0px", "0px", "0px"],
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
@@ -51,9 +52,9 @@ export function AddButtons({ addLink, addProduct }) {
 
 const styles = {
   container: {
-    px: "10%",
+    // px: "10%",
     mb: "16px",
-    justifyContent: "flex-end",
+    justifyContent: ["flex-start","flex-start","flex-end","flex-end","flex-end","flex-end"],
     alignItems: "flex-start",
   },
   addbutton: {
@@ -64,7 +65,7 @@ const styles = {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
-    ml: "16px",
+    // ml: "16px",
     color: "#D7354A",
     flexDirection: "row",
     cursor: "pointer",

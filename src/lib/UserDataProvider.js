@@ -8,6 +8,7 @@ const userData = {
   username: "",
   mail: "",
   phone: "+91",
+  about: '',
   profile_image: "",
   affiliateCodes: [],
 };
@@ -64,6 +65,14 @@ const userDataReducer = (state, action) => {
         phone: action.payload,
       },
     };
+  } else if (action.type === "ABOUT") {
+    return {
+      ...state,
+      userData: {
+        ...state.userData,
+        about: action.payload,
+      },
+    };
   } else if (action.type === "PROFILE_IMAGE") {
     return {
       ...state,
@@ -94,6 +103,7 @@ const initialState = {
   setUsername: () => {},
   setMail: () => {},
   setPhone: () => {},
+  setAbout: () => {},
   setProfileImage: () => {},
   setAffiliateCodes: () => {},
 };
@@ -143,6 +153,9 @@ const UserDataProvider = (props) => {
   const setPhone = (phone) => {
     dataDispatcher({ type: "PHONE", payload: phone });
   };
+  const setAbout = (about) => {
+    dataDispatcher({ type: "ABOUT", payload: about });
+  };
   const setProfileImage = (profile_image) => {
     dataDispatcher({ type: "PROFILE_IMAGE", payload: profile_image });
   };
@@ -157,6 +170,7 @@ const UserDataProvider = (props) => {
     setUsername,
     setMail,
     setPhone,
+    setAbout,
     setProfileImage,
     setAffiliateCodes,
   };

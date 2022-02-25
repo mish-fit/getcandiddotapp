@@ -41,12 +41,11 @@ const Step4 = (props) => {
 	const [showInput, setShowInput] = useState(false);
 	const [affiliates, setAffiliates]= useState({});
 	const [codes_array, set_code_array]=useState([]);
-	// const codes_array = [];
 	
 	useEffect(()=>{
 		console.log('AC', codes_array);
 		console.log('Step4', userDataContext.userData);
-	})
+	},[])
 
 	const handleCreateItem = (item) => {
 		setBrandArray((curr) => [...curr, item]);
@@ -88,7 +87,7 @@ const Step4 = (props) => {
 
 	const next = async (e) => {
 		e.preventDefault();
-		userDataContext.setAffiliateCodes(affiliates);
+		userDataContext.setAffiliateCodes(codes_array);
 		console.log(userDataContext.userData);
 		const userDoc = firestore.doc(
 			`users/${userDataContext.userSignInInfo.user.uid}`
@@ -99,6 +98,7 @@ const Step4 = (props) => {
 			name: userDataContext.userData.name,
 			mail: userDataContext.userData.mail,
 			phone: userDataContext.userData.phone,
+			about: userDataContext.userData.about,
 			affiliateCodes: affiliates,
 		});
 		await batch.commit();
@@ -111,6 +111,7 @@ const Step4 = (props) => {
 			"u_uuid": userDataContext.userData.username,
 			"u_email": userDataContext.userData.mail,
 			"u_phone": userDataContext.userData.phone,
+			"u_about": userDataContext.userData.about,
 			"u_gender": "",
 			"u_dob": "",
 			"expo_token": "",
