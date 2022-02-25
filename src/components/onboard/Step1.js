@@ -27,7 +27,7 @@ const Step1 = (props) => {
 
 	useEffect(()=>{
 		console.log('Step1', userDataContext.userData);
-	})
+	},[])
 
 	const checkUsername = useMemo(
 		() =>

@@ -50,12 +50,14 @@ export function Sidebar({
   const router = useRouter();
 
   return (
-    <Box
+    <Flex
       sx={{
-        backgroundColor: "white",
-        mr:["50px", "0px","0px","0px","0px","0px"],
+        flexDirection: 'column',
+        // width:'100%',
+        // backgroundColor: "yellow",
+        // mr:["50px", "0px","0px","0px","0px","0px"],
         borderRadius: "16px",
-        boxShadow: [" " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)"],
+        boxShadow: [" " ," " ," " ,"0 0 4px 1px rgba(0, 0, 0, 0.5)","0 0 4px 1px rgba(0, 0, 0, 0.5)","0 0 4px 1px rgba(0, 0, 0, 0.5)"],
       }}
     >
       <SocialModal
@@ -74,6 +76,6 @@ export function Sidebar({
         social={() => setOpenSocialModal(true)}
         data={currentSocials}
       />
-    </Box>
+    </Flex>
   );
 }

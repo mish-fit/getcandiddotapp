@@ -65,7 +65,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
               onClick={() => socialClick(item)}
             >
               <Flex sx={{ position: "relative", backgroundColor: "gray" }}>
-                <Image src={"social/bulbul.png"} sx={style.social} />
+                <Image src={"social/bulbul.png"} alt='img' sx={style.social} />
                 <Flex sx={{ position: "absolute", top: "-4px", right: "-4px" }}>
                   {currentSocials.filter(
                     (item1, index1) => item1.social_id === item.social_id
@@ -549,7 +549,7 @@ const style = {
     alignItems: "center",
     mb: "24px",
     mt: "16px",
-    ml: "250px",
+    ml: ["50px", "50px","50px","250px","250px","250px"],
   },
   addNew: {
     justifyContent: "center",

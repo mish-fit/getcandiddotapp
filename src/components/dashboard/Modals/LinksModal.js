@@ -498,7 +498,7 @@ const style = {
     alignItems: "center",
     mb: "24px",
     mt: "16px",
-    ml: "250px",
+    ml: ["50px", "50px","50px","250px","250px","250px"],
   },
   addNew: {
     justifyContent: "center",

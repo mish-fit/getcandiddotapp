@@ -3,6 +3,7 @@ import {
 	Heading,
 	Box,
 	Stack,
+	Text,
 	Container,
 	Flex,
 	FormControl,
@@ -20,13 +21,14 @@ import '@fontsource/poppins';
 import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import { authapi, s3url } from "lib/api";
+import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 const Step3 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
   // const [imageName, setImageName] = useState('');
   const [imageSelected, setImageSelected] = useState(false);
 	// const [photo, setPhoto]=useState(null);
-
+	let hiddenInput = null;
 	useEffect(()=>{
 
 		console.log('Step3', userDataContext.userData);
@@ -59,6 +61,11 @@ const Step3 = (props) => {
     const formData = new FormData();
     formData.append("image", image.raw);
     UploadImageToS3WithNativeSdk(image.raw, userDataContext.userSignInInfo.user.uid);
+  };
+
+	const onCancelImage = () => {
+    setImageSelected(false);
+    setImage({ preview: "", raw: "" });
   };
 
 	const next = (e) => {
@@ -104,13 +111,72 @@ const Step3 = (props) => {
 								>
 									Your photo appears on your profile and in places where people might interact with you.
 								</FormLabel>
-							<Flex width={'lg'} height='100px' bg='grey.100' marginBottom='20px'>
+							{/* <Flex width={'lg'} height='100px' bg='grey.100' marginBottom='20px'>
               	<Button as="Input" type='file' width={{base:'md',md:'lg'}} height='100px' fontSize={15} text='Click to upload' onChange={handleChange}></Button>
+							</Flex> */}
+
+							<Flex sx={style.leftContainer}>
+							<Flex 
+							sx={style.imageContainer}>
+                    {image.preview ? (
+                      <Flex
+                        sx={{
+                          position: "relative",
+                          flex: 1,
+                        }}
+                      >
+                        <Flex
+                          onClick={() => hiddenInput.click()}
+                          sx={{ flex: 1 }}
+                        >
+                          <Image
+                            src={image.preview}
+                            alt="dummy"
+                            sx={{
+                              width: "100%",
+                              height: "100%",
+                              borderRadius: "100%",
+                            }}
+                          />
+                        </Flex>
+                        <Flex
+                          sx={{
+                            position: "absolute",
+                            top: "-5%",
+                            right: "-5%",
+                            zIndex: 101,
+                            cursor: "pointer",
+                          }}
+                          onClick={onCancelImage}
+                        >
+                          <IoCloseCircle size={20} color="gray" />
+                        </Flex>
+                      </Flex>
+                    ) : (
+                      <Flex
+                        sx={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          textAlign: "center",
+                          flex: 1,
+                        }}
+                        onClick={() => hiddenInput.click()}
+                      >
+                        <Text sx={{ fontSize: "15px" }}>Upload Profile Picture</Text>
+                      </Flex>
+                    )}
+                    <input
+                      type="file"
+                      hidden
+                      onChange={handleChange}
+                      ref={(el) => (hiddenInput = el)}
+                    />
+                  </Flex>
 							</Flex>
 							{/* <Input type='file' bg='white' onChange={handleChange}/> */}
-							<Flex style={{ display: imageSelected ? 'block' : 'none' }} marginLeft='2px' marginBottom='10px'>
+							{/* <Flex style={{ display: imageSelected ? 'block' : 'none' }} marginLeft='2px' marginBottom='10px'>
 								<Image src={image.preview} width="240" height="240" alt="profile picture" />
-							</Flex>
+							</Flex> */}
 
 							{/* <Button
 								bg={'#D7354A'}
@@ -160,4 +226,27 @@ const Step3 = (props) => {
 		</>
 	);
 };
+
+const style = {
+  imageContainer: {
+		width: "100%",
+		height: "100%",
+    borderRadius: "100%",
+		borderColor: '#C23043',
+		_hover:{bg:'gray.50'},
+    borderWidth: 1,
+    position: "relative",
+    cursor: "pointer",
+  },
+	leftContainer: {
+		justifyContent: "center",
+		alignItems: "center",
+    width: "250px",
+    height: "250px",
+    mx: "18%",
+  },
+};
+
+
+
 export default Step3;

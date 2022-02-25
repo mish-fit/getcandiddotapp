@@ -32,7 +32,7 @@ export function UserCard({ data }) {
           }
         />
       </Container>
-      <Container sx={style.userPhotoView}>
+      <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
           alt={'profile img'}
@@ -42,10 +42,11 @@ export function UserCard({ data }) {
               : "/user/profile.png"
           }
         />
-      </Container>
+      </Flex>
       <Container sx={style.userNameView}>
         <Container>
           <Text sx={style.userName}>{data[0].u_name}</Text>
+          <Text sx={style.aboutMe}> About will be place here soon. <br/> It will be multi line rather being one line.</Text>
         </Container>
       </Container>
       <Container sx={style.aboutMeView}>
@@ -60,6 +61,7 @@ export function UserCard({ data }) {
 const style = {
   container: {
     width: "100%",
+    // mt:'96px',
     borderTopRadius: "16px",
   },
   coverPhotoView: {
@@ -70,11 +72,12 @@ const style = {
     justifyContent: "flex-start",
   },
   userPhotoView: {
-    mt: "-48px",
-    width: "148px",
-    height: "148px",
+    justifyContent:'center',
+    mt: "-24px",
+    width: "100%",
+    height: "100%",
     backgroundColor: "transparent",
-    borderRadius: "148px",
+    borderRadius: "10px",
   },
   userNameView: {
     mt: "24px",
@@ -101,11 +104,13 @@ const style = {
     borderRadius: "16px",
   },
   userImage: {
+    width: "148px",
+    height: "148px",
+    backgroundColor:'yellow',
     textAlign: "center",
-    borderRadius: "148px",
+    borderRadius: "200px",
   },
   userName: {
-    mt: '-20px',
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "24px",

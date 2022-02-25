@@ -22,7 +22,7 @@ export function LinksCard({ item }) {
         })}
       >
         {item.photo && item.photo != "" ? (
-          <Image src={item.photo} sx={style.image} />
+          <Image src={item.photo} alt='img' sx={style.image} />
         ) : null}
         <Flex
           sx={{
@@ -48,9 +48,8 @@ const style = {
     py: "16px",
     backgroundColor: "white",
     borderRadius: "16px",
-
     mx: "16px",
-    width: "448px",
+    width: ["448px", "448px", "350px", "350px", "448px", "448px"],
     height: "96px",
     my: "16px",
     justifyContent: "center",

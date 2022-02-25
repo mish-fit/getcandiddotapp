@@ -11,13 +11,14 @@ import React from "react";
 export function UserCard({ data }) {
   React.useEffect(() => {
     console.log("user data", data);
-  }, []);
+  }, [data]);
 
   return (
     <Container sx={style.container}>
       <Container sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
+          alt={'cover img'}
           src={
             data[0].u_cover_image && data[0].u_cover_image != ""
               ? data[0].u_cover_image
@@ -25,19 +26,21 @@ export function UserCard({ data }) {
           }
         />
       </Container>
-      <Container sx={style.userPhotoView}>
+      <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
+          alt={'profile img'}
           src={
             data[0].u_profile_image && data[0].u_profile_image != ""
               ? data[0].u_profile_image
               : "/user/profile.png"
           }
         />
-      </Container>
+      </Flex>
       <Container sx={style.userNameView}>
         <Container>
           <Text sx={style.userName}>{data[0].u_name}</Text>
+          <Text sx={style.aboutMe}> About will be place here soon. <br/> It will be multi line rather being one line.</Text>
         </Container>
       </Container>
       <Container sx={style.aboutMeView}>
@@ -62,11 +65,12 @@ const style = {
     justifyContent: "flex-start",
   },
   userPhotoView: {
-    mt: "-48px",
-    width: "148px",
-    height: "148px",
+    justifyContent:'center',
+    mt: "-24px",
+    width: "100%",
+    height: "100%",
     backgroundColor: "transparent",
-    borderRadius: "148px",
+    borderRadius: "10px",
   },
   userNameView: {
     mt: "24px",
@@ -92,8 +96,11 @@ const style = {
     borderRadius: "16px",
   },
   userImage: {
+    width: "148px",
+    height: "148px",
+    backgroundColor:'yellow',
     textAlign: "center",
-    borderRadius: "148px",
+    borderRadius: "200px",
   },
   userName: {
     textAlign: "center",
