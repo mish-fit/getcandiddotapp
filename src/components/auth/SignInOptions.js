@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
+import Link from 'next/link';
 import { auth, googleAuthProvider } from 'lib/firebase';
 import {
 	Flex,
@@ -7,15 +8,17 @@ import {
 	Input,
 	Button,
 	Container,
+	Heading,
 	Stack,
 	Center,
 	InputGroup,
 	InputLeftAddon,
+	useToast,
 } from '@chakra-ui/react';
 import '@fontsource/poppins';
 import { useRouter } from 'next/router';
 import Header from 'components/onboard/Header';
-import { AiFillGoogleCircle } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
 // Sign in with Phone button
 export function SignInOptions() {
 	const router = useRouter();
@@ -24,6 +27,7 @@ export function SignInOptions() {
 	const [show, setShow] = useState(false);
 	const [googleShow, setGoogleShow] = useState(true);
 	const [final, setFinal] = useState('');
+	const toast=  useToast();
 
 	const signInWithGoogle = async () => {
 		await auth.signInWithPopup(googleAuthProvider).then((result) => {
@@ -43,7 +47,14 @@ export function SignInOptions() {
 				router.push('/onboard');
 			})
 			.catch((err) => {
-				alert('Wrong code');
+				// alert('Wrong code');
+				toast({
+					title: "Wrong Code",
+					description: "",
+					status: "error",
+					duration: 1000,
+					isClosable: true,
+				});
 			});
 	};
 
@@ -55,7 +66,13 @@ export function SignInOptions() {
 			.signInWithPhoneNumber(newnumber, verify)
 			.then((result) => {
 				setFinal(result);
-				alert('OTP Sent');
+				toast({
+					title: "OTP Sent",
+					description: "",
+					status: "success",
+					duration: 1000,
+					isClosable: true,
+				});
 				setShow(true);
 				setGoogleShow(false);
 			})
@@ -86,10 +103,8 @@ export function SignInOptions() {
 				>
 					<Flex flexDirection={'column'}>
 						<Flex style={{ display: !show ? 'block' : 'none' }}>
-							<Text>
-								Verify phone number to sign in or
-								create a new Account.
-							</Text>
+							
+						<Heading size={'lg'} paddingBottom='8px' textAlign={{base:'center', md:'left'}}>Sign In</Heading>
 							{/* <Input
 					value={mynumber}
 					bg='white'
@@ -121,13 +136,13 @@ export function SignInOptions() {
 							<Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
+								borderRadius={25}
 								color='white'
 								height={50}
 								width={'md'}
 								fontSize={'lg'}
-								marginTop='8px'
-								marginBottom='8px'
+								marginTop='16px'
+								marginBottom='24px'
 								onClick={signInWithPhone}
 							>
 								Verify
@@ -145,19 +160,34 @@ export function SignInOptions() {
 								height={50}
 								fontSize={18}
 								placeholder={'Enter your OTP'}
-								marginBottom='8px'
+								marginBottom='16px'
 								onChange={(e) => {
 									setOtp(e.target.value);
 								}}
 							/>
 
+						<Flex justifyContent={'space-between'}>
+							<Button
+								// bg={'#D7354A'}
+								// _hover={{ bg: '#C23043' }}
+								// borderRadius={10}
+								// color='white'
+								width={120}
+								height={50}
+								fontSize={18}
+								marginTop='8px'
+								marginBottom='8px'
+								onClick={setHandler}
+							>
+								Back
+							</Button>
 							<Button
 								display='block'
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
-								width={'md'}
+								width={120}
 								height={50}
 								fontSize={18}
 								marginTop='8px'
@@ -166,38 +196,47 @@ export function SignInOptions() {
 							>
 								Confirm
 							</Button>
-							<Button
-								bg={'#D7354A'}
-								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
-								color='white'
-								width={'md'}
-								height={50}
-								fontSize={18}
-								marginTop='8px'
-								marginBottom='8px'
-								onClick={setHandler}
-							>
-								Go Back
-							</Button>
+						</Flex>
 						</Flex>
 						<Flex style={{ display: googleShow ? 'block' : 'none' }}>
-							<Text align={'center'} mt={'20px'} mb={'5px'}>
-								See other ways to Sign In
-							</Text>
-							<Button
-								color='white'
-								borderRadius={10}
-								width={'md'}
-								height={50}
-								fontSize={18}
-								bg={'#1A8BF7'}
-								_hover={{ bg: '#1A7BF7' }}
-								onClick={signInWithGoogle}
-							>
-								{/* <AiFillGoogleCircle size={20} />  */}
-								Continue with Google
-							</Button>
+					<Flex style={{flexDirection: 'row', alignItems: 'center'}} my='8px'>
+						<Flex style={{flex: 1, height: 1, backgroundColor: 'black'}} />
+						<Flex>
+							<Text style={{width: 50, textAlign: 'center'}}>Or</Text>
+						</Flex>
+						<Flex style={{flex: 1, height: 1, backgroundColor: 'black'}} />
+					</Flex>
+							<Flex>
+								<Flex >
+									<Button
+										borderRadius={25}
+										width={'md'}
+										height={50}
+										fontSize={18}
+										border='2px'
+										// fontWeight='black'
+										bg={'white'}
+										_hover={{ bg: 'gray.50' }}
+										onClick={signInWithGoogle}
+									>
+									<Flex mr='8px' >
+									<FcGoogle size={25} /> </Flex>
+											Continue with Google
+									</Button>
+								</Flex>
+							</Flex>
+							<Flex mx='60px' mt='16px'>
+							<Text >
+									By signing up, you are agreeing to our <br/>
+									<Link href="/tnc" passHref>
+										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Terms and Conditions </Text>
+									</Link>
+									and 
+									<Link href="/pp" passHref>
+										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Privacy Policy </Text>
+									</Link>
+								</Text>
+								</Flex>
 						</Flex>
 					</Flex>
 				</Stack>

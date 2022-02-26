@@ -89,6 +89,93 @@ const Step4 = (props) => {
 		e.preventDefault();
 		userDataContext.setAffiliateCodes(codes_array);
 		console.log(userDataContext.userData);
+
+		const batch = firestore.batch();
+		const usernameDoc = firestore.doc(`usernames/${userDataContext.userData.username}`);
+		batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
+		
+		const userDoc = firestore.doc(
+			`users/${userDataContext.userSignInInfo.user.uid}`
+		);
+		batch.set(userDoc, {
+			username: userDataContext.userData.username,
+			name: userDataContext.userData.name,
+			mail: userDataContext.userData.mail,
+			phone: userDataContext.userData.phone,
+			about: userDataContext.userData.about,
+			affiliateCodes: affiliates,
+		});
+		await batch.commit();
+		
+		const u_data =	{
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"u_name": userDataContext.userData.name,
+			"u_profile_image": userDataContext.userData.profile_image,
+			"u_cover_image": "",
+			"u_uuid": userDataContext.userData.username,
+			"u_email": userDataContext.userData.mail,
+			"u_phone": userDataContext.userData.phone,
+			"u_about": userDataContext.userData.about,
+			"u_gender": "",
+			"u_dob": "",
+			"expo_token": "",
+			"device_token": "",
+			"u_language": "en",
+			"aff_ids":affiliates,
+			"others": {
+				"twitter": "",
+				"instagram": ""
+			}
+		}
+	axios(
+		{
+			method: "post",
+			url: `${authapi}user/add`,
+			data:  u_data ,
+			options: origin,
+		},
+		{ timeout: 5000 }
+	)
+		.then((res) => {
+			console.log("Success", res.data);
+			toast({
+				title: "New User Added",
+				description: "",
+				status: "success",
+				duration: 1000,
+				isClosable: true,
+			});
+		})
+
+		if(codes_array!==null){
+		axios(
+			{
+				method: "post",
+				url: `${authapi}affcodes`,
+				data:  {codes_array: JSON.stringify(codes_array)} ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success", res.data);
+				toast({
+					title: "Aff codes Added",
+					description: "",
+					status: "success",
+					duration: 1000,
+					isClosable: true,
+				});
+			})
+		.catch((e) => console.log(e));
+		}
+		router.push('/dashboard');
+	};
+
+	const back = async (e) => {
+		e.preventDefault();
+		userDataContext.setAffiliateCodes(codes_array);
+		console.log(userDataContext.userData);
 		const userDoc = firestore.doc(
 			`users/${userDataContext.userSignInInfo.user.uid}`
 		);
@@ -143,34 +230,7 @@ const Step4 = (props) => {
 				isClosable: true,
 			});
 		})
-
-		axios(
-			{
-				method: "post",
-				url: `${authapi}affcodes`,
-				data:  {codes_array: JSON.stringify(codes_array)} ,
-				options: origin,
-			},
-			{ timeout: 5000 }
-		)
-			.then((res) => {
-				console.log("Success", res.data);
-				toast({
-					title: "Aff codes Added",
-					description: "",
-					status: "success",
-					duration: 1000,
-					isClosable: true,
-				});
-			})
-		.catch((e) => console.log(e));
-
 		router.push('/dashboard');
-	};
-
-	const back = (e) => {
-		e.preventDefault();
-		props.prevStep();
 	};
 
 	return (
@@ -270,17 +330,17 @@ const Step4 = (props) => {
 						</Flex>
 						<Flex justifyContent={'space-between'}>
 								<Button
-									bg={'#D7354A'}
-									_hover={{ bg: '#C23043' }}
-									borderRadius={10}
-									color='white'
+									// bg={'#D7354A'}
+									// _hover={{ bg: '#C23043' }}
+									// borderRadius={10}
+									// color='white'
 									fontSize={'lg'}
 									width={120}
 									height={50}
 									mr={{base:'40px', md:'0'}}
 									onClick={back}
 								>
-									Back
+									Skip
 								</Button>
 							<Button
 								bg={'#D7354A'}

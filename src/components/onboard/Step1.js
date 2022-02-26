@@ -52,44 +52,44 @@ const Step1 = (props) => {
 		userDataContext.setUsername(formValue);
 
 		// console.log(userDataContext.userData);
-		const userDoc = firestore.doc(
-			`users/${userDataContext.userSignInInfo.user.uid}`
-		);
-		const usernameDoc = firestore.doc(`usernames/${formValue}`);
+		// const userDoc = firestore.doc(
+		// 	`users/${userDataContext.userSignInInfo.user.uid}`
+		// );
+		// const usernameDoc = firestore.doc(`usernames/${formValue}`);
+		// const batch = firestore.batch();
 
-		const batch = firestore.batch();
 		// console.log(userDataContext.userData.username);
-		console.log(userDataContext.userSignInInfo.user.email);
+		// console.log(userDataContext.userSignInInfo.user.email);
 		// console.log(userDataContext.userSignInInfo);
-		console.log(userDataContext.userSignInInfo.user.phoneNumber);
+		// console.log(userDataContext.userSignInInfo.user.phoneNumber);
 
 		// sending data to firebase when user logged in with phone
-		if (userDataContext.userSignInInfo.user.email == null) {
-			batch.set(userDoc, {
-				username: formValue,
-				phone: userDataContext.userSignInInfo.user.phoneNumber,
-			});
-			batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
-			await batch.commit();
-		}
+		// if (userDataContext.userSignInInfo.user.email == null) {
+		// 	batch.set(userDoc, {
+		// 		username: formValue,
+		// 		phone: userDataContext.userSignInInfo.user.phoneNumber,
+		// 	});
+		// 	batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
+		// 	await batch.commit();
+		// }
 		// sending data to firebase when user logged in with mail
-		else {
-			batch.set(userDoc, {
-				username: formValue,
-				mail: userDataContext.userSignInInfo.user.email,
-				profile_image: userDataContext.userSignInInfo.user.photoURL,
-				name: userDataContext.userSignInInfo.user.displayName,
-			});
-			batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
-			await batch.commit();
-		}
+		// else {
+		// 	batch.set(userDoc, {
+		// 		username: formValue,
+		// 		mail: userDataContext.userSignInInfo.user.email,
+		// 		profile_image: userDataContext.userSignInInfo.user.photoURL,
+		// 		name: userDataContext.userSignInInfo.user.displayName,
+		// 	});
+		// 	batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
+		// 	await batch.commit();
+		// }
 
-		if (userDataContext.userSignInInfo.user.email === null) {
-			userDataContext.setPhone(userDataContext.userSignInInfo.user.phoneNumber);
-		} else {
-			userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
-			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
-		}
+		// if (userDataContext.userSignInInfo.user.email === null) {
+		// 	userDataContext.setPhone(userDataContext.userSignInInfo.user.phoneNumber);
+		// } else {
+		// 	userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
+		// 	userDataContext.setMail(userDataContext.userSignInInfo.user.email);
+		// }
 		props.nextStep();
 	};
 
