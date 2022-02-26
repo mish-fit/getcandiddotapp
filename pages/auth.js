@@ -16,9 +16,6 @@ export default function Auth(props) {
 		}
 		console.log(user);
 		console.log(userDataContext);
-		if(userDataContext.userData.username){
-			router.push('/dashboard');
-		}
 	})
 	return (
 		<div>

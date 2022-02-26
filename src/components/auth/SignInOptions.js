@@ -148,7 +148,10 @@ export function SignInOptions() {
 								Verify
 							</Button>
 						</Flex>
+
 						<Flex style={{ display: show ? 'block' : 'none' }}>
+
+						<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
 							<Input
 								type='text'
 								bg='white'
@@ -165,7 +168,7 @@ export function SignInOptions() {
 									setOtp(e.target.value);
 								}}
 							/>
-
+						
 						<Flex justifyContent={'space-between'}>
 							<Button
 								// bg={'#D7354A'}

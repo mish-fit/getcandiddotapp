@@ -127,6 +127,8 @@ const Step4 = (props) => {
 				"instagram": ""
 			}
 		}
+	
+	// API Call 1: User Data
 	axios(
 		{
 			method: "post",
@@ -147,6 +149,7 @@ const Step4 = (props) => {
 			});
 		})
 
+		// API Call 2: Aff Codes
 		if(codes_array!==null){
 		axios(
 			{
@@ -159,77 +162,74 @@ const Step4 = (props) => {
 		)
 			.then((res) => {
 				console.log("Success", res.data);
-				toast({
-					title: "Aff codes Added",
-					description: "",
-					status: "success",
-					duration: 1000,
-					isClosable: true,
-				});
+				// toast({
+				// 	title: "Aff codes added",
+				// 	description: "",
+				// 	status: "success",
+				// 	duration: 1000,
+				// 	isClosable: true,
+				// });
 			})
 		.catch((e) => console.log(e));
 		}
-		router.push('/dashboard');
-	};
 
-	const back = async (e) => {
-		e.preventDefault();
-		userDataContext.setAffiliateCodes(codes_array);
-		console.log(userDataContext.userData);
-		const userDoc = firestore.doc(
-			`users/${userDataContext.userSignInInfo.user.uid}`
-		);
-		const batch = firestore.batch();
-		batch.set(userDoc, {
-			username: userDataContext.userData.username,
-			name: userDataContext.userData.name,
-			mail: userDataContext.userData.mail,
-			phone: userDataContext.userData.phone,
-			about: userDataContext.userData.about,
-			affiliateCodes: affiliates,
-		});
-		await batch.commit();
-		
-		const u_data =	{
+		// API Call 3: Links
+		const links = {
+			"id": "",
 			"u_id": userDataContext.userSignInInfo.user.uid,
-			"u_name": userDataContext.userData.name,
-			"u_profile_image": userDataContext.userData.profile_image,
-			"u_cover_image": "",
-			"u_uuid": userDataContext.userData.username,
-			"u_email": userDataContext.userData.mail,
-			"u_phone": userDataContext.userData.phone,
-			"u_about": userDataContext.userData.about,
-			"u_gender": "",
-			"u_dob": "",
-			"expo_token": "",
-			"device_token": "",
-			"u_language": "en",
-			"aff_ids":affiliates,
-			"others": {
-				"twitter": "",
-				"instagram": ""
-			}
-		}
+			"type": "Links",
+			"u_buckets": "['My Links']"
+		} 
+		axios(
+			{
+				method: "post",
+				url: `${authapi}links`,
+				data:  {links: JSON.stringify(links)} ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success: Links Added", res.data);
+				// toast({
+				// 	title: "Aff codes added",
+				// 	description: "",
+				// 	status: "success",
+				// 	duration: 1000,
+				// 	isClosable: true,
+				// });
+			})
+		.catch((e) => console.log(e));
 
-	axios(
-		{
-			method: "post",
-			url: `${authapi}user/add`,
-			data:  u_data ,
-			options: origin,
-		},
-		{ timeout: 5000 }
-	)
-		.then((res) => {
-			console.log("Success", res.data);
-			toast({
-				title: "New User Added",
-				description: "",
-				status: "success",
-				duration: 1000,
-				isClosable: true,
-			});
-		})
+
+		// API Call 4: Recos
+		const recos = {
+			"id": "",
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"type": "Recos",
+			"u_buckets": "['My Recos']"
+		} 
+		axios(
+			{
+				method: "post",
+				url: `${authapi}recos`,
+				data:  {recos: JSON.stringify(recos)} ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success: Recos Added", res.data);
+				// toast({
+				// 	title: "Aff codes added",
+				// 	description: "",
+				// 	status: "success",
+				// 	duration: 1000,
+				// 	isClosable: true,
+				// });
+			})
+		.catch((e) => console.log(e));
+
 		router.push('/dashboard');
 	};
 
@@ -338,7 +338,7 @@ const Step4 = (props) => {
 									width={120}
 									height={50}
 									mr={{base:'40px', md:'0'}}
-									onClick={back}
+									onClick={next}
 								>
 									Skip
 								</Button>
