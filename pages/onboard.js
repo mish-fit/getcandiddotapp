@@ -13,18 +13,18 @@ export default function Onboard(props) {
 	
 	const [step, setStep] = useState(1);
 	const nextStep = () => setStep(step + 1);
-	const prevStep = () => setStep(step - 1);
+	// const prevStep = () => setStep(step - 1);
 	
 	const switchStep = () => {
 		switch (step) {
 			case 1:
 				return <Step1 nextStep={nextStep} />
 			case 2:
-				return <Step2 prevStep={prevStep} nextStep={nextStep} />
+				return <Step2 nextStep={nextStep} />
 			case 3:
-				return <Step3 prevStep={prevStep} nextStep={nextStep} />;
+				return <Step3 nextStep={nextStep} />;
 			case 4:
-				return <Step4 prevStep={prevStep} />;
+				return <Step4 />;
 			default:
 				return null;
 		}
