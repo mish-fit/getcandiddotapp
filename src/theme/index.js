@@ -1,5 +1,5 @@
 export default {
-  breakpoints: ["376px", "576px", "768px", "992px", "1200px", "1648px"],
+  breakpoints: ["376px", "576px", "768px", "960px", "1200px", "1648px"],
   // example colors with dark mode
   colors: {
     text: "#343D48", // body color and primary color

@@ -68,7 +68,7 @@ const FaqTwo = () => {
       },
     ],
     button: {
-      link: "mailto:sai@getcandid.app",
+      link: "mailto:hello@cndd.in",
       label: lang.moreQuestions,
     },
   };

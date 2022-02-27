@@ -20,12 +20,12 @@ export default function Header({ className }) {
     <DrawerProvider>
       <header sx={styles.header} className={className}>
         <Container sx={styles.container}>
-          <Flex justifyContent={'space-between'}>
+          <Flex justifyContent={"space-between"}>
             <HStack>
-            <Logo />
+              <Logo />
             </HStack>
             <HStack>
-            <MobileDrawer/>
+              <MobileDrawer />
             </HStack>
           </Flex>
           <Flex as="nav" sx={styles.nav}>
@@ -159,21 +159,22 @@ const styles = {
     },
   },
   signupButton: {
-    borderRadius: "32px",
+    display: ["none", "none", "none", "none", "inline-block", "inline-block"],
+    borderRadius: ["16px", "16px", "16px", "32px", "32px", "32px"],
     backgroundColor: "#D7354A",
     cursor: "pointer",
     "&:hover": {
       backgroundColor: "#d42a40",
     },
-    px: "32px",
-    py: "8px",
+    px: ["2px", "4px", "8px", "16px", "32px", "32px"],
+    py: ["2px", "2px", "4px", "8px", "8px", "8px"],
     justifyContent: "center",
     alignItems: "center",
   },
   signupButtonText: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "16px",
+    fontSize: ["12px", null, null, "16px", null, null],
     color: "white",
   },
 };

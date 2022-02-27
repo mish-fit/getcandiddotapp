@@ -49,6 +49,8 @@ const Banner = () => {
 
   React.useEffect(() => {}, []);
 
+  const signin = () => {};
+
   const { title, text, clients, image, subcontent } = BANNER_DATA;
   return (
     <Box as="section" id="banner" sx={styles.section}>
@@ -59,7 +61,39 @@ const Banner = () => {
             <Text as="h4">{text}</Text>
 
             <Heading as="h3">{subcontent}</Heading>
-            {signedup ? (
+            <Flex
+              sx={{
+                flex: 1,
+              }}
+            >
+              <Flex
+                sx={{
+                  backgroundColor: "#D7354A",
+                  p: "16px",
+                  width: "60%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                  borderRadius: "30px",
+                  cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#d42a40",
+                  },
+                }}
+                onClick={signin}
+              >
+                <Text
+                  sx={{
+                    color: "white",
+                    fontFamily: "Poppins",
+                    fontWeight: "bold",
+                  }}
+                >
+                  GET STARTED FOR FREE
+                </Text>
+              </Flex>
+            </Flex>
+            {/* {signedup ? (
               <Text as="p">
                 {translation[locale].HeaderSection.signedUpSubTitle}
               </Text>
@@ -85,7 +119,7 @@ const Banner = () => {
                   </Text>
                 </Flex>
               </Box>
-            )}
+            )} */}
           </Box>
           <Box sx={styles.images}>
             <Image src={image} width="740" height="558" alt="section image" />

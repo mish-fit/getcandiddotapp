@@ -4,7 +4,7 @@ import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
 // import { UserContext } from "../../src/lib/UserDataProvider";
-import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
+import UserDataProvider, { UserContext } from "lib/UserDataProvider";
 import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
@@ -103,8 +103,8 @@ export async function getServerSideProps(context) {
   try {
     const cookies = nookies.get(context).token;
     const token = await firebaseAdmin.auth().verifyIdToken(cookies);
-    // console.log("cookies", cookies);
-    // console.log("token", token);
+    console.log("cookies", cookies);
+    console.log("token", token);
     currentUser.push(token.uid);
     cookie.push(cookies);
   } catch (e) {
@@ -150,7 +150,7 @@ export async function getServerSideProps(context) {
 const styles = {
   container: {
     // backgroundColor:'green',
-    mt: ["","","100px","100px","100px","100px"],
+    mt: ["", "", "100px", "100px", "100px", "100px"],
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -163,7 +163,7 @@ const styles = {
   },
   sidebar: {
     mt: "96px",
-    width:'100%',
+    width: "100%",
     // backgroundColor:'red',
     flex: 1,
     pl: "8px",
