@@ -16,7 +16,7 @@ import {
 import { auth, googleAuthProvider } from 'lib/firebase';
 import { UserContext } from 'lib/UserDataProvider';
 import { useState, useContext, useRef, useEffect } from 'react';
-import { AiFillGoogleCircle } from 'react-icons/ai';
+import { FcGoogle } from 'react-icons/fc';
 import '@fontsource/poppins';
 import Header from './Header';
 const Step2 = (props) => {
@@ -121,7 +121,7 @@ const Step2 = (props) => {
 
 	const back = (e) => {
 		e.preventDefault();
-		props.prevStep();
+		props.nextStep();
 	};
 
 	return (
@@ -141,7 +141,8 @@ const Step2 = (props) => {
 					>
 						<Flex flexDirection={'column'}>
 								{/* <Heading size={'lg'} marginBottom="16px" >Enter User Details</Heading> */}
-								<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
+							<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
+							<form onSubmit={next}>
 								<FormLabel
 									size={'md'}
 									margin='8px'
@@ -153,8 +154,9 @@ const Step2 = (props) => {
 									interacting with you.
 								</FormLabel>
 								<FormLabel 
-									fontSize={'lg'}>Full Name</FormLabel>
+									fontSize={'lg' }>Full Name</FormLabel>
 								<Input
+									required
 									name='name'
 									bg='white'
 									display='block'
@@ -164,13 +166,13 @@ const Step2 = (props) => {
 									height= {50}
 									width={'md'}
 									fontSize={'lg'}
-									marginBottom='20px'
+									marginBottom='24px'
 									defaultValue={userDataContext.userSignInInfo.user.displayName}
 									type='text'
 									onChange={onChangeName}
+									placeholder='Your name'
 								/>
-								<FormLabel 
-									fontSize={'lg'}>About</FormLabel>
+								<FormLabel fontSize={'lg'}>About</FormLabel>
 								<Textarea
 									name='about'
 									type='text'
@@ -183,13 +185,13 @@ const Step2 = (props) => {
 									width={'md'}
 									height={100}
 									placeholder='Tell us about you'
-									marginBottom='20px'
+									marginBottom='24px'
 									onChange={onChangeAbout}
 								/>
 								<Flex style={{ display: mailInput ? 'block' : 'none' }}>
-									<FormLabel 
-									fontSize={'lg'}>E-Mail</FormLabel>
+									<FormLabel fontSize={'lg'}>E-Mail</FormLabel>
 									<Input
+										required
 										name='mail'
 										type='email'
 										bg='white'
@@ -199,7 +201,8 @@ const Step2 = (props) => {
 										height={50}
 										width={'md'}
 										fontSize={'lg'}
-										marginBottom='20px'
+										marginBottom='24px'
+										placeholder='Email address'
 										onChange={onChangeMail}
 									/>
 								</Flex>
@@ -209,7 +212,25 @@ const Step2 = (props) => {
 								>
 									Your email is taken from gmail.
 								</Text>
-								<Button
+								<Flex style={{ display: showLink ? 'block' : 'none' }}>
+									<Button
+										borderRadius={10}
+										width={'md'}
+										height={50}
+										fontSize={18}
+										border='2px'
+										bg={'white'}
+										_hover={{ bg: 'gray.50' }}
+										marginBottom='24px'
+										onClick={SignInWithGoogle}
+									>
+									<Flex mr='8px' >
+										<FcGoogle size={25} />
+									</Flex>
+											Continue with Google
+									</Button>
+								</Flex>
+								{/* <Button
 									style={{ display: showLink ? 'block' : 'none' }}
 									color='white'
 									borderRadius={10}
@@ -222,19 +243,20 @@ const Step2 = (props) => {
 									onClick={SignInWithGoogle}
 								>
 									Link Google Account
-								</Button>
+								</Button> */}
 								<Flex justifyContent={'space-between'}>
 								<Button
-									bg={'#D7354A'}
-									_hover={{ bg: '#C23043' }}
-									borderRadius={10}
-									color='white'
+									// bg={'white'}
+									// _hover={{ bg: 'white' }}
+									// borderRadius={10}
+									// color='white'
+									// textDecoration={'underline'}
 									fontSize={'lg'}
 									width={120}
 									height={50}
 									onClick={back}
 								>
-									Back
+									Skip
 								</Button>
 								<Button
 									bg={'#D7354A'}
@@ -245,11 +267,12 @@ const Step2 = (props) => {
 									width={120}
 									height={50}
 									mr={{base:'0', md:'200'}}
-									onClick={next}
+									type='submit'
 								>
 									Next
 								</Button>
-								</Flex>
+							</Flex>
+						</form>
 						</Flex>
 					</Stack>
 				</Flex>

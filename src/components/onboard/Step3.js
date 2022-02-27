@@ -81,7 +81,7 @@ const Step3 = (props) => {
 
 	const back = (e) => {
 		e.preventDefault();
-		props.prevStep();
+		props.nextStep();
 	};
 
 	return (
@@ -194,16 +194,16 @@ const Step3 = (props) => {
 							</Button> */}
 							<Flex justifyContent={'space-between'}>
 							<Button
-								bg={'#D7354A'}
-								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
+								// bg={'#D7354A'}
+								// _hover={{ bg: '#C23043' }}
+								// borderRadius={10}
+								// color='white'
 								fontSize={'lg'}
-								color='white'
-								width={120}
-								height={50}
-								onClick={back}
+									width={120}
+									height={50}
+									onClick={back}
 							>
-								Back
+								Skip
 							</Button>
 							<Button
 								bg={'#D7354A'}
@@ -239,6 +239,7 @@ const style = {
     cursor: "pointer",
   },
 	leftContainer: {
+		margin:"20px",
 		justifyContent: "center",
 		alignItems: "center",
     width: "250px",

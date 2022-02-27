@@ -46,7 +46,6 @@ export function UserCard({ data }) {
       <Container sx={style.userNameView}>
         <Container>
           <Text sx={style.userName}>{data[0].u_name}</Text>
-          <Text sx={style.aboutMe}> About will be place here soon. <br/> It will be multi line rather being one line.</Text>
         </Container>
       </Container>
       <Container sx={style.aboutMeView}>
