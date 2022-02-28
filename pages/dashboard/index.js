@@ -4,7 +4,7 @@ import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
 import React, { useContext, useState, useEffect } from "react";
 // import { UserContext } from "../../src/lib/UserDataProvider";
-import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
+import UserDataProvider, { UserContext } from "lib/UserDataProvider";
 import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
 import { Sidebar } from "components/dashboard/Sidebar";
@@ -39,15 +39,18 @@ export default function Dashboard({
   masterSocials,
 }) {
   const [userDataContext] = useContext(UserContext);
-  // console.log(userDataContext.userSignInInfo.user);
+
   const [menuClick, setMenuClick] = React.useState(false);
   const [summary, setSummary] = React.useState({});
-// auth.signOut();
-  React.useEffect(()=>{
-    console.log('start')
-    console.log('buckt', buckets)
-    console.log('link', buckets.Links);
-  })
+  // auth.signOut();
+  React.useEffect(() => {
+    console.log("start");
+    console.log(
+      "bucket in use effect",
+      JSON.parse(JSON.parse(buckets[0].u_buckets).Links)
+    );
+    console.log(userDataContext.userSignInInfo.user);
+  }, []);
   React.useEffect(() => {
     setSummary({ products: recos.length, links: links.length });
 
@@ -86,7 +89,7 @@ export default function Dashboard({
             masterSocials={masterSocials}
           />
         </Flex>
-        <Flex as="mainscreen" sx={styles.mainscreen}>
+        {/* <Flex as="mainscreen" sx={styles.mainscreen}>
           <MainScreen
             links={links}
             recos={recos}
@@ -94,7 +97,7 @@ export default function Dashboard({
             user={user}
             cookie={cookies[0]}
           />
-        </Flex>
+        </Flex> */}
       </Flex>
     </div>
   );
@@ -103,29 +106,35 @@ export default function Dashboard({
 export async function getServerSideProps(context) {
   let currentUser = [];
   let cookies = [];
-  let uid = ''
-    const cookie = nookies.get(context).token;
-    const token = await firebaseAdmin.auth().verifyIdToken(cookie).then((res)=>{
-      console.log('res',res)
-      uid = res.uid;
-      currentUser.push(res.uid);
-    }).catch((err)=>{
-      console.log(err)  
-    });
+  let uid = "";
+  const cookie = nookies.get(context).token;
+  if (cookie) {
+    await firebaseAdmin
+      .auth()
+      .verifyIdToken(cookie)
+      .then((res) => {
+        console.log("res", res);
+        uid = res.uid;
+        currentUser.push(res.uid);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-    if(uid!==''){
-			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
-			const data = await res.json()
-			console.log('da',data)
-			if (data.length===0) {
-				return {
-					redirect: {
-						destination: '/onboard',
-						permanent: false,
-					},
-				}
-			}
-		}
+  if (currentUser[0] !== "") {
+    const res = await fetch(`${nonauthapi}user?u_id=${currentUser[0]}`);
+    const data = await res.json();
+    console.log("da", data);
+    if (data.length === 0) {
+      return {
+        redirect: {
+          destination: "/onboard",
+          permanent: false,
+        },
+      };
+    }
+  }
   // if(currentUser.length!==0 && ){
   //   return {
   //     redirect: {
@@ -134,14 +143,14 @@ export async function getServerSideProps(context) {
   //     },
   //   }
   // }
-  console.log('asdf',currentUser[0])
-  if(!currentUser[0]){
+  console.log("asdf", currentUser[0]);
+  if (!currentUser[0]) {
     return {
       redirect: {
-        destination: '/auth',
+        destination: "/auth",
         permanent: false,
       },
-    }
+    };
   }
 
   // const { search } = context.params;
@@ -165,7 +174,7 @@ export async function getServerSideProps(context) {
   const res6 = await fetch(authapi + "socials/master");
   const masterSocials = await res6.json();
 
-  console.log('buckets' ,buckets)
+  console.log("buckets ssr", buckets);
 
   // Pass data to the page via props
   return {
@@ -185,7 +194,7 @@ export async function getServerSideProps(context) {
 const styles = {
   container: {
     // backgroundColor:'green',
-    mt: ["","","100px","100px","100px","100px"],
+    mt: ["", "", "100px", "100px", "100px", "100px"],
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -198,7 +207,7 @@ const styles = {
   },
   sidebar: {
     mt: "96px",
-    width:'100%',
+    width: "100%",
     // backgroundColor:'red',
     flex: 1,
     pl: "8px",
