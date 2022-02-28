@@ -30,11 +30,15 @@ export default function Auth(props) {
 
 export async function getServerSideProps(context) {
 
-	const cookie = nookies.get(context).token;
+	const cookie = await nookies.get(context).token;
 	
 	if(cookie){
-		const token = await firebaseAdmin.auth().verifyIdToken(cookie);
-		console.log(token.id)
+		const token = await firebaseAdmin.auth().verifyIdToken(cookie).then((res)=>{
+			console.log(res)
+		}).catch((err)=>{
+			console.log(err)
+		})
+		console.log(token.uid)
 		if(token.uid!==null || token.uid!==''){
 			return {
 				redirect: {
