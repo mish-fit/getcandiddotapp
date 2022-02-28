@@ -5,6 +5,7 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 // Add a custom Link
 export function ProductsCard({ item }) {
@@ -14,11 +15,21 @@ export function ProductsCard({ item }) {
     console.log("add links");
   };
 
+  const buy = () => {
+    console.log(item);
+    localStorage.setItem("buyLatestItem", item.prod_name);
+    window.open(item.prod_link, "_blank"); //to open new page
+  };
+
   return (
     <Flex sx={style.container}>
       <Flex sx={style.imageMaster}>
         <Flex sx={style.imageContainer}>
-          <Image src={"/user/mobile.png"} alt='img' sx={style.image} />
+          <Image
+            src={item.photo || "/user/mobile.png"}
+            alt="img"
+            sx={style.image}
+          />
         </Flex>
       </Flex>
       <Flex sx={style.detailsContainer}>
@@ -27,7 +38,7 @@ export function ProductsCard({ item }) {
           <Text sx={style.category}>{item.cat_name}</Text>
         </Flex>
         <Flex sx={style.buttonContainer}>
-          <Flex sx={style.button}>
+          <Flex sx={style.button} onClick={buy}>
             <Text sx={style.buttonText}>Buy Now</Text>
           </Flex>
         </Flex>
