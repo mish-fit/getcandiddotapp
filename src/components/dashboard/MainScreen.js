@@ -26,6 +26,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const [currentRecos, setCurrentRecos] = React.useState(recos);
 
   React.useEffect(() => {
+    console.log('link', buckets.Links);
     axios
       .get(
         `${nonauthapi}links`,

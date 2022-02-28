@@ -1,6 +1,7 @@
 export const translation = {
   en: {
     HeaderSection: {
+      GettingStarted: "Get Started for FREE",
       Header: ["Home", "Features", "FAQs"],
       Blog: "Blog",
       Title: "One link for all your Recommendations",
@@ -285,6 +286,7 @@ export const translation = {
   },
   hi: {
     HeaderSection: {
+      GettingStarted: "मुफ़्त में शुरू करें",
       Header: [
         "होम",
         "फीचर्स",

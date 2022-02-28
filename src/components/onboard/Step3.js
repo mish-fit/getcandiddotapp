@@ -74,7 +74,11 @@ const Step3 = (props) => {
 	const next = async(e) => {
 		e.preventDefault();
 		// console.log(image.preview+image.raw+"jj"+imageName+"jj"+imageSelected);
-		userDataContext.setProfileImage(s3url+userDataContext.userData.username+".png");
+		let new_profile_image = '';
+		if(imageSelected){
+			new_profile_image=s3url+userDataContext.userSignInInfo.user.uid+".png";
+			userDataContext.setProfileImage(s3url+userDataContext.userSignInInfo.user.uid+".png");
+		}
 		if (userDataContext.userData.name === '') {
 			userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
@@ -90,6 +94,7 @@ const Step3 = (props) => {
 		batch.set(userDoc, {
 			username: userDataContext.userData.username,
 			name: userDataContext.userData.name,
+			profile_image:new_profile_image,
 			mail: userDataContext.userData.mail,
 			phone: userDataContext.userData.phone,
 			about: userDataContext.userData.about,
@@ -100,7 +105,7 @@ const Step3 = (props) => {
 		const u_data =	{
 			"u_id": userDataContext.userSignInInfo.user.uid,
 			"u_name": userDataContext.userData.name,
-			"u_profile_image": userDataContext.userData.profile_image,
+			"u_profile_image": new_profile_image,
 			"u_cover_image": "",
 			"u_uuid": userDataContext.userData.username,
 			"u_email": userDataContext.userData.mail,
@@ -117,7 +122,7 @@ const Step3 = (props) => {
 				"instagram": ""
 			}
 		}
-	
+	console.log(u_data);
 	// API Call 1: User Data
 	axios(
 		{
@@ -139,24 +144,25 @@ const Step3 = (props) => {
 			});
 		})
 
-		// API Call 3: Links
-		const links = {
-			"id": "",
+		// API Call 2: Buckets
+		const buckets = {
 			"u_id": userDataContext.userSignInInfo.user.uid,
-			"type": "Links",
-			"u_buckets": "['My Links']"
+			"u_buckets": {"Links" : "['My Links']" , "Recos" : "['My Recos']"}
 		} 
+		console.log('buckets',buckets)
 		axios(
 			{
 				method: "post",
 				url: `${authapi}buckets`,
-				data:  links ,
+				data:  buckets ,
 				options: origin,
 			},
 			{ timeout: 5000 }
 		)
 			.then((res) => {
-				console.log("Success: Links Added", res.data);
+				console.log("Success: Buckets Added", res.data);
+				router.push('/dashboard');
+				
 				// toast({
 				// 	title: "Aff codes added",
 				// 	description: "",
@@ -166,37 +172,6 @@ const Step3 = (props) => {
 				// });
 			})
 		.catch((e) => console.log(e));
-
-
-		// API Call 4: Recos
-		const recos = {
-			"id": "",
-			"u_id": userDataContext.userSignInInfo.user.uid,
-			"type": "Recos",
-			"u_buckets": "['My Recos']"
-		} 
-		axios(
-			{
-				method: "post",
-				url: `${authapi}buckets`,
-				data:  recos ,
-				options: origin,
-			},
-			{ timeout: 5000 }
-		)
-			.then((res) => {
-				console.log("Success: Recos Added", res.data);
-				// toast({
-				// 	title: "Aff codes added",
-				// 	description: "",
-				// 	status: "success",
-				// 	duration: 1000,
-				// 	isClosable: true,
-				// });
-			})
-		.catch((e) => console.log(e));
-
-		router.push('/dashboard');
 	};
 
 	const back = (e) => {

@@ -28,7 +28,6 @@ import { authapi, nonauthapi } from "lib/api";
 import { convertChangesToDMP } from "prettier";
 import { firebaseAdmin } from "lib/firebaseadmin";
 // import { firebaseAdmin } from "lib/firebaseadmin";
-
 export default function Dashboard({
   links,
   recos,
@@ -40,10 +39,15 @@ export default function Dashboard({
   masterSocials,
 }) {
   const [userDataContext] = useContext(UserContext);
-  console.log(userDataContext.userSignInInfo.user);
+  // console.log(userDataContext.userSignInInfo.user);
   const [menuClick, setMenuClick] = React.useState(false);
   const [summary, setSummary] = React.useState({});
-
+// auth.signOut();
+  React.useEffect(()=>{
+    console.log('start')
+    console.log('buckt', buckets)
+    console.log('link', buckets.Links);
+  })
   React.useEffect(() => {
     setSummary({ products: recos.length, links: links.length });
 
@@ -99,29 +103,38 @@ export default function Dashboard({
 export async function getServerSideProps(context) {
   let currentUser = [];
   let cookies = [];
-
-  try {
+  let uid = ''
     const cookie = nookies.get(context).token;
     const token = await firebaseAdmin.auth().verifyIdToken(cookie).then((res)=>{
-      console.log(res)
+      console.log('res',res)
+      uid = res.uid;
+      currentUser.push(res.uid);
     }).catch((err)=>{
-      console.log(err)
+      console.log(err)  
     });
-    // console.log("cookies", cookies);
-    // console.log("token", token);
-    currentUser.push(token.uid);
-    cookies.push(cookie);
-  } catch (e) {
-    console.log(e);
-  }
-  // if(currentUser.length===0){
-    // return {
-      // redirect: {
-        // destination: '/onboard',
-        // permanent: false,
-      // },
-    // }
+
+    if(uid!==''){
+			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
+			const data = await res.json()
+			console.log('da',data)
+			if (data.length===0) {
+				return {
+					redirect: {
+						destination: '/onboard',
+						permanent: false,
+					},
+				}
+			}
+		}
+  // if(currentUser.length!==0 && ){
+  //   return {
+  //     redirect: {
+  //       destination: '/onboard',
+  //       permanent: false,
+  //     },
+  //   }
   // }
+  console.log('asdf',currentUser[0])
   if(!currentUser[0]){
     return {
       redirect: {
@@ -151,6 +164,8 @@ export async function getServerSideProps(context) {
 
   const res6 = await fetch(authapi + "socials/master");
   const masterSocials = await res6.json();
+
+  console.log('buckets' ,buckets)
 
   // Pass data to the page via props
   return {
