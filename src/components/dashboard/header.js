@@ -12,7 +12,7 @@ import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
 import React from "react";
-import { auth } from 'lib/firebase';
+import { auth } from "lib/firebase";
 import {
   Menu,
   MenuButton,
@@ -38,11 +38,11 @@ export default function Header({ menu, menuActive, data }) {
 
   const signout = () => {
     auth.signOut();
-    router.push('/auth');
+    router.push("/auth");
   };
 
   const linkClick = () => {
-    router.push(data[0].u_name)
+    router.push(data[0].u_name);
     // toast({
     //   title: "Link Copied",
     //   description: "Add you Candid link to Instagram Bio",
@@ -68,7 +68,7 @@ export default function Header({ menu, menuActive, data }) {
             <MenuButton as={Button}>
               <Image
                 sx={styles.userImage}
-                alt={'profile img'}
+                alt={"profile img"}
                 src={
                   data[0].u_profile_image && data[0].u_profile_image != ""
                     ? data[0].u_profile_image
@@ -90,7 +90,7 @@ export default function Header({ menu, menuActive, data }) {
 
 const styles = {
   userImage: {
-    display:['none', 'none', 'none', 'inline', 'inline', 'inline'],
+    display: ["none", "none", "none", "inline", "inline", "inline"],
     height: "48px",
     width: "48px",
     borderRadius: "48px",
@@ -143,7 +143,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: [ "0px", "0px", "16px","16px","16px","16px"],
+    py: ["0px", "0px", "16px", "16px", "16px", "16px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",

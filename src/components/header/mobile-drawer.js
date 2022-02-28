@@ -135,8 +135,9 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     py: "0",
-    backgroundColor: "black",
+    backgroundColor: "#D7354A",
     color: "#fff",
+    fontFamily: "Poppins",
   },
 };
 
