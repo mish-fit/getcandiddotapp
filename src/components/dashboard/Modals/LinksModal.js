@@ -37,12 +37,13 @@ export function LinksModal({
   user,
   maxSortId,
   cookie,
+  newItem,
 }) {
   const ctx = useContext(UserContext);
   const router = useRouter();
   const toast = useToast();
   const [refreshScreen, setRefreshScreen] = React.useState(false);
-  const [a, setA] = React.useState(buckets);
+  const [a, setA] = React.useState(buckets.links);
   const [input, setInput] = React.useState(false);
   const [image, setImage] = React.useState({ preview: "", raw: "" });
   const [imageName, setImageName] = React.useState(nanoid());
@@ -128,15 +129,15 @@ export function LinksModal({
       },
     };
 
+    const newBuckets = { ...buckets, links: [...a, item] };
+
     axios(
       {
         method: "post",
         url: `${authapi}buckets`,
         data: {
-          id: buckets[0].id,
-          u_id: buckets[0].u_id,
-          type: buckets[0].type,
-          u_buckets: JSON.stringify([...a, item]),
+          u_id: user[0].u_id,
+          u_buckets: newBuckets,
         },
         options: options,
       },
@@ -187,6 +188,7 @@ export function LinksModal({
       )
         .then((res) => {
           console.log("Sucess", res.data);
+          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Link Added",
@@ -234,6 +236,7 @@ export function LinksModal({
       )
         .then((res) => {
           console.log("Sucess", res.data);
+          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Link Added",
