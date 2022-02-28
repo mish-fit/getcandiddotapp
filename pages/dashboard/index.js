@@ -36,7 +36,7 @@ export default function Dashboard({
   user,
   socials,
   currentUser,
-  cookie,
+  cookies,
   masterSocials,
 }) {
   const [userDataContext] = useContext(UserContext);
@@ -77,7 +77,7 @@ export default function Dashboard({
             socials={socials}
             user={user}
             summary={summary}
-            cookie={cookie[0]}
+            cookie={cookies[0]}
             buckets={buckets}
             masterSocials={masterSocials}
           />
@@ -88,7 +88,7 @@ export default function Dashboard({
             recos={recos}
             buckets={buckets}
             user={user}
-            cookie={cookie[0]}
+            cookie={cookies[0]}
           />
         </Flex>
       </Flex>
@@ -98,17 +98,33 @@ export default function Dashboard({
 
 export async function getServerSideProps(context) {
   let currentUser = [];
-  let cookie = [];
+  let cookies = [];
 
   try {
-    const cookies = nookies.get(context).token;
-    const token = await firebaseAdmin.auth().verifyIdToken(cookies);
+    const cookie = nookies.get(context).token;
+    const token = await firebaseAdmin.auth().verifyIdToken(cookie);
     // console.log("cookies", cookies);
     // console.log("token", token);
     currentUser.push(token.uid);
-    cookie.push(cookies);
+    cookies.push(cookie);
   } catch (e) {
     console.log(e);
+  }
+  // if(currentUser.length===0){
+    // return {
+      // redirect: {
+        // destination: '/onboard',
+        // permanent: false,
+      // },
+    // }
+  // }
+  if(!currentUser[0]){
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    }
   }
 
   // const { search } = context.params;
@@ -141,7 +157,7 @@ export async function getServerSideProps(context) {
       buckets,
       user,
       currentUser,
-      cookie,
+      cookies,
       masterSocials,
     },
   };

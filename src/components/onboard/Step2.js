@@ -191,7 +191,7 @@ const Step2 = (props) => {
 								<Flex style={{ display: mailInput ? 'block' : 'none' }}>
 									<FormLabel fontSize={'lg'}>E-Mail</FormLabel>
 									<Input
-										required
+										// required
 										name='mail'
 										type='email'
 										bg='white'
