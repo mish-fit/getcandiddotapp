@@ -44,12 +44,24 @@ export default function Dashboard({
   const [summary, setSummary] = React.useState({});
   // auth.signOut();
   React.useEffect(() => {
-    console.log("start");
     console.log(
-      "bucket in use effect",
-      JSON.parse(JSON.parse(buckets[0].u_buckets).Links)
+      "links ",
+      links,
+      " recos ",
+      recos,
+      " buckets ",
+      buckets[0].u_buckets,
+      " user ",
+      user,
+      " socials ",
+      socials,
+      " currentuser ",
+      currentUser,
+      " cookies ",
+      cookies,
+      " master socials ",
+      masterSocials
     );
-    console.log(userDataContext.userSignInInfo.user);
   }, []);
   React.useEffect(() => {
     setSummary({ products: recos.length, links: links.length });
@@ -89,15 +101,15 @@ export default function Dashboard({
             masterSocials={masterSocials}
           />
         </Flex>
-        {/* <Flex as="mainscreen" sx={styles.mainscreen}>
+        <Flex as="mainscreen" sx={styles.mainscreen}>
           <MainScreen
             links={links}
             recos={recos}
-            buckets={buckets}
+            buckets={buckets[0].u_buckets}
             user={user}
             cookie={cookies[0]}
           />
-        </Flex> */}
+        </Flex>
       </Flex>
     </div>
   );
@@ -173,8 +185,6 @@ export async function getServerSideProps(context) {
 
   const res6 = await fetch(authapi + "socials/master");
   const masterSocials = await res6.json();
-
-  console.log("buckets ssr", buckets);
 
   // Pass data to the page via props
   return {

@@ -26,7 +26,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const [currentRecos, setCurrentRecos] = React.useState(recos);
 
   React.useEffect(() => {
-    console.log('link', buckets.Links);
+    console.log("link", JSON.parse(buckets).links);
     axios
       .get(
         `${nonauthapi}links`,
@@ -73,19 +73,19 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
-        buckets={buckets.filter((item) => item.type == "Links")}
+        buckets={JSON.parse(buckets).links}
         maxSortId={Math.max(...currentLinks.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
       />
-      <ProductsModal
+      {/* <ProductsModal
         isOpen={isOpenProductsModal}
         closeParent={(item) => onCloseProductsModal(item)}
-        buckets={buckets.filter((item) => item.type == "Recos")}
+        buckets={JSON.parse(buckets).recos}
         maxSortId={Math.max(...currentRecos.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
-      />
+      /> */}
       <AddButtons
         addLink={() => setOpenLinksModal(true)}
         addProduct={() => setOpenProductsModal(true)}
