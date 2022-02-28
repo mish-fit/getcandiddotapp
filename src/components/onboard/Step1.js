@@ -25,9 +25,13 @@ const Step1 = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [userDataContext, user] = useContext(UserContext);
 
-	useEffect(()=>{
-		console.log('Step1', userDataContext.userData);
-	},[])
+	// useEffect(()=>{
+	// 	// console.log('Step1', userDataContext.userData);
+	// 	const fetchData = async ()=>{
+	// 		const ref = firestore.doc(`users/${userDataContext.userSignInInfo.user.uid}`);
+	// 		console.log(ref.get());
+	// 	}
+	// },[])
 
 	const checkUsername = useMemo(
 		() =>
