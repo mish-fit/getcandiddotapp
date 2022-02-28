@@ -104,7 +104,7 @@ export function SignInOptions() {
 					<Flex flexDirection={'column'}>
 						<Flex style={{ display: !show ? 'block' : 'none' }}>
 							
-						<Heading size={'lg'} paddingBottom='8px' textAlign={{base:'center', md:'left'}}>Sign In</Heading>
+						<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'} >Sign in to CaNDiD!</Heading>
 							{/* <Input
 					value={mynumber}
 					bg='white'
@@ -117,13 +117,15 @@ export function SignInOptions() {
 						setNumber(e.target.value);
 					}}
 				/> */}
-							<InputGroup marginTop='16px'>
+							<InputGroup >
 								<InputLeftAddon children='+91' height={50} fontSize={18} />
 								<Input
 									type='tel'
 									// value={mynumber}
 									bg='white'
 									focusBorderColor='#E78692'
+									borderColor={'black'}
+									border='2px'
 									height={50}
 									fontSize={'lg'}
 									width={'sm'}
@@ -136,7 +138,7 @@ export function SignInOptions() {
 							<Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
-								borderRadius={25}
+								borderRadius={10}
 								color='white'
 								height={50}
 								width={'md'}
@@ -212,7 +214,7 @@ export function SignInOptions() {
 							<Flex>
 								<Flex >
 									<Button
-										borderRadius={25}
+										borderRadius={10}
 										width={'md'}
 										height={50}
 										fontSize={18}

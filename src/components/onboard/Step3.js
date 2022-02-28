@@ -7,6 +7,7 @@ import {
 	Container,
 	Flex,
 	FormControl,
+	useToast,
 	FormLabel,
 	FormErrorMessage,
 	FormHelperText,
@@ -17,6 +18,8 @@ import {
 import Header from './Header';
 import { useState, useContext, useRef, useEffect } from 'react';
 import { UserContext } from 'lib/UserDataProvider';
+import { firestore } from 'lib/firebase';
+import { useRouter } from 'next/router';
 import '@fontsource/poppins';
 import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -25,9 +28,9 @@ import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 const Step3 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
-  // const [imageName, setImageName] = useState('');
   const [imageSelected, setImageSelected] = useState(false);
-	// const [photo, setPhoto]=useState(null);
+	const router = useRouter();
+	const toast=  useToast();
 	let hiddenInput = null;
 	useEffect(()=>{
 
@@ -68,7 +71,7 @@ const Step3 = (props) => {
     setImage({ preview: "", raw: "" });
   };
 
-	const next = (e) => {
+	const next = async(e) => {
 		e.preventDefault();
 		// console.log(image.preview+image.raw+"jj"+imageName+"jj"+imageSelected);
 		userDataContext.setProfileImage(s3url+userDataContext.userData.username+".png");
@@ -76,7 +79,124 @@ const Step3 = (props) => {
 			userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
 		}
-		props.nextStep();
+
+		const batch = firestore.batch();
+		const usernameDoc = firestore.doc(`usernames/${userDataContext.userData.username}`);
+		batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
+		
+		const userDoc = firestore.doc(
+			`users/${userDataContext.userSignInInfo.user.uid}`
+		);
+		batch.set(userDoc, {
+			username: userDataContext.userData.username,
+			name: userDataContext.userData.name,
+			mail: userDataContext.userData.mail,
+			phone: userDataContext.userData.phone,
+			about: userDataContext.userData.about,
+			affiliateCodes: [],
+		});
+		await batch.commit();
+		
+		const u_data =	{
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"u_name": userDataContext.userData.name,
+			"u_profile_image": userDataContext.userData.profile_image,
+			"u_cover_image": "",
+			"u_uuid": userDataContext.userData.username,
+			"u_email": userDataContext.userData.mail,
+			"u_phone": userDataContext.userData.phone,
+			"u_about": userDataContext.userData.about,
+			"u_gender": "",
+			"u_dob": "",
+			"expo_token": "",
+			"device_token": "",
+			"u_language": "en",
+			"aff_ids":[],
+			"others": {
+				"twitter": "",
+				"instagram": ""
+			}
+		}
+	
+	// API Call 1: User Data
+	axios(
+		{
+			method: "post",
+			url: `${authapi}user/add`,
+			data:  u_data ,
+			options: origin,
+		},
+		{ timeout: 5000 }
+	)
+		.then((res) => {
+			console.log("Success", res.data);
+			toast({
+				title: "New User Added",
+				description: "",
+				status: "success",
+				duration: 1000,
+				isClosable: true,
+			});
+		})
+
+		// API Call 3: Links
+		const links = {
+			"id": "",
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"type": "Links",
+			"u_buckets": "['My Links']"
+		} 
+		axios(
+			{
+				method: "post",
+				url: `${authapi}buckets`,
+				data:  links ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success: Links Added", res.data);
+				// toast({
+				// 	title: "Aff codes added",
+				// 	description: "",
+				// 	status: "success",
+				// 	duration: 1000,
+				// 	isClosable: true,
+				// });
+			})
+		.catch((e) => console.log(e));
+
+
+		// API Call 4: Recos
+		const recos = {
+			"id": "",
+			"u_id": userDataContext.userSignInInfo.user.uid,
+			"type": "Recos",
+			"u_buckets": "['My Recos']"
+		} 
+		axios(
+			{
+				method: "post",
+				url: `${authapi}buckets`,
+				data:  recos ,
+				options: origin,
+			},
+			{ timeout: 5000 }
+		)
+			.then((res) => {
+				console.log("Success: Recos Added", res.data);
+				// toast({
+				// 	title: "Aff codes added",
+				// 	description: "",
+				// 	status: "success",
+				// 	duration: 1000,
+				// 	isClosable: true,
+				// });
+			})
+		.catch((e) => console.log(e));
+
+		router.push('/dashboard');
 	};
 
 	const back = (e) => {
@@ -201,7 +321,7 @@ const Step3 = (props) => {
 								fontSize={'lg'}
 									width={120}
 									height={50}
-									onClick={back}
+									onClick={next}
 							>
 								Skip
 							</Button>
@@ -216,7 +336,7 @@ const Step3 = (props) => {
 								mr={{base:'0', md:'190'}}
 								onClick={next}
 							>
-								Next
+								Submit
 							</Button>
 							</Flex>
 						</FormControl>

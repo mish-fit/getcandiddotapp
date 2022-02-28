@@ -5,13 +5,30 @@ import Step3 from '../src/components/onboard/Step3';
 import Step4 from '../src/components/onboard/Step4';
 import { UserContext } from 'lib/UserDataProvider';
 import { useRouter } from 'next/router'
-
+import { firestore } from 'lib/firebase';
+import { nonauthapi } from 'lib/api';
+import axios from 'axios';
+import { firebaseAdmin } from 'lib/firebaseadmin';
+import nookies from "nookies";
 export default function Onboard(props) {
 
 	const router = useRouter()
 	const [ userDataContext, user ] = useContext(UserContext);
-	
 	const [step, setStep] = useState(1);
+	// useEffect(()=>{
+	// 	console.log('userdata',userDataContext.userSignInInfo.user.uid );
+	// 	axios
+  //     .get(`${nonauthapi}user`, { params: { u_id: userDataContext.userSignInInfo.user.uid } }, { timeout: 5000 })
+  //     .then((res) => {
+	// 			if(res.data[0].u_name){
+	// 				router.push('/dashboard');
+	// 			}
+	// 		})
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+	// })
+
 	const nextStep = () => setStep(step + 1);
 	// const prevStep = () => setStep(step - 1);
 	
@@ -33,3 +50,35 @@ export default function Onboard(props) {
 	return <>{switchStep()}</>;
 }
 
+export async function getServerSideProps(context) {
+
+	const cookie = nookies.get(context).token;
+
+	if(cookie){
+		const token = await firebaseAdmin.auth().verifyIdToken(cookie);
+
+		const res = await fetch(`${nonauthapi}user?u_id=${token.uid}`)
+		const data = await res.json()
+console.log(data)
+
+		if (data.length!==0 && data[0].u_name) {
+			return {
+				redirect: {
+					destination: '/dashboard',
+					permanent: false,
+				},
+			}
+		}
+	}
+	if(cookie===''){
+		return {
+			redirect: {
+				destination: '/auth',
+				permanent: false,
+			},
+		}
+	}
+	return{
+		props: {},
+	}
+}
