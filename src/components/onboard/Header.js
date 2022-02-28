@@ -1,5 +1,5 @@
 import { Box, Heading, Flex, Button, Image, Progress } from '@chakra-ui/react';
-import logo from "assets/CaNDiD.png";
+import logo from "assets/CaNDiD_B.png";
 import { useEffect, useState } from 'react';
 const Header = (props) => {
 	// const [zero, setZero]=useState(false);

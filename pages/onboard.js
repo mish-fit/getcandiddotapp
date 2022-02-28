@@ -15,7 +15,7 @@ export default function Onboard(props) {
 	const router = useRouter()
 	const [ userDataContext, user ] = useContext(UserContext);
 	const [step, setStep] = useState(1);
-	auth.signOut();
+	// auth.signOut();
 	// useEffect(()=>{
 	// 	console.log('userdata',userDataContext.userSignInInfo.user.uid );
 	// 	axios
@@ -54,28 +54,34 @@ export default function Onboard(props) {
 export async function getServerSideProps(context) {
 
 	const cookie = nookies.get(context).token;
-
+	console.log('c',cookie)
+	let uid = ''
 	if(cookie){
-		const token = await firebaseAdmin.auth().verifyIdToken(cookie).then((res)=>{
-			console.log(res)
+		const token = await firebaseAdmin.auth().verifyIdToken(cookie)
+		.then((res)=>{
+			uid = res.uid;
+			// console.log('res', res)
 		}).catch((err)=>{
-			console.log(err)
+			// console.log(err)
 		});
-
-		const res = await fetch(`${nonauthapi}user?u_id=${token.uid}`)
-		const data = await res.json()
-	console.log(data)
-
-		if (data.length!==0 && data[0].u_name) {
-			return {
-				redirect: {
-					destination: '/dashboard',
-					permanent: false,
-				},
+		// console.log('token', token)
+		console.log('onboard', uid)
+		if(uid!==''){
+			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
+			const data = await res.json()
+			console.log('data',data)
+			if (data.length!==0 && data[0].u_name!=='') {
+				// console.log(data)
+				return {
+					redirect: {
+						destination: '/dashboard',
+						permanent: false,
+					},
+				}
 			}
 		}
 	}
-	if(cookie===''){
+	if(!cookie){
 		return {
 			redirect: {
 				destination: '/auth',

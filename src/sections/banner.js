@@ -22,7 +22,7 @@ import { translation } from "translation";
 
 const Banner = () => {
   const { locale } = useRouter();
-
+  const router = useRouter();
   const [signedup, setSignedup] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const signup = (event) => {
@@ -45,13 +45,16 @@ const Banner = () => {
     text: translation[locale].HeaderSection.SubTitle,
     subcontent: translation[locale].HeaderSection.SignupTitle,
     image: sectionImage,
+    GettingStarted: translation[locale].HeaderSection.GettingStarted,
   };
 
   React.useEffect(() => {}, []);
 
-  const signin = () => {};
+  const signin = () => {
+    router.push('/auth')
+  };
 
-  const { title, text, clients, image, subcontent } = BANNER_DATA;
+  const { title, text, clients, image, subcontent, GettingStarted } = BANNER_DATA;
   return (
     <Box as="section" id="banner" sx={styles.section}>
       <Container sx={styles.container}>
@@ -89,7 +92,7 @@ const Banner = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  GET STARTED FOR FREE
+                 {GettingStarted} 
                 </Text>
               </Flex>
             </Flex>
@@ -281,3 +284,4 @@ const styles = {
     color: "white",
   },
 };
+

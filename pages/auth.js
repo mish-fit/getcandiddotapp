@@ -31,24 +31,28 @@ export default function Auth(props) {
 export async function getServerSideProps(context) {
 
 	const cookie = await nookies.get(context).token;
-	
+	let uid = ''
 	if(cookie){
-		const token = await firebaseAdmin.auth().verifyIdToken(cookie).then((res)=>{
-			console.log(res)
+		const token = await firebaseAdmin.auth().verifyIdToken(cookie)
+		.then((res)=>{
+			uid=res.uid;
+			console.log(res);
 		}).catch((err)=>{
-			console.log(err)
+			console.log(err);
 		})
-		console.log(token.uid)
-		if(token.uid!==null || token.uid!==''){
-			return {
-				redirect: {
-					destination: "/onboard", 
-					permanent: false,
-				},
-			}
+		// console.log(token.uid)
+		if(uid!==''){
+			// if(token.uid!==null || token.uid!==''){
+				return {
+					redirect: {
+						destination: "/onboard", 
+						permanent: false,
+					},
+				}
+			// }
 		}
 	}
-	if(cookie===''){}
+	if(!cookie){}
 	return{
 		props: {},
 	}

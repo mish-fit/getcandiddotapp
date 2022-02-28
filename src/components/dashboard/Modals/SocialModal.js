@@ -96,7 +96,7 @@ export function SocialModal({
   data,
 }) {
   const toast = useToast();
-
+  console.log('bucts',JSON.parse(buckets[0].u_buckets));
   const [a, setA] = React.useState(JSON.parse(buckets[0].u_buckets));
 
   const [image, setImage] = React.useState({ preview: "", raw: "" });

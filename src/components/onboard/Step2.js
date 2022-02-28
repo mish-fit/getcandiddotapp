@@ -77,9 +77,9 @@ const Step2 = (props) => {
 			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
 			// userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
 		}
-		// if (userDataContext.userData.mail !== null) {
-		// 	userDataContext.setMail(state.mail);
-		// }
+		if (userDataContext.userData.mail !== null) {
+			userDataContext.setMail(state.mail);
+		}
 		
 		userDataContext.setName(state.name);
 		userDataContext.setAbout(state.about);
