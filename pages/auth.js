@@ -10,7 +10,7 @@ export default function Auth(props) {
 	const router = useRouter()
 	const [ userDataContext, user ] = useContext(UserContext);
 	const [ show, setShow ] = useState(true);
-	auth.signOut();
+	// auth.signOut();
 	// useEffect(()=>{
 	// 	if(userDataContext.userSignInInfo.user && !userDataContext.userData.username){
 	// 		router.push('/onboard');
