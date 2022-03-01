@@ -51,10 +51,11 @@ const Banner = () => {
   React.useEffect(() => {}, []);
 
   const signin = () => {
-    router.push('/auth')
+    router.push("/auth");
   };
 
-  const { title, text, clients, image, subcontent, GettingStarted } = BANNER_DATA;
+  const { title, text, clients, image, subcontent, GettingStarted } =
+    BANNER_DATA;
   return (
     <Box as="section" id="banner" sx={styles.section}>
       <Container sx={styles.container}>
@@ -92,7 +93,7 @@ const Banner = () => {
                     fontWeight: "bold",
                   }}
                 >
-                 {GettingStarted} 
+                  {GettingStarted}
                 </Text>
               </Flex>
             </Flex>
@@ -138,7 +139,7 @@ export default Banner;
 const styles = {
   section: {
     overflow: "hidden",
-    backgroundColor: "#F9FBFD",
+    backgroundColor: "#FFFFFF",
     pt: ["160px", null, null, null, "200px"],
     pb: ["72px", null, null, null, "96px"],
   },
@@ -284,4 +285,3 @@ const styles = {
     color: "white",
   },
 };
-

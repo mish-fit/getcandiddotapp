@@ -26,7 +26,7 @@ const ProductFeature = () => {
         title: lang.Tile1.Title,
         text: lang.Tile1.Content,
         button: {
-          link: "/signup.html",
+          link: "/auth",
           label: lang.signupText,
         },
       },
@@ -36,7 +36,7 @@ const ProductFeature = () => {
         title: lang.Tile2.Title,
         text: lang.Tile2.Content,
         button: {
-          link: "/signup.html",
+          link: "/auth",
           label: lang.signupText,
         },
       },
@@ -45,7 +45,7 @@ const ProductFeature = () => {
         title: lang.Tile3.Title,
         text: lang.Tile3.Content,
         button: {
-          link: "/signup.html",
+          link: "/auth",
           label: lang.signupText,
         },
       },
