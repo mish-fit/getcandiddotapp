@@ -22,7 +22,7 @@ export function LinksCard({ item }) {
         })}
       >
         {item.photo && item.photo != "" ? (
-          <Image src={item.photo} alt='img' sx={style.image} />
+          <Image src={item.photo} alt="img" sx={style.image} />
         ) : null}
         <Flex
           sx={{

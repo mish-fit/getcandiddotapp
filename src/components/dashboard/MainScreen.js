@@ -24,38 +24,41 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
 
   const [currentLinks, setCurrentLinks] = React.useState(links);
   const [currentRecos, setCurrentRecos] = React.useState(recos);
+  const [newRecos, setNewRecos] = React.useState([]);
+  const [newLinks, setNewLinks] = React.useState([]);
 
   React.useEffect(() => {
-    console.log("link", JSON.parse(buckets).links);
-    axios
-      .get(
-        `${nonauthapi}links`,
-        { params: { u_id: user[0].u_id } },
-        { timeout: 3000 }
-      )
-      .then((res) => res.data)
-      .then((responseData) => {
-        setCurrentLinks(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setCurrentLinks([...links, ...newLinks]);
+    // axios
+    //   .get(
+    //     `${nonauthapi}links`,
+    //     { params: { u_id: user[0].u_id } },
+    //     { timeout: 3000 }
+    //   )
+    //   .then((res) => res.data)
+    //   .then((responseData) => {
+    //     setCurrentLinks(responseData);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, [isOpenLinksModal]);
 
   React.useEffect(() => {
-    axios
-      .get(
-        `${nonauthapi}recos`,
-        { params: { u_id: user[0].u_id } },
-        { timeout: 3000 }
-      )
-      .then((res) => res.data)
-      .then((responseData) => {
-        setCurrentRecos(responseData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setCurrentRecos([...recos, ...newRecos]);
+    // axios
+    //   .get(
+    //     `${nonauthapi}recos`,
+    //     { params: { u_id: user[0].u_id } },
+    //     { timeout: 3000 }
+    //   )
+    //   .then((res) => res.data)
+    //   .then((responseData) => {
+    //     setCurrentRecos(responseData);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, [isOpenProductsModal]);
 
   const onCloseLinksModal = (item) => {
@@ -68,24 +71,34 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
     setOpenProductsModal(false);
   };
 
+  const newReco = (item) => {
+    setNewRecos(item);
+  };
+
+  const newLink = (item) => {
+    setNewLinks(item);
+  };
+
   return (
     <Container sx={{ backgroundColor: "white", px: "0px" }}>
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
-        buckets={JSON.parse(buckets).links}
+        buckets={JSON.parse(buckets)}
         maxSortId={Math.max(...currentLinks.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
+        newItem={(item) => newLink(item)}
       />
-      {/* <ProductsModal
+      <ProductsModal
         isOpen={isOpenProductsModal}
         closeParent={(item) => onCloseProductsModal(item)}
-        buckets={JSON.parse(buckets).recos}
+        buckets={JSON.parse(buckets)}
         maxSortId={Math.max(...currentRecos.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
-      /> */}
+        newItem={(item) => newReco(item)}
+      />
       <AddButtons
         addLink={() => setOpenLinksModal(true)}
         addProduct={() => setOpenProductsModal(true)}

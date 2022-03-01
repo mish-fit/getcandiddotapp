@@ -16,8 +16,6 @@ import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
-import { TextColorPicker } from "../AddElement/TextColorPicker";
-import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { RiCouponLine } from "react-icons/ri";
 import { Input } from "@chakra-ui/react";
@@ -42,12 +40,11 @@ export function ProductsModal({
   user,
   maxSortId,
   cookie,
+  newItem,
 }) {
-  const ctx = useContext(UserContext);
-  const router = useRouter();
   const toast = useToast();
   const [refreshScreen, setRefreshScreen] = React.useState(false);
-  const [a, setA] = React.useState(buckets);
+  const [a, setA] = React.useState(buckets.recos);
   const [input, setInput] = React.useState(false);
   const [image, setImage] = React.useState({ preview: "", raw: "" });
   const [imageName, setImageName] = React.useState(nanoid());
@@ -222,6 +219,7 @@ export function ProductsModal({
     setInput(false);
   };
   const onSaveBucket = (item) => {
+    console.log(values);
     setValues({ ...values, bucket: item });
     setA([...a, item]);
     setInput(false);
@@ -232,15 +230,15 @@ export function ProductsModal({
       },
     };
 
+    const newBuckets = { ...buckets, recos: [...a, item] };
+
     axios(
       {
         method: "post",
         url: `${authapi}buckets`,
         data: {
-          id: buckets[0].id,
-          u_id: buckets[0].u_id,
-          type: buckets[0].type,
-          u_buckets: JSON.stringify([...a, item]),
+          u_id: user[0].u_id,
+          u_buckets: newBuckets,
         },
         options: options,
       },
@@ -291,6 +289,7 @@ export function ProductsModal({
       )
         .then((res) => {
           console.log("Success", res.data);
+          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Recommendation Added",
@@ -339,6 +338,7 @@ export function ProductsModal({
       )
         .then((res) => {
           console.log("Sucess", res.data);
+          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Recommendation Added",
@@ -372,7 +372,7 @@ export function ProductsModal({
       cat_name: "",
       bucket: "My Recommendations",
       photo: "",
-      prod_link: "black",
+      prod_link: "",
       aff_code: "",
       sort_id: 1,
       others: {},
@@ -647,7 +647,7 @@ export function ProductsModal({
                           placeholder="Enter Product Link"
                           variant="flushed"
                           onChange={(e) =>
-                            setValues({ ...values, link: e.target.value })
+                            setValues({ ...values, prod_link: e.target.value })
                           }
                           value={values.link}
                         />
