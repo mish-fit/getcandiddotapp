@@ -130,7 +130,7 @@ const Step2 = (props) => {
 				fontFamily={'Poppins'}
 				maxW={'container.md'}
 				p={0}
-				align='center'
+				// align='center'
 			>
 				<Header value={50} />
 				<Flex display={{ md: 'flex' }}>
@@ -139,10 +139,8 @@ const Step2 = (props) => {
 						textAlign={{ base: 'left', md: 'left' }}
 						margin={6}
 					>
-						<Flex flexDirection={'column'}>
-								{/* <Heading size={'lg'} marginBottom="16px" >Enter User Details</Heading> */}
+					<Flex flexDirection={'column'} w='80%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
-							<form onSubmit={next}>
 								<FormLabel
 									size={'md'}
 									margin='8px'
@@ -153,18 +151,20 @@ const Step2 = (props) => {
 									Using your real name will help people confirm that they are
 									interacting with you.
 								</FormLabel>
+								<form onSubmit={next}>
+								<Flex flexDirection={'column'}>
 								<FormLabel 
 									fontSize={'lg' }>Full Name</FormLabel>
 								<Input
 									required
 									name='name'
 									bg='white'
-									display='block'
+									display='inline'
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
 									borderColor='#E78592'
 									height= {50}
-									width={'md'}
+									width={'full'}
 									fontSize={'lg'}
 									marginBottom='24px'
 									defaultValue={userDataContext.userSignInInfo.user.displayName}
@@ -177,12 +177,12 @@ const Step2 = (props) => {
 									name='about'
 									type='text'
 									bg='white'
-									display='block'
+									display='inline'
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
 									borderColor='#E78592'
 									fontSize={'lg'}
-									width={'md'}
+									width={'full'}
 									height={100}
 									placeholder='Tell us about you'
 									marginBottom='24px'
@@ -199,7 +199,7 @@ const Step2 = (props) => {
 										_hover={{ borderColor: '#E78592' }}
 										borderColor='#E78592'
 										height={50}
-										width={'md'}
+										width={'full'}
 										fontSize={'lg'}
 										marginBottom='24px'
 										placeholder='Email address'
@@ -215,7 +215,7 @@ const Step2 = (props) => {
 								<Flex style={{ display: showLink ? 'block' : 'none' }}>
 									<Button
 										borderRadius={10}
-										width={'md'}
+										width={'full'}
 										height={50}
 										fontSize={18}
 										border='2px'
@@ -227,8 +227,9 @@ const Step2 = (props) => {
 									<Flex mr='8px' >
 										<FcGoogle size={25} />
 									</Flex>
-											Continue with Google
+											Link with Google Account
 									</Button>
+								</Flex>
 								</Flex>
 								{/* <Button
 									style={{ display: showLink ? 'block' : 'none' }}
@@ -266,14 +267,14 @@ const Step2 = (props) => {
 									fontSize={'lg'}
 									width={120}
 									height={50}
-									mr={{base:'0', md:'200'}}
+									// mr={{base:'0', md:'200'}}
 									type='submit'
 								>
 									Next
 								</Button>
 							</Flex>
 						</form>
-						</Flex>
+					</Flex>
 					</Stack>
 				</Flex>
 			</Container>

@@ -44,7 +44,6 @@ const MobileDrawer = () => {
         <Box sx={styles.content}>
           <Logo />
           <Box sx={styles.menu}>
-            <p>https://www.cndd.in/kandurisv</p>
           </Box>
 
           <Box sx={styles.menuFooter}>

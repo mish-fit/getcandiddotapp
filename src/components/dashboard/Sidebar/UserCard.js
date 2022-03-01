@@ -6,7 +6,7 @@ import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
-
+import CopyToClipboard from "react-copy-to-clipboard";
 // Add a custom Link
 export function UserCard({ data }) {
   const router = useRouter();
@@ -18,6 +18,10 @@ export function UserCard({ data }) {
   const addLinks = () => {
     console.log("add links");
   };
+
+  const linkClick = () => {
+    router.push(data[0].u_name);
+  }
 
   return (
     <Container sx={style.container}>
@@ -32,6 +36,11 @@ export function UserCard({ data }) {
           }
         />
       </Container>
+      <CopyToClipboard text={"cndd.in/" + data[0].u_name}>
+            <Flex as="nav" sx={style.nav} onClick={linkClick}>
+              <Text sx={style.nav.navLink}>{"wwww.cndd.in/" + data[0].u_name}</Text>
+            </Flex>
+      </CopyToClipboard>
       <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
@@ -115,5 +124,23 @@ const style = {
     fontSize: "24px",
     fontFamily: "Poppins",
     color: "#323232",
+  },
+
+  nav: {
+    display:['', 'none', 'none', 'none', 'none'],
+    justifyContent: "center",
+    navLink: {
+      // textDecoration:"underline",
+      fontFamily: "Poppins",
+      fontSize: "16px",
+      color: "#323232",
+      fontWeight: "bold",
+      cursor: "pointer",
+      lineHeight: "1.2",
+      mt: "-64px",
+      "&:hover, &.active": {
+        color: "primary",
+      },
+    },
   },
 };
