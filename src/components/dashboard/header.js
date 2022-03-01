@@ -61,7 +61,7 @@ export default function Header({ menu, menuActive, data }) {
           </Flex>
           <CopyToClipboard text={"cndd.in/" + data[0].u_name}>
             <Flex as="nav" sx={styles.nav} onClick={linkClick}>
-              <Text sx={styles.nav.navLink}>{"cndd.in/" + data[0].u_name}</Text>
+              <Text >{"cndd.in/" + data[0].u_name}</Text>
             </Flex>
           </CopyToClipboard>
           <Menu>

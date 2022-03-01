@@ -101,22 +101,9 @@ export function SignInOptions() {
 					textAlign={{ base: 'left', md: 'left' }}
 					margin={6}
 				>
-					<Flex flexDirection={'column'}>
-						<Flex style={{ display: !show ? 'block' : 'none' }}>
-							
-						<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'} >Sign in to CaNDiD!</Heading>
-							{/* <Input
-					value={mynumber}
-					bg='white'
-					marginTop='8px'
-					focusBorderColor='#D7354A'
-					height={50}
-					fontSize={18}
-					width={250}					
-					onChange={(e) => {
-						setNumber(e.target.value);
-					}}
-				/> */}
+				<Flex flexDirection={'column'} w='100%'>
+						<Flex style={{ display: !show ? 'block' : 'none' }} w='100%'>
+							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'24px'} >Sign in to CaNDiD!</Heading>
 							<InputGroup >
 								<InputLeftAddon children='+91' height={50} fontSize={18} />
 								<Input
@@ -125,25 +112,25 @@ export function SignInOptions() {
 									bg='white'
 									focusBorderColor='#E78692'
 									borderColor={'black'}
-									border='2px'
+									border='1px'
 									height={50}
 									fontSize={'lg'}
-									width={'sm'}
+									width={'full'}
 									onChange={(e) => {
 										setNumber(e.target.value);
 									}}
 								/>
 							</InputGroup>
-							<Flex id='recaptcha-container'></Flex>
+							<Flex id='recaptcha-container' mt={'8px'} ></Flex>
 							<Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
 								height={50}
-								width={'md'}
+								width='full'
 								fontSize={'lg'}
-								marginTop='16px'
+								marginTop='8px'
 								marginBottom='24px'
 								onClick={signInWithPhone}
 							>
@@ -151,17 +138,16 @@ export function SignInOptions() {
 							</Button>
 						</Flex>
 
-						<Flex style={{ display: show ? 'block' : 'none' }}>
-
-						<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
+						<Flex style={{ display: show ? 'block' : 'none' }} w='100%'>
+							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
 							<Input
 								type='text'
 								bg='white'
 								textAlign={'center'}
 								focusBorderColor='#E78692'
 								_hover={{ borderColor: '#E78592' }}
-								borderColor='#E78592'
-								width={'md'}
+								borderColor='black'
+								width={{base:'full', md:'sm'}}
 								height={50}
 								fontSize={18}
 								placeholder={'Enter your OTP'}
@@ -203,7 +189,7 @@ export function SignInOptions() {
 							</Button>
 						</Flex>
 						</Flex>
-						<Flex style={{ display: googleShow ? 'block' : 'none' }}>
+						<Flex style={{ display: googleShow ? 'inline' : 'none' }} w='100%'>
 					<Flex style={{flexDirection: 'row', alignItems: 'center'}} my='8px'>
 						<Flex style={{flex: 1, height: 1, backgroundColor: 'black'}} />
 						<Flex>
@@ -211,17 +197,17 @@ export function SignInOptions() {
 						</Flex>
 						<Flex style={{flex: 1, height: 1, backgroundColor: 'black'}} />
 					</Flex>
-							<Flex>
-								<Flex >
+							<Flex w='100%'>
+								<Flex w='100%'>
 									<Button
 										borderRadius={10}
-										width={'md'}
+										width='full'
 										height={50}
 										fontSize={18}
-										border='2px'
+										border='1px'
 										// fontWeight='black'
 										bg={'white'}
-										_hover={{ bg: 'gray.50' }}
+										_hover={{ bg: 'gray.50', border:'2px' }}
 										onClick={signInWithGoogle}
 									>
 									<Flex mr='8px' >
@@ -230,18 +216,17 @@ export function SignInOptions() {
 									</Button>
 								</Flex>
 							</Flex>
-							<Flex mx='60px' mt='16px'>
-							<Text >
-									By signing up, you are agreeing to our <br/>
+							<Flex mt='16px'>
+								<Text > By signing up, you agree to our
 									<Link href="/tnc" passHref>
-										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Terms and Conditions </Text>
+										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Privacy </Text>
 									</Link>
 									and 
 									<Link href="/pp" passHref>
-										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Privacy Policy </Text>
+										<Text display={'inline'} textColor={'#D7354A'} cursor={'pointer'}> Terms  </Text>
 									</Link>
 								</Text>
-								</Flex>
+							</Flex>
 						</Flex>
 					</Flex>
 				</Stack>

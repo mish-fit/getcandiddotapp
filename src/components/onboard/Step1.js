@@ -134,7 +134,7 @@ const Step1 = (props) => {
 						<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Choose a Username</Heading>
 						<FormLabel
 							size={'md'}
-							margin='10px'
+							margin='8px'
 							marginLeft='0px'
 							paddingBottom='1rem'
 							textAlign={{base:'center', md:'left'}}
@@ -157,7 +157,7 @@ const Step1 = (props) => {
 									placeholder='Username...'
 									value={formValue}
 									onChange={onChange}
-								/>{' '}
+								/>
 								&nbsp;
 								<AiOutlineCheckCircle
 									color='#D7354A'
@@ -170,7 +170,7 @@ const Step1 = (props) => {
 								isValid={isValid}
 								loading={loading}
 							/>
-							<Flex justifyContent={'space-between'}>
+							<Flex>
 							<Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
