@@ -97,7 +97,7 @@ export function ProductsModal({
       .catch((error) => {
         console.log(error);
       });
-  }, [imageName]);
+  }, [imageName, values.cat_name]);
 
   const ProdItem = ({ item }) => {
     return (
@@ -425,7 +425,7 @@ export function ProductsModal({
             });
         }
       }, 500),
-    [values.prod_name]
+    [values.prod_name, values.cat_id]
   );
 
   const onChangeCategory = () => {};

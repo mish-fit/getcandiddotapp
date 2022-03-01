@@ -70,7 +70,7 @@ export async function getServerSideProps(context) {
 			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
 			const data = await res.json()
 			console.log('data',data)
-			if (data.length!==0 && data[0].u_name!=='') {
+			if (data.length!==0 && data[0].u_uuid!=='') {
 				// console.log(data)
 				return {
 					redirect: {

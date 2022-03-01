@@ -40,7 +40,7 @@ export function BucketSelector({ buckets }) {
 
   React.useEffect(() => {
     console.log(JSON.parse(buckets));
-  }, []);
+  }, [buckets]);
 
   return (
     <Menu>

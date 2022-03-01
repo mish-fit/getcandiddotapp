@@ -86,7 +86,16 @@ export function SignInOptions() {
 		setShow(!show);
 		setGoogleShow(!googleShow);
 	};
-
+	const handleKeyPressVerify = e => {
+	if (e.key==='Enter') {
+		signInWithPhone();
+	}
+	};
+	const handleKeyPressConfirm = e => {
+		if (e.key==='Enter') {
+			ValidatePhoneOTP();
+		}
+	};
 	return (
 		<Container
 			fontFamily={'Poppins'}
@@ -105,7 +114,7 @@ export function SignInOptions() {
 						<Flex style={{ display: !show ? 'block' : 'none' }} w='100%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'24px'} >Sign in to CaNDiD!</Heading>
 							<InputGroup >
-								<InputLeftAddon children='+91' height={50} fontSize={18} />
+								<InputLeftAddon height={50} fontSize={18}> +91 </InputLeftAddon>
 								<Input
 									type='tel'
 									// value={mynumber}
@@ -119,6 +128,7 @@ export function SignInOptions() {
 									onChange={(e) => {
 										setNumber(e.target.value);
 									}}
+			          onKeyPress={handleKeyPressVerify}
 								/>
 							</InputGroup>
 							<Flex id='recaptcha-container' mt={'8px'} ></Flex>
@@ -155,6 +165,7 @@ export function SignInOptions() {
 								onChange={(e) => {
 									setOtp(e.target.value);
 								}}
+			          onKeyPress={handleKeyPressConfirm}
 							/>
 						
 						<Flex justifyContent={'space-between'}>

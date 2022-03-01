@@ -62,7 +62,7 @@ export default function Dashboard({
       " master socials ",
       masterSocials
     );
-  }, []);
+  }, [buckets, cookies, currentUser, masterSocials, recos, user, socials, links]);
   React.useEffect(() => {
     setSummary({ products: recos.length, links: links.length });
 

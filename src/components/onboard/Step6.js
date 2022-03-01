@@ -24,7 +24,7 @@ const Step6 = (props) => {
     if (ctx.userData.phone === "+91") {
       setShowPhone(false);
     }
-  });
+  },[ctx.userData.phone, setShowPhone]);
   const back = (e) => {
     e.preventDefault();
     props.prevStep();

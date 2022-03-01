@@ -150,7 +150,7 @@ export function SocialModal({
       .catch((error) => {
         console.log(error);
       });
-  }, [imageName]);
+  }, [imageName, data, user]);
 
   // const handleChange = (e) => {
   //   e.preventDefault();
@@ -382,7 +382,7 @@ export function SocialModal({
                     Enter Username
                   </Text>
                   <InputGroup size="lg">
-                    <InputLeftAddon children={inputLink} />
+                    <InputLeftAddon>{inputLink}</InputLeftAddon>
                     <Input
                       placeholder={inputPlaceholder}
                       value={userName}

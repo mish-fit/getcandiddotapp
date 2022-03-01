@@ -7,7 +7,7 @@ import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import lock from "assets/lock.svg";
 import MobileDrawer from "./mobile-drawer";
-import menuItems from "./header.data";
+import headerData from "./header.data";
 import Link1 from "next/link";
 import { useRouter } from "next/router";
 import { translation } from "translation";
@@ -42,7 +42,7 @@ export default function Header({ menu, menuActive, data }) {
   };
 
   const linkClick = () => {
-    router.push(data[0].u_name);
+    router.push(data[0].u_uuid);
     // toast({
     //   title: "Link Copied",
     //   description: "Add you Candid link to Instagram Bio",
@@ -59,9 +59,9 @@ export default function Header({ menu, menuActive, data }) {
           <Flex as="logo" sx={styles.logoContainer}>
             <Logo />
           </Flex>
-          <CopyToClipboard text={"cndd.in/" + data[0].u_name}>
+          <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
             <Flex as="nav" sx={styles.nav} onClick={linkClick}>
-              <Text >{"cndd.in/" + data[0].u_name}</Text>
+              <Text fontWeight={'100px'}>{"cndd.in/" + data[0].u_uuid}</Text>
             </Flex>
           </CopyToClipboard>
           <Menu>
@@ -166,6 +166,7 @@ const styles = {
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
+    cursor: 'pointer',
     flex: 1,
     mr: "200px",
     px: "auto",
