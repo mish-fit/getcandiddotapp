@@ -36,9 +36,9 @@ export function UserCard({ data }) {
           }
         />
       </Container>
-      <CopyToClipboard text={"cndd.in/" + data[0].u_name}>
+      <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
             <Flex as="nav" sx={style.nav} onClick={linkClick}>
-              <Text sx={style.nav.navLink}>{"wwww.cndd.in/" + data[0].u_name}</Text>
+              <Text sx={style.nav.navLink}>{"wwww.cndd.in/" + data[0].u_uuid}</Text>
             </Flex>
       </CopyToClipboard>
       <Flex sx={style.userPhotoView}>
@@ -75,6 +75,8 @@ const style = {
   coverPhotoView: {
     borderTopRadius: "16px",
     backgroundColor: "white",
+
+    // width: ["0px","0px","0px","448px","448px","448px"],
     width: ["0px","448px","448px","448px","448px","448px"],
     height: ["50px", "248px","248px","248px","248px","248px"],
     justifyContent: "flex-start",

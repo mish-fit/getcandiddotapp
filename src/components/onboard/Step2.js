@@ -35,7 +35,7 @@ const Step2 = (props) => {
 
 	useEffect(()=>{
 		console.log('Step2', userDataContext.userData);
-	},[])
+	},[userDataContext.userData])
 
 	useEffect(() => {
 		if (userDataContext.userData.phone === '+91') {

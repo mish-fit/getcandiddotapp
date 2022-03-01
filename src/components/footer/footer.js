@@ -3,7 +3,7 @@
 import { jsx, Heading, Box, Text, Container } from "theme-ui";
 import { Link } from "components/link";
 import Logo from "components/logo";
-import menuItems from "./footer.data";
+import footerData from "./footer.data";
 import { useRouter } from "next/router";
 import { translation } from "translation";
 export default function Footer() {

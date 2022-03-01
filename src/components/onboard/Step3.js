@@ -189,6 +189,12 @@ const Step3 = (props) => {
     props.nextStep();
   };
 
+  const handleKeyPressNext = (e) => {
+		if (e.key==='Enter') {
+			next();
+		}
+	}	
+
   return (
     <>
       <Container
@@ -222,7 +228,7 @@ const Step3 = (props) => {
               	<Button as="Input" type='file' width={{base:'md',md:'lg'}} height='100px' fontSize={15} text='Click to upload' onChange={handleChange}></Button>
 							</Flex> */}
 
-              <Flex sx={style.leftContainer}>
+              <Flex sx={style.leftContainer} onKeyPress={handleKeyPressNext}>
                 <Flex sx={style.imageContainer}>
                   {image.preview ? (
                     <Flex

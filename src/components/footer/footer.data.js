@@ -1,4 +1,4 @@
-export default [
+const footerData = [
   {
     header: 'Company',
     items: [
@@ -121,3 +121,5 @@ export default [
     ],
   },
 ];
+
+export default footerData;

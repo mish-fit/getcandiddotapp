@@ -1,5 +1,4 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
 class CustomDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -33,7 +32,7 @@ class CustomDocument extends Document {
           `,
             }}
           />
-          <script
+          <NextScript
             id="google-tag-manager"
             dangerouslySetInnerHTML={{
               __html: `

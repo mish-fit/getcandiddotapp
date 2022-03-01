@@ -42,7 +42,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-  }, [isOpenLinksModal]);
+  }, [isOpenLinksModal, links, newLinks]);
 
   React.useEffect(() => {
     setCurrentRecos([...recos, ...newRecos]);
@@ -59,7 +59,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-  }, [isOpenProductsModal]);
+  }, [isOpenProductsModal, recos, newRecos]);
 
   const onCloseLinksModal = (item) => {
     console.log("close");

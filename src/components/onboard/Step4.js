@@ -45,7 +45,7 @@ const Step4 = (props) => {
 	useEffect(()=>{
 		console.log('AC', codes_array);
 		console.log('Step4', userDataContext.userData);
-	},[])
+	},[codes_array, userDataContext.userData])
 
 	const handleCreateItem = (item) => {
 		setBrandArray((curr) => [...curr, item]);

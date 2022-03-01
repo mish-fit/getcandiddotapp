@@ -19,11 +19,12 @@ function termsandconditions() {
         <Text sx={styles.heading}>Terms and Conditions</Text>
         <Flex sx={styles.subContainer}>
           <p>
-            These Terms of Use govern your use of our website located at
-            https://www.cndd.in and/or the Candid Mobile Application
-            (collectively, the "Platform") made available by Mish Fit Tech Pvt.
-            Ltd. ("Candid Reviews", "Company", "we", "us" and "our"). The terms
-            "you" and "your" refer to the user of the Platform.
+          These Terms of Use govern your use of our website located at
+          https://www.cndd.in and/or the Candid Mobile Application
+          (collectively, the &quot;Platform&quot;) made available by Mish Fit Tech Pvt.
+          Ltd. (&quot;Candid Reviews&quot;, &quot;Company&quot;, &quot;we&quot;, &quot;us&quot; and &quot;our&quot;). The terms
+          &quot;you&quot; and &quot;your&quot; refer to the user of the Platform.
+
             <b>
               <br />
               <br />
@@ -70,14 +71,14 @@ function termsandconditions() {
             you to share images, videos, music, status updates, and more in your
             preferred regional language. We understand your preferred content
             and personalize your newsfeed to show you posts, pictures, videos,
-            and suggest content available on our Platform ("Service/Services").
+            and suggest content available on our Platform (&quot;Service/Services&quot;).
             <br />
             You may use our Services only if you are capable of forming a
             binding agreement with us and are legally permitted to use our
             Services. If you are accepting these Terms on behalf of a company or
             any legal persons, then you represent and warrant that you have the
-            authority to bind such entity to these Terms and effectively "you"
-            and "your" shall refer to the company.
+            authority to bind such entity to these Terms and effectively &quot;you&quot;
+            and &quot;your&quot; shall refer to the company.
             <br />
             Please ensure that you are allowed to use our services under the
             law.
