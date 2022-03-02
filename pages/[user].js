@@ -61,7 +61,7 @@ export default function User({ links, recos, user, socials }) {
 
 export async function getServerSideProps(context) {
   const response = await fetch(
-    nonauthapi + "user/byusername" + "?u_name=" + context.params.user
+    nonauthapi + "user/byusername" + "?u_uuid=" + context.params.user
   );
   const userDetails = await response.json();
 
