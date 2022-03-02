@@ -16,7 +16,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { BsCheckCircleFill, BsCheckLg, BsPlusCircleFill } from "react-icons/bs";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
@@ -64,8 +64,12 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
               sx={merge(style.socialView, {})}
               onClick={() => socialClick(item)}
             >
-              <Flex sx={{ position: "relative", backgroundColor: "gray" }}>
-                <Image src={"social/bulbul.png"} alt="img" sx={style.social} />
+              <Flex
+                sx={{
+                  position: "relative",
+                }}
+              >
+                <Image src={item.social_logo} alt="img" sx={style.social} />
                 <Flex sx={{ position: "absolute", top: "-4px", right: "-4px" }}>
                   {currentSocials.filter(
                     (item1, index1) => item1.social_id === item.social_id
@@ -96,23 +100,16 @@ export function SocialModal({
   data,
 }) {
   const toast = useToast();
-
-  const [image, setImage] = React.useState({ preview: "", raw: "" });
   const [imageName, setImageName] = React.useState(nanoid());
-  const [imageSelected, setImageSelected] = React.useState(false);
   const [sortId, setSortId] = React.useState(maxSortId + 1);
   const [signedURL, setSignedURL] = React.useState("");
-
   const [inputActive, setInputActive] = React.useState(false);
   const [newInput, setNewInput] = React.useState(false);
-
   const [inputPlaceholder, setInputPlaceholder] = React.useState("username");
   const [inputLink, setInputLink] = React.useState("cndd.in/");
   const [socialId, setSocialId] = React.useState(0);
   const [userName, setUserName] = React.useState("");
   const [activeItem, setActiveItem] = React.useState({});
-
-  let hiddenInput = null;
 
   const uniqueCategories = [
     ...new Set(masterSocials.map((item) => item.social_cat)),
@@ -120,11 +117,7 @@ export function SocialModal({
 
   const [values, setValues] = React.useState([]);
 
-  React.useEffect(() => {
-    const a = [];
-
-    console.log("data", data);
-
+  useEffect(() => {
     data.map((item, index) => {
       setValues((values) => [
         ...values,
@@ -141,6 +134,13 @@ export function SocialModal({
         },
       ]);
     });
+  }, []);
+
+  React.useEffect(() => {
+    const a = [];
+
+    console.log("data", data);
+
     axios
       .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
       .then((res) => {
@@ -151,37 +151,6 @@ export function SocialModal({
         console.log(error);
       });
   }, [imageName, data, user]);
-
-  // const handleChange = (e) => {
-  //   e.preventDefault();
-  //   console.log(e.target.files[0]);
-  //   if (e.target.files.length) {
-  //     setImageSelected(true);
-  //     setImage({
-  //       preview: URL.createObjectURL(e.target.files[0]),
-  //       raw: e.target.files[0],
-  //     });
-
-  //     handleUpdate({
-  //       preview: URL.createObjectURL(e.target.files[0]),
-  //       raw: e.target.files[0],
-  //     });
-  //     e.target.value = null;
-  //   }
-  // };
-
-  // const handleUpdate = (image) => {
-  //   console.log(image);
-  //   const formData = new FormData();
-  //   formData.append("image", image.raw);
-
-  //   UploadImageToS3WithNativeSdk(image.raw, imageName);
-  // };
-
-  // const onCancelImage = () => {
-  //   setImageSelected(false);
-  //   setImage({ preview: "", raw: "" });
-  // };
 
   const closeModal = () => {
     closeParent(true);
@@ -221,19 +190,25 @@ export function SocialModal({
   };
 
   const onClickSocialItem = (socialItem) => {
-    console.log(socialItem);
+    console.log(values);
+    // console.log(socialItem);
     setActiveItem(socialItem);
     setInputActive(true);
     setSocialId(socialItem.social_id);
     setInputLink(
-      masterSocials
-        .filter((item, index) => item.social_id === socialItem.social_id)[0]
-        .social_ulink_format.replace("username", "")
+      masterSocials.filter(
+        (item, index) => item.social_id === socialItem.social_id
+      )[0].social_ulink
+    );
+    setInputPlaceholder(
+      masterSocials.filter(
+        (item, index) => item.social_id === socialItem.social_id
+      )[0].social_ulink_format
     );
     setUserName(
-      data.filter((item, index) => item.social_id === socialItem.social_id)
+      values.filter((item, index) => item.social_id === socialItem.social_id)
         .length
-        ? data.filter(
+        ? values.filter(
             (item, index) => item.social_id === socialItem.social_id
           )[0].u_name
         : ""
@@ -255,7 +230,7 @@ export function SocialModal({
         social_id: newArray[arrayIndex].social_id,
         social_name: newArray[arrayIndex].social_name,
         social_logo: newArray[arrayIndex].social_logo,
-        social_ulink: newArray[arrayIndex].social_link,
+        social_ulink: newArray[arrayIndex].social_ulink,
         sort_id: newArray[arrayIndex].sort_id,
         others: {},
       };
@@ -270,7 +245,7 @@ export function SocialModal({
           social_id: activeItem.social_id,
           social_name: activeItem.social_name,
           social_logo: activeItem.social_logo,
-          social_ulink: activeItem.social_link,
+          social_ulink: activeItem.social_ulink,
           sort_id: sortId,
           others: {},
         },
@@ -334,39 +309,6 @@ export function SocialModal({
                     />
                   );
                 })}
-                {/* <Flex
-                  sx={{
-                    mt: "16px",
-                    mr: "16px",
-                    flexDirection: "column",
-                  }}
-                >
-                  <Flex
-                    sx={{
-                      width: "100%",
-                      borderBottomWidth: 2,
-                      borderBottomColor: "#D7354A",
-                    }}
-                  >
-                    <Text sx={style.subHeader1}>Add New</Text>
-                  </Flex>
-                  <Flex
-                    sx={{
-                      justifyContent: "center",
-                      alignItems: "center",
-                      mb: "8px",
-                      mt: "16px",
-                    }}
-                  >
-                    <Button
-                      as="addbutton"
-                      sx={style.addbutton}
-                      onClick={addSocial}
-                    >
-                      <BsPlusCircleFill color="#D7354A" size={30} />
-                    </Button>
-                  </Flex>
-                </Flex> */}
               </Flex>
               {inputActive && !newInput ? (
                 <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
@@ -391,137 +333,6 @@ export function SocialModal({
                   </InputGroup>
                 </Flex>
               ) : null}
-              {/* {newInput ? (
-                <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
-                  <Text
-                    sx={{
-                      mb: "8px",
-                      fontStyle: "Poppins",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      color: "#D7354A",
-                    }}
-                  >
-                    Add New
-                  </Text>
-                  <Flex sx={style.addlink}>
-                    <Flex sx={style.leftContainer}>
-                      <Flex sx={style.imageContainer}>
-                        {image.preview ? (
-                          <Flex
-                            sx={{
-                              position: "relative",
-                              flex: 1,
-                            }}
-                          >
-                            <Flex
-                              onClick={() => hiddenInput.click()}
-                              sx={{ flex: 1 }}
-                            >
-                              <Image
-                                src={image.preview}
-                                alt="dummy"
-                                sx={{
-                                  width: "100%",
-                                  height: "100%",
-                                  borderRadius: "100%",
-                                }}
-                              />
-                            </Flex>
-                            <Flex
-                              sx={{
-                                position: "absolute",
-                                top: "-5%",
-                                right: "-5%",
-                                zIndex: 101,
-                                cursor: "pointer",
-                              }}
-                              onClick={onCancelImage}
-                            >
-                              <IoCloseCircle size={20} color="gray" />
-                            </Flex>
-                          </Flex>
-                        ) : (
-                          <Flex
-                            sx={{
-                              justifyContent: "center",
-                              alignItems: "center",
-                              textAlign: "center",
-                              flex: 1,
-                            }}
-                            onClick={() => hiddenInput.click()}
-                          >
-                            <Text sx={{ fontSize: "12px" }}>Upload Logo</Text>
-                          </Flex>
-                        )}
-                        <input
-                          type="file"
-                          hidden
-                          onChange={handleChange}
-                          ref={(el) => (hiddenInput = el)}
-                        />
-                      </Flex>
-                    </Flex>
-                    <Flex
-                      sx={merge(style.middleContainer, {
-                        boxShadow: `0 0 4px 1px ${values.shadow_color}`,
-                      })}
-                    >
-                      <Flex sx={style.titleContainer}>
-                        <Flex sx={{ flex: 1 }}>
-                          <Flex
-                            sx={{
-                              justifyContent: "center",
-                              alignItems: "center",
-                              p: "8px",
-                            }}
-                          >
-                            <MdOutlineDriveFileRenameOutline size={20} />
-                          </Flex>
-
-                          <Input
-                            sx={{ color: values.font_color }}
-                            placeholder="Enter Social Link Name"
-                            variant="flushed"
-                            onChange={(e) =>
-                              setValues({ ...values, title: e.target.value })
-                            }
-                            value={values.title}
-                          />
-                        </Flex>
-                      </Flex>
-                      <Flex sx={style.titleContainer}>
-                        <Flex sx={{ flex: 1 }}>
-                          <Flex
-                            sx={{
-                              justifyContent: "center",
-                              alignItems: "center",
-                              p: "8px",
-                            }}
-                          >
-                            <BiLink size={20} />
-                          </Flex>
-
-                          <Input
-                            sx={{ color: "black" }}
-                            placeholder="Enter Social Link Address"
-                            variant="flushed"
-                            onChange={(e) =>
-                              setValues({ ...values, link: e.target.value })
-                            }
-                            value={values.link}
-                          />
-                        </Flex>
-                      </Flex>
-                    </Flex>
-                    <Flex sx={style.rightContainer}>
-                      <Flex sx={style.delete}>
-                        <BsCheckCircleFill size={20} />
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                </Flex>
-              ) : null} */}
             </Flex>
           </Flex>
         </Container>
