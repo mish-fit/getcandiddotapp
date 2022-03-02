@@ -263,15 +263,16 @@ export function LinksModal({
     setImageName(nanoid());
     setImageSelected(false);
     setValues({
-      u_id: "",
-      u_name: "",
+      id: "",
+      u_id: user[0].u_id,
+      u_name: user[0].u_name,
       title: "",
       link: "",
       bucket: "My Links",
       photo: "",
       font_color: "black",
       shadow_color: "rgba(0,0,0,.5)",
-      sort_id: 1,
+      sort_id: sortId,
       others: {},
     });
   };
