@@ -111,8 +111,8 @@ export const translation = {
       },
     },
     faqSection: {
-      Header: "Meet our pricing plan that suit you",
-      subHeader: "Deals for you",
+      Header: "New Product, New Questions",
+      subHeader: "FAQs",
       moreQuestions: "More Questions? Contact us",
       questions: [
         {
@@ -253,8 +253,8 @@ export const translation = {
         },
       },
       faqSection: {
-        Header: "Meet our pricing plan that suit you",
-        subHeader: "Deals for you",
+        Header: "New Product, New Questions",
+        subHeader: "FAQs",
         moreQuestions: "More Questions? Contact us",
         questions: [
           {
@@ -271,7 +271,7 @@ export const translation = {
           },
           {
             Title: "What all Indian Languages are supported?",
-            Text: "We currently support English, Hindi and Telugu. Stay tuned as we are expanding our language support.",
+            Text: "We currently support English and Hindi. Stay tuned as we are expanding our language support.",
           },
           {
             Title: "What all analytics are provided?",
