@@ -8,8 +8,18 @@ import { useRouter } from "next/router";
 import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
 
 const SocialElement = ({ item }) => (
-  <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
-    <Image src={item.social_logo} alt={'social logo'} sx={style.social} />
+  <Flex
+    sx={style.socialView}
+    onClick={() => {
+      console.log(item);
+      localStorage.setItem(
+        "clickLatestSocial",
+        item.social_ulink + item.u_name
+      );
+      window.open(item.social_ulink + item.u_name, "_blank"); //to open new page
+    }}
+  >
+    <Image src={item.social_logo} alt={"social logo"} sx={style.social} />
     <Text sx={style.socialText}>
       {item && item.social_name && item.social_name.length > 9
         ? item.social_name.slice(0, 10) + ".."
@@ -27,7 +37,14 @@ export function SocialHandles({ social, data }) {
   };
 
   return (
-    <Flex sx={{ px: ["1%","1%","10%","10%","10%","10%"], mt: "8px", pb: "16px", flexDirection:"column"}}>
+    <Flex
+      sx={{
+        px: ["1%", "1%", "10%", "10%", "10%", "10%"],
+        mt: "8px",
+        pb: "16px",
+        flexDirection: "column",
+      }}
+    >
       <Text sx={style.heading}>Social Handles</Text>
       <Grid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
@@ -59,7 +76,7 @@ const style = {
     py: "8px",
   },
   socialView: {
-    ml:['50px','50px','50px','10px','10px','10px'],
+    ml: ["50px", "50px", "50px", "10px", "10px", "10px"],
     textAlign: "center",
     cursor: "pointer",
     justifyContent: "center",
