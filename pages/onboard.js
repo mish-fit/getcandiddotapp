@@ -41,8 +41,8 @@ export default function Onboard(props) {
 				return <Step2 nextStep={nextStep} />
 			case 3:
 				return <Step3 nextStep={nextStep} />;
-			case 4:
-				return <Step4 />;
+			// case 4:
+			// 	return <Step4 />;
 			default:
 				return null;
 		}

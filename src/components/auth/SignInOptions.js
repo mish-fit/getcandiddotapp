@@ -27,6 +27,9 @@ export function SignInOptions() {
 	const [show, setShow] = useState(false);
 	const [googleShow, setGoogleShow] = useState(true);
 	const [final, setFinal] = useState('');
+	const [isVerifyClicked, setIsVerifyClicked]=useState(true);
+	const [isConfirmClicked, setIsConfirmClicked]=useState(true);
+
 	const toast=  useToast();
 
 	const signInWithGoogle = async () => {
@@ -35,11 +38,9 @@ export function SignInOptions() {
 		});
 	};
 
-	// useEffect(()=>{
-	// 	setNumber
-	// })
 	// Validate OTP
 	const ValidatePhoneOTP = () => {
+		setIsConfirmClicked(false);
 		if (otp === null || final === null) return;
 		final
 			.confirm(otp)
@@ -59,6 +60,7 @@ export function SignInOptions() {
 	};
 
 	const signInWithPhone = async () => {
+		setIsVerifyClicked(false);
 		if (mynumber === '' || mynumber.length < 10) return;
 		let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 		let newnumber = '+91' + mynumber;
@@ -133,7 +135,10 @@ export function SignInOptions() {
 							</InputGroup>
 							<Flex id='recaptcha-container' mt={'8px'} ></Flex>
 							<Button
-								bg={'#D7354A'}
+								// disabled= {isVerifyClicked}
+								// labelStyle={{ color: isVerifyClicked ? '#D7354A' : '#D7354A' }}
+								// style={ isVerifyClicked ? {bg:'#D7354A'}:{ bg:'#D7354A'}}
+								bg='#D7354A'
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
 								color='white'
@@ -142,12 +147,12 @@ export function SignInOptions() {
 								fontSize={'lg'}
 								marginTop='8px'
 								marginBottom='24px'
-								onClick={signInWithPhone}
+								// onClick={signInWithPhone}
+								onClick={isVerifyClicked?signInWithPhone:null}
 							>
 								Verify
 							</Button>
 						</Flex>
-
 						<Flex style={{ display: show ? 'block' : 'none' }} w='100%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
 							<Input
@@ -194,7 +199,7 @@ export function SignInOptions() {
 								fontSize={18}
 								marginTop='8px'
 								marginBottom='8px'
-								onClick={ValidatePhoneOTP}
+								onClick={isConfirmClicked?ValidatePhoneOTP:null}
 							>
 								Confirm
 							</Button>

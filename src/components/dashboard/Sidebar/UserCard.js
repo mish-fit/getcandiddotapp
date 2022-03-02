@@ -75,10 +75,10 @@ const style = {
   coverPhotoView: {
     borderTopRadius: "16px",
     backgroundColor: "white",
-
+    mt:"4px",
     // width: ["0px","0px","0px","448px","448px","448px"],
-    width: ["0px","448px","448px","448px","448px","448px"],
-    height: ["50px", "248px","248px","248px","248px","248px"],
+    width: ["0px","448px","448px","360px","448px","448px"],
+    height: ["50px", "248px","248px","160px","248px","248px"],
     justifyContent: "flex-start",
   },
   userPhotoView: {

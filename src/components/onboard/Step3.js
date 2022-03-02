@@ -29,6 +29,7 @@ const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [imageSelected, setImageSelected] = useState(false);
+	const [isNextClicked, setIsNextClicked]=useState(true);
   const router = useRouter();
   const toast = useToast();
   let hiddenInput = null;
@@ -75,6 +76,7 @@ const Step3 = (props) => {
 
   const next = async (e) => {
     e.preventDefault();
+		setIsNextClicked(false);
     // console.log(image.preview+image.raw+"jj"+imageName+"jj"+imageSelected);
     let new_profile_image = "";
     if (imageSelected) {
@@ -316,6 +318,7 @@ const Step3 = (props) => {
                   width={120}
                   height={50}
                   onClick={next}
+                  
                 >
                   Skip
                 </Button>
@@ -328,7 +331,8 @@ const Step3 = (props) => {
                   width={120}
                   height={50}
                   mr={{ base: "0", md: "190" }}
-                  onClick={next}
+                  onClick={isNextClicked ? next : null}
+                  // onClick={next}
                 >
                   Submit
                 </Button>
