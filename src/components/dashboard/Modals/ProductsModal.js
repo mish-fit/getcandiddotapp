@@ -366,15 +366,16 @@ export function ProductsModal({
     setImageName(nanoid());
     setImageSelected(false);
     setValues({
-      u_id: "",
-      u_name: "",
+      id: "",
+      u_id: user[0].u_id,
+      u_name: user[0].u_name,
       prod_name: "",
       cat_name: "",
       bucket: "My Recommendations",
       photo: "",
       prod_link: "",
       aff_code: "",
-      sort_id: 1,
+      sort_id: sortId,
       others: {},
     });
   };
