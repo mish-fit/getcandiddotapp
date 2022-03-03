@@ -5,6 +5,7 @@ import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { Box, Container, Heading, Text, Link } from "theme-ui";
 import { useRouter } from "next/router";
 import { translation } from "translation";
+import { Button, Flex } from "@chakra-ui/react";
 
 const FaqItem = ({ title, text, status, index }) => {
   const [active, setActive] = useState(status);
@@ -31,7 +32,7 @@ const FaqItem = ({ title, text, status, index }) => {
     </Box>
   );
 };
-const FaqTwo = () => {
+const FaqTwo = ({ addQuestion }) => {
   const { locale } = useRouter();
   const lang = translation[locale].faqSection;
 
@@ -73,6 +74,11 @@ const FaqTwo = () => {
     },
   };
   const { sectionTitle, posts, button } = FAQ_TWO_DATA;
+
+  const add = () => {
+    addQuestion();
+  };
+
   return (
     <Box sx={styles.section}>
       <Container>
@@ -91,9 +97,17 @@ const FaqTwo = () => {
             />
           ))}
         </Box>
-        <Box sx={styles.buttonWrap}>
-          <Link href={button.link}>{button.label}</Link>
-        </Box>
+        <Flex
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <Button sx={styles.buttonWrap} onClick={add}>
+            <Text>{button.label}</Text>
+          </Button>
+        </Flex>
       </Container>
     </Box>
   );
