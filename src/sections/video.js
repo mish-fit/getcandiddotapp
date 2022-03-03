@@ -1,94 +1,278 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import { Box, Container, Heading, Text, Link } from "theme-ui";
-import { IoIosArrowForward } from "react-icons/io";
-import ModalVideo from "react-modal-video";
-import videoImage from "assets/video.png";
-const VIDEO_DATA = {
-  image: videoImage,
-  title: "See what our customer say about us",
-  text: "Every email, web page, and social media post makes an impression on your customers. With our software you can be confident it's impression.",
-  button: {
-    label: "Explore Details",
-    link: "#",
-  },
-};
-const Video = () => {
-  const [videoOpen, setVideoOpen] = useState(false);
-  const handleClick = (e) => {
-    e.preventDefault();
-    setVideoOpen(true);
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx, Container, Flex, Text, merge } from "theme-ui";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  useToast,
+  Textarea,
+} from "@chakra-ui/react";
+import { BsCheckCircleFill } from "react-icons/bs";
+import React from "react";
+import { Input } from "@chakra-ui/react";
+import { nonauthapi } from "lib/api";
+import axios from "axios";
+
+// Add a custom Link
+export function ContactUsModal({ closeParent, isOpen }) {
+  const toast = useToast();
+
+  const [values, setValues] = React.useState({
+    name: "",
+    email: "",
+    question: "",
+  });
+
+  const closeModal = () => {
+    closeParent(true);
   };
-  const { image, title, text, button } = VIDEO_DATA;
+
+  const savenclose = () => {
+    if (values.name && values.email) {
+      const options = {
+        headers: {
+          Origin: "localhost:3000",
+        },
+      };
+      axios(
+        {
+          method: "post",
+          url: `${nonauthapi}contactus`,
+          data: values,
+          options: options,
+        },
+        { timeout: 1000 }
+      )
+        .then((res) => {
+          toast({
+            title: "Thanks for contacting us. We will get back to you.",
+            description: "",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+          setValues({ name: "", email: "", question: "" });
+          closeModal();
+        })
+        .catch((e) => console.log(e));
+    } else {
+      toast({
+        title: "Please provide your name and email",
+        description: "",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      });
+    }
+  };
+
   return (
-    <Box sx={styles.section}>
-      <Container>
-        <Box sx={styles.content}>
-          <Heading as="h3">{title}</Heading>
-          <Text as="p">{text}</Text>
-          <Link href={button.link}>
-            {button.label} <IoIosArrowForward />
-          </Link>
-        </Box>
-        <Box onClick={handleClick} sx={styles.image}>
-          <Image width="1075" height="650" src={image} alt="video image" />
-        </Box>
-      </Container>
-      <ModalVideo
-        channel="youtube"
-        isOpen={videoOpen}
-        videoId="Qwok8si3bz4"
-        onClose={() => setVideoOpen(false)}
-      />
-    </Box>
+    <Modal onClose={closeModal} isOpen={isOpen} isCentered>
+      <ModalOverlay />
+      <ModalContent maxW={"1000px"}>
+        <Container sx={style.container}>
+          <Flex sx={style.row1}>
+            <Text sx={style.topHeader}>Contact us</Text>
+            <Flex sx={style.saveContainer} onClick={savenclose}>
+              <Text sx={style.save}>Send </Text>
+              <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
+            </Flex>
+          </Flex>
+          <Flex
+            sx={merge(style.middleContainer, {
+              boxShadow: `0 0 4px 1px ${values.shadow_color}`,
+              mt: "16px",
+            })}
+          >
+            <Flex sx={style.titleContainer}>
+              <Flex sx={{ flex: 1 }}>
+                <Input
+                  sx={{ color: "black", fontSize: "16px" }}
+                  placeholder="Your Name"
+                  variant="flushed"
+                  onChange={(e) =>
+                    setValues({ ...values, name: e.target.value })
+                  }
+                  value={values.name}
+                />
+              </Flex>
+            </Flex>
+            <Flex sx={style.titleContainer}>
+              <Flex sx={{ flex: 1 }}>
+                <Input
+                  sx={{ color: "black", fontSize: "16px" }}
+                  placeholder="Your Email Address"
+                  variant="flushed"
+                  onChange={(e) =>
+                    setValues({ ...values, email: e.target.value })
+                  }
+                  value={values.email}
+                />
+              </Flex>
+            </Flex>
+            <Flex sx={style.titleContainer}>
+              <Flex sx={{ flex: 1 }}>
+                <Textarea
+                  name="about"
+                  type="text"
+                  bg="white"
+                  display="inline"
+                  focusBorderColor="#E78692"
+                  _hover={{ borderColor: "#E78592" }}
+                  borderColor="#E78592"
+                  fontSize={"lg"}
+                  width={"full"}
+                  height={100}
+                  placeholder="Your Question"
+                  marginBottom="24px"
+                  onChange={(e) =>
+                    setValues({ ...values, question: e.target.value })
+                  }
+                  value={values.question}
+                />
+              </Flex>
+            </Flex>
+          </Flex>
+        </Container>
+      </ModalContent>
+    </Modal>
   );
-};
+}
 
-export default Video;
-
-const styles = {
-  section: {
-    pt: ["0px", null, null, "72px", "0"],
+const style = {
+  container: {
+    p: "16px",
+    backgroundColor: "white",
+    borderRadius: "6px",
+    height: "300px",
   },
-  image: {
-    display: "block",
-    mx: "auto",
+  row1: {
+    justifyContent: "space-between",
+    mt: "8px",
+  },
+  row2: { mt: "16px" },
+  row3: { mt: "16px" },
+  row4: {
+    justifyContent: "center",
+    alignItems: "center",
+    mb: "24px",
+    mt: "16px",
+    ml: ["50px", "50px", "50px", "250px", "250px", "250px"],
+  },
+  addNew: {
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    cursor: "pointer",
+    backgroundColor: "#D7354A",
+    borderRadius: "48px",
+    borderColor: "#D7354A",
+    width: "48px",
+    height: "48px",
+  },
+  addNewText: {
+    color: "white",
+    fontWeight: "medium",
+    fontFamily: "Poppins",
+    fontSize: "32px",
+    textAlign: "center",
+  },
+  lottie: {
+    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
+    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
+  },
+  topHeader: {
+    fontFamily: "Poppins",
+    color: "#D7354A",
+    fontWeight: "Bold",
+    fontSize: "16px",
+  },
+  saveContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     cursor: "pointer",
   },
-  content: {
-    textAlign: "center",
-    mb: "16px",
-    h3: {
-      fontSize: ["22px", null, null, "24px", null, "24px"],
-      fontWeight: 500,
-      color: "#0F2137",
-      letterSpacing: "-0.5px",
-      mb: "16px",
-      maxWidth: ["300px", null, null, "100%"],
-      mx: ["auto", null, null, "0"],
-      lineHeight: [1.5, null, null, null, null, "auto"],
-    },
-    p: {
-      mx: "auto",
-      fontSize: ["16px", null, null, "16px"],
-      color: "#0F2137",
-      lineHeight: [1.87, null, null, 2.19],
-      maxWidth: "624px",
-      mb: "16px",
-    },
-    a: {
-      display: "inline-flex",
-      alignItems: "center",
-      color: "#4F96FF",
-      fontSize: "16px",
-      fontWeight: 700,
-      transition: "all 500ms ease",
-      "&:hover": {
-        color: "black",
-      },
-      svg: {
-        ml: "6px",
-      },
-    },
+  save: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "16px",
+  },
+  subHeaderContainer: {
+    width: "50%",
+    borderBottomWidth: 2,
+    borderBottomColor: "#D7354A",
+  },
+  subHeader: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "24px",
+  },
+  linkView: {
+    pl: "16px",
+    pr: "16px",
+    flex: 1,
+  },
+
+  addlink: {
+    flexDirection: "row",
+
+    width: "100%",
+  },
+  leftContainer: {
+    flexDirection: "column",
+    width: "64px",
+    height: "64px",
+    mx: "8px",
+  },
+  middleContainer: {
+    flex: 1,
+
+    flexDirection: "column",
+    borderRadius: "8px",
+  },
+  rightContainer: {
+    flexDirection: "column",
+    ml: "8px",
+  },
+  imageContainer: {},
+  addImage: {},
+  titleContainer: {
+    flexDirection: "row",
+  },
+
+  dragIcon: {
+    cursor: "grab",
+    p: "8px",
+    backgroundColor: "gray",
+  },
+  link: {},
+  bucket: {},
+  delete: {
+    cursor: "pointer",
+    mt: "8px",
+    p: "2px",
+  },
+  pickerContainer: {
+    flexDirection: "row",
+    mx: "32px",
+    py: "8px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleContainer: {
+    width: "100%",
+    height: "48px",
+    mt: "8px",
+    pr: "8px",
+  },
+  imageContainer: {
+    width: "100%",
+    height: "100%",
+    borderRadius: "100%",
+    borderWidth: 1,
+    position: "relative",
+    cursor: "pointer",
   },
 };
