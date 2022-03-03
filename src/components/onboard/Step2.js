@@ -18,7 +18,7 @@ import { UserContext } from 'lib/UserDataProvider';
 import { useState, useContext, useRef, useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import '@fontsource/poppins';
-import Header from './Header';
+import { Layout } from './Layout';
 const Step2 = (props) => {
 	// const name= useRef();
 	// const mail=useRef();
@@ -126,19 +126,7 @@ const Step2 = (props) => {
 
 	return (
 		<>
-			<Container
-				fontFamily={'Poppins'}
-				maxW={'container.md'}
-				p={0}
-				// align='center'
-			>
-				<Header value={50} />
-				<Flex display={{ md: 'flex' }}>
-					<Stack
-						align={{ base: 'center', md: 'stretch' }}
-						textAlign={{ base: 'left', md: 'left' }}
-						margin={6}
-					>
+			<Layout value={50}>
 					<Flex flexDirection={'column'} w='80%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
 								<FormLabel
@@ -275,9 +263,7 @@ const Step2 = (props) => {
 							</Flex>
 						</form>
 					</Flex>
-					</Stack>
-				</Flex>
-			</Container>
+					</Layout>
 		</>
 	);
 };

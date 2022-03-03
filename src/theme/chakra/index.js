@@ -45,12 +45,12 @@ const checkboxStyles = {
 };
 
 const buttonStyles = {
-  color:'brand.50',
-  backgroundColor:'brand.500',
-  borderRadius:'10',
-  _hover:{
-    backgroundColor:'brand.550'
-  },
+  // color:'brand.50',
+  // backgroundColor:'brand.500',
+  // borderRadius:'10',
+  // _hover:{
+  //   backgroundColor:'brand.550'
+  // },
   variants: {
     // primary: (props) => ({
     //   rounded: "none",
@@ -73,14 +73,15 @@ const buttonStyles = {
     //   borderRadius:10,
     //   color:'white'
     // })
-    primary:{
-      color:'brand.50',
-      backgroundColor:'brand.500',
-      borderRadius:'10',
-      _hover:{
-        backgroundColor:'brand.550'
-      }
-    }
+    // primary:{
+    //   color:'brand.50',
+    //   backgroundColor:'brand.50',
+    //   borderRadius:10,
+
+    //   _hover:{
+    //     backgroundColor:'brand.550'
+    //   }
+    // }
   },
 };
 
@@ -141,16 +142,18 @@ const theme = extendTheme(
       Button: {
         variants: {
           primary: (props) => ({
-            rounded: 'none',
             ...brandRing,
-            color: mode('white', 'gray.800')(props),
-            backgroundColor: mode('brand.500', 'brand.200')(props),
-
+            color: 'white',
+            backgroundColor: 'brand.500',
+            width:'full',
+            borderRadius:10,
+            fontSize:'lg',
+            height:50,
             _hover: {
-              backgroundColor: mode('brand.600', 'brand.300')(props),
+              backgroundColor: 'brand.550',
             },
             _active: {
-              backgroundColor: mode('brand.700', 'brand.400')(props),
+              backgroundColor: 'brand.500',
             },
           }),
         },

@@ -15,7 +15,6 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
-import Header from "./Header";
 import { useState, useContext, useRef, useEffect } from "react";
 import { UserContext } from "lib/UserDataProvider";
 import { firestore } from "lib/firebase";
@@ -25,6 +24,7 @@ import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import { authapi, s3url } from "lib/api";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { Layout } from "./Layout";
 const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -199,19 +199,7 @@ const Step3 = (props) => {
 
   return (
     <>
-      <Container
-        fontFamily={"Poppins"}
-        maxW={"container.md"}
-        p={0}
-        align="center"
-      >
-        <Header value={75} />
-        <Flex display={{ md: "flex" }}>
-          <Stack
-            align={{ base: "center", md: "stretch" }}
-            textAlign={{ base: "left", md: "left" }}
-            margin={6}
-          >
+      <Layout value={75}>
             <FormControl>
               <Heading size={"lg"} textAlign={{ base: "center", md: "left" }}>
                 Add a profile photo
@@ -338,9 +326,7 @@ const Step3 = (props) => {
                 </Button>
               </Flex>
             </FormControl>
-          </Stack>
-        </Flex>
-      </Container>
+          </Layout>
     </>
   );
 };

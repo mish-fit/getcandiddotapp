@@ -19,7 +19,7 @@ export function Sidebar({ socials, user, summary }) {
       sx={{
         // mt:'-200px',
         flexDirection: 'column',
-        // width:'100%',
+        width:'100%',
         // backgroundColor: "yellow",
         // mr:["50px", "0px","0px","0px","0px","0px"],
         borderRadius: "16px",

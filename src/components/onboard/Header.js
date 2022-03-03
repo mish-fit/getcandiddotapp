@@ -36,6 +36,7 @@ const Header = (props) => {
 			{/* </Flex> */}
 			{/* <Flex style={{ display: zero ? 'block' : 'none' }}> */}
 			<Progress
+				style={{display: props.value ? 'block':'none'}}
 				value={props.value}
 				colorScheme='red'
 				size={'sm'}

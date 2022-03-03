@@ -22,7 +22,7 @@ export function SocialHandles({ data }) {
   return (
     <Flex sx={{ px: ["1%","1%","10%","10%","10%","10%"], mt: "8px", pb: "16px", flexDirection:"column"}}>
       <Text sx={style.heading}>Social Handles</Text>
-      <Grid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={style.grid}>
+      <Grid gap={2} columns={[3, 6, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}

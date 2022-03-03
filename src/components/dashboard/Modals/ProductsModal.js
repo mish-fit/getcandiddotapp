@@ -18,7 +18,8 @@ import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { RiCouponLine } from "react-icons/ri";
-import { Input } from "@chakra-ui/react";
+import { Input, useMediaQuery } from "@chakra-ui/react";
+
 import {
   MdOutlineDriveFileRenameOutline,
   MdOutlineRecommend,
@@ -53,9 +54,10 @@ export function ProductsModal({
   const [signedURL, setSignedURL] = React.useState("");
   const [catArray, setCatArray] = React.useState([]);
   const [prodArray, setProdArray] = React.useState([]);
-
   const [catActive, setCatActive] = React.useState(false);
   const [prodActive, setProdActive] = React.useState(false);
+  
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)')
 
   let hiddenInput = null;
 
@@ -434,7 +436,7 @@ export function ProductsModal({
   const onChangeProduct = () => {};
 
   return (
-    <Modal onClose={closeModal} isOpen={isOpen} isCentered>
+    <Modal onClose={closeModal} isOpen={isOpen} isCentered size={ isLargerThan480 ? '' : "50%" }>
       <ModalOverlay />
       <ModalContent maxW={"1000px"} sx={{ mb: "20%" }}>
         <Container sx={style.container}>

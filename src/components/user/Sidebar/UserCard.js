@@ -14,7 +14,7 @@ export function UserCard({ data }) {
   }, [data]);
 
   return (
-    <Container sx={style.container}>
+    <Container sx={style.container} >
       <Container sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}

@@ -21,7 +21,7 @@ export default function Logo() {
 
 const style = {
   logoStyles:{
-    mr:['100px','350px','350px','50px','50px','50px','50px']
+    mr:['180px','350px','350px','50px','50px','50px','50px']
 
   }
 }
