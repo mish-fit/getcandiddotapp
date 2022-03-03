@@ -62,7 +62,16 @@ export default function Dashboard({
       " master socials ",
       masterSocials
     );
-  }, [buckets, cookies, currentUser, masterSocials, recos, user, socials, links]);
+  }, [
+    buckets,
+    cookies,
+    currentUser,
+    masterSocials,
+    recos,
+    user,
+    socials,
+    links,
+  ]);
   React.useEffect(() => {
     setSummary({ products: recos.length, links: links.length });
 
@@ -165,28 +174,24 @@ export async function getServerSideProps(context) {
     };
   }
 
-  // const { search } = context.params;
+  const [
+    { value: links, reason: linksError },
+    { value: socials, reason: socialsError },
+    { value: recos, reason: recosError },
+    { value: buckets, reason: bucketsError },
+    { value: user, reason: userError },
+    { value: masterSocials, reason: masterSocialsError },
+  ] = await Promise.allSettled(
+    [
+      fetch(nonauthapi + "links" + "?u_id=" + currentUser[0]),
+      fetch(nonauthapi + "socials" + "?u_id=" + currentUser[0]),
+      fetch(nonauthapi + "recos" + "?u_id=" + currentUser[0]),
+      fetch(nonauthapi + "buckets" + "?u_id=" + currentUser[0]),
+      fetch(nonauthapi + "user" + "?u_id=" + currentUser[0]),
+      fetch(authapi + "socials/master"),
+    ].map((fetchApi) => fetchApi.then((res) => res.json()))
+  );
 
-  // Fetch data from external API
-  const res1 = await fetch(nonauthapi + "links" + "?u_id=" + currentUser[0]);
-  const links = await res1.json();
-
-  const res2 = await fetch(nonauthapi + "socials" + "?u_id=" + currentUser[0]);
-  const socials = await res2.json();
-
-  const res3 = await fetch(nonauthapi + "recos" + "?u_id=" + currentUser[0]);
-  const recos = await res3.json();
-
-  const res4 = await fetch(nonauthapi + "buckets" + "?u_id=" + currentUser[0]);
-  const buckets = await res4.json();
-
-  const res5 = await fetch(nonauthapi + "user" + "?u_id=" + currentUser[0]);
-  const user = await res5.json();
-
-  const res6 = await fetch(authapi + "socials/master");
-  const masterSocials = await res6.json();
-
-  // Pass data to the page via props
   return {
     props: {
       links,

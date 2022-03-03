@@ -66,26 +66,20 @@ export async function getServerSideProps(context) {
   const userDetails = await response.json();
 
   if (userDetails.length && userDetails[0].u_id) {
-    const res1 = await fetch(
-      nonauthapi + "links" + "?u_id=" + userDetails[0].u_id
+    const [
+      { value: links, reason: linksError },
+      { value: socials, reason: socialsError },
+      { value: recos, reason: recosError },
+      { value: user, reason: userError },
+    ] = await Promise.allSettled(
+      [
+        fetch(nonauthapi + "links" + "?u_id=" + userDetails[0].u_id),
+        fetch(nonauthapi + "socials" + "?u_id=" + userDetails[0].u_id),
+        fetch(nonauthapi + "recos" + "?u_id=" + userDetails[0].u_id),
+        fetch(nonauthapi + "user" + "?u_id=" + userDetails[0].u_id),
+      ].map((fetchApi) => fetchApi.then((res) => res.json()))
     );
-    const links = await res1.json();
 
-    const res2 = await fetch(
-      nonauthapi + "socials" + "?u_id=" + userDetails[0].u_id
-    );
-    const socials = await res2.json();
-
-    const res3 = await fetch(
-      nonauthapi + "recos" + "?u_id=" + userDetails[0].u_id
-    );
-    const recos = await res3.json();
-
-    const res5 = await fetch(
-      nonauthapi + "user" + "?u_id=" + userDetails[0].u_id
-    );
-    const user = await res5.json();
-    // Pass data to the page via props
     return {
       props: {
         links,
