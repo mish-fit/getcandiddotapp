@@ -19,7 +19,7 @@ import smm from "../../../../public/lottie/smm.json";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
 import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
-import { Input } from "@chakra-ui/react";
+import { Input, useMediaQuery } from "@chakra-ui/react";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { BiLink } from "react-icons/bi";
 import { BucketsModal } from "./BucketModal";
@@ -50,7 +50,7 @@ export function LinksModal({
   const [imageSelected, setImageSelected] = React.useState(false);
   const [sortId, setSortId] = React.useState(maxSortId + 1);
   const [signedURL, setSignedURL] = React.useState("");
-
+  const [isLargerThan480] = useMediaQuery('(min-width: 480px)')
   let hiddenInput = null;
 
   const [values, setValues] = React.useState({
@@ -286,7 +286,7 @@ export function LinksModal({
   };
 
   return (
-    <Modal onClose={closeModal} isOpen={isOpen} isCentered>
+    <Modal onClose={closeModal} isOpen={isOpen} isCentered size={ isLargerThan480 ? '' : "full" } >
       <ModalOverlay />
       <ModalContent maxW={"1000px"}>
         <Container sx={style.container}>
@@ -561,7 +561,6 @@ const style = {
 
   addlink: {
     flexDirection: "row",
-
     width: "100%",
   },
   leftContainer: {
@@ -599,11 +598,13 @@ const style = {
     p: "2px",
   },
   pickerContainer: {
-    flexDirection: "row",
-    mx: "32px",
-    py: "8px",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: ["column", "column", "row", "row", "row", "row"],
+    mx: ["8px","8px","32px","32px","32px","32px"],
+    py: ["2px","2px","8px","8px","8px","8px"],
+    justifyContent: "flex-start",
+    alignItems:"flex-start",
+    // justifyContent: ["flex-start","flex-start","center","center","center","center"],
+    // alignItems: ["flex-start","flex-start","center","center","center","center"],
   },
   titleContainer: {
     width: "100%",

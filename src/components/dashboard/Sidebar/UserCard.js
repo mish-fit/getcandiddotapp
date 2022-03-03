@@ -68,22 +68,24 @@ export function UserCard({ data }) {
 
 const style = {
   container: {
-    width: "100%",
+    width: "full",
     // mt:'96px',
+    mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "16px",
   },
   coverPhotoView: {
     borderTopRadius: "16px",
     backgroundColor: "white",
     mt:"4px",
+    width:"full",
     // width: ["0px","0px","0px","448px","448px","448px"],
-    width: ["0px","448px","448px","360px","448px","448px"],
-    height: ["50px", "248px","248px","160px","248px","248px"],
+    // width: ["0px","448px","448px","448px","448px","448px"],
+    // height: ["48rem", "248rem","248px","160px","248px","248px"],
     justifyContent: "flex-start",
   },
   userPhotoView: {
     justifyContent:'center',
-    mt: "-24px",
+    mt: ["0px","-48px","-48px", "-48px","0px","0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
@@ -95,6 +97,7 @@ const style = {
     alignItems: "center",
     width: "80%",
     px: "auto",
+    // mr:"10%"
   },
   aboutMeView: {
     width: "80%",

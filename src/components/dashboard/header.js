@@ -61,7 +61,7 @@ export default function Header({ menu, menuActive, data }) {
           </Flex>
           <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
             <Flex as="nav" sx={styles.nav} onClick={linkClick}>
-              <Text fontWeight={'100px'}>{"cndd.in/" + data[0].u_uuid}</Text>
+              <Text sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Text>
             </Flex>
           </CopyToClipboard>
           <Menu>
