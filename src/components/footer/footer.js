@@ -61,8 +61,8 @@ export default function Footer() {
         </Text>
         <Box sx={styles.bottomMenu}>
           <Link path="/" label={lang[0]} />
-          <Link path="/pp" label={lang[1]} />
-          <Link path="/tnc" label={lang[2]} />
+          <Link path="/privacy" label={lang[1]} />
+          <Link path="/terms" label={lang[2]} />
         </Box>
       </Container>
     </footer>
