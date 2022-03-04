@@ -64,7 +64,7 @@ export function ShadowPicker({ borderShadowColor }) {
   const [name, setName] = React.useState("Default Shadow Color");
 
   const selectedColor = (color, name) => {
-    console.log(color, name);
+    // console.log(color, name);
     setColor(color);
     setName(name);
     borderShadowColor(color);

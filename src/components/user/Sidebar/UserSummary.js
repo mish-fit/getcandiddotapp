@@ -83,15 +83,14 @@ export function UserSummary({ data }) {
 
 const style = {
   container: {
-    justifyContent: "flex-start",
-    width: "100%",
+    width: "full",
     display: "flex",
     flexDirection: "column",
     mt: "16px",
   },
   buttonContainer: {
     justifyContent: "space-around",
-    // mx: ["5%","5%","5%","-5%","-5%","-5%"],
+    mr: ["-22%","0%","0%","0%","0%","0%"],
     my: "2%",
   },
   summaryView: {

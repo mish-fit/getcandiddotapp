@@ -110,19 +110,6 @@ export function SignInOptions() {
 		}
 	};
 	return (
-		// <Container
-		// 	fontFamily={'Poppins'}
-		// 	maxW={'container.md'}
-		// 	p={0}
-		// 	align='center'
-		// >
-		// 	<Header />
-		// 	<Flex display={{ md: 'flex' }}>
-		// 		<Stack
-		// 			align={{ base: 'center', md: 'stretch' }}
-		// 			textAlign={{ base: 'left', md: 'left' }}
-		// 			margin={6}
-		// 		>
 				<Layout value={0}>
 				<Flex flexDirection={'column'} w='100%'>
 						<Flex style={{ display: !show ? 'block' : 'none' }} w='100%'>
@@ -153,12 +140,11 @@ export function SignInOptions() {
 								// height={'3.1rem'}
 								// width='full'
 								// fontSize={'lg'}
+
 								variant={'primary'}
 								marginTop='8px'
 								marginBottom='24px'
 
-
-								
 								// spinner={<BeatLoader size={8} color='white' />}
 								// onClick={signInWithPhone}
 								// isLoading={!isVerifyClicked}
@@ -172,7 +158,7 @@ export function SignInOptions() {
 						<Flex style={{ display: show ? 'block' : 'none' }} w='100%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
 							<Input
-								type='text'
+								type='tel'
 								bg='white'
 								textAlign={'center'}
 								focusBorderColor='#E78692'
@@ -262,8 +248,5 @@ export function SignInOptions() {
 						</Flex>
 					</Flex>
 					</Layout>
-		// 		</Stack>
-		// 	</Flex>
-		// </Container>
 	);
 }

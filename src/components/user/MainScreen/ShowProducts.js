@@ -19,7 +19,7 @@ export function ShowProducts({ data }) {
   });
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   return (

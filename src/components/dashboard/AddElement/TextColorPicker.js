@@ -63,7 +63,7 @@ export function TextColorPicker({ textColor }) {
   const [color, setColor] = React.useState("black");
 
   const selectedColor = (color, name) => {
-    console.log(color, name);
+    // console.log(color, name);
     setColor(color);
     textColor(color);
   };

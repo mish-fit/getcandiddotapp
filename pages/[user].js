@@ -113,6 +113,7 @@ const styles = {
     flex: [1, 1, 1, 2, 3, 3],
   },
   sidebar: {
+    width: "100%",
     flex: 1,
     pl: "8px",
     pt: "16px",

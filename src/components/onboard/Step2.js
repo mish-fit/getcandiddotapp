@@ -34,7 +34,7 @@ const Step2 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
 
 	useEffect(()=>{
-		console.log('Step2', userDataContext.userData);
+		// console.log('Step2', userDataContext.userData);
 	},[userDataContext.userData])
 
 	useEffect(() => {
@@ -60,13 +60,13 @@ const Step2 = (props) => {
 					...state,
 					mail: result.user.email,
 				});
-				console.log('reached');
+				// console.log('reached');
 				// console.log('hh', mail);
 				// console.log('jj', result.user.email);
 				// userDataContext.setMail((result.user.email));
 				setMailInput(false);
 				setInfo(true);
-				console.log(result.user);
+				// console.log(result.user);
 			})
 			.catch((error) => {});
 	};
@@ -83,7 +83,7 @@ const Step2 = (props) => {
 		
 		userDataContext.setName(state.name);
 		userDataContext.setAbout(state.about);
-		console.log('Next', userDataContext.userData);
+		// console.log('Next', userDataContext.userData);
 		props.nextStep();
 	};
 
@@ -93,7 +93,7 @@ const Step2 = (props) => {
 			...state,
 			[e.target.name]: e.target.value,
 		});
-		console.log(e.target.value);
+		// console.log(e.target.value);
 		const regex = /^[a-z0-9](\.?[a-z0-9]){3,}@gmail\.com$/;
 		if (regex.test(e.target.value)) {
 			setShowLink(true);
@@ -108,7 +108,7 @@ const Step2 = (props) => {
 			...state,
 			[e.target.name]: e.target.value,
 		});
-		console.log(e.target.value);
+		// console.log(e.target.value);
 	};
 
 	const onChangeAbout = (e) => {
@@ -116,7 +116,7 @@ const Step2 = (props) => {
 			...state,
 			[e.target.name]: e.target.value,
 		});
-		console.log(e.target.value);
+		// console.log(e.target.value);
 	};
 
 	const back = (e) => {

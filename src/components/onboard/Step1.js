@@ -26,7 +26,7 @@ const Step1 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
 
 	// useEffect(()=>{
-	// 	// console.log('Step1', userDataContext.userData);
+	// console.log('Step1', userDataContext.userData);
 	// 	const fetchData = async ()=>{
 	// 		const ref = firestore.doc(`users/${userDataContext.userSignInInfo.user.uid}`);
 	// 		console.log(ref.get());
@@ -39,7 +39,7 @@ const Step1 = (props) => {
 				if (username.length >= 3) {
 					const ref = firestore.doc(`usernames/${username}`);
 					const { exists } = await ref.get();
-					console.log('Firestore read executed!');
+					// console.log('Firestore read executed!');
 					setIsValid(!exists);
 					setLoading(false);
 				}

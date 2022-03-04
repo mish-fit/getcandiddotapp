@@ -16,7 +16,7 @@ export function UserSummary({ data }) {
   const [activeTab, setActiveTab] = React.useState(0);
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   const onClickProducts = () => {
@@ -99,7 +99,7 @@ const style = {
   },
   buttonContainer: {
     justifyContent: "space-around",
-    mr: ["-25%","0%","0%","0%","0%","0%"],
+    // mr: ["-25%","0%","0%","0%","0%","0%"],
     my:"2%"
   },
   summaryView: {
