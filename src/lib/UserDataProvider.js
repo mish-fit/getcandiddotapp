@@ -15,14 +15,14 @@ const userData = {
 
 const userDataReducer = (state, action) => {
   if (action.type === "NAME") {
-    console.log("existing state: ", state);
-    console.log("updated state:", {
-      ...state,
-      userData: {
-        ...state.userData,
-        name: action.payload,
-      },
-    });
+    // console.log("existing state: ", state);
+    // console.log("updated state:", {
+    //   ...state,
+    //   userData: {
+    //     ...state.userData,
+    //     name: action.payload,
+    //   },
+    // });
 
     // console.log('reached name');
     return {
@@ -41,14 +41,14 @@ const userDataReducer = (state, action) => {
       },
     };
   } else if (action.type === "MAIL") {
-    console.log("existing state: ", state);
-    console.log("updated state:", {
-      ...state,
-      userData: {
-        ...state.userData,
-        mail: action.payload,
-      },
-    });
+    // console.log("existing state: ", state);
+    // console.log("updated state:", {
+    //   ...state,
+    //   userData: {
+    //     ...state.userData,
+    //     mail: action.payload,
+    //   },
+    // });
 
     return {
       ...state,

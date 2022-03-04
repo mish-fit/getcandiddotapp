@@ -34,7 +34,7 @@ const Step3 = (props) => {
   const toast = useToast();
   let hiddenInput = null;
   useEffect(() => {
-    console.log("Step3", userDataContext.userData);
+    // console.log("Step3", userDataContext.userData);
     // console.log(userDataContext.userSignInInfo.user.uid);
     if (image.preview !== "") {
       setImageSelected(true);
@@ -45,7 +45,7 @@ const Step3 = (props) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     if (e.target.files.length) {
       setImageSelected(true);
       setImage({
@@ -131,7 +131,7 @@ const Step3 = (props) => {
         instagram: "",
       },
     };
-    console.log(u_data);
+    // console.log(u_data);
     // API Call 1: User Data
     axios(
       {
@@ -142,7 +142,7 @@ const Step3 = (props) => {
       },
       { timeout: 5000 }
     ).then((res) => {
-      console.log("Success", res.data);
+      // console.log("Success", res.data);
       toast({
         title: "New User Added",
         description: "",
@@ -161,7 +161,7 @@ const Step3 = (props) => {
       u_id: userDataContext.userSignInInfo.user.uid,
       u_buckets: u_buckets,
     };
-    console.log("buckets", buckets);
+    // console.log("buckets", buckets);
     axios(
       {
         method: "post",
@@ -172,7 +172,7 @@ const Step3 = (props) => {
       { timeout: 5000 }
     )
       .then((res) => {
-        console.log("Success: Buckets Added", res.data);
+        // console.log("Success: Buckets Added", res.data);
         router.push("/dashboard");
 
         // toast({

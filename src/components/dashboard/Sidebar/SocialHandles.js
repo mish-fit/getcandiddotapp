@@ -11,7 +11,7 @@ const SocialElement = ({ item }) => (
   <Flex
     sx={style.socialView}
     onClick={() => {
-      console.log(item);
+      // console.log(item);
       localStorage.setItem(
         "clickLatestSocial",
         item.social_ulink + item.u_name
@@ -39,7 +39,8 @@ export function SocialHandles({ social, data }) {
   return (
     <Flex
       sx={{
-        mx: ["-5%", "1%", "10%", "10%", "10%", "10%"],
+        ml: ["-25%", "10%", "10%", "10%", "10%", "10%"],
+        mr: ["0%", "10%", "10%", "10%", "10%", "10%"],
         my: "8px",
         flexDirection: "column",
       }}

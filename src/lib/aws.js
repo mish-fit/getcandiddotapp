@@ -25,10 +25,12 @@ export const UploadImageToS3WithNativeSdk = (file, name) => {
   myBucket
     .putObject(params)
     .on("httpUploadProgress", (evt) => {
-      console.log(Math.round((evt.loaded / evt.total) * 100));
+      // console.log(Math.round((evt.loaded / evt.total) * 100));
     })
     .send((err) => {
-      if (err) console.log(err);
+      if (err) {
+        // console.log(err);
+      };
     });
 
   // const options = {

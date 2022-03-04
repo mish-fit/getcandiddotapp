@@ -20,7 +20,7 @@ export function AddLink({ buckets, values, onRefresh, onValuesChange }) {
   const [link, setLink] = React.useState(values.link);
 
   const refresh = () => {
-    console.log("Refresh");
+    // console.log("Refresh");
     setTitleColor("black");
     setShadowColor("rgba(0,0,0,0.5)");
     setTitle("");
@@ -39,7 +39,7 @@ export function AddLink({ buckets, values, onRefresh, onValuesChange }) {
   };
 
   const handleUpdate = (image) => {
-    console.log(image);
+    // console.log(image);
     const formData = new FormData();
     formData.append("image", image.raw);
 

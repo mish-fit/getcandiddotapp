@@ -26,7 +26,7 @@ const Banner = () => {
   const [signedup, setSignedup] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const signup = (event) => {
-    console.log(email);
+    // console.log(email);
     axios
       .post(
         "https://sim4yarfg6.execute-api.ap-south-1.amazonaws.com/prod/leadgen",
@@ -36,7 +36,7 @@ const Banner = () => {
         setSignedup(true);
       })
       .catch((err) => {
-        console.log("error in request", err);
+        // console.log("error in request", err);
       });
   };
 

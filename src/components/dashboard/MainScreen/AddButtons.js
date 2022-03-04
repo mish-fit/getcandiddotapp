@@ -52,7 +52,7 @@ export function AddButtons({ addLink, addProduct }) {
 
 const styles = {
   container: {
-    // px: "10%",
+    px: ["4%","4%","0%","0%","0%","0%"],
     mb: "16px",
     justifyContent: ["flex-start","flex-start","flex-end","flex-end","flex-end","flex-end"],
     alignItems: "flex-start",

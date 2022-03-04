@@ -12,11 +12,11 @@ export function UserCard({ data }) {
   const router = useRouter();
 
   React.useEffect(() => {
-    console.log("user data", data);
+    // console.log("user data", data);
   }, [data]);
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   const linkClick = () => {
@@ -69,8 +69,8 @@ export function UserCard({ data }) {
 const style = {
   container: {
     width: "full",
-    // mt:'96px',
-    mr:["-10%","-10%","0%","0%","0%","0%"],
+    mt:["48px","48px","0px","0px","0px","0px"],
+    // mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "16px",
   },
   coverPhotoView: {
@@ -97,7 +97,6 @@ const style = {
     alignItems: "center",
     width: "80%",
     px: "auto",
-    // mr:"10%"
   },
   aboutMeView: {
     width: "80%",

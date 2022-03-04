@@ -28,8 +28,8 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const [newLinks, setNewLinks] = React.useState({});
 
   React.useEffect(() => {
-    console.log([...links]);
-    console.log(newLinks);
+    // console.log([...links]);
+    // console.log(newLinks);
     setCurrentLinks([...links, newLinks]);
     // axios
     //   .get(
@@ -64,12 +64,12 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   }, [isOpenProductsModal, recos, newRecos]);
 
   const onCloseLinksModal = (item) => {
-    console.log("close");
+    // console.log("close");
     setOpenLinksModal(false);
   };
 
   const onCloseProductsModal = (item) => {
-    console.log("close");
+    // console.log("close");
     setOpenProductsModal(false);
   };
 

@@ -16,7 +16,7 @@ import "@fontsource/poppins";
 import { pageview } from "react-ga";
 import Script from "next/script";
 import { ContactUsModal } from "sections/video";
-
+import Head from 'next/head';
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
   React.useEffect(() => {
@@ -43,7 +43,7 @@ export default function IndexPage() {
 
   React.useEffect(() => {
     initOptimize();
-    console.log("Variant", variant);
+    // console.log("Variant", variant);
     const handleRouteChange = (url) => {
       pageview(url);
     };
@@ -61,6 +61,11 @@ export default function IndexPage() {
 
   return (
     <ThemeProvider theme={theme}>
+
+      <Head>
+        <title>Dashboard</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
       <StickyProvider>
         <Layout>
           <SEO
