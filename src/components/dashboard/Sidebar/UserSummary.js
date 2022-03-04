@@ -16,7 +16,7 @@ export function UserSummary({ data }) {
   const [activeTab, setActiveTab] = React.useState(0);
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   const onClickProducts = () => {
@@ -92,15 +92,14 @@ export function UserSummary({ data }) {
 
 const style = {
   container: {
-    justifyContent: "flex-start",
-    width: "100%",
+    width: "full",
     display: "flex",
     flexDirection: "column",
     mt: "16px",
   },
   buttonContainer: {
     justifyContent: "space-around",
-    // mx: ["5%","5%","5%","-5%","-5%","-5%"],
+    // mr: ["-25%","0%","0%","0%","0%","0%"],
     my:"2%"
   },
   summaryView: {

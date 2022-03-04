@@ -15,7 +15,7 @@ export function ShowLinks({ data }) {
   });
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   return (

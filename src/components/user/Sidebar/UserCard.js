@@ -9,12 +9,12 @@ import React from "react";
 
 // Add a custom Link
 export function UserCard({ data }) {
-  React.useEffect(() => {
-    console.log("user data", data);
-  }, [data]);
+  // React.useEffect(() => {
+  //   console.log("user data", data);
+  // }, [data]);
 
   return (
-    <Container sx={style.container}>
+    <Container sx={style.container} >
       <Container sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
@@ -53,19 +53,21 @@ export function UserCard({ data }) {
 
 const style = {
   container: {
-    width: "100%",
+    width: "full",
     borderTopRadius: "16px",
+
+    mr:["-10%","-10%","0%","0%","0%","0%"],
   },
   coverPhotoView: {
     borderTopRadius: "16px",
-    backgroundColor: "yellow",
-    width: ["0px","448px","448px","448px","448px","448px"],
-    height: ["50px", "248px","248px","248px","248px","248px"],
+    backgroundColor: "white",
+    // width: ["0px","448px","448px","448px","448px","448px"],
+    // height: ["50px", "248px","248px","248px","248px","248px"],
     justifyContent: "flex-start",
   },
   userPhotoView: {
     justifyContent:'center',
-    mt: "-24px",
+    mt: ["0px","-48px","-48px", "-48px","0px","0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",

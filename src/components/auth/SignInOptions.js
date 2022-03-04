@@ -13,12 +13,13 @@ import {
 	Center,
 	InputGroup,
 	InputLeftAddon,
+	BeatLoader,
 	useToast,
 } from '@chakra-ui/react';
 import '@fontsource/poppins';
 import { useRouter } from 'next/router';
-import Header from 'components/onboard/Header';
 import { FcGoogle } from 'react-icons/fc';
+import {Layout} from './../onboard/Layout';
 // Sign in with Phone button
 export function SignInOptions() {
 	const router = useRouter();
@@ -27,6 +28,9 @@ export function SignInOptions() {
 	const [show, setShow] = useState(false);
 	const [googleShow, setGoogleShow] = useState(true);
 	const [final, setFinal] = useState('');
+	const [isVerifyClicked, setIsVerifyClicked]=useState(true);
+	const [isConfirmClicked, setIsConfirmClicked]=useState(true);
+
 	const toast=  useToast();
 
 	const signInWithGoogle = async () => {
@@ -35,11 +39,9 @@ export function SignInOptions() {
 		});
 	};
 
-	// useEffect(()=>{
-	// 	setNumber
-	// })
 	// Validate OTP
 	const ValidatePhoneOTP = () => {
+		setIsConfirmClicked(false);
 		if (otp === null || final === null) return;
 		final
 			.confirm(otp)
@@ -59,7 +61,17 @@ export function SignInOptions() {
 	};
 
 	const signInWithPhone = async () => {
-		if (mynumber === '' || mynumber.length < 10) return;
+		if (mynumber === '' || mynumber.length < 10) {
+			toast({
+				title: "Phone number must have 10 numbers!",
+				description: "",
+				status: "error",
+				duration: 1000,
+				isClosable: true,
+			});
+		}
+		else {
+		setIsVerifyClicked(false);
 		let verify = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 		let newnumber = '+91' + mynumber;
 		auth
@@ -80,6 +92,7 @@ export function SignInOptions() {
 				alert(err);
 				window.location.reload();
 			});
+		}
 	};
 
 	const setHandler = () => {
@@ -97,19 +110,7 @@ export function SignInOptions() {
 		}
 	};
 	return (
-		<Container
-			fontFamily={'Poppins'}
-			maxW={'container.md'}
-			p={0}
-			align='center'
-		>
-			<Header />
-			<Flex display={{ md: 'flex' }}>
-				<Stack
-					align={{ base: 'center', md: 'stretch' }}
-					textAlign={{ base: 'left', md: 'left' }}
-					margin={6}
-				>
+				<Layout value={0}>
 				<Flex flexDirection={'column'} w='100%'>
 						<Flex style={{ display: !show ? 'block' : 'none' }} w='100%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'24px'} >Sign in to CaNDiD!</Heading>
@@ -133,25 +134,31 @@ export function SignInOptions() {
 							</InputGroup>
 							<Flex id='recaptcha-container' mt={'8px'} ></Flex>
 							<Button
-								bg={'#D7354A'}
-								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
-								color='white'
-								height={50}
-								width='full'
-								fontSize={'lg'}
+								// bg='#D7354A'
+								// _hover={{ bg: '#C23043' }}
+								// color='white'
+								// height={'3.1rem'}
+								// width='full'
+								// fontSize={'lg'}
+
+								variant={'primary'}
 								marginTop='8px'
 								marginBottom='24px'
-								onClick={signInWithPhone}
+
+								// spinner={<BeatLoader size={8} color='white' />}
+								// onClick={signInWithPhone}
+								// isLoading={!isVerifyClicked}
+								// loadingText={!isVerifyClicked? 'Sending OTP' : ''}
+								// isLoading= { isVerifyClicked ? isLoading : ''}
+								onClick={isVerifyClicked?signInWithPhone:null}
 							>
 								Verify
 							</Button>
 						</Flex>
-
 						<Flex style={{ display: show ? 'block' : 'none' }} w='100%'>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}} mb={'16px'}>Verify OTP</Heading>
 							<Input
-								type='text'
+								type='tel'
 								bg='white'
 								textAlign={'center'}
 								focusBorderColor='#E78692'
@@ -194,7 +201,7 @@ export function SignInOptions() {
 								fontSize={18}
 								marginTop='8px'
 								marginBottom='8px'
-								onClick={ValidatePhoneOTP}
+								onClick={isConfirmClicked?ValidatePhoneOTP:null}
 							>
 								Confirm
 							</Button>
@@ -240,8 +247,6 @@ export function SignInOptions() {
 							</Flex>
 						</Flex>
 					</Flex>
-				</Stack>
-			</Flex>
-		</Container>
+					</Layout>
 	);
 }

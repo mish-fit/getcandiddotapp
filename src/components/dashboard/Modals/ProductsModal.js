@@ -18,7 +18,8 @@ import Lottie from "lottie-react";
 import smm from "../../../../public/lottie/smm.json";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { RiCouponLine } from "react-icons/ri";
-import { Input } from "@chakra-ui/react";
+import { Input, useMediaQuery } from "@chakra-ui/react";
+import Head from 'next/head';
 import {
   MdOutlineDriveFileRenameOutline,
   MdOutlineRecommend,
@@ -53,9 +54,10 @@ export function ProductsModal({
   const [signedURL, setSignedURL] = React.useState("");
   const [catArray, setCatArray] = React.useState([]);
   const [prodArray, setProdArray] = React.useState([]);
-
   const [catActive, setCatActive] = React.useState(false);
   const [prodActive, setProdActive] = React.useState(false);
+  
+  const [isLargerThan480] = useMediaQuery('(min-width: 360px)')
 
   let hiddenInput = null;
 
@@ -74,15 +76,15 @@ export function ProductsModal({
   });
 
   React.useEffect(() => {
-    console.log("bUCKETR STRING", imageName);
+    // console.log("bUCKETR STRING", imageName);
     axios
       .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setSignedURL(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
     axios
       .get(
@@ -95,7 +97,7 @@ export function ProductsModal({
       })
 
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, [imageName, values.cat_name]);
 
@@ -114,7 +116,7 @@ export function ProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          console.log(item.prod_name);
+          // console.log(item.prod_name);
           setValues({ ...values, prod_name: item.prod_name });
           setProdActive(false);
 
@@ -145,7 +147,7 @@ export function ProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          console.log(item.cat_name);
+          // console.log(item.cat_name);
           setValues({
             ...values,
             cat_name: item.cat_name,
@@ -167,7 +169,7 @@ export function ProductsModal({
               setProdArray(res.data);
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
             });
           return false;
         }}
@@ -183,7 +185,7 @@ export function ProductsModal({
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     if (e.target.files.length) {
       setImageSelected(true);
       setImage({
@@ -200,7 +202,7 @@ export function ProductsModal({
   };
 
   const handleUpdate = (image) => {
-    console.log(image);
+    // console.log(image);
     const formData = new FormData();
     formData.append("image", image.raw);
     UploadImageToS3WithNativeSdk(image.raw, imageName);
@@ -219,7 +221,7 @@ export function ProductsModal({
     setInput(false);
   };
   const onSaveBucket = (item) => {
-    console.log(values);
+    // console.log(values);
     setValues({ ...values, bucket: item });
     setA([...a, item]);
     setInput(false);
@@ -253,7 +255,9 @@ export function ProductsModal({
           isClosable: true,
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        // console.log(e);
+      });
   };
 
   const onSelectItem = (item) => {
@@ -288,7 +292,7 @@ export function ProductsModal({
         { timeout: 5000 }
       )
         .then((res) => {
-          console.log("Success", res.data);
+          // console.log("Success", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
           toast({
@@ -300,7 +304,9 @@ export function ProductsModal({
           });
           onRefresh();
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          // console.log(e);
+        });
     } else {
       toast({
         title: "Product Name and Product Link are mandatory",
@@ -337,7 +343,7 @@ export function ProductsModal({
         { timeout: 1000 }
       )
         .then((res) => {
-          console.log("Sucess", res.data);
+          // console.log("Sucess", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
           toast({
@@ -349,7 +355,9 @@ export function ProductsModal({
           });
           closeModal();
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+        });
     } else {
       toast({
         title: "Product Name, and Product Link are mandatory",
@@ -383,7 +391,7 @@ export function ProductsModal({
   const categorySearch = React.useMemo(
     () =>
       debounce(async () => {
-        console.log(values.cat_name);
+        // console.log(values.cat_name);
         if (values.cat_name.length >= 0) {
           axios
             .get(
@@ -396,7 +404,7 @@ export function ProductsModal({
             })
 
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, 500),
@@ -422,7 +430,7 @@ export function ProductsModal({
               setProdArray(res.data);
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
             });
         }
       }, 500),
@@ -434,9 +442,13 @@ export function ProductsModal({
   const onChangeProduct = () => {};
 
   return (
-    <Modal onClose={closeModal} isOpen={isOpen} isCentered>
+    <Flex>
+      <Head>
+        <meta name="viewport" content="initial-scale=0.75, width=device-width" />
+      </Head>
+    <Modal onClose={closeModal} isOpen={isOpen} isCentered >
       <ModalOverlay />
-      <ModalContent maxW={"1000px"} sx={{ mb: "20%" }}>
+      <ModalContent maxW={"1000px"} >
         <Container sx={style.container}>
           <Flex sx={style.row1}>
             <Text sx={style.topHeader}>Add Product</Text>
@@ -736,6 +748,7 @@ export function ProductsModal({
         </Container>
       </ModalContent>
     </Modal>
+    </Flex>
   );
 }
 
@@ -788,6 +801,7 @@ const style = {
     fontSize: "16px",
   },
   saveContainer: {
+    mx: "4px",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

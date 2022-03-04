@@ -12,11 +12,11 @@ export function ProductsCard({ item }) {
   const router = useRouter();
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   const buy = () => {
-    console.log(item);
+    // console.log(item);
     localStorage.setItem("buyLatestItem", item.prod_name);
     window.open(item.prod_link, "_blank"); //to open new page
   };

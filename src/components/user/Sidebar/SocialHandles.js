@@ -3,7 +3,10 @@
 import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
 
 const SocialElement = ({ item }) => (
-  <Flex sx={style.socialView} onClick={() => console.log("Trell")}>
+  <Flex sx={style.socialView} onClick={() => {
+    // console.log("Trell");
+    }
+  }>
     <Image
       src={item.social_logo}
       alt="Logo for Social Network Websites"
@@ -20,9 +23,13 @@ const SocialElement = ({ item }) => (
 // Add a custom Link
 export function SocialHandles({ data }) {
   return (
-    <Flex sx={{ px: ["1%","1%","10%","10%","10%","10%"], mt: "8px", pb: "16px", flexDirection:"column"}}>
+    <Flex sx={{
+      ml: ["-6%", "10%", "10%", "10%", "10%", "10%"],
+      mr: ["-10%", "10%", "10%", "10%", "10%", "10%"],
+      my: "8px",
+        flexDirection:"column"}}>
       <Text sx={style.heading}>Social Handles</Text>
-      <Grid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={style.grid}>
+      <Grid gap={2} columns={[3, 6, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}

@@ -15,9 +15,9 @@ import {
 	FormControl,
 	FormLabel,
 } from '@chakra-ui/react';
-import Header from './Header';
 import '@fontsource/poppins';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { Layout } from './Layout';
 
 const Step1 = (props) => {
 	const [formValue, setFormValue] = useState('');
@@ -26,7 +26,7 @@ const Step1 = (props) => {
 	const [userDataContext, user] = useContext(UserContext);
 
 	// useEffect(()=>{
-	// 	// console.log('Step1', userDataContext.userData);
+	// console.log('Step1', userDataContext.userData);
 	// 	const fetchData = async ()=>{
 	// 		const ref = firestore.doc(`users/${userDataContext.userSignInInfo.user.uid}`);
 	// 		console.log(ref.get());
@@ -39,7 +39,7 @@ const Step1 = (props) => {
 				if (username.length >= 3) {
 					const ref = firestore.doc(`usernames/${username}`);
 					const { exists } = await ref.get();
-					console.log('Firestore read executed!');
+					// console.log('Firestore read executed!');
 					setIsValid(!exists);
 					setLoading(false);
 				}
@@ -117,19 +117,8 @@ const Step1 = (props) => {
 	};
 
 	return (
-		<Container
-			fontFamily={'Poppins'}
-			maxW={'container.md'}
-			p={0}
-			// align='left'
-		>
-			<Header value={25} />
-			<Flex display={{ md: 'flex' }}>
-				<Stack
-					align={{ base: 'center', md: 'stretch' }}
-					textAlign={{ base: 'left', md: 'left' }}
-					margin={6}
-				>
+		
+		<Layout value={25}>
 					<Flex flexDirection={'column'} w='100%'>
 						<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Choose a Username</Heading>
 						<FormLabel
@@ -188,9 +177,7 @@ const Step1 = (props) => {
 							</Flex>
 						</form>
 					</Flex>
-				</Stack>
-			</Flex>
-		</Container>
+				</Layout>
 	);
 };
 function UsernameMessage({ username, isValid, loading }) {

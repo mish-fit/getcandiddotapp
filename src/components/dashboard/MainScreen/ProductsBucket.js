@@ -12,7 +12,7 @@ export function ProductsBucket({ bucketName, data }) {
   const router = useRouter();
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   return (

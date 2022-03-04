@@ -13,7 +13,7 @@ export function LinksBucket({ bucketName, data }) {
   const router = useRouter();
 
   const addLinks = () => {
-    console.log("add links");
+    // console.log("add links");
   };
 
   return (

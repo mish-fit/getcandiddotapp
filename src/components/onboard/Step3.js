@@ -15,7 +15,6 @@ import {
   Image,
   Button,
 } from "@chakra-ui/react";
-import Header from "./Header";
 import { useState, useContext, useRef, useEffect } from "react";
 import { UserContext } from "lib/UserDataProvider";
 import { firestore } from "lib/firebase";
@@ -25,15 +24,17 @@ import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import { authapi, s3url } from "lib/api";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { Layout } from "./Layout";
 const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [imageSelected, setImageSelected] = useState(false);
+	const [isNextClicked, setIsNextClicked]=useState(true);
   const router = useRouter();
   const toast = useToast();
   let hiddenInput = null;
   useEffect(() => {
-    console.log("Step3", userDataContext.userData);
+    // console.log("Step3", userDataContext.userData);
     // console.log(userDataContext.userSignInInfo.user.uid);
     if (image.preview !== "") {
       setImageSelected(true);
@@ -44,7 +45,7 @@ const Step3 = (props) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     if (e.target.files.length) {
       setImageSelected(true);
       setImage({
@@ -75,6 +76,7 @@ const Step3 = (props) => {
 
   const next = async (e) => {
     e.preventDefault();
+		setIsNextClicked(false);
     // console.log(image.preview+image.raw+"jj"+imageName+"jj"+imageSelected);
     let new_profile_image = "";
     if (imageSelected) {
@@ -129,7 +131,7 @@ const Step3 = (props) => {
         instagram: "",
       },
     };
-    console.log(u_data);
+    // console.log(u_data);
     // API Call 1: User Data
     axios(
       {
@@ -140,7 +142,7 @@ const Step3 = (props) => {
       },
       { timeout: 5000 }
     ).then((res) => {
-      console.log("Success", res.data);
+      // console.log("Success", res.data);
       toast({
         title: "New User Added",
         description: "",
@@ -159,7 +161,7 @@ const Step3 = (props) => {
       u_id: userDataContext.userSignInInfo.user.uid,
       u_buckets: u_buckets,
     };
-    console.log("buckets", buckets);
+    // console.log("buckets", buckets);
     axios(
       {
         method: "post",
@@ -170,7 +172,7 @@ const Step3 = (props) => {
       { timeout: 5000 }
     )
       .then((res) => {
-        console.log("Success: Buckets Added", res.data);
+        // console.log("Success: Buckets Added", res.data);
         router.push("/dashboard");
 
         // toast({
@@ -197,19 +199,7 @@ const Step3 = (props) => {
 
   return (
     <>
-      <Container
-        fontFamily={"Poppins"}
-        maxW={"container.md"}
-        p={0}
-        align="center"
-      >
-        <Header value={75} />
-        <Flex display={{ md: "flex" }}>
-          <Stack
-            align={{ base: "center", md: "stretch" }}
-            textAlign={{ base: "left", md: "left" }}
-            margin={6}
-          >
+      <Layout value={75}>
             <FormControl>
               <Heading size={"lg"} textAlign={{ base: "center", md: "left" }}>
                 Add a profile photo
@@ -316,6 +306,7 @@ const Step3 = (props) => {
                   width={120}
                   height={50}
                   onClick={next}
+                  
                 >
                   Skip
                 </Button>
@@ -328,15 +319,14 @@ const Step3 = (props) => {
                   width={120}
                   height={50}
                   mr={{ base: "0", md: "190" }}
-                  onClick={next}
+                  onClick={isNextClicked ? next : null}
+                  // onClick={next}
                 >
                   Submit
                 </Button>
               </Flex>
             </FormControl>
-          </Stack>
-        </Flex>
-      </Container>
+          </Layout>
     </>
   );
 };
