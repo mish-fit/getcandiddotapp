@@ -7,11 +7,11 @@ import { useRouter } from "next/router";
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
 
-import { useMediaQuery } from '@chakra-ui/react';
+import { useMediaQuery } from "@chakra-ui/react";
 // Add a custom Link
 export function UserSummary({ data }) {
   const router = useRouter();
-  const [isLargerThan768] = useMediaQuery('(min-width: 768px)')
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const [activeTab, setActiveTab] = React.useState(0);
 
@@ -29,7 +29,7 @@ export function UserSummary({ data }) {
 
   return (
     <Container sx={style.container}>
-      <Container>
+      <Flex sx={{ flex: 1, width: "100%" }}>
         <Flex sx={style.buttonContainer}>
           <ScrollLink
             sx={{}}
@@ -45,7 +45,7 @@ export function UserSummary({ data }) {
                 onClick={onClickProducts}
                 sx={activeTab == 0 ? style.buttonText : style.buttonText1}
               >
-                { isLargerThan768 ? '' : data.products } Products
+                {isLargerThan768 ? "" : data.products} Products
               </Button>
             </Flex>
           </ScrollLink>
@@ -63,12 +63,12 @@ export function UserSummary({ data }) {
                 onClick={onClickLinks}
                 sx={activeTab > 0 ? style.buttonText : style.buttonText1}
               >
-                { isLargerThan768 ? '' : data.links } Links
+                {isLargerThan768 ? "" : data.links} Links
               </Button>
             </Flex>
           </ScrollLink>
         </Flex>
-      </Container>
+      </Flex>
 
       <Flex sx={style.summaryView}>
         <Text sx={activeTab == 0 ? style.summaryText : style.summaryText1}>
@@ -98,9 +98,10 @@ const style = {
     mt: "16px",
   },
   buttonContainer: {
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
+    flex: 1,
     // mr: ["-25%","0%","0%","0%","0%","0%"],
-    my:"2%"
+    my: "2%",
   },
   summaryView: {
     flexDirection: "row",
@@ -117,7 +118,7 @@ const style = {
     width: "148px",
   },
   summaryText: {
-    display:['none', 'none', 'inline', 'inline', 'inline', 'inline'],
+    display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "bold",
     fontFamily: "Poppins",
     fontSize: "16px",
@@ -160,7 +161,7 @@ const style = {
     mt: "8px",
   },
   summaryText1: {
-    display:['none', 'none', 'inline', 'inline', 'inline', 'inline'],
+    display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "medium",
     fontFamily: "Poppins",
     fontSize: "16px",

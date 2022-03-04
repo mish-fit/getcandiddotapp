@@ -82,7 +82,12 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   };
 
   return (
-    <Container sx={{ backgroundColor: "white", px: "0px" }}>
+    <Container
+      sx={{
+        px: "0px",
+        width: ["100%", "100%", "100%", null],
+      }}
+    >
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}

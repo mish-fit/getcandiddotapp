@@ -21,7 +21,7 @@ export function AddButtons({ addLink, addProduct }) {
 
   return (
     <Flex as="container" sx={styles.container}>
-      <Button as="addbutton" sx={styles.addbutton} onClick={addProducts}>
+      <Flex as="addbutton" sx={styles.addbutton} onClick={addProducts}>
         <Flex
           sx={{
             flexDirection: "row",
@@ -32,11 +32,11 @@ export function AddButtons({ addLink, addProduct }) {
           <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
           <Text sx={styles.addbuttonText}>Recommend Products</Text>
         </Flex>
-      </Button>
-      <Button as="addbutton" sx={styles.addbutton} onClick={addLinks}>
+      </Flex>
+      <Flex as="addbutton" sx={styles.addbutton} onClick={addLinks}>
         <Flex
           sx={{
-            ml:["80px", "80px","0px","0px", "0px", "0px"],
+            // ml: ["80px", "80px", "0px", "0px", "0px", "0px"],
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
@@ -45,23 +45,31 @@ export function AddButtons({ addLink, addProduct }) {
           <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
           <Text sx={styles.addbuttonText}>Custom Links</Text>
         </Flex>
-      </Button>
+      </Flex>
     </Flex>
   );
 }
 
 const styles = {
   container: {
-    px: ["4%","4%","0%","0%","0%","0%"],
+    px: ["4%", "4%", "0%", "0%", "0%", "0%"],
     mb: "16px",
-    justifyContent: ["flex-start","flex-start","flex-end","flex-end","flex-end","flex-end"],
+    justifyContent: [
+      "justify-evenly",
+      "justify-evenly",
+      "flex-end",
+      "flex-end",
+      "flex-end",
+      "flex-end",
+    ],
     alignItems: "flex-start",
+    width: ["100%", "100%", null],
   },
   addbutton: {
     mt: "16px",
     borderRadius: "16px",
     borderWidth: "2px",
-    borderColor: "#000",
+    borderColor: "#FFF",
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
@@ -69,6 +77,12 @@ const styles = {
     color: "#D7354A",
     flexDirection: "row",
     cursor: "pointer",
+    justifyContent: "center",
+    alignItems: "center",
+    py: ["2px", "2px", "4px", "8px"],
+    px: ["4px", "4px", "8px", "16px"],
+    mx: "4px",
+    flex: [1, 1, `0 1 auto`],
   },
   addbuttonText: {
     fontFamily: "Poppins",

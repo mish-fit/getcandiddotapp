@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
 import { Button } from "@chakra-ui/react";
-import Head from 'next/head'
+import Head from "next/head";
 
 import React, { useContext, useState, useEffect } from "react";
 // import { UserContext } from "../../src/lib/UserDataProvider";
@@ -226,6 +226,7 @@ const styles = {
     justifyContent: "flex-start",
   },
   mainscreen: {
+    width: ["100%", "100%", null],
     flex: [1, 1, 1, 2, 2, 2],
   },
   sidebar: {
