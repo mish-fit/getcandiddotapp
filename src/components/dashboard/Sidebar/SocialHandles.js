@@ -39,7 +39,7 @@ export function SocialHandles({ social, data }) {
   return (
     <Flex
       sx={{
-        ml: ["-25%", "10%", "10%", "10%", "10%", "10%"],
+        ml: ["10%", "10%", "10%", "10%", "10%", "10%"],
         mr: ["0%", "10%", "10%", "10%", "10%", "10%"],
         my: "8px",
         flexDirection: "column",
