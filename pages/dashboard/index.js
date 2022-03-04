@@ -198,6 +198,8 @@ export async function getServerSideProps(context) {
     ].map((fetchApi) => fetchApi.then((res) => res.json()))
   );
 
+  console.log(currentUser[0], buckets);
+
   return {
     props: {
       links,

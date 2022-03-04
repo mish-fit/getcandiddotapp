@@ -118,6 +118,7 @@ export function SocialModal({
   const [values, setValues] = React.useState([]);
 
   useEffect(() => {
+    console.log("data in social modal", data);
     data.map((item, index) => {
       setValues((values) => [
         ...values,

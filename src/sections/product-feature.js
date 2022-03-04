@@ -69,10 +69,10 @@ const ProductFeature = () => {
                   {label ? <Text as="span">{label}</Text> : null}
                 </Heading>
                 <Text as="p">{text}</Text>
-                <Link href={button.link}>
+                {/* <Link href={button.link}>
                   {button.label}
                   <IoIosArrowForward />
-                </Link>
+                </Link> */}
               </Box>
             </Box>
           ))}
