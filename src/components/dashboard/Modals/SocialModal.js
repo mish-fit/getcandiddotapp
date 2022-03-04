@@ -135,7 +135,7 @@ export function SocialModal({
         },
       ]);
     });
-  }, []);
+  }, [data, user]);
 
   React.useEffect(() => {
     const a = [];
