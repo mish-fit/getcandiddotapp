@@ -54,7 +54,6 @@ export function Sidebar({
       sx={{
         flexDirection: "column",
         width: ["100%", "100%", null],
-
         mx: ["1rem", "1rem", "0px", "0px", "0px", "0px"],
         borderRadius: "16px",
         boxShadow: [

@@ -14,11 +14,11 @@ export function UserCard({ data }) {
   // }, [data]);
 
   return (
-    <Container sx={style.container} >
+    <Container sx={style.container}>
       <Container sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
-          alt={'cover img'}
+          alt={"cover img"}
           src={
             data[0].u_cover_image && data[0].u_cover_image != ""
               ? data[0].u_cover_image
@@ -29,7 +29,7 @@ export function UserCard({ data }) {
       <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
-          alt={'profile img'}
+          alt={"profile img"}
           src={
             data[0].u_profile_image && data[0].u_profile_image != ""
               ? data[0].u_profile_image
@@ -54,20 +54,23 @@ export function UserCard({ data }) {
 const style = {
   container: {
     width: "full",
+    mt: ["48px", "48px", "0px", "0px", "0px", "0px"],
+    // mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "16px",
-
-    mr:["-10%","-10%","0%","0%","0%","0%"],
   },
   coverPhotoView: {
     borderTopRadius: "16px",
     backgroundColor: "white",
+    mt: "4px",
+    width: "full",
+    // width: ["0px","0px","0px","448px","448px","448px"],
     // width: ["0px","448px","448px","448px","448px","448px"],
-    // height: ["50px", "248px","248px","248px","248px","248px"],
+    // height: ["48rem", "248rem","248px","160px","248px","248px"],
     justifyContent: "flex-start",
   },
   userPhotoView: {
-    justifyContent:'center',
-    mt: ["0px","-48px","-48px", "-48px","0px","0px"],
+    justifyContent: "center",
+    mt: ["0px", "-48px", "-48px", "-48px", "0px", "0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
@@ -92,14 +95,15 @@ const style = {
     fontWeight: "400",
   },
   coverPhoto: {
-    display:['none', 'inline', 'inline', 'inline', 'inline', 'inline'],
+    display: ["none", "inline", "inline", "inline", "inline", "inline"],
+    // mt: ["-150px" ,"0px","0px","0px","0px","0px"],
     textAlign: "center",
     borderRadius: "16px",
   },
   userImage: {
     width: "148px",
     height: "148px",
-    backgroundColor:'yellow',
+    backgroundColor: "yellow",
     textAlign: "center",
     borderRadius: "200px",
   },
@@ -109,5 +113,23 @@ const style = {
     fontSize: "24px",
     fontFamily: "Poppins",
     color: "#323232",
+  },
+
+  nav: {
+    display: ["", "none", "none", "none", "none"],
+    justifyContent: "center",
+    navLink: {
+      // textDecoration:"underline",
+      fontFamily: "Poppins",
+      fontSize: "16px",
+      color: "#323232",
+      fontWeight: "bold",
+      cursor: "pointer",
+      lineHeight: "1.2",
+      mt: "-64px",
+      "&:hover, &.active": {
+        color: "primary",
+      },
+    },
   },
 };
