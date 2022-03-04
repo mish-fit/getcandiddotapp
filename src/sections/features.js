@@ -92,7 +92,7 @@ const styles = {
   },
   post: {
     mb: "24px",
-    mx: ["0", null, null, null, null, "16px"],
+    mx: ["0", null, null, null, null, "8px"],
     display: "flex",
     flex: ["0 0 100%", null, null, "0 0 calc(33.333% - 24px)"],
     flexDirection: ["column", null, null, null, "row"],
