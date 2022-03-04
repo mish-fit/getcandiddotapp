@@ -45,7 +45,12 @@ export default function Header({ className }) {
             ))}
           </Flex>
 
-          <Flex sx={styles.signupButton}>
+          <Flex
+            sx={styles.signupButton}
+            onClick={() => {
+              window.open("https://medium.com/@cndd_india", "_blank"); //to open new page
+            }}
+          >
             <Text sx={styles.signupButtonText}>
               {translation[locale].HeaderSection.Blog}
             </Text>

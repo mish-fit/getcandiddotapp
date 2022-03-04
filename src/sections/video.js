@@ -88,26 +88,46 @@ export function ContactUsModal({ closeParent, isOpen }) {
             <Flex sx={style.titleContainer}>
               <Flex sx={{ flex: 1 }}>
                 <Input
-                  sx={{ color: "black", fontSize: "16px" }}
-                  placeholder="Your Name"
-                  variant="flushed"
+                  required
+                  name="name"
+                  bg="white"
+                  display="inline"
+                  focusBorderColor="#E78692"
+                  _hover={{ borderColor: "#E78592" }}
+                  borderColor="#E78592"
+                  height={50}
+                  width={"full"}
+                  fontSize={"lg"}
+                  marginBottom="24px"
+                  value={values.name}
+                  type="text"
                   onChange={(e) =>
                     setValues({ ...values, name: e.target.value })
                   }
-                  value={values.name}
+                  placeholder="Your Name"
                 />
               </Flex>
             </Flex>
             <Flex sx={style.titleContainer}>
               <Flex sx={{ flex: 1 }}>
                 <Input
-                  sx={{ color: "black", fontSize: "16px" }}
-                  placeholder="Your Email Address"
-                  variant="flushed"
+                  required
+                  name="name"
+                  bg="white"
+                  display="inline"
+                  focusBorderColor="#E78692"
+                  _hover={{ borderColor: "#E78592" }}
+                  borderColor="#E78592"
+                  height={50}
+                  width={"full"}
+                  fontSize={"lg"}
+                  marginBottom="24px"
+                  value={values.email}
+                  type="text"
                   onChange={(e) =>
                     setValues({ ...values, email: e.target.value })
                   }
-                  value={values.email}
+                  placeholder="Your Email Address"
                 />
               </Flex>
             </Flex>
