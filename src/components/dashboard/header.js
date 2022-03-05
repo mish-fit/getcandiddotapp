@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { translation } from "translation";
 import React from "react";
 import { auth } from "lib/firebase";
+import { AiFillCopy } from 'react-icons/ai';
 import {
   Menu,
   MenuButton,
@@ -34,7 +35,9 @@ export default function Header({ menu, menuActive, data }) {
     menu(!active);
   };
 
-  const editProfile = () => {};
+  const editProfile = () => {
+    router.push("/edit");
+  };
 
   const signout = () => {
     auth.signOut();
@@ -43,14 +46,24 @@ export default function Header({ menu, menuActive, data }) {
 
   const linkClick = () => {
     router.push(data[0].u_uuid);
-    // toast({
-    //   title: "Link Copied",
-    //   description: "Add you Candid link to Instagram Bio",
-    //   status: "success",
-    //   duration: 5000,
-    //   isClosable: true,
-    // });
+    toast({
+      title: "Link Copied",
+      description: "Add you Candid link to Instagram Bio",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   };
+
+  const linkCopy = () => {
+    toast({
+      title: "Link Copied",
+      description: "Add you Candid link to Instagram Bio",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  }
 
   return (
     <DrawerProvider>
@@ -59,11 +72,18 @@ export default function Header({ menu, menuActive, data }) {
           <Flex as="logo" sx={styles.logoContainer}>
             <Logo />
           </Flex>
+          <Flex as="nav" sx={styles.nav}>
           <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
-            <Flex as="nav" sx={styles.nav} onClick={linkClick}>
+            <Flex onClick={linkClick}>
               <Text sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Text>
             </Flex>
           </CopyToClipboard>
+          <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
+            <Flex onClick={linkCopy}>
+              <Text sx={{fontSize:'24px', ml:'8px'}}><AiFillCopy/></Text>
+            </Flex>
+          </CopyToClipboard>
+          </Flex>
           <Menu>
             <MenuButton as={Button}>
               <Image
@@ -77,7 +97,7 @@ export default function Header({ menu, menuActive, data }) {
               />
             </MenuButton>
             <MenuList>
-              {/* <MenuItem onClick={editProfile}>Edit Profile</MenuItem> */}
+              <MenuItem onClick={editProfile}>Edit Profile</MenuItem>
               <MenuItem onClick={signout}>Sign Out</MenuItem>
             </MenuList>
           </Menu>
@@ -168,7 +188,7 @@ const styles = {
   nav: {
     cursor: 'pointer',
     flex: 1,
-    mr: "200px",
+    mr: "148px",
     px: "auto",
     justifyContent: "center",
     "@media screen and (max-width: 960px)": {
