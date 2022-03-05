@@ -56,7 +56,8 @@ const style = {
     borderRadius: "16px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
     mx: "16px",
-    width: ["448px", "448px", "350px", "350px", "448px", "448px"],
+    width: ["100%", "100%", "350px", "350px", "448px", "448px"],
+    minWidth: "330px",
     my: "16px",
   },
   imageMaster: {
