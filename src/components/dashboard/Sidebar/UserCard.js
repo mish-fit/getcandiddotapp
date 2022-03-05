@@ -7,9 +7,12 @@ import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
+import { AiFillCopy } from 'react-icons/ai';
+import { useToast } from "@chakra-ui/react";
 // Add a custom Link
 export function UserCard({ data }) {
   const router = useRouter();
+  const toast = useToast();
 
   React.useEffect(() => {
     // console.log("user data", data);
@@ -20,7 +23,24 @@ export function UserCard({ data }) {
   };
 
   const linkClick = () => {
-    router.push(data[0].u_name);
+    router.push(data[0].u_uuid);
+    toast({
+      title: "Link Copied",
+      description: "Add you Candid link to Instagram Bio",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
+
+  const linkCopy = () => {
+    toast({
+      title: "Link Copied",
+      description: "Add you Candid link to Instagram Bio",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   }
 
   return (
@@ -36,11 +56,18 @@ export function UserCard({ data }) {
           }
         />
       </Container>
-      <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
-            <Flex as="nav" sx={style.nav} onClick={linkClick}>
-              <Text sx={style.nav.navLink}>{"wwww.cndd.in/" + data[0].u_uuid}</Text>
+      <Flex as="nav" sx={style.nav}>
+          <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
+            <Flex onClick={linkClick}>
+              <Text sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Text>
             </Flex>
-      </CopyToClipboard>
+          </CopyToClipboard>
+          <CopyToClipboard mt='4px' text={"cndd.in/" + data[0].u_uuid} >
+            <Flex onClick={linkCopy}>
+              <Text sx={{fontSize:'24px', ml:'8px'}}><AiFillCopy/></Text>
+            </Flex>
+          </CopyToClipboard>
+          </Flex>
       <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
@@ -69,7 +96,7 @@ export function UserCard({ data }) {
 const style = {
   container: {
     width: "full",
-    mt:["48px","48px","0px","0px","0px","0px"],
+    mt:["96px","96px","0px","0px","0px","0px"],
     // mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "16px",
   },
@@ -85,7 +112,7 @@ const style = {
   },
   userPhotoView: {
     justifyContent:'center',
-    mt: ["0px","-48px","-48px", "-48px","0px","0px"],
+    mt: ["8px","-48px","-48px", "-48px","0px","0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
@@ -131,6 +158,7 @@ const style = {
   },
 
   nav: {
+    cursor: "pointer",
     display:['', 'none', 'none', 'none', 'none'],
     justifyContent: "center",
     navLink: {

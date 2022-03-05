@@ -189,12 +189,21 @@ function UsernameMessage({ username, isValid, loading }) {
 				{username} is available!
 			</FormLabel>
 		);
-	} else if (username && !isValid) {
-		return (
-			<FormLabel >
-				That username is taken!
-			</FormLabel>
-		);
+	} 
+	else if (username)
+	{
+		if(username.length<3){
+			return (
+				<FormLabel>Username must be 3 or more letters.</FormLabel>
+			)
+		}
+		else if(!isValid){
+			return (
+				<FormLabel >
+					That username is taken!
+				</FormLabel>
+			);
+		}
 	} else {
 		return (
 			<FormLabel fontSize={15}>
