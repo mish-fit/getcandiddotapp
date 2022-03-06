@@ -292,7 +292,7 @@ export function ProductsModal({
         { timeout: 5000 }
       )
         .then((res) => {
-          console.log("Recos Success", res.data);
+          //  console.log("Recos Success", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
           toast({
@@ -343,7 +343,7 @@ export function ProductsModal({
         { timeout: 1000 }
       )
         .then((res) => {
-          console.log("Recos Success", res.data);
+          //   console.log("Recos Success", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
           toast({

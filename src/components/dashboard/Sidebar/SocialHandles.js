@@ -91,7 +91,7 @@ const style = {
   },
   socialText: {
     fontFamily: "Poppins",
-    fontSize: "11px",
+    fontSize: "8px",
     color: "#646464",
     textAlign: "center",
   },
