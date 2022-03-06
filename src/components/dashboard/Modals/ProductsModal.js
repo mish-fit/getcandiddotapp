@@ -525,6 +525,7 @@ export function ProductsModal({
                         </Flex>
                       )}
                       <input
+								        accept="image/png, image/jpeg, image/jpg"
                         type="file"
                         hidden
                         onChange={handleChange}

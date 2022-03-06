@@ -239,6 +239,7 @@ const EditProfile = ({ u_data }) => {
 									</Flex>
 								)}
 								<input
+									accept="image/png, image/jpeg, image/jpg"
 									type='file'
 									hidden
 									onChange={handleChange}
