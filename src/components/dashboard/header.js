@@ -45,12 +45,12 @@ export default function Header({ menu, menuActive, data }) {
   };
 
   const linkClick = () => {
-    router.push(data[0].u_uuid);
+    window.open("https://www.cndd.in/"+data[0].u_uuid, "_blank");
     toast({
-      title: "Link Copied",
-      description: "Add you Candid link to Instagram Bio",
+      title: "Link Copied & Redirecting",
+      // description: "Add you Candid link to Instagram Bio",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };
@@ -80,7 +80,7 @@ export default function Header({ menu, menuActive, data }) {
           </CopyToClipboard>
           <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
             <Flex onClick={linkCopy}>
-              <Text sx={{fontSize:'24px', ml:'8px'}}><AiFillCopy/></Text>
+              <AiFillCopy sx={{fontSize:'24px', ml:'8px'}} color={"gray"}/>
             </Flex>
           </CopyToClipboard>
           </Flex>

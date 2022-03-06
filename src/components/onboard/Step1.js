@@ -120,6 +120,7 @@ const Step1 = (props) => {
 		
 		<Layout value={25}>
 					<Flex flexDirection={'column'} w='100%'>
+					<Flex  flexDirection={"column"} margin={6}>
 						<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Choose a Username</Heading>
 						<FormLabel
 							size={'md'}
@@ -176,6 +177,7 @@ const Step1 = (props) => {
 							</Button>
 							</Flex>
 						</form>
+					</Flex>
 					</Flex>
 				</Layout>
 	);

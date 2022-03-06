@@ -23,7 +23,7 @@ import "@fontsource/poppins";
 import axios from "axios";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import { authapi, s3url } from "lib/api";
-import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { IoCloseCircle } from "react-icons/io5";
 import { Layout } from "./Layout";
 const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
@@ -202,6 +202,7 @@ const Step3 = (props) => {
   return (
     <>
       <Layout value={75}>
+      <Flex  flexDirection={"column"} margin={6}>
         <FormControl>
           <Heading size={"lg"} textAlign={{ base: "center", md: "left" }}>
             Add a profile photo
@@ -322,6 +323,7 @@ const Step3 = (props) => {
             </Button>
           </Flex>
         </FormControl>
+        </Flex>
       </Layout>
     </>
   );

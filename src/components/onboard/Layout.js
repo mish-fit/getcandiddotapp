@@ -23,11 +23,11 @@ export function Layout({ children, value = 0 }){
 			align='center'
 		>
 			<Header value={value}/>
-			<Flex display={{ md: 'flex' }}>
+			<Flex display={{ md: 'flex' }} >
 				<Stack
 					align={{ base: 'center', md: 'stretch' }}
 					textAlign={{ base: 'left', md: 'left' }}
-					margin={6}
+					// margin={6}
 				>
         {children}
         </Stack>

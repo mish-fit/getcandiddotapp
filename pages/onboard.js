@@ -10,6 +10,7 @@ import { nonauthapi } from 'lib/api';
 import axios from 'axios';
 import { firebaseAdmin } from 'lib/firebaseadmin';
 import nookies from "nookies";
+import Head from "next/head";
 export default function Onboard(props) {
 
 	const router = useRouter()
@@ -48,7 +49,14 @@ export default function Onboard(props) {
 		}
 	};
 
-	return <>{switchStep()}</>;
+	return <>
+	
+	<Head>
+        <title>Onboard | CNDD</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
+	{switchStep()}
+	</>;
 }
 
 export async function getServerSideProps(context) {

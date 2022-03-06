@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { auth } from 'lib/firebase';
 import { firebaseAdmin } from "lib/firebaseadmin";
 import nookies from "nookies";
+import Head from "next/head";
 export default function Auth(props) {
 	const router = useRouter()
 	const [ userDataContext, user ] = useContext(UserContext);
@@ -20,6 +21,10 @@ export default function Auth(props) {
 	// })
 	return (
 		<div>
+			<Head>
+        <title>Sign in to CNDD!</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
 				<SignInOptions />
 			{/* {ctx.userSignInInfo.user ? !ctx.userSignInInfo.username ?  : <SignOutButton /> : <SignInOptions />} */}
 
