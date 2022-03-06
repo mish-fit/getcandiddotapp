@@ -25,12 +25,14 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const [currentLinks, setCurrentLinks] = React.useState(links);
   const [currentRecos, setCurrentRecos] = React.useState(recos);
   const [newRecos, setNewRecos] = React.useState([]);
-  const [newLinks, setNewLinks] = React.useState({});
+  const [newLinks, setNewLinks] = React.useState([]);
 
   React.useEffect(() => {
     // console.log([...links]);
-    // console.log(newLinks);
-    setCurrentLinks([...links, newLinks]);
+    console.log("NEW LINKS", newLinks);
+    console.log("EXISTING LINKS", links);
+
+    setCurrentLinks([...links, ...newLinks]);
     // axios
     //   .get(
     //     `${nonauthapi}links`,
@@ -74,11 +76,11 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   };
 
   const newReco = (item) => {
-    setNewRecos(item);
+    setNewRecos([...newRecos, ...item]);
   };
 
   const newLink = (item) => {
-    setNewLinks(item);
+    setNewLinks([...newLinks, ...item]);
   };
 
   return (
