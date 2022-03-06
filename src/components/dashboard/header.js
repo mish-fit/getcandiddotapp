@@ -163,7 +163,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: ["0px", "0px", "16px", "16px", "16px", "16px"],
+    py: ["0px", "0px", "8px", "8px", "8px", "8px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
