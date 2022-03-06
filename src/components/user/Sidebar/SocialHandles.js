@@ -6,7 +6,12 @@ const SocialElement = ({ item }) => (
   <Flex
     sx={style.socialView}
     onClick={() => {
-      // console.log("Trell");
+      // console.log(item);
+      localStorage.setItem(
+        "clickLatestSocial",
+        item.social_ulink + item.u_name
+      );
+      window.open(item.social_ulink + item.u_name, "_blank"); //to open new page
     }}
   >
     <Image
@@ -67,7 +72,7 @@ const style = {
   },
   socialText: {
     fontFamily: "Poppins",
-    fontSize: "11px",
+    fontSize: "8px",
     color: "#646464",
     textAlign: "center",
   },
