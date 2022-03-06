@@ -127,7 +127,8 @@ const Step2 = (props) => {
 	return (
 		<>
 			<Layout value={50}>
-					<Flex flexDirection={'column'} w='80%'>
+					<Flex flexDirection={'column'} w='100%'>
+					<Flex  flexDirection={"column"} margin={6}>
 							<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
 								<FormLabel
 									size={'md'}
@@ -262,6 +263,7 @@ const Step2 = (props) => {
 								</Button>
 							</Flex>
 						</form>
+						</Flex>
 					</Flex>
 					</Layout>
 		</>

@@ -3,7 +3,7 @@
 import { jsx, Container, Flex, Image, Text, Box } from "theme-ui";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
+import { border, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -23,12 +23,13 @@ export function UserCard({ data }) {
   };
 
   const linkClick = () => {
-    router.push(data[0].u_uuid);
+    window.open("https://www.cndd.in/"+data[0].u_uuid, "_blank");
+    // router.push(data[0].u_uuid);
     toast({
       title: "Link Copied",
-      description: "Add you Candid link to Instagram Bio",
+      // description: "Add you Candid link to Instagram Bio",
       status: "success",
-      duration: 5000,
+      duration: 1000,
       isClosable: true,
     });
   };
@@ -59,12 +60,12 @@ export function UserCard({ data }) {
       <Flex as="nav" sx={style.nav}>
           <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
             <Flex onClick={linkClick}>
-              <Text sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Text>
+              <Button sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Button>
             </Flex>
           </CopyToClipboard>
-          <CopyToClipboard mt='4px' text={"cndd.in/" + data[0].u_uuid} >
+          <CopyToClipboard mt='6px' text={"cndd.in/" + data[0].u_uuid} >
             <Flex onClick={linkCopy}>
-              <Text sx={{fontSize:'24px', ml:'8px'}}><AiFillCopy/></Text>
+              <AiFillCopy sx={{fontSize:'24px', ml:'8px'}} color={"gray"}/>
             </Flex>
           </CopyToClipboard>
           </Flex>
@@ -112,7 +113,7 @@ const style = {
   },
   userPhotoView: {
     justifyContent:'center',
-    mt: ["8px","-48px","-48px", "-48px","0px","0px"],
+    mt: ["24px","-48px","-48px", "-48px","0px","0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",

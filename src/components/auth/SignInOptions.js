@@ -111,6 +111,7 @@ export function SignInOptions() {
   return (
     <Layout value={0}>
       <Flex flexDirection={"column"} w="100%">
+      <Flex  flexDirection={"column"} margin={6}>
         <Flex style={{ display: !show ? "block" : "none" }} w="100%">
           <Heading
             size={"lg"}
@@ -275,6 +276,7 @@ export function SignInOptions() {
               </Link>
             </Text>
           </Flex>
+        </Flex>
         </Flex>
       </Flex>
     </Layout>
