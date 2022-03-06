@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, Box } from "theme-ui";
+import { Button, Box, Text } from "theme-ui";
 import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "components/drawer";
 import { DrawerContext } from "contexts/drawer/drawer.context";
@@ -17,6 +17,10 @@ const MobileDrawer = () => {
   const signout = () => {
     auth.signOut();
     router.push('/auth');
+  };
+
+  const editProfile = () => {
+    router.push("/edit");
   };
 
   // Toggle drawer
@@ -44,6 +48,9 @@ const MobileDrawer = () => {
         <Box sx={styles.content}>
           <Logo />
           <Box sx={styles.menu}>
+          <Button variant="primary" onClick={editProfile} sx={styles.button}>
+              Edit Profile
+            </Button>
           </Box>
 
           <Box sx={styles.menuFooter}>
