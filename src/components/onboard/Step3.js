@@ -155,8 +155,8 @@ const Step3 = (props) => {
     });
 
     const u_buckets = {
-      links: ["My Links"],
-      recos: ["My Recos"],
+      links: [{ name: "My Links", link: "" }],
+      recos: [{ name: "My Recos", link: "" }],
     };
     // API Call 2: Buckets
     const buckets = {
@@ -202,86 +202,88 @@ const Step3 = (props) => {
   return (
     <>
       <Layout value={75}>
-      <Flex  flexDirection={"column"} margin={6}>
-        <FormControl>
-          <Heading size={"lg"} textAlign={{ base: "center", md: "left" }}>
-            Add a profile photo
-          </Heading>
-          <FormLabel
-            size={"md"}
-            margin="8px"
-            marginLeft="0px"
-            paddingBottom="1rem"
-            textAlign={{ base: "center", md: "left" }}
-          >
-            Your photo appears on your profile and in places where people might
-            interact with you.
-          </FormLabel>
-          {/* <Flex width={'lg'} height='100px' bg='grey.100' marginBottom='20px'>
+        <Flex flexDirection={"column"} margin={6}>
+          <FormControl>
+            <Heading size={"lg"} textAlign={{ base: "center", md: "left" }}>
+              Add a profile photo
+            </Heading>
+            <FormLabel
+              size={"md"}
+              margin="8px"
+              marginLeft="0px"
+              paddingBottom="1rem"
+              textAlign={{ base: "center", md: "left" }}
+            >
+              Your photo appears on your profile and in places where people
+              might interact with you.
+            </FormLabel>
+            {/* <Flex width={'lg'} height='100px' bg='grey.100' marginBottom='20px'>
               	<Button as="Input" type='file' width={{base:'md',md:'lg'}} height='100px' fontSize={15} text='Click to upload' onChange={handleChange}></Button>
 							</Flex> */}
 
-          <Flex sx={style.leftContainer} onKeyPress={handleKeyPressNext}>
-            <Flex sx={style.imageContainer}>
-              {image.preview ? (
-                <Flex
-                  sx={{
-                    position: "relative",
-                    flex: 1,
-                  }}
-                >
-                  <Flex onClick={() => hiddenInput.click()} sx={{ flex: 1 }}>
-                    <Image
-                      src={image.preview}
-                      alt="dummy"
-                      sx={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "100%",
-                      }}
-                    />
-                  </Flex>
+            <Flex sx={style.leftContainer} onKeyPress={handleKeyPressNext}>
+              <Flex sx={style.imageContainer}>
+                {image.preview ? (
                   <Flex
                     sx={{
-                      position: "absolute",
-                      top: "-5%",
-                      right: "-5%",
-                      zIndex: 101,
-                      cursor: "pointer",
+                      position: "relative",
+                      flex: 1,
                     }}
-                    onClick={onCancelImage}
                   >
-                    <IoCloseCircle size={20} color="gray" />
+                    <Flex onClick={() => hiddenInput.click()} sx={{ flex: 1 }}>
+                      <Image
+                        src={image.preview}
+                        alt="dummy"
+                        sx={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "100%",
+                        }}
+                      />
+                    </Flex>
+                    <Flex
+                      sx={{
+                        position: "absolute",
+                        top: "-5%",
+                        right: "-5%",
+                        zIndex: 101,
+                        cursor: "pointer",
+                      }}
+                      onClick={onCancelImage}
+                    >
+                      <IoCloseCircle size={20} color="gray" />
+                    </Flex>
                   </Flex>
-                </Flex>
-              ) : (
-                <Flex
-                  sx={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    textAlign: "center",
-                    flex: 1,
-                  }}
-                  onClick={() => hiddenInput.click()}
-                >
-                  <Text sx={{ fontSize: "15px" }}>Upload Profile Picture</Text>
-                </Flex>
-              )}
-              <input
-								accept="image/png, image/jpeg, image/jpg"
-                type="file"
-                hidden
-                onChange={handleChange}
-                ref={(el) => (hiddenInput = el)}
-              />
+                ) : (
+                  <Flex
+                    sx={{
+                      justifyContent: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                      flex: 1,
+                    }}
+                    onClick={() => hiddenInput.click()}
+                  >
+                    <Text sx={{ fontSize: "15px" }}>
+                      Upload Profile Picture
+                    </Text>
+                  </Flex>
+                )}
+                <input
+                  accept="image/png, image/jpeg, image/jpg"
+                  type="file"
+                  hidden
+                  onChange={handleChange}
+                  ref={(el) => (hiddenInput = el)}
+                />
+              </Flex>
             </Flex>
-          </Flex>
-          {/* <Input type='file' bg='white' onChange={handleChange}/> */}
-          {/* <Flex style={{ display: imageSelected ? 'block' : 'none' }} marginLeft='2px' marginBottom='10px'>
+            {/* <Input type='file' bg='white' onChange={handleChange}/> */}
+            {/* <Flex style={{ display: imageSelected ? 'block' : 'none' }} marginLeft='2px' marginBottom='10px'>
 								<Image src={image.preview} width="240" height="240" alt="profile picture" />
 							</Flex> */}
 
-          {/* <Button
+            {/* <Button
 								bg={'#D7354A'}
 								_hover={{ bg: '#C23043' }}
 								borderRadius={10}
@@ -295,35 +297,35 @@ const Step3 = (props) => {
 							>
 								Upload
 							</Button> */}
-          <Flex justifyContent={"space-between"}>
-            <Button
-              // bg={'#D7354A'}
-              // _hover={{ bg: '#C23043' }}
-              // borderRadius={10}
-              // color='white'
-              fontSize={"lg"}
-              width={120}
-              height={50}
-              onClick={next}
-            >
-              Skip
-            </Button>
-            <Button
-              bg={"#D7354A"}
-              _hover={{ bg: "#C23043" }}
-              borderRadius={10}
-              color="white"
-              fontSize={"lg"}
-              width={120}
-              height={50}
-              mr={{ base: "0", md: "190" }}
-              onClick={isNextClicked ? next : null}
-              // onClick={next}
-            >
-              Submit
-            </Button>
-          </Flex>
-        </FormControl>
+            <Flex justifyContent={"space-between"}>
+              <Button
+                // bg={'#D7354A'}
+                // _hover={{ bg: '#C23043' }}
+                // borderRadius={10}
+                // color='white'
+                fontSize={"lg"}
+                width={120}
+                height={50}
+                onClick={next}
+              >
+                Skip
+              </Button>
+              <Button
+                bg={"#D7354A"}
+                _hover={{ bg: "#C23043" }}
+                borderRadius={10}
+                color="white"
+                fontSize={"lg"}
+                width={120}
+                height={50}
+                mr={{ base: "0", md: "190" }}
+                onClick={isNextClicked ? next : null}
+                // onClick={next}
+              >
+                Submit
+              </Button>
+            </Flex>
+          </FormControl>
         </Flex>
       </Layout>
     </>

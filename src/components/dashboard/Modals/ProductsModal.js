@@ -222,7 +222,7 @@ export function ProductsModal({
   };
   const onSaveBucket = (item) => {
     // console.log(values);
-    setValues({ ...values, bucket: item });
+    setValues({ ...values, bucket: item.name });
     setA([...a, item]);
     setInput(false);
     const options = {
@@ -261,7 +261,7 @@ export function ProductsModal({
   };
 
   const onSelectItem = (item) => {
-    setValues({ ...values, bucket: item });
+    setValues({ ...values, bucket: item.name });
   };
 
   const closeModal = () => {
@@ -525,7 +525,7 @@ export function ProductsModal({
                         </Flex>
                       )}
                       <input
-								        accept="image/png, image/jpeg, image/jpg"
+                        accept="image/png, image/jpeg, image/jpg"
                         type="file"
                         hidden
                         onChange={handleChange}
@@ -739,7 +739,7 @@ export function ProductsModal({
                                 return (
                                   <MenuItem key={index.toString()}>
                                     <Flex onClick={() => onSelectItem(item)}>
-                                      <Text>{item}</Text>
+                                      <Text>{item.name}</Text>
                                     </Flex>
                                   </MenuItem>
                                 );

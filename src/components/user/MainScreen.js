@@ -13,7 +13,7 @@ import Head from "next/head";
 let Element = Scroll.Element;
 
 // Add a custom Link
-export function MainScreen({ links, recos, user }) {
+export function MainScreen({ links, recos, user, buckets }) {
   const [currentLinks, setCurrentLinks] = React.useState(links);
   const [currentRecos, setCurrentRecos] = React.useState(recos);
 
@@ -30,11 +30,19 @@ export function MainScreen({ links, recos, user }) {
         }}
       >
         <Element name="products">
-          <ShowProducts id="products" data={currentRecos} />
+          <ShowProducts
+            id="products"
+            data={currentRecos}
+            bucketData={JSON.parse(buckets).recos}
+          />
         </Element>
         <Divider />
         <Element name="links">
-          <ShowLinks id="links" data={currentLinks} />
+          <ShowLinks
+            id="links"
+            data={currentLinks}
+            bucketData={JSON.parse(buckets).links}
+          />
         </Element>
       </Container>
     </>

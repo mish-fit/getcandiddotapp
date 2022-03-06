@@ -19,8 +19,11 @@ import { MdOutlineCategory } from "react-icons/md";
 import React from "react";
 // Add a custom Link
 export function BucketsModal({ isOpen, onSave, onClose }) {
-  const [name, setName] = React.useState("");
-  const handleChange = (event) => setName(event.target.value);
+  const [name, setName] = React.useState({ name: "", link: "" });
+  const handleChangeName = (event) =>
+    setName({ ...name, name: event.target.value });
+  const handleChangeLink = (event) =>
+    setName({ ...name, link: event.target.value });
 
   const closeModal = () => {
     onClose();
@@ -77,13 +80,34 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
             <Input
               sx={{
                 color: "black",
-                fontSize: "24px",
+                fontSize: "16px",
                 fontFamily: "Poppins",
                 fontWeight: "bold",
               }}
-              placeholder="Name"
+              placeholder="Bucket Title ( Your blog name, page name etc.)"
               variant="flushed"
-              onChange={handleChange}
+              onChange={handleChangeName}
+            />
+          </Flex>
+        </Flex>
+        <Flex sx={style.titleContainer}>
+          <Flex sx={{ flex: 1 }}>
+            <Flex
+              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
+            >
+              <MdOutlineCategory size={25} />
+            </Flex>
+
+            <Input
+              sx={{
+                color: "black",
+                fontSize: "16px",
+                fontFamily: "Poppins",
+                fontWeight: "bold",
+              }}
+              placeholder="Associated link for this title"
+              variant="flushed"
+              onChange={handleChangeLink}
             />
           </Flex>
         </Flex>
