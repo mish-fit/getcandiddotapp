@@ -85,6 +85,8 @@ export async function getServerSideProps(context) {
       ].map((fetchApi) => fetchApi.then((res) => res.json()))
     );
 
+    console.log(recos, links);
+
     return {
       props: {
         links,
