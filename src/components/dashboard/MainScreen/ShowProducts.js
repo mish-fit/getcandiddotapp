@@ -9,7 +9,7 @@ import { ProductsCard } from "./ProductsCard";
 import { ProductsBucket } from "./ProductsBucket";
 
 // Add a custom Link
-export function ShowProducts({ data, bucketData }) {
+export function ShowProducts({ data, bucketData, deleteItem }) {
   const router = useRouter();
   const buckets = [];
   data.map((item) => {
@@ -33,6 +33,9 @@ export function ShowProducts({ data, bucketData }) {
             link={
               bucketData.filter((item) => item.name === buckets[index])[0] || ""
             }
+            deleteItem={(item)=>{deleteItem(item)
+            console.log('recosshow', item);
+            }}
           />
         );
       })}

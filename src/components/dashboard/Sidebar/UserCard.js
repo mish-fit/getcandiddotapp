@@ -113,7 +113,7 @@ const style = {
   },
   userPhotoView: {
     justifyContent:'center',
-    mt: ["24px","-48px","-48px", "-48px","0px","0px"],
+    mt: ["24px","24px","-48px", "-48px","0px","0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
@@ -138,7 +138,7 @@ const style = {
     fontWeight: "400",
   },
   coverPhoto: {
-    display:['none', 'inline', 'inline', 'inline', 'inline', 'inline'],
+    display:['none', 'none', 'inline', 'inline', 'inline', 'inline'],
     // mt: ["-150px" ,"0px","0px","0px","0px","0px"],
     textAlign: "center",
     borderRadius: "16px",
@@ -160,7 +160,7 @@ const style = {
 
   nav: {
     cursor: "pointer",
-    display:['', 'none', 'none', 'none', 'none'],
+    display:['', '', 'none', 'none', 'none', 'none'],
     justifyContent: "center",
     navLink: {
       // textDecoration:"underline",

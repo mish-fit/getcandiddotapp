@@ -7,7 +7,7 @@ import { ShowProducts } from "./MainScreen/ShowProducts";
 import { ShowLinks } from "./MainScreen/ShowLinks";
 import { AddButtons } from "./MainScreen/AddButtons";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
 import * as Scroll from "react-scroll";
@@ -65,6 +65,10 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
     //   });
   }, [isOpenProductsModal, recos, newRecos]);
 
+  // useEffect(()=>{
+  //   console.log('uf',currentLinks);
+  // },[currentLinks])
+
   const onCloseLinksModal = (item) => {
     // console.log("close");
     setOpenLinksModal(false);
@@ -82,6 +86,36 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const newLink = (item) => {
     setNewLinks([...newLinks, ...item]);
   };
+
+  const deleteLink = (item)=>{
+    const curLinks = [...currentLinks];
+    console.log(curLinks)
+    let pos = '';
+    curLinks.forEach((element, idx) => {
+      if(element.id===item){
+        pos=idx;
+      }
+    });
+    console.log(pos);
+
+    curLinks.splice(pos, 1);
+    console.log(curLinks);
+    setCurrentLinks(curLinks);
+  }
+
+  const deleteReco= (item)=>{
+    const curRecos = [...currentRecos];
+    let pos = '';
+    curRecos.forEach((element, idx) => {
+      if(element.id===item){
+        pos=idx;
+      }
+    });
+    console.log(pos);
+
+    curRecos.splice(pos, 1);
+    setCurrentRecos(curRecos);
+  }
 
   return (
     <Container
@@ -117,6 +151,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
           id="products"
           data={currentRecos}
           bucketData={JSON.parse(buckets).recos}
+          deleteItem={(item)=>deleteReco(item)}
         />
       </Element>
       <Divider />
@@ -125,6 +160,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
           id="links"
           data={currentLinks}
           bucketData={JSON.parse(buckets).links}
+          deleteItem={(item)=>deleteLink(item)}
         />
       </Element>
     </Container>
