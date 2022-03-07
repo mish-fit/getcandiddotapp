@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { LinksBucket } from "./LinksBucket";
 
 // Add a custom Link
-export function ShowLinks({ data, bucketData }) {
+export function ShowLinks({ data, bucketData, deleteItem }) {
   const router = useRouter();
   const buckets = [];
   data.map((item) => {
@@ -29,6 +29,9 @@ export function ShowLinks({ data, bucketData }) {
             link={
               bucketData.filter((item) => item.name === buckets[index])[0] || ""
             }
+            deleteItem={(item)=>{deleteItem(item)
+            console.log('linksshow', item);
+            }}
           />
         );
       })}

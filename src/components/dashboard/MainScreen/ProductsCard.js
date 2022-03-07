@@ -5,9 +5,21 @@ import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-
+import { BsThreeDotsVertical } from "react-icons/bs";
+import axios from "axios";
+import { authapi } from "lib/api";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  useDisclosure,
+} from '@chakra-ui/react'
+import { useEffect, useState } from "react";
 // Add a custom Link
-export function ProductsCard({ item }) {
+export function ProductsCard({ item, deleteItem }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
 
   const addLinks = () => {
@@ -15,7 +27,7 @@ export function ProductsCard({ item }) {
   };
 
   const buy = () => {
-    // console.log(item);
+    console.log(item);
     localStorage.setItem("buyLatestItem", item.prod_name);
     if(item.prod_link.substring(0, 8)!=="https://"){
       window.open("https://"+item.prod_link, "_blank");
@@ -23,6 +35,36 @@ export function ProductsCard({ item }) {
     else{
       window.open(item.prod_link, "_blank");
     }
+  };
+
+  const deleteCard = ()=>{
+    deleteItem(item.id)
+    console.log('recoscard', item.id);
+    axios(
+      {
+        method: "post",
+        url: `${authapi}recos/delete`,
+        data: {
+          id: item.id,
+        },
+        options: origin,
+      },
+      { timeout: 1000 }
+    )
+    .then((res) => {
+      console.log(res)
+      toast({
+        title: "Card deleted",
+        description: "",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    })
+    .catch((e) => {
+      // console.log(e);
+    });
+
   };
 
   return (
@@ -36,6 +78,7 @@ export function ProductsCard({ item }) {
           />
         </Flex>
       </Flex>
+      
       <Flex sx={style.detailsContainer}>
         <Flex sx={style.content}>
           <Text sx={style.product}>{item.prod_name}</Text>
@@ -47,6 +90,22 @@ export function ProductsCard({ item }) {
           </Flex>
         </Flex>
       </Flex>
+
+      <Menu isOpen={isOpen}>
+          <MenuButton
+            width={"fit-content"}
+            border="none"
+            as={IconButton}
+            icon={<BsThreeDotsVertical />}
+            variant='outline'
+            onMouseEnter={onOpen}
+            onMouseLeave={onClose}
+          />
+          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
+            {/* <MenuItem onClick={editCard}> Edit </MenuItem> */}
+            <MenuItem onClick={deleteCard}> Delete </MenuItem>
+          </MenuList>
+        </Menu>
     </Flex>
   );
 }

@@ -1,9 +1,21 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import axios from "axios";
+import { authapi } from "lib/api";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  useDisclosure,
+} from '@chakra-ui/react'
 
 // Add a custom Link
-export function LinksCard({ item }) {
+export function LinksCard({ item, deleteItem }) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const onClickLink = () => {
     if(item.link.substring(0, 8)!=="https://"){
       window.open("https://"+item.link, "_blank");
@@ -13,9 +25,39 @@ export function LinksCard({ item }) {
     }
   };
 
+  const deleteLink = ()=>{
+    deleteItem(item.id)
+    console.log('linkscard', item.id);
+    axios(
+      {
+        method: "post",
+        url: `${authapi}links/delete`,
+        data: {
+          id: item.id,
+        },
+        options: origin,
+      },
+      { timeout: 1000 }
+    )
+    .then((res) => {
+      console.log(res)
+      toast({
+        title: "Link deleted",
+        description: "",
+        status: "success",
+        duration: 1000,
+        isClosable: true,
+      });
+    })
+    .catch((e) => {
+      // console.log(e);
+    });
+
+  };
+
   return (
-    <Flex sx={style.button} onClick={onClickLink}>
-      <Flex
+    <Flex sx={style.button}>
+      <Flex 
         sx={merge(style.container, {
           boxShadow: "0 0 4px 1px " + item.shadow_color,
           "&:hover": {
@@ -36,11 +78,27 @@ export function LinksCard({ item }) {
             alignItems: "center",
             textAlign: "center",
           }}
+        onClick={onClickLink}
         >
           <Text as="p" sx={merge(style.link, { color: item.font_color })}>
             {item.title}
           </Text>
         </Flex>
+        <Menu isOpen={isOpen}>
+          <MenuButton
+            width={"fit-content"}
+            border="none"
+            as={IconButton}
+            icon={<BsThreeDotsVertical />}
+            variant='outline'
+            onMouseEnter={onOpen}
+            onMouseLeave={onClose}
+          />
+          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
+            {/* <MenuItem onClick={editCard}> Edit </MenuItem> */}
+            <MenuItem onClick={deleteLink}> Delete </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Flex>
   );
@@ -62,6 +120,7 @@ const style = {
     my: "16px",
   },
   button: {
+    display: "flex",
     backgroundColor: "transparent",
     cursor: "pointer",
     borderWidth: "0px",
