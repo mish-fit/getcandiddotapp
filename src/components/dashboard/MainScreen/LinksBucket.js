@@ -14,7 +14,12 @@ export function LinksBucket({ bucketName, data, link }) {
 
   const bucketLinkClick = () => {
     console.log("link click", link.link);
-    window.open(link.link, "_blank");
+    if(link.link.substring(0, 8)!=="https://"){
+      window.open("https://"+link.link, "_blank");
+    }
+    else{
+      window.open(link.link, "_blank");
+    }
   };
 
   return (

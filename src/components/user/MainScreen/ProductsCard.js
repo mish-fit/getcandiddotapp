@@ -18,7 +18,12 @@ export function ProductsCard({ item }) {
   const buy = () => {
     // console.log(item);
     localStorage.setItem("buyLatestItem", item.prod_name);
-    window.open(item.prod_link, "_blank"); //to open new page
+    if(item.prod_link.substring(0, 8)!=="https://"){
+      window.open("https://"+item.prod_link, "_blank");
+    }
+    else{
+      window.open(item.prod_link, "_blank");
+    }
   };
 
   return (

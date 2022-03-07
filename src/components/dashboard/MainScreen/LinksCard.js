@@ -5,7 +5,12 @@ import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
 // Add a custom Link
 export function LinksCard({ item }) {
   const onClickLink = () => {
-    window.open(item.link, "_blank");
+    if(item.link.substring(0, 8)!=="https://"){
+      window.open("https://"+item.link, "_blank");
+    }
+    else{
+      window.open(item.link, "_blank");
+    }
   };
 
   return (
