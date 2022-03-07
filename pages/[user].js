@@ -11,7 +11,6 @@ import smm from "../public/lottie/smn.json";
 import { UserNotFound } from "components/user/UserNotFound";
 import Head from "next/head";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
-import Header from "components/header/header";
 import { useRouter } from "next/router";
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
@@ -60,7 +59,7 @@ export default function User({ links, recos, user, socials, buckets }) {
       <DrawerProvider>
         <header sx={styles.header}>
           <Container sx={styles.headerContainer}>
-            <Flex as="logo">
+            <Flex as="logo" sx={styles.logoStyles}>
               <Logo />
             </Flex>
             <Flex>
@@ -77,7 +76,7 @@ export default function User({ links, recos, user, socials, buckets }) {
           <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
-          <MainScreen
+        <MainScreen
             links={links}
             recos={recos}
             user={user}
@@ -167,8 +166,8 @@ const styles = {
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
-    borderBottom: "1px solid #E9EDF5",
-    position: "fixed",
+    borderBottom: [null, null, "1px solid #E9EDF5", "1px solid #E9EDF5", "1px solid #E9EDF5", "1px solid #E9EDF5"],
+    position: ["relative","relative","fixed","fixed","fixed","fixed"],
     top: 0,
     left: 0,
     zIndex: 100,
@@ -181,9 +180,11 @@ const styles = {
   },
 
   headerContainer: {
+    mb: [-124,-124,0,0,0,0],
     display: "flex",
-    justifyContent: "space-between",
     alignItems: "center",
+    flexDirection:[ "column", "column", "row","row", "row","row"],
+    justifyContent: ["center", "center","space-between","space-between","space-between","space-between"],
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
 
@@ -193,10 +194,16 @@ const styles = {
     ":hover": {
       bg: "#C23043",
     },
-    borderRadius: 10,
+    borderRadius:[10, 10, 24, 24, 24, 24],
     color: "white",
-    fontSize: "lg",
+    fontSize: "md",
     width: "md",
-    height: 60,
+    height: [40,40,50,50,50,50,50],
+    mt: [24,24,0,0,0,0]
   },
+  logoStyles: {
+    // display:"flex",
+    // alignItems: "center",
+    // mx:[86,148,0,0,0,0]
+  }
 };
