@@ -108,6 +108,13 @@ export function SignInOptions() {
       ValidatePhoneOTP();
     }
   };
+
+  const handleTerms =()=>{
+    window.open("https://cndd.in/terms", "_blank");
+  }
+  const handlePrivacy =()=>{
+    window.open("https://cndd.in/privacy", "_blank");
+  }
   return (
     <Layout value={0}>
       <Flex flexDirection={"column"} w="100%">
@@ -253,27 +260,23 @@ export function SignInOptions() {
             <Text>
               {" "}
               By signing up, you agree to our
-              <Link href="/terms" passHref>
                 <Text
+                  onClick={handlePrivacy}
                   display={"inline"}
                   textColor={"#D7354A"}
                   cursor={"pointer"}
-                >
-                  {" "}
+                >{" "}
                   Privacy{" "}
                 </Text>
-              </Link>
               and
-              <Link href="/privacy" passHref>
                 <Text
+                  onClick={handleTerms}
                   display={"inline"}
                   textColor={"#D7354A"}
                   cursor={"pointer"}
-                >
-                  {" "}
+                >{" "}
                   Terms{" "}
                 </Text>
-              </Link>
             </Text>
           </Flex>
         </Flex>
