@@ -15,6 +15,11 @@ import Header from "components/header/header";
 import { useRouter } from "next/router";
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
+
+  React.useEffect(() => {
+    setSummary({ products: recos.length, links: links.length });
+  }, []);
+
   const router = useRouter();
   if (!user.length) {
     return (
