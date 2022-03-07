@@ -62,11 +62,11 @@ const FaqTwo = ({ addQuestion }) => {
         title: lang.questions[3].Title,
         text: lang.questions[3].Text,
       },
-      {
-        status: false,
-        title: lang.questions[4].Title,
-        text: lang.questions[4].Text,
-      },
+      // {
+      //   status: false,
+      //   title: lang.questions[4].Title,
+      //   text: lang.questions[4].Text,
+      // },
     ],
     button: {
       link: "mailto:hello@cndd.in",

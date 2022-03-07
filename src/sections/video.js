@@ -162,16 +162,18 @@ export function ContactUsModal({ closeParent, isOpen }) {
 
 const style = {
   container: {
-    p: "16px",
+    pb: "16px",
     backgroundColor: "white",
     borderRadius: "6px",
     height: "300px",
+    ml:["0px","0px","8px","8px","8px","8px"],
   },
   row1: {
+    marginRight: ["0px","0px","16px","16px","16px","16px"],
     justifyContent: "space-between",
     mt: "8px",
   },
-  row2: { mt: "16px" },
+  row2: { mt: "16px", },
   row3: { mt: "16px" },
   row4: {
     justifyContent: "center",
@@ -203,10 +205,11 @@ const style = {
     height: ["0px", "0px", "0px", "200px", "300px", "300px"],
   },
   topHeader: {
+    mt:"8px",
     fontFamily: "Poppins",
     color: "#D7354A",
     fontWeight: "Bold",
-    fontSize: "16px",
+    fontSize: "20px",
   },
   saveContainer: {
     flexDirection: "row",
