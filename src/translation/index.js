@@ -129,12 +129,12 @@ export const translation = {
         },
         {
           Title: "What all Indian Languages are supported?",
-          Text: "We currently support English, Hindi and Telugu. Stay tuned as we are expanding our language support.",
+          Text: "We currently support English only. But stay tuned as we are expanding our language support very soon.",
         },
-        {
-          Title: "What all analytics are provided?",
-          Text: "Every account will be provided with visits and clicks data of their page. Ultimate accounts will be equipped with product analytics to fine tune their recommendations with best selling products.",
-        },
+        // {
+        //   Title: "What all analytics are provided?",
+        //   Text: "Every account will be provided with visits and clicks data of their page. Ultimate accounts will be equipped with product analytics to fine tune their recommendations with best selling products.",
+        // },
       ],
     },
     footerSection: {
