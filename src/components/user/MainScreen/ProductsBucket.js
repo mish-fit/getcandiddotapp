@@ -19,11 +19,16 @@ export function ProductsBucket({ bucketName, data, link }) {
   return (
     <Container sx={style.container}>
       <Flex
-        sx={{ cursor: link ? "pointer" : "default", backgroundColor: "white" }}
-        onClick={link ? bucketLinkClick : null}
+        sx={{
+          cursor: link.link ? "pointer" : "default",
+          backgroundColor: "white",
+        }}
+        onClick={link.link ? bucketLinkClick : null}
       >
         <Text
-          sx={merge(style.heading, { color: link ? "#2A5DB0" : "#323232" })}
+          sx={merge(style.heading, {
+            color: link.link ? "#2A5DB0" : "#323232",
+          })}
         >
           {bucketName}
         </Text>
