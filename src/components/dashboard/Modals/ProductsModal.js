@@ -372,6 +372,7 @@ export function ProductsModal({
 
   const onRefresh = () => {
     setImageName(nanoid());
+    setImage({ preview: "", raw: "" });
     setImageSelected(false);
     setValues({
       id: "",
