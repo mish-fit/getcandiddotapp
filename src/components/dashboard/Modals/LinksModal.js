@@ -162,6 +162,7 @@ export function LinksModal({
   };
 
   const closeModal = () => {
+    onRefresh();
     closeParent(true);
   };
 

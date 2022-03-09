@@ -265,6 +265,7 @@ export function ProductsModal({
   };
 
   const closeModal = () => {
+    onRefresh();
     closeParent(true);
   };
 
