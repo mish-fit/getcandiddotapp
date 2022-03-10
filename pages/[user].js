@@ -57,8 +57,9 @@ export default function User({ links, recos, user, socials, buckets }) {
   return (
     <div>
       <Head>
-        <title>User Screen</title>
+        <title>{user[0].u_name}</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="icon" href={user[0].u_profile_image} />
       </Head>
 
       <DrawerProvider>

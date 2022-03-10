@@ -9,7 +9,6 @@ import React from "react";
 
 import * as Scroll from "react-scroll";
 import { Divider } from "@chakra-ui/react";
-import Head from "next/head";
 let Element = Scroll.Element;
 
 // Add a custom Link
@@ -19,11 +18,6 @@ export function MainScreen({ links, recos, user, buckets }) {
 
   return (
     <>
-      <Head>
-        <title>{user[0].u_name}</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="icon" href={user[0].u_profile_image} />
-      </Head>
       <Container 
         sx={{
           px: "0px",

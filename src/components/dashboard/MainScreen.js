@@ -148,11 +148,6 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
         width: ["100%", "100%", "100%", null],
       }}
     >
-      <Head>
-        <title>User Dashboard</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="icon" href={user[0].u_profile_image} />
-      </Head>
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
