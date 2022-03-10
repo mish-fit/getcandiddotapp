@@ -20,10 +20,11 @@ export function MainScreen({ links, recos, user, buckets }) {
   return (
     <>
       <Head>
-        <title>User Dashboard</title>
+        <title>{user[0].u_name}</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="icon" href={user[0].u_profile_image} />
       </Head>
-      <Container
+      <Container 
         sx={{
           px: "0px",
           width: ["100%", "100%", "100%", null],

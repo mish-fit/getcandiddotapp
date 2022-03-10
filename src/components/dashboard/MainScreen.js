@@ -13,7 +13,7 @@ import { ProductsModal } from "./Modals/ProductsModal";
 import * as Scroll from "react-scroll";
 import { Divider } from "@chakra-ui/react";
 import { nonauthapi } from "lib/api";
-
+import Head from "next/head";
 // import { EditLinksModal } from "./Modals/EditLinksModal";
 
 let Element = Scroll.Element;
@@ -135,7 +135,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
 
   const editLink = (item) => {
     console.log("reached", item);
-    setEditLinkItem(item)
+    setEditLinkItem((prev)=>item)
     if(item){
       setOpenEditLinksModal(true);
     }
@@ -148,6 +148,11 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
         width: ["100%", "100%", "100%", null],
       }}
     >
+      <Head>
+        <title>User Dashboard</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="icon" href={user[0].u_profile_image} />
+      </Head>
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
