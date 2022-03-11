@@ -13,9 +13,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
+import React, { useEffect } from "react";
+
 // Add a custom Link
-export function LinksCard({ item, deleteItem }) {
+export function LinksCard({ item, deleteItem, editLinkModal }) {
+
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const onClickLink = () => {
     if(item.link.substring(0, 8)!=="https://"){
       window.open("https://"+item.link, "_blank");
@@ -25,6 +29,9 @@ export function LinksCard({ item, deleteItem }) {
     }
   };
 
+  useEffect(()=>{
+    console.log(item.photo+'?'+new Date().getTime())
+  },[])
   const deleteLink = ()=>{
     deleteItem(item.id)
     console.log('linkscard', item.id);
@@ -52,8 +59,13 @@ export function LinksCard({ item, deleteItem }) {
     .catch((e) => {
       // console.log(e);
     });
-
   };
+
+  const editLink = () => {
+    console.log('item',item);
+    editLinkModal(item);
+  };
+
 
   return (
     <Flex sx={style.button}>
@@ -69,7 +81,7 @@ export function LinksCard({ item, deleteItem }) {
         })}
       >
         {item.photo && item.photo != "" ? (
-          <Image src={item.photo} alt="img" sx={style.image} />
+          <Image src={item.photo+'?'+new Date().getTime()} alt="img" sx={style.image} />
         ) : null}
         <Flex
           sx={{
@@ -95,7 +107,7 @@ export function LinksCard({ item, deleteItem }) {
             onMouseLeave={onClose}
           />
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
-            {/* <MenuItem onClick={editCard}> Edit </MenuItem> */}
+            <MenuItem onClick={editLink}> Edit </MenuItem>
             <MenuItem onClick={deleteLink}> Delete </MenuItem>
           </MenuList>
         </Menu>
