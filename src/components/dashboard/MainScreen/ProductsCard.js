@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useState } from "react";
 // Add a custom Link
-export function ProductsCard({ item, deleteItem }) {
+export function ProductsCard({ item, deleteItem, editProductModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
 
@@ -37,7 +37,7 @@ export function ProductsCard({ item, deleteItem }) {
     }
   };
 
-  const deleteCard = ()=>{
+  const deleteProduct = ()=>{
     deleteItem(item.id)
     console.log('recoscard', item.id);
     axios(
@@ -65,6 +65,11 @@ export function ProductsCard({ item, deleteItem }) {
       // console.log(e);
     });
 
+  };
+
+  const editProduct = () => {
+    console.log('item',item);
+    editProductModal(item);
   };
 
   return (
@@ -102,8 +107,8 @@ export function ProductsCard({ item, deleteItem }) {
             onMouseLeave={onClose}
           />
           <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
-            {/* <MenuItem onClick={editCard}> Edit </MenuItem> */}
-            <MenuItem onClick={deleteCard}> Delete </MenuItem>
+            <MenuItem onClick={editProduct}> Edit </MenuItem>
+            <MenuItem onClick={deleteProduct}> Delete </MenuItem>
           </MenuList>
         </Menu>
     </Flex>

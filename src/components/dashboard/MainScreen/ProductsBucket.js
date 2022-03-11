@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { ProductsCard } from "./ProductsCard";
 
 // Add a custom Link
-export function ProductsBucket({ bucketName, data, link, deleteItem }) {
+export function ProductsBucket({ bucketName, data, link, deleteItem, editProductModal }) {
   const router = useRouter();
 
   const bucketLinkClick = () => {
@@ -44,7 +44,9 @@ export function ProductsBucket({ bucketName, data, link, deleteItem }) {
           return <ProductsCard key={index} item={item} deleteItem={(item)=>{
             console.log('recosbucket', item);
             deleteItem(item)}
-          } />;
+          }
+          editProductModal = {(item)=>editProductModal(item)}
+           />;
         })}
       </Flex>
     </Container>
