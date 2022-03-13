@@ -37,7 +37,6 @@ export function EditLinksModal({
   user,
   maxSortId,
   cookie,
-  newItem,
   editLinkItem,
   editLinkSave,
 }) {
@@ -174,6 +173,7 @@ export function EditLinksModal({
     if (values.title && values.link) {
       const body = {
         ...values,
+        others:{},
         photo: imageChanged ? imageSelected ? s3url + imageName + ".png" : "" : editLinkItem.photo,
       };
       console.log("SAVENADD",values);
@@ -195,7 +195,6 @@ export function EditLinksModal({
       )
         .then((res) => {
           //   console.log("Sucess", res.data);
-          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Link Added",
@@ -228,6 +227,7 @@ export function EditLinksModal({
     if (values.title && values.link) {
       const body = {
         ...values,
+        others:{},
         photo: imageChanged ? imageSelected ? s3url + imageName + ".png" : "" : editLinkItem.photo,
       };
 
@@ -249,7 +249,6 @@ export function EditLinksModal({
       )
         .then((res) => {
           //     console.log("Sucess", res.data);
-          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
             title: "New Link Added",

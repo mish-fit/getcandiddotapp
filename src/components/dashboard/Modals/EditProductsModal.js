@@ -65,16 +65,19 @@ export function EditProductsModal({
 
   const [values, setValues] = React.useState(editProductItem);
 
+  React.useEffect(()=>{
+    // console.log("values", values);
+  })
   React.useEffect(() => {
-    // console.log(editProductItem)
     setValues((prev)=>editProductItem);
+    console.log("UFFFF",values);
     if(editProductItem.photo){
       setImage({
         preview: editProductItem.photo,
       });
       setImageSelected(true);
     }
-
+    
     axios
       .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
       .then((res) => {
@@ -97,7 +100,8 @@ export function EditProductsModal({
       .catch((error) => {
         // console.log(error);
       });
-  }, [imageName, values.cat_name, editProductItem]);
+      console.log("REACHED")
+  }, [imageName, editProductItem]);
 
   const ProdItem = ({ item }) => {
     return (
@@ -114,10 +118,13 @@ export function EditProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          // console.log(item.prod_name);
+          console.log("REACHED")
+          console.log(item);
+          console.log("BEFORE", values);
           setValues({ ...values, prod_name: item.prod_name });
           setProdActive(false);
-
+          console.log("AFTER", values);
+          console.log("REACHED")
           return false;
         }}
       >
@@ -145,13 +152,25 @@ export function EditProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          // console.log(item.cat_name);
-          setValues({
-            ...values,
-            cat_name: item.cat_name,
-            cat_id: item.cat_id,
-          });
+          console.log("REACHED")
+          console.log(item);
+          console.log(item.cat_name);
+          console.log(item.cat_id);
+          console.log("BEFORE", values);
+          // setValues({
+          //   ...values,
+          //   cat_name: item.cat_name,
+          //   cat_id: item.cat_id,
+          // });
+
+          setValues({ ...values, cat_name: item.cat_name, cat_id: item.cat_id });
           setCatActive(false);
+          console.log("AFTER", values);
+          console.log("REACHED")
+          // const vals = {...values, cat_name:item.cat_name, cat_id:item.cat_id}; 
+          // setValues((prev)=>vals);
+          // console.log({...values, cat_name:item.cat_name, cat_id:item.cat_id})
+          // setValues({...values, cat_name:item.cat_name, cat_id:item.cat_id});
           axios
             .get(
               `${authapi}search/products`,
@@ -167,7 +186,7 @@ export function EditProductsModal({
               setProdArray(res.data);
             })
             .catch((error) => {
-              // console.log(error);
+              console.log(error);
             });
           return false;
         }}
@@ -273,6 +292,7 @@ export function EditProductsModal({
     if (values.prod_name && values.prod_link) {
       const body = {
         ...values,
+        others: {},
         photo: imageChanged ? imageSelected ? s3url + imageName + ".png" : "" : editProductItem.photo,
       };
 
@@ -297,7 +317,7 @@ export function EditProductsModal({
           newItem(res.data);
           setSortId((id) => id + 1);
           toast({
-            title: "New Recommendation Added",
+            title: "Recommendation Saved",
             description: "",
             status: "success",
             duration: 1000,
@@ -325,6 +345,7 @@ export function EditProductsModal({
     if (values.prod_name && values.prod_link) {
       const body = {
         ...values,
+        others: {},
         photo: imageChanged ? imageSelected ? s3url + imageName + ".png" : "" : editProductItem.photo,
       };
 
@@ -346,10 +367,9 @@ export function EditProductsModal({
       )
         .then((res) => {
           //   console.log("Recos Success", res.data);
-          newItem(res.data);
           setSortId((id) => id + 1);
           toast({
-            title: "New Recommendation Added",
+            title: "Recommendation Saved",
             description: "",
             status: "success",
             duration: 1000,
@@ -374,6 +394,7 @@ export function EditProductsModal({
   };
 
   const onRefresh = () => {
+    console.log("REACHED")
     setImageName(nanoid());
     setImage({ preview: "", raw: "" });
     setImageSelected(false);
@@ -390,12 +411,14 @@ export function EditProductsModal({
       sort_id: sortId,
       others: {},
     });
+    console.log("REACHED")
   };
 
   const categorySearch = React.useMemo(
     () =>
       debounce(async () => {
         // console.log(values.cat_name);
+        console.log("REACHED")
         if (values.cat_name.length >= 0) {
           axios
             .get(
@@ -418,6 +441,7 @@ export function EditProductsModal({
   const productSearch = React.useMemo(
     () =>
       debounce(async () => {
+        console.log("REACHED")
         if (values.prod_name.length >= 3) {
           axios
             .get(
@@ -441,9 +465,17 @@ export function EditProductsModal({
     [values.prod_name, values.cat_id]
   );
 
-  const onChangeCategory = () => {};
+  // const onChangeCategory = () => {};
 
-  const onChangeProduct = () => {};
+  // const onChangeProduct = () => {};
+
+  // const catNameHandler = (item) => {
+  //   setValues((values) => ({
+  //       ...values,
+  //       cat_name: item,
+  //     }
+  //   ));
+  // }
 
   return (
     <Flex>
@@ -562,13 +594,16 @@ export function EditProductsModal({
                           variant="flushed"
                           onChange={(e) => {
                             setValues((values) => ({
-                              ...values,
-                              cat_name: e.target.value,
-                            }));
-                            onChangeCategory(e.target.value);
+                                ...values,
+                                cat_name: e.target.value,
+                              }));
+                              console.log(e.target.value);
+                            // catNameHandler(e.target.value);
+                            // onChangeCategory(e.target.value);
                             categorySearch();
                           }}
-                          defaultValue={values.cat_name}
+                          value={values.cat_name}
+                          // value={values.cat_name}
                           onFocus={() => setCatActive(true)}
                           onBlur={() => setCatActive(false)}
                           autoFocus
@@ -624,12 +659,14 @@ export function EditProductsModal({
                                 ...values,
                                 prod_name: e.target.value,
                               }));
-                              onChangeProduct();
+                              // onChangeProduct();
                               productSearch();
                             }}
-                            defaultValue={values.prod_name}
+                            // defaultValue={values.prod_name}
+                            value={values.prod_name}
                             onFocus={() => setProdActive(true)}
                             onBlur={() => setProdActive(false)}
+                            // autoFocus
                           />
                         </Flex>
                         {prodActive && values.cat_id ? (
@@ -679,7 +716,7 @@ export function EditProductsModal({
                                 prod_link: e.target.value,
                               })
                             }
-                            defaultValue={values.link}
+                            defaultValue={values.prod_link}
                           />
                         </Flex>
                       </Flex>

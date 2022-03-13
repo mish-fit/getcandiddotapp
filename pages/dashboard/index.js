@@ -96,7 +96,7 @@ export default function Dashboard({
   return (
     <div>
       <Head>
-        <title>User Dashboard</title>
+        <title>Candid Dashboard</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href={user[0].u_profile_image} />
       </Head>
