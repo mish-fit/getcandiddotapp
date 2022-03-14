@@ -1,8 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Container } from "theme-ui";
 import SectionHeading from "components/section-heading";
 import ServiceCard from "components/service-card";
+import { Box, Container, jsx } from "theme-ui";
 
 const services = [
   {

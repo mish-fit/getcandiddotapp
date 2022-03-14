@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { keyframes } from "@emotion/core";
-import { IoIosAdd, IoIosRemove } from "react-icons/io";
-
-import { Box, Container, Heading, Text, Link } from "theme-ui";
-import { useRouter } from "next/router";
-import { translation } from "translation";
 import { Button, Flex } from "@chakra-ui/react";
+import { keyframes } from "@emotion/core";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { IoIosAdd, IoIosRemove } from "react-icons/io";
+import { Box, Container, Heading, Text } from "theme-ui";
+import { translation } from "translation";
+
 
 const FaqItem = ({ title, text, status, index }) => {
   const [active, setActive] = useState(status);

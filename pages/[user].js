@@ -1,19 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Button, Text, Divider } from "theme-ui";
-import React, { useContext, useState, useEffect } from "react";
-import Logo from "components/logo";
-import { nonauthapi } from "lib/api";
-import { Sidebar } from "components/user/Sidebar";
-import { MainScreen } from "components/user/MainScreen";
-import Lottie from "lottie-react";
-import smm from "../public/lottie/smn.json";
-import { UserNotFound } from "components/user/UserNotFound";
-import Head from "next/head";
-import { DrawerProvider } from "contexts/drawer/drawer.provider";
-import { useRouter } from "next/router";
-import { Link } from "components/link";
 import logo from "assets/CaNDiD_B.png";
+import { Link } from "components/link";
+import { MainScreen } from "components/user/MainScreen";
+import { Sidebar } from "components/user/Sidebar";
+import { UserNotFound } from "components/user/UserNotFound";
+import { DrawerProvider } from "contexts/drawer/drawer.provider";
+import { nonauthapi } from "lib/api";
+import Lottie from "lottie-react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
+import { Button, Container, Flex, Image, jsx } from "theme-ui";
+import smm from "../public/lottie/smn.json";
 
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});

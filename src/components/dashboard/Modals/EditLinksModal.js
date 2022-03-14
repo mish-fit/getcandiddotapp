@@ -1,34 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Box, merge } from "theme-ui";
-import { useRouter } from "next/router";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useToast,
-} from "@chakra-ui/react";
-import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
-import React, { useContext } from "react";
-import Lottie from "lottie-react";
-import smm from "../../../../public/lottie/smm.json";
-import { TextColorPicker } from "../AddElement/TextColorPicker";
-import { ShadowPicker } from "../AddElement/ShadowPicker";
-import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
-import { Input, useMediaQuery } from "@chakra-ui/react";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { BiLink } from "react-icons/bi";
-import { BucketsModal } from "./BucketModal";
-import { nanoid } from "nanoid";
-import { authapi, s3url } from "lib/api";
-import { UserContext } from "lib/UserDataProvider";
+import { Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, useMediaQuery, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { UploadImageToS3WithNativeSdk, uploadToS3 } from "lib/aws";
+import { authapi, s3url } from "lib/api";
+import { UploadImageToS3WithNativeSdk } from "lib/aws";
+import { UserContext } from "lib/UserDataProvider";
+import Lottie from "lottie-react";
+import { nanoid } from "nanoid";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import React, { useContext } from "react";
+import { BiLink } from "react-icons/bi";
+import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
+import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import smm from "../../../../public/lottie/smm.json";
+import { ShadowPicker } from "../AddElement/ShadowPicker";
+import { TextColorPicker } from "../AddElement/TextColorPicker";
+import { BucketsModal } from "./BucketModal";
 // Add a custom Link
 export function EditLinksModal({
   closeParent,

@@ -1,11 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Flex, Text, ThemeProvider } from "theme-ui";
-import theme from "theme";
-
 import SEO from "components/seo";
-import Head from "next/head";
-import React from "react";
+import theme from "theme";
+import { Flex, jsx, Text, ThemeProvider } from "theme-ui";
 
 function termsandconditions() {
   return (

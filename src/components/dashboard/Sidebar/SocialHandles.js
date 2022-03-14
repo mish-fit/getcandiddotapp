@@ -1,11 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
+import { BsPlusCircleFill } from "react-icons/bs";
+import { Flex, Grid, Image, jsx, Text } from "theme-ui";
 
 const SocialElement = ({ item }) => (
   <Flex

@@ -1,18 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Box } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../lib/firebase";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { UserCard } from "./Sidebar/UserCard";
-import { UserSummary } from "./Sidebar/UserSummary";
-import { SocialHandles } from "./Sidebar/SocialHandles";
-import { AddButtons } from "./MainScreen/AddButtons";
-import React from "react";
-import { SocialModal } from "./Modals/SocialModal";
 import axios from "axios";
 import { nonauthapi } from "lib/api";
+import { useRouter } from "next/router";
+import React from "react";
+import { Flex, jsx } from "theme-ui";
+import { SocialModal } from "./Modals/SocialModal";
+import { SocialHandles } from "./Sidebar/SocialHandles";
+import { UserCard } from "./Sidebar/UserCard";
+import { UserSummary } from "./Sidebar/UserSummary";
 
 // Add a custom Link
 export function Sidebar({

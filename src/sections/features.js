@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
-import { Box, Container, Flex, Heading, Text } from "theme-ui";
 import image1 from "assets/features-1.svg";
 import image2 from "assets/features-2.svg";
 import image3 from "assets/features-3.svg";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import React from "react";
+import { Box, Container, Flex, Heading, Text } from "theme-ui";
 import { translation } from "translation";
 
 const Features = () => {

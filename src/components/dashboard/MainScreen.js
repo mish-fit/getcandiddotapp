@@ -1,21 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
-
-import { useRouter } from "next/router";
-import { ShowProducts } from "./MainScreen/ShowProducts";
-import { ShowLinks } from "./MainScreen/ShowLinks";
-import { AddButtons } from "./MainScreen/AddButtons";
-
-import React, { useEffect } from "react";
-import { LinksModal } from "./Modals/LinksModal";
-import { ProductsModal } from "./Modals/ProductsModal";
-import * as Scroll from "react-scroll";
 import { Divider } from "@chakra-ui/react";
-import { nonauthapi } from "lib/api";
-import Head from "next/head";
+import React from "react";
+import * as Scroll from "react-scroll";
+import { Container, jsx } from "theme-ui";
+import { AddButtons } from "./MainScreen/AddButtons";
+import { ShowLinks } from "./MainScreen/ShowLinks";
+import { ShowProducts } from "./MainScreen/ShowProducts";
 import { EditLinksModal } from "./Modals/EditLinksModal";
 import { EditProductsModal } from "./Modals/EditProductsModal";
+import { LinksModal } from "./Modals/LinksModal";
+import { ProductsModal } from "./Modals/ProductsModal";
 
 let Element = Scroll.Element;
 

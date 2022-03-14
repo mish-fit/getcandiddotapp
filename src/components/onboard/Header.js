@@ -1,8 +1,7 @@
-import { Box, Heading, Flex, Button, Image, Progress } from '@chakra-ui/react';
+import { Flex, Image, Progress } from '@chakra-ui/react';
 import logo from "assets/CaNDiD_B.png";
-import { Router } from 'next/router';
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+
 const Header = (props) => {
 	const router = useRouter();
 	// const [zero, setZero]=useState(false);

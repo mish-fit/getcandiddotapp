@@ -1,22 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { IconButton, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@chakra-ui/react';
 import axios from "axios";
 import { authapi } from "lib/api";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  IconButton,
-  useDisclosure,
-} from '@chakra-ui/react'
-import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { Flex, Image, jsx, Text } from "theme-ui";
 // Add a custom Link
 export function ProductsCard({ item, deleteItem, editProductModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();

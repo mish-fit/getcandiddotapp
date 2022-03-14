@@ -1,14 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
-
-import { ShowProducts } from "./MainScreen/ShowProducts";
-import { ShowLinks } from "./MainScreen/ShowLinks";
-
-import React from "react";
-
-import * as Scroll from "react-scroll";
 import { Divider } from "@chakra-ui/react";
+import React from "react";
+import * as Scroll from "react-scroll";
+import { Container, jsx } from "theme-ui";
+import { ShowLinks } from "./MainScreen/ShowLinks";
+import { ShowProducts } from "./MainScreen/ShowProducts";
+
 let Element = Scroll.Element;
 
 // Add a custom Link

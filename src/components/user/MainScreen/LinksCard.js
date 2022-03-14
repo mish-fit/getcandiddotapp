@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Tooltip } from "@chakra-ui/react";
-import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
+import { Flex, Image, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item }) {

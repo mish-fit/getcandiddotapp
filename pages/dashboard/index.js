@@ -1,34 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Divider } from "theme-ui";
-import { Button } from "@chakra-ui/react";
-import Head from "next/head";
-
-import React, { useContext, useState, useEffect } from "react";
-// import { UserContext } from "../../src/lib/UserDataProvider";
-import UserDataProvider, { UserContext } from "lib/UserDataProvider";
-import { auth, firebaseConfig1, firestore } from "lib/firebase";
 import Header from "components/dashboard/header";
-import { Sidebar } from "components/dashboard/Sidebar";
 import { MainScreen } from "components/dashboard/MainScreen";
 import { MenuPopup } from "components/dashboard/MenuPopup";
-import nookies from "nookies";
-
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
-
-import axios from "axios";
+import { Sidebar } from "components/dashboard/Sidebar";
 import { authapi, nonauthapi } from "lib/api";
-import { convertChangesToDMP } from "prettier";
+import { auth } from "lib/firebase";
 import { firebaseAdmin } from "lib/firebaseadmin";
+// import { UserContext } from "../../src/lib/UserDataProvider";
+import { UserContext } from "lib/UserDataProvider";
+import Head from "next/head";
+import nookies from "nookies";
+import React, { useContext } from "react";
+import { Flex, jsx } from "theme-ui";
+
 // import { firebaseAdmin } from "lib/firebaseadmin";
 export default function Dashboard({
   links,

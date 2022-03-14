@@ -1,13 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Button } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
+import { useMediaQuery } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
+import { Button, Container, Flex, jsx, Text } from "theme-ui";
 
-import { useMediaQuery } from "@chakra-ui/react";
 // Add a custom Link
 export function UserSummary({ data }) {
   const router = useRouter();

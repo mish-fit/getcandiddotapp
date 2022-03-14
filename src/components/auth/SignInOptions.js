@@ -1,23 +1,12 @@
-import { useEffect, useState } from "react";
-import firebase from "firebase";
-import Link from "next/link";
-import { auth, googleAuthProvider } from "lib/firebase";
 import {
-  Flex,
-  Text,
-  Input,
-  Button,
-  Container,
-  Heading,
-  Stack,
-  Center,
-  InputGroup,
-  InputLeftAddon,
-  BeatLoader,
-  useToast,
+  Button, Flex, Heading, Input, InputGroup,
+  InputLeftAddon, Text, useToast
 } from "@chakra-ui/react";
 import "@fontsource/poppins";
+import firebase from "firebase";
+import { auth, googleAuthProvider } from "lib/firebase";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Layout } from "./../onboard/Layout";
 // Sign in with Phone button
@@ -133,15 +122,16 @@ export function SignInOptions() {
               +91{" "}
             </InputLeftAddon>
             <Input
-              type="tel"
               // value={mynumber}
-              bg="white"
-              focusBorderColor="#E78692"
-              borderColor={"black"}
-              border="1px"
-              height={50}
-              fontSize={"lg"}
-              width={"full"}
+              // variant={"primary"}
+              // bg="white"
+              // focusBorderColor="#E78692"
+              // borderColor={"black"}
+              // border="1px"
+              // height={50}
+              // fontSize={"lg"}
+              // width={"full"}
+              type="tel"
               onChange={(e) => {
                 setNumber(e.target.value);
               }}
@@ -156,7 +146,6 @@ export function SignInOptions() {
             // height={'3.1rem'}
             // width='full'
             // fontSize={'lg'}
-
             variant={"primary"}
             marginTop="8px"
             marginBottom="24px"
@@ -179,15 +168,16 @@ export function SignInOptions() {
             Verify OTP
           </Heading>
           <Input
+            // variant={"primary"}
+            // bg="white"
+            // focusBorderColor="#E78692"
+            // _hover={{ borderColor: "#E78592" }}
+            // borderColor="black"
+            // height={50}
+            // fontSize={18}
             type="tel"
-            bg="white"
             textAlign={"center"}
-            focusBorderColor="#E78692"
-            _hover={{ borderColor: "#E78592" }}
-            borderColor="black"
             width={{ base: "full", md: "sm" }}
-            height={50}
-            fontSize={18}
             placeholder={"Enter your OTP"}
             marginBottom="16px"
             onChange={(e) => {
@@ -204,7 +194,7 @@ export function SignInOptions() {
               // color='white'
               width={120}
               height={50}
-              fontSize={18}
+              fontSize={'lg'}
               marginTop="8px"
               marginBottom="8px"
               onClick={setHandler}
@@ -213,13 +203,13 @@ export function SignInOptions() {
             </Button>
             <Button
               display="block"
-              bg={"#D7354A"}
-              _hover={{ bg: "#C23043" }}
-              borderRadius={10}
-              color="white"
+              variant={'primary'}
               width={120}
-              height={50}
-              fontSize={18}
+              // bg={"#D7354A"}
+              // _hover={{ bg: "#C23043" }}
+              // height={50}
+              // borderRadius={10}
+              // fontSize={'lg'}
               marginTop="8px"
               marginBottom="8px"
               onClick={isConfirmClicked ? ValidatePhoneOTP : null}
@@ -239,14 +229,12 @@ export function SignInOptions() {
           <Flex w="100%">
             <Flex w="100%">
               <Button
-                borderRadius={10}
-                width="full"
-                height={50}
-                fontSize={18}
+                variant={"primary"}
                 border="1px"
-                // fontWeight='black'
-                bg={"white"}
-                _hover={{ bg: "gray.50", border: "2px" }}
+                bg="white"
+                color="black"
+                _hover={{ bg: "gray.50" }}
+								_active={{ bg: 'gray.50' }}
                 onClick={signInWithGoogle}
               >
                 <Flex mr="8px">

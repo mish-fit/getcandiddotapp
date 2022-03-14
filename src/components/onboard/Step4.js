@@ -1,27 +1,13 @@
-import {
-	Input,
-	Text,
-	Heading,
-	Stack,
-	Container,
-	Flex,
-	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
-	Button,
-	useToast,
-} from '@chakra-ui/react';
-import Header from './Header';
-import { firestore } from 'lib/firebase';
-import { useState, useContext, useRef, useEffect } from 'react';
-import UserDataProvider, { UserContext } from 'lib/UserDataProvider';
+import { Button, Container, Flex, FormLabel, Heading, Input, Stack, useToast } from '@chakra-ui/react';
 import '@fontsource/poppins';
-import { CUIAutoComplete } from 'chakra-ui-autocomplete';
-import { useRouter } from 'next/router';
-import { nanoid } from 'nanoid';
-import { authapi } from "lib/api";
 import axios from 'axios';
+import { CUIAutoComplete } from 'chakra-ui-autocomplete';
+import { authapi } from "lib/api";
+import { firestore } from 'lib/firebase';
+import { UserContext } from 'lib/UserDataProvider';
+import { useRouter } from 'next/router';
+import { useContext, useEffect, useRef, useState } from 'react';
+import Header from './Header';
 
 const brands = [
 	{ value: 'amazon', label: 'Amazon' },

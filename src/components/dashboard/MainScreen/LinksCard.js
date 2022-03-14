@@ -1,19 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { IconButton, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@chakra-ui/react';
 import axios from "axios";
 import { authapi } from "lib/api";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  IconButton,
-  useDisclosure,
-} from '@chakra-ui/react'
-
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { Flex, Image, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item, deleteItem, editLinkModal }) {

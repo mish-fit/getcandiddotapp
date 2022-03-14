@@ -4,20 +4,18 @@ import { useEffect } from 'react';
 import Router from 'next/router';
 import { initGA, logPageView } from 'analytics';
 */
-import './../styles/normalize.css'
-import "rc-drawer/assets/index.css";
-import "assets/css/react-slick.css";
-import "react-modal-video/css/modal-video.min.css";
-import "typeface-bree-serif";
-import "typeface-dm-sans";
-import "@fontsource/poppins";
 import { ChakraProvider } from "@chakra-ui/react";
+import "@fontsource/poppins";
+import "assets/css/react-slick.css";
 import UserDataProvider from "lib/UserDataProvider";
-import { useUserData } from "../src/lib/hooks";
+import "rc-drawer/assets/index.css";
+import "react-modal-video/css/modal-video.min.css";
+import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { rootreducer } from "redux-lib/reducer";
-import { Provider } from "react-redux";
+import { useUserData } from "../src/lib/hooks";
 import theme from "../src/theme/chakra/index";
+import './../styles/normalize.css';
 // import TagManager from "react-gtm-module";
 
 // const tagManagerArgs = {

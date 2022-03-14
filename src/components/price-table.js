@@ -1,10 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Button, Heading, Text } from "theme-ui";
-import { IoMdCheckmarkCircle } from "react-icons/io";
-import { IoIosCloseCircle } from "react-icons/io";
-import { rgba } from "polished";
 import { useRouter } from "next/router";
+import { rgba } from "polished";
+import { IoIosCloseCircle, IoMdCheckmarkCircle } from "react-icons/io";
+import { Box, Button, Heading, jsx, Text } from "theme-ui";
 
 const PriceTable = ({ price }) => {
   const router = useRouter();

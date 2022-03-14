@@ -1,12 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Container } from "theme-ui";
-import Slider from "react-slick";
-import SectionHeading from "components/section-heading";
 import PriceTable from "components/price-table";
+import SectionHeading from "components/section-heading";
 import SlickArrow from "components/slick-arrow";
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react/cjs/react.production.min";
 import { useRouter } from "next/router";
+import Slider from "react-slick";
+import { Box, Container, jsx } from "theme-ui";
 import { translation } from "translation";
 
 const data = [

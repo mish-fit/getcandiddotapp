@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import Image from "next/image";
-import { jsx, Box, Container, Grid, Heading, Text } from "theme-ui";
-import { IoIosCheckmarkCircle } from "react-icons/io";
 import support from "assets/support.png";
+import Image from "next/image";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { Box, Container, Grid, Heading, jsx, Text } from "theme-ui";
 
 const list = [
   "Medical and vision",

@@ -1,17 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import { TextColorPicker } from "./TextColorPicker";
-import { FiMenu } from "react-icons/fi";
-import React from "react";
-import { ShadowPicker } from "./ShadowPicker";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { Input } from "@chakra-ui/react";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import React from "react";
 import { BiLink } from "react-icons/bi";
-import { BucketSelector } from "./BucketSelector";
-import { BucketsModal } from "../Modals/BucketModal";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
+import { Flex, jsx } from "theme-ui";
 import { AddImage } from "./AddImage";
+import { BucketSelector } from "./BucketSelector";
+import { ShadowPicker } from "./ShadowPicker";
+import { TextColorPicker } from "./TextColorPicker";
+
 // Add a custom Link
 export function AddLink({ buckets, values, onRefresh, onValuesChange }) {
   const [titleColor, setTitleColor] = React.useState(values.titleColor);

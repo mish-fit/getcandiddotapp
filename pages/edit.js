@@ -1,26 +1,19 @@
 import {
-	Input,
-	Heading,
-	Text,
 	Button,
-	Flex,
-	Image,
-	Textarea,
-	FormLabel,
-	useToast,
+	Flex, FormLabel, Heading, Image, Input, Text, Textarea, useToast
 } from '@chakra-ui/react';
-import { useEffect, useState, useContext } from 'react';
-import { auth, firestore } from 'lib/firebase';
-import { UserContext } from 'lib/UserDataProvider';
-import { Layout } from 'components/onboard/Layout';
-import { useRouter } from 'next/router';
 import axios from 'axios';
-import { UploadImageToS3WithNativeSdk } from 'lib/aws';
+import { Layout } from 'components/onboard/Layout';
 import { authapi, nonauthapi, s3url } from 'lib/api';
-import { IoCloseCircle } from 'react-icons/io5';
+import { UploadImageToS3WithNativeSdk } from 'lib/aws';
 import { firebaseAdmin } from 'lib/firebaseadmin';
-import nookies from 'nookies';
+import { UserContext } from 'lib/UserDataProvider';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import nookies from 'nookies';
+import { useContext, useEffect, useState } from 'react';
+import { IoCloseCircle } from 'react-icons/io5';
+
 const EditProfile = ({ u_data }) => {
 	const [state, setState] = useState({
 		name: '',

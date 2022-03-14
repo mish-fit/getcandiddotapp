@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
-import { Button, Box, Text } from "theme-ui";
-import { Scrollbars } from "react-custom-scrollbars";
 import Drawer from "components/drawer";
-import { DrawerContext } from "contexts/drawer/drawer.context";
-import { IoMdClose, IoMdMenu } from "react-icons/io";
-import { Link as ScrollLink } from "react-scroll";
-import menuItems from "./header.data";
 import Logo from "components/logo";
+import { DrawerContext } from "contexts/drawer/drawer.context";
 import { auth } from 'lib/firebase';
 import { useRouter } from "next/router";
+import React, { useContext } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
+import { IoMdClose, IoMdMenu } from "react-icons/io";
+import { Box, Button } from "theme-ui";
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);

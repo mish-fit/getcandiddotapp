@@ -1,24 +1,17 @@
-import React from "react";
+import sectionImage from "assets/banner-1.svg";
+import axios from "axios";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import React from "react";
 import {
   Box,
   Container,
   Flex,
   Heading,
-  Text,
-  Label,
-  Input,
-  Button,
-  Link,
+  Text
 } from "theme-ui";
-
-import client1 from "assets/client-1.svg";
-import client2 from "assets/client-2.svg";
-import client3 from "assets/client-3.svg";
-import sectionImage from "assets/banner-1.svg";
-import { useRouter } from "next/router";
-import axios from "axios";
 import { translation } from "translation";
+
 
 const Banner = () => {
   const { locale } = useRouter();

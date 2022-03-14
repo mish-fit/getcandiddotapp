@@ -1,10 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import { jsx, Image } from "theme-ui";
-import { Link } from "components/link";
 import logo from "assets/CaNDiD_B.png";
-import { Heading } from "theme-ui";
+import { Link } from "components/link";
+import { Image, jsx } from "theme-ui";
 
 export default function Logo() {
   return (

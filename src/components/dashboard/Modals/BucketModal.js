@@ -1,22 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Box } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button, Input, useDisclosure } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-} from "@chakra-ui/react";
-import { BiLink } from "react-icons/bi";
-import { MdOutlineCategory } from "react-icons/md";
+import { Input, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
 import React from "react";
+import { MdOutlineCategory } from "react-icons/md";
+import { Box, Flex, jsx, Text } from "theme-ui";
+
 // Add a custom Link
 export function BucketsModal({ isOpen, onSave, onClose }) {
   const [name, setName] = React.useState({ name: "", link: "" });

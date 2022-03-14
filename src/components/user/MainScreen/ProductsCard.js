@@ -1,11 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Tooltip } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { Flex, Image, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function ProductsCard({ item }) {

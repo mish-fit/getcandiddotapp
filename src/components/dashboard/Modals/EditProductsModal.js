@@ -1,37 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Box, merge } from "theme-ui";
-import { useRouter } from "next/router";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useToast,
-} from "@chakra-ui/react";
-import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
-import React, { useContext } from "react";
-import Lottie from "lottie-react";
-import smm from "../../../../public/lottie/smm.json";
-import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
-import { RiCouponLine } from "react-icons/ri";
-import { Input, useMediaQuery } from "@chakra-ui/react";
-import Head from "next/head";
-import {
-  MdOutlineDriveFileRenameOutline,
-  MdOutlineRecommend,
-} from "react-icons/md";
-import { BiCategoryAlt, BiLink } from "react-icons/bi";
-import { BucketsModal } from "./BucketModal";
-import { nanoid } from "nanoid";
-import { authapi, s3url } from "lib/api";
-import { UserContext } from "lib/UserDataProvider";
+import { Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, useMediaQuery, useToast } from "@chakra-ui/react";
 import axios from "axios";
+import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import debounce from "lodash.debounce";
+import Lottie from "lottie-react";
+import { nanoid } from "nanoid";
+import Head from "next/head";
+import React from "react";
+import { BiCategoryAlt, BiLink } from "react-icons/bi";
+import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
+import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
+import {
+  MdOutlineRecommend
+} from "react-icons/md";
+import { RiCouponLine } from "react-icons/ri";
+import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import smm from "../../../../public/lottie/smm.json";
+import { BucketsModal } from "./BucketModal";
 
 // Add a custom Link
 export function EditProductsModal({
