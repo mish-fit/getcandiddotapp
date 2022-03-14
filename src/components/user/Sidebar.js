@@ -20,7 +20,7 @@ export function Sidebar({ socials, user, summary }) {
         flexDirection: "column",
         width: ["100%", "100%", null],
         mx: ["1rem", "1rem", "0px", "0px", "0px", "0px"],
-        borderRadius: "16px",
+        borderRadius: "0px",
         boxShadow: [
           " ",
           " ",

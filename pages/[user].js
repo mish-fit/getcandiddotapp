@@ -12,6 +12,9 @@ import { UserNotFound } from "components/user/UserNotFound";
 import Head from "next/head";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { useRouter } from "next/router";
+import { Link } from "components/link";
+import logo from "assets/CaNDiD_B.png";
+
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
 
@@ -66,9 +69,27 @@ export default function User({ links, recos, user, socials, buckets }) {
         <header sx={styles.header}>
           <Container sx={styles.headerContainer}>
             <Flex as="logo" sx={styles.logoStyles}>
-              <Logo />
+              <Link
+                path="/"
+                sx={{
+                  variant: "links.logo",
+                }}
+              >
+                <Image
+                  src={logo}
+                  width="120"
+                  height="40"
+                  sx={styles.logoStyles}
+                  alt="startup landing logo"
+                />
+              </Link>
             </Flex>
-            <Flex>
+            <Flex
+              sx={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Button sx={styles.button} onClick={handleCreateLinkButton}>
                 Create your CNDD link!
               </Button>
@@ -78,11 +99,11 @@ export default function User({ links, recos, user, socials, buckets }) {
       </DrawerProvider>
 
       <Flex as="container" sx={styles.container}>
-        <Flex as="sidebar" sx={styles.sidebar}>
+        <Flex as="sidebar" sx={styles.sidebarTrial}>
           <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
         <Flex as="mainscreen" sx={styles.mainscreen}>
-        <MainScreen
+          <MainScreen
             links={links}
             recos={recos}
             user={user}
@@ -141,7 +162,7 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    mt: "96px",
+    mt: "40px",
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -164,16 +185,35 @@ const styles = {
     bottom: "8px",
     alignSelf: "flex-end",
   },
+  sidebarTrial: {
+    p: "10px",
+    width: "320px",
+    //flex: 1,
+    pl: "8px",
+    pt: "16px",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "sticky",
+    bottom: "8px",
+    alignSelf: "flex-end",
+  },
 
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: ["0px", "0px", "8px", "8px", "8px", "8px"],
+    py: ["0px", "0px", "0px", "0px", "0px", "0px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
-    borderBottom: [null, null, "1px solid #E9EDF5", "1px solid #E9EDF5", "1px solid #E9EDF5", "1px solid #E9EDF5"],
-    position: ["relative","relative","fixed","fixed","fixed","fixed"],
+    borderBottom: [
+      null,
+      null,
+      "1px solid #E9EDF5",
+      "1px solid #E9EDF5",
+      "1px solid #E9EDF5",
+      "1px solid #E9EDF5",
+    ],
+    position: ["relative", "relative", "fixed", "fixed", "fixed", "fixed"],
     top: 0,
     left: 0,
     zIndex: 100,
@@ -186,30 +226,40 @@ const styles = {
   },
 
   headerContainer: {
-    mb: [-124,-124,0,0,0,0],
+    mb: [-124, -124, 0, 0, 0, 0],
     display: "flex",
     alignItems: "center",
-    flexDirection:[ "column", "column", "row","row", "row","row"],
-    justifyContent: ["center", "center","space-between","space-between","space-between","space-between"],
+    flexDirection: ["column", "column", "row", "row", "row", "row"],
+    justifyContent: [
+      "center",
+      "center",
+      "space-between",
+      "space-between",
+      "space-between",
+      "space-between",
+    ],
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
 
   button: {
-    mr: 2,
+    mx: 2,
     bg: "#D7354A",
     ":hover": {
       bg: "#C23043",
     },
-    borderRadius:[10, 10, 24, 24, 24, 24],
+    borderRadius: [0, 0, 0, 0, 0, 0, 0],
     color: "white",
-    fontSize: "md",
+    fontSize: "12px",
     width: "md",
-    height: [40,40,50,50,50,50,50],
-    mt: [24,24,0,0,0,0]
+    height: [30, 30, 30, 30, 30, 30, 30],
+    mt: [24, 24, 0, 0, 0, 0],
+    justifyContent: "center",
+    alignItems: "center",
+    p: "2px",
+    px: "8px",
   },
   logoStyles: {
-    // display:"flex",
-    // alignItems: "center",
-    // mx:[86,148,0,0,0,0]
-  }
+    mr: ["200px", "350px", "350px", "50px", "50px", "50px", "50px"],
+    ml: [null, null, null, "16px", "16px", "16px", "16px"],
+  },
 };

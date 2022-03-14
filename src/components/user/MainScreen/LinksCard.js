@@ -1,48 +1,50 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { Tooltip } from "@chakra-ui/react";
 import { jsx, Container, Flex, Image, Text, Grid, merge } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item }) {
   const onClickLink = () => {
-    if(item.link.substring(0, 8)!=="https://"){
-      window.open("https://"+item.link, "_blank");
-    }
-    else{
+    if (item.link.substring(0, 8) !== "https://") {
+      window.open("https://" + item.link, "_blank");
+    } else {
       window.open(item.link, "_blank");
     }
   };
 
   return (
-    <Flex sx={style.button} onClick={onClickLink}>
-      <Flex
-        sx={merge(style.container, {
-          boxShadow: "0 0 4px 1px " + item.shadow_color,
-          "&:hover": {
-            p: {
-              color: "#fff",
-            },
-            backgroundColor: item.shadow_color,
-          },
-        })}
-      >
-        {item.photo && item.photo != "" ? (
-          <Image src={item.photo} alt="img" sx={style.image} />
-        ) : null}
+    <Tooltip label={item.link} placement="top">
+      <Flex sx={style.button} onClick={onClickLink}>
         <Flex
-          sx={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
+          sx={merge(style.container, {
+            boxShadow: "0 0 1px 1px " + item.shadow_color,
+            "&:hover": {
+              p: {
+                color: "#fff",
+              },
+              backgroundColor: item.shadow_color,
+            },
+          })}
         >
-          <Text as="p" sx={merge(style.link, { color: item.font_color })}>
-            {item.title}
-          </Text>
+          {item.photo && item.photo != "" ? (
+            <Image src={item.photo} alt="img" sx={style.image} />
+          ) : null}
+          <Flex
+            sx={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
+            }}
+          >
+            <Text as="p" sx={merge(style.link, { color: item.font_color })}>
+              {item.title}
+            </Text>
+          </Flex>
         </Flex>
       </Flex>
-    </Flex>
+    </Tooltip>
   );
 }
 
@@ -52,9 +54,9 @@ const style = {
     p: "8px",
     py: "16px",
     backgroundColor: "white",
-    borderRadius: "16px",
+    borderRadius: "0px",
     mx: "16px",
-    width: ["100%", "100%", "350px", "350px", "448px", "448px"],
+    width: ["100%", "100%", "340px", "340px", "340px", "340px"],
     minWidth: "330px",
     height: "96px",
     my: "16px",

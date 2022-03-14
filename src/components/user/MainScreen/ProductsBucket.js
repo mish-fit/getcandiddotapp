@@ -13,10 +13,9 @@ export function ProductsBucket({ bucketName, data, link }) {
 
   const bucketLinkClick = () => {
     console.log("link click", link.link);
-    if(link.link.substring(0, 8)!=="https://"){
-      window.open("https://"+link.link, "_blank");
-    }
-    else{
+    if (link.link.substring(0, 8) !== "https://") {
+      window.open("https://" + link.link, "_blank");
+    } else {
       window.open(link.link, "_blank");
     }
   };
@@ -60,7 +59,7 @@ const style = {
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "24px",
-    py: "8px",
+    fontSize: "16px",
+    py: "4px",
   },
 };

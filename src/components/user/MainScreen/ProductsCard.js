@@ -3,7 +3,7 @@
 import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -18,16 +18,15 @@ export function ProductsCard({ item }) {
   const buy = () => {
     // console.log(item);
     localStorage.setItem("buyLatestItem", item.prod_name);
-    if(item.prod_link.substring(0, 8)!=="https://"){
-      window.open("https://"+item.prod_link, "_blank");
-    }
-    else{
+    if (item.prod_link.substring(0, 8) !== "https://") {
+      window.open("https://" + item.prod_link, "_blank");
+    } else {
       window.open(item.prod_link, "_blank");
     }
   };
 
   return (
-    <Flex sx={style.container}>
+    <Flex sx={style.container} onClick={buy}>
       <Flex sx={style.imageMaster}>
         <Flex sx={style.imageContainer}>
           <Image
@@ -37,16 +36,20 @@ export function ProductsCard({ item }) {
           />
         </Flex>
       </Flex>
+      <Flex sx={style.categoryDetailsContainer}>
+        <Flex sx={style.categoryContent}>
+          <Text sx={style.category}>{item.cat_name}</Text>
+        </Flex>
+      </Flex>
       <Flex sx={style.detailsContainer}>
         <Flex sx={style.content}>
           <Text sx={style.product}>{item.prod_name}</Text>
-          <Text sx={style.category}>{item.cat_name}</Text>
         </Flex>
-        <Flex sx={style.buttonContainer}>
+        {/* <Flex sx={style.buttonContainer}>
           <Flex sx={style.button} onClick={buy}>
             <Text sx={style.buttonText}>Buy Now</Text>
           </Flex>
-        </Flex>
+        </Flex> */}
       </Flex>
     </Flex>
   );
@@ -54,36 +57,42 @@ export function ProductsCard({ item }) {
 
 const style = {
   container: {
-    flexDirection: "row",
-    p: "8px",
-    py: "16px",
+    flexDirection: "column",
+    // p: "8px",
+    // py: "16px",
     backgroundColor: "white",
-    borderRadius: "16px",
+    borderRadius: "0px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
-    mx: "16px",
-    width: ["100%", "100%", "350px", "350px", "448px", "448px"],
-    minWidth: "330px",
-    my: "16px",
+    mx: "8px",
+    width: "210px",
+    // width: ["100%", "100%", "350px", "350px", "448px", "448px"],
+    // minWidth: "330px",
+    my: "8px",
+    cursor: "pointer",
   },
   imageMaster: {
     backgroundColor: "white",
   },
   imageContainer: {
-    mx: "8px",
+    // mx: "8px",
     backgroundColor: "white",
   },
   image: {
-    height: "96px",
-    width: "148px",
-    borderRadius: "6px",
+    height: "300px",
+    width: "210px",
+    borderRadius: "8px",
+  },
+  categoryDetailsContainer: {
+    mt: "-20px",
+    justifyContent: "center",
+    alignItems: "center",
   },
   detailsContainer: {
     backgroundColor: "white",
     flexDirection: "column",
-    ml: "8px",
-    width: "248px",
+    my: "6px",
     justifyContent: "space-between",
-    py: "8px",
+    textAlign: "center",
   },
   buttonText: {
     width: "100%",
@@ -108,6 +117,7 @@ const style = {
   },
   content: {
     flexDirection: "column",
+    px: "4px",
   },
   buttonContainer: {
     justifyContent: "center",
@@ -116,14 +126,23 @@ const style = {
   product: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "24px",
+    fontSize: "12px",
+    fontWeight: "bold",
     color: "#000",
   },
   category: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "16px",
-    color: "#D7354A",
+    fontSize: "12px",
+    color: "white",
   },
   buynow: {},
+  categoryContent: {
+    backgroundColor: "#D7354A",
+    height: "30px",
+    justifyContent: "center",
+    alignItems: "center",
+    px: "4px",
+    borderRadius: "8px",
+  },
 };
