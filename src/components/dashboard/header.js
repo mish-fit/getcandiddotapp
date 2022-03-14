@@ -1,27 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Button } from "theme-ui";
-import { Link } from "components/link";
-import { Link as ScrollLink } from "react-scroll";
+import { Menu, MenuButton, MenuItem, MenuList, useToast } from "@chakra-ui/react";
 import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
-import lock from "assets/lock.svg";
-import MobileDrawer from "./mobile-drawer";
-import headerData from "./header.data";
-import Link1 from "next/link";
-import { useRouter } from "next/router";
-import { translation } from "translation";
-import React from "react";
 import { auth } from "lib/firebase";
-import { AiFillCopy } from 'react-icons/ai';
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useToast,
-} from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { AiFillCopy } from 'react-icons/ai';
+import { Button, Container, Flex, Image, jsx, Text } from "theme-ui";
+import { translation } from "translation";
+import MobileDrawer from "./mobile-drawer";
 
 export default function Header({ menu, menuActive, data }) {
   const { locale } = useRouter();

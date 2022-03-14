@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
+import { Flex, Grid, Image, jsx, Text } from "theme-ui";
 
 const SocialElement = ({ item }) => (
   <Flex

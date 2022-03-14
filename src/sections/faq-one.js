@@ -1,8 +1,8 @@
-import React from "react";
-import Image from "next/image";
-import { Box, Container, Flex, Heading, Text } from "theme-ui";
-import Accordion from "components/accordion/accordion";
 import image from "assets/faq-one-1.png";
+import Accordion from "components/accordion/accordion";
+import Image from "next/image";
+import React from "react";
+import { Box, Container, Flex, Heading, Text } from "theme-ui";
 const FAQ_ONE_DATA = {
   sectionImage: image,
   tagline: "Website content builder",

@@ -1,11 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Box } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-import { Button } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import React from "react";
+import { Container, Flex, Image, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function UserCard({ data }) {

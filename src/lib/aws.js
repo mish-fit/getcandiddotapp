@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import AWS from "aws-sdk";
 
 const S3_BUCKET = "taiq-images";

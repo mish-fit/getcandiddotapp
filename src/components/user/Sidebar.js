@@ -1,12 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Box } from "theme-ui";
-
+import React from "react";
+import { Flex, jsx } from "theme-ui";
+import { SocialHandles } from "./Sidebar/SocialHandles";
 import { UserCard } from "./Sidebar/UserCard";
 import { UserSummary } from "./Sidebar/UserSummary";
-import { SocialHandles } from "./Sidebar/SocialHandles";
-
-import React from "react";
 
 // Add a custom Link
 export function Sidebar({ socials, user, summary }) {

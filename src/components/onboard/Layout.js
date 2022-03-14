@@ -1,18 +1,7 @@
-import {
-	Flex,
-	Text,
-	Input,
-	Button,
-	Container,
-	Heading,
-	Stack,
-	Center,
-	InputGroup,
-	InputLeftAddon,
-	useToast,
-} from '@chakra-ui/react';
+import { Container, Flex, Stack } from '@chakra-ui/react';
 import '@fontsource/poppins';
 import Header from './Header';
+
 export function Layout({ children, value = 0 }){
   return(
     <Container

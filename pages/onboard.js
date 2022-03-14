@@ -1,16 +1,14 @@
-import { useEffect, useState, useContext } from 'react';
+import { nonauthapi } from 'lib/api';
+import { firebaseAdmin } from 'lib/firebaseadmin';
+import { UserContext } from 'lib/UserDataProvider';
+import Head from "next/head";
+import { useRouter } from 'next/router';
+import nookies from "nookies";
+import { useContext, useState } from 'react';
 import Step1 from '../src/components/onboard/Step1';
 import Step2 from '../src/components/onboard/Step2';
 import Step3 from '../src/components/onboard/Step3';
-import Step4 from '../src/components/onboard/Step4';
-import { UserContext } from 'lib/UserDataProvider';
-import { useRouter } from 'next/router'
-import { auth, firestore } from 'lib/firebase';
-import { nonauthapi } from 'lib/api';
-import axios from 'axios';
-import { firebaseAdmin } from 'lib/firebaseadmin';
-import nookies from "nookies";
-import Head from "next/head";
+
 export default function Onboard(props) {
 
 	const router = useRouter()

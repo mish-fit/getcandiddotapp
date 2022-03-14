@@ -1,30 +1,15 @@
-import {
-  Input,
-  Heading,
-  Box,
-  Stack,
-  Text,
-  Container,
-  Flex,
-  FormControl,
-  useToast,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Progress,
-  Image,
-  Button,
-} from "@chakra-ui/react";
-import { useState, useContext, useRef, useEffect } from "react";
-import { UserContext } from "lib/UserDataProvider";
-import { firestore } from "lib/firebase";
-import { useRouter } from "next/router";
+import { Button, Flex, FormControl, FormLabel, Heading, Image, Text, useToast } from "@chakra-ui/react";
 import "@fontsource/poppins";
 import axios from "axios";
-import { UploadImageToS3WithNativeSdk } from "lib/aws";
 import { authapi, s3url } from "lib/api";
+import { UploadImageToS3WithNativeSdk } from "lib/aws";
+import { firestore } from "lib/firebase";
+import { UserContext } from "lib/UserDataProvider";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import { Layout } from "./Layout";
+
 const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
   const [image, setImage] = useState({ preview: "", raw: "" });
@@ -311,13 +296,15 @@ const Step3 = (props) => {
                 Skip
               </Button>
               <Button
-                bg={"#D7354A"}
-                _hover={{ bg: "#C23043" }}
-                borderRadius={10}
-                color="white"
-                fontSize={"lg"}
+                // bg={"#D7354A"}
+                // _hover={{ bg: "#C23043" }}
+                // borderRadius={10}
+                // color="white"
+                // fontSize={"lg"}
+                // width={120}
+                // height={50}
+                variant={'primary'}
                 width={120}
-                height={50}
                 mr={{ base: "0", md: "190" }}
                 onClick={isNextClicked ? next : null}
                 // onClick={next}

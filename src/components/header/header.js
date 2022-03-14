@@ -1,17 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text } from "theme-ui";
-import { Link } from "components/link";
-import { Link as ScrollLink } from "react-scroll";
+import { HStack } from "@chakra-ui/react";
 import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
-import lock from "assets/lock.svg";
-import MobileDrawer from "./mobile-drawer";
-import menuItems from "./header.data";
-import Link1 from "next/link";
 import { useRouter } from "next/router";
+import { Link as ScrollLink } from "react-scroll";
+import { Container, Flex, jsx, Text } from "theme-ui";
 import { translation } from "translation";
-import { HStack } from "@chakra-ui/react";
+import menuItems from "./header.data";
+import MobileDrawer from "./mobile-drawer";
 
 export default function Header({ className }) {
   const { locale } = useRouter();

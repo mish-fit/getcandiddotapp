@@ -1,8 +1,7 @@
-import React, { useReducer } from "react";
-import { createContext } from "react";
+import nookies from "nookies";
+import React, { createContext, useReducer } from "react";
 import { auth } from "./firebase";
 import { useUserData } from "./hooks";
-import nookies from "nookies";
 const userData = {
   name: "",
   username: "",

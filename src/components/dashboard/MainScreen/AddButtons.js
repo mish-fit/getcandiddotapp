@@ -1,11 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Button, Grid } from "theme-ui";
-import firebase from "firebase";
-import { auth, googleAuthProvider } from "../../../lib/firebase";
-
 import { useRouter } from "next/router";
-import { BsPlusCircleFill, BsPlusLg } from "react-icons/bs";
+import { BsPlusCircleFill } from "react-icons/bs";
+import { Flex, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function AddButtons({ addLink, addProduct }) {

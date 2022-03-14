@@ -1,21 +1,9 @@
-import {
-  Input,
-  Heading,
-  Container,
-  Stack,
-  Flex,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Progress,
-  Button,
-  Select,
-} from "@chakra-ui/react";
-import { useState, useRef, useEffect, useContext } from "react";
-import { UserContext } from "../../lib/UserDataProvider";
+import { Button, Container, Flex, Heading, Input, Select, Stack } from "@chakra-ui/react";
 import "@fontsource/poppins";
+import { useContext, useRef, useState } from "react";
+import { UserContext } from "../../lib/UserDataProvider";
 import Header from "./Header";
+
 const Step5 = (props) => {
   const ctx = useContext(UserContext);
   const [selectedAffiliates, setSelectedAffiliates] = useState([]);

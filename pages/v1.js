@@ -1,20 +1,15 @@
-import React from "react";
-import { ThemeProvider } from "theme-ui";
-import { StickyProvider } from "contexts/app/app.provider";
-import theme from "theme";
-import SEO from "components/seo";
 import Layout from "components/layout";
-
-import Features from "sections/features";
-
-import FaqTwo from "sections/faq-two";
-
-import Pricing from "sections/pricing";
-
-import ProductFeature from "sections/product-feature";
-
-import Banner1 from "sections/banner1";
+import SEO from "components/seo";
+import { StickyProvider } from "contexts/app/app.provider";
 import { useRouter } from "next/router";
+import React from "react";
+import Banner1 from "sections/banner1";
+import FaqTwo from "sections/faq-two";
+import Features from "sections/features";
+import Pricing from "sections/pricing";
+import ProductFeature from "sections/product-feature";
+import theme from "theme";
+import { ThemeProvider } from "theme-ui";
 
 export default function V1() {
   const router = useRouter();

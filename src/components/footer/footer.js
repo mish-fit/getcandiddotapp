@@ -1,11 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Heading, Box, Text, Container } from "theme-ui";
 import { Link } from "components/link";
 import Logo from "components/logo";
-import footerData from "./footer.data";
 import { useRouter } from "next/router";
+import { Box, Container, jsx, Text } from "theme-ui";
 import { translation } from "translation";
+
 export default function Footer() {
   const { locale } = useRouter();
   const lang = translation[locale].footerSection.footer;

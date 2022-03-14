@@ -1,15 +1,11 @@
-import React from "react";
-import Image from "next/image";
-import { Container, Link, Box, Grid, Heading, Text } from "theme-ui";
-import { IoIosArrowForward } from "react-icons/io";
-import SectionHeading from "components/section-heading";
 import feature1 from "assets/service-1.svg";
 import feature2 from "assets/service-2.svg";
-import feature3 from "assets/service-3.svg";
 import feature4 from "assets/service-4.svg";
-import feature5 from "assets/service-5.svg";
-import feature6 from "assets/service-6.svg";
+import SectionHeading from "components/section-heading";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import React from "react";
+import { Box, Container, Grid, Heading, Text } from "theme-ui";
 import { translation } from "translation";
 
 const ProductFeature = () => {

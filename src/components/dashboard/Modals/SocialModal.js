@@ -1,36 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Box, merge } from "theme-ui";
-import { useRouter } from "next/router";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  useToast,
-  InputGroup,
-  InputLeftAddon,
-  Button,
-} from "@chakra-ui/react";
-import { BsCheckCircleFill, BsCheckLg, BsPlusCircleFill } from "react-icons/bs";
-import React, { useContext, useEffect } from "react";
-import Lottie from "lottie-react";
-import smm from "../../../../public/lottie/smm.json";
-import { TextColorPicker } from "../AddElement/TextColorPicker";
-import { ShadowPicker } from "../AddElement/ShadowPicker";
-import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
-import { Input } from "@chakra-ui/react";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { BiLink } from "react-icons/bi";
-import { BucketsModal } from "./BucketModal";
-import { nanoid } from "nanoid";
-import { authapi, s3url } from "lib/api";
-import { UserContext } from "lib/UserDataProvider";
+import { Input, InputGroup, InputLeftAddon, Modal, ModalContent, ModalOverlay, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import { UploadImageToS3WithNativeSdk, uploadToS3 } from "lib/aws";
+import { authapi } from "lib/api";
+import Lottie from "lottie-react";
+import { nanoid } from "nanoid";
+import React, { useEffect } from "react";
+import { BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
+import { Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import smm from "../../../../public/lottie/smm.json";
 
 const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
   React.useEffect(() => {}, []);

@@ -1,20 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Input, Select } from "@chakra-ui/react";
-import { jsx, Container, Flex, Image, Text, Grid } from "theme-ui";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
+import { Input, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
+import { Flex, jsx, Text } from "theme-ui";
 import { BucketsModal } from "../Modals/BucketModal";
-import { IoChevronDownCircleOutline } from "react-icons/io5";
 
 export function BucketSelector({ buckets }) {
   const [a, setA] = React.useState(JSON.parse(buckets));

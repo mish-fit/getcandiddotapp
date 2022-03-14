@@ -1,14 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from 'theme-ui';
+import { useStickyDispatch, useStickyState } from 'contexts/app/app.provider';
 import React, { useCallback } from 'react';
 import Sticky from 'react-stickynode';
-import { useStickyState } from 'contexts/app/app.provider';
 import { Waypoint } from 'react-waypoint';
-import { useStickyDispatch } from 'contexts/app/app.provider';
-
-import Header from './header/header';
+import { jsx } from 'theme-ui';
 import Footer from './footer/footer';
+import Header from './header/header';
+
 export default function Layout({ children }) {
   const isSticky = useStickyState('isSticky');
   const dispatch = useStickyDispatch();

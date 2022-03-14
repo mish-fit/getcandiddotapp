@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Box, Text } from "theme-ui";
+import { Box, jsx, Text } from "theme-ui";
 
 const ServiceCard = ({ service }) => {
   return (

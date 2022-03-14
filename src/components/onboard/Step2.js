@@ -1,31 +1,26 @@
 import {
+	Button,
+	Flex,
+	FormLabel,
+	Heading,
 	Input,
 	Text,
-	Heading,
-	Flex,
-	Stack,
-	Container,
 	Textarea,
-	FormControl,
-	FormLabel,
-	FormErrorMessage,
-	FormHelperText,
-	Button,
-	Progress,
 } from '@chakra-ui/react';
+import '@fontsource/poppins';
 import { auth, googleAuthProvider } from 'lib/firebase';
 import { UserContext } from 'lib/UserDataProvider';
-import { useState, useContext, useRef, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import '@fontsource/poppins';
 import { Layout } from './Layout';
+
 const Step2 = (props) => {
 	// const name= useRef();
 	// const mail=useRef();
 	const [state, setState] = useState({
 		name: '',
 		mail: '',
-		about: ''
+		about: '',
 	});
 	const [showLink, setShowLink] = useState(false);
 	const [mailInput, setMailInput] = useState(true);
@@ -33,9 +28,9 @@ const Step2 = (props) => {
 
 	const [userDataContext, user] = useContext(UserContext);
 
-	useEffect(()=>{
+	useEffect(() => {
 		// console.log('Step2', userDataContext.userData);
-	},[userDataContext.userData])
+	}, [userDataContext.userData]);
 
 	useEffect(() => {
 		if (userDataContext.userData.phone === '+91') {
@@ -80,7 +75,7 @@ const Step2 = (props) => {
 		if (userDataContext.userData.mail !== null) {
 			userDataContext.setMail(state.mail);
 		}
-		
+
 		userDataContext.setName(state.name);
 		userDataContext.setAbout(state.about);
 		// console.log('Next', userDataContext.userData);
@@ -127,39 +122,40 @@ const Step2 = (props) => {
 	return (
 		<>
 			<Layout value={50}>
-					<Flex flexDirection={'column'} w='100%'>
-					<Flex  flexDirection={"column"} margin={6}>
-							<Heading size={'lg'} textAlign={{base:'center', md:'left'}}>Tell Us About You</Heading>
-								<FormLabel
-									size={'md'}
-									margin='8px'
-									marginLeft='0px'
-									paddingBottom='1rem'
-									textAlign={{base:'center', md:'left'}}
-								>
-									Using your real name will help people confirm that they are
-									interacting with you.
-								</FormLabel>
-								<form onSubmit={next}>
-								<Flex flexDirection={'column'}>
-								<FormLabel 
-									fontSize={'lg' }>Full Name</FormLabel>
+				<Flex flexDirection={'column'} w='100%'>
+					<Flex flexDirection={'column'} margin={6}>
+						<Heading size={'lg'} textAlign={{ base: 'center', md: 'left' }}>
+							Tell Us About You
+						</Heading>
+						<FormLabel
+							size={'md'}
+							margin='8px'
+							marginLeft='0px'
+							paddingBottom='1rem'
+							textAlign={{ base: 'center', md: 'left' }}
+						>
+							Using your real name will help people confirm that they are
+							interacting with you.
+						</FormLabel>
+						<form onSubmit={next}>
+							<Flex flexDirection={'column'}>
+								<FormLabel fontSize={'lg'}>Full Name</FormLabel>
 								<Input
 									required
 									name='name'
-									bg='white'
 									display='inline'
-									focusBorderColor='#E78692'
-									_hover={{ borderColor: '#E78592' }}
-									borderColor='#E78592'
-									height= {50}
-									width={'full'}
-									fontSize={'lg'}
-									marginBottom='24px'
-									defaultValue={userDataContext.userSignInInfo.user.displayName}
 									type='text'
-									onChange={onChangeName}
+									// bg='white'
+									// focusBorderColor='#E78692'
+									// _hover={{ borderColor: '#E78592' }}
+									// borderColor='#E78592'
+									// height= {50}
+									// width={'full'}
+									// fontSize={'lg'}
 									placeholder='Your name'
+									defaultValue={userDataContext.userSignInInfo.user.displayName}
+									onChange={onChangeName}
+									marginBottom='24px'
 								/>
 								<FormLabel fontSize={'lg'}>About</FormLabel>
 								<Textarea
@@ -169,7 +165,7 @@ const Step2 = (props) => {
 									display='inline'
 									focusBorderColor='#E78692'
 									_hover={{ borderColor: '#E78592' }}
-									borderColor='#E78592'
+									borderColor='black'
 									fontSize={'lg'}
 									width={'full'}
 									height={100}
@@ -183,13 +179,13 @@ const Step2 = (props) => {
 										// required
 										name='mail'
 										type='email'
-										bg='white'
-										focusBorderColor='#E78692'
-										_hover={{ borderColor: '#E78592' }}
-										borderColor='#E78592'
-										height={50}
-										width={'full'}
-										fontSize={'lg'}
+										// bg='white'
+										// focusBorderColor='#E78692'
+										// _hover={{ borderColor: '#E78592' }}
+										// borderColor='#E78592'
+										// height={50}
+										// width={'full'}
+										// fontSize={'lg'}
 										marginBottom='24px'
 										placeholder='Email address'
 										onChange={onChangeMail}
@@ -203,24 +199,23 @@ const Step2 = (props) => {
 								</Text>
 								<Flex style={{ display: showLink ? 'block' : 'none' }}>
 									<Button
-										borderRadius={10}
-										width={'full'}
-										height={50}
-										fontSize={18}
-										border='2px'
-										bg={'white'}
+										variant={'primary'}
+										border='1px'
+										bg='white'
+										color='black'
 										_hover={{ bg: 'gray.50' }}
+										_active={{ bg: 'gray.50' }}
 										marginBottom='24px'
 										onClick={SignInWithGoogle}
 									>
-									<Flex mr='8px' >
-										<FcGoogle size={25} />
-									</Flex>
-											Link with Google Account
+										<Flex mr='8px'>
+											<FcGoogle size={25} />
+										</Flex>
+										Link with Google Account
 									</Button>
 								</Flex>
-								</Flex>
-								{/* <Button
+							</Flex>
+							{/* <Button
 									style={{ display: showLink ? 'block' : 'none' }}
 									color='white'
 									borderRadius={10}
@@ -234,7 +229,7 @@ const Step2 = (props) => {
 								>
 									Link Google Account
 								</Button> */}
-								<Flex justifyContent={'space-between'}>
+							<Flex justifyContent={'space-between'}>
 								<Button
 									// bg={'white'}
 									// _hover={{ bg: 'white' }}
@@ -249,13 +244,15 @@ const Step2 = (props) => {
 									Skip
 								</Button>
 								<Button
-									bg={'#D7354A'}
-									_hover={{ bg: '#C23043' }}
-									color='white'
-									borderRadius={10}
-									fontSize={'lg'}
+									variant={'primary'}
 									width={120}
-									height={50}
+									// bg={'#D7354A'}
+									// _hover={{ bg: '#C23043' }}
+									// color='white'
+									// borderRadius={10}
+									// fontSize={'lg'}
+									// width={120}
+									// height={50}
 									// mr={{base:'0', md:'200'}}
 									type='submit'
 								>
@@ -263,9 +260,9 @@ const Step2 = (props) => {
 								</Button>
 							</Flex>
 						</form>
-						</Flex>
 					</Flex>
-					</Layout>
+				</Flex>
+			</Layout>
 		</>
 	);
 };

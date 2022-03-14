@@ -1,10 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Button } from "theme-ui";
-
+import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { useMediaQuery } from "@chakra-ui/react";
+import { Button, Container, Flex, jsx, Text } from "theme-ui";
+
 // Add a custom Link
 export function UserSummary({ data }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");

@@ -1,20 +1,19 @@
-import React from "react";
-import { ThemeProvider } from "theme-ui";
-import { StickyProvider } from "contexts/app/app.provider";
-import theme from "theme";
-import SEO from "components/seo";
 import Layout from "components/layout";
+import SEO from "components/seo";
+import { StickyProvider } from "contexts/app/app.provider";
+import React from "react";
 import Banner from "sections/banner";
-import Features from "sections/features";
+import Banner1 from "sections/banner1";
+import CustomerSupport from "sections/customer-support";
 import FaqOne from "sections/faq-one";
 import FaqTwo from "sections/faq-two";
-import Video from "sections/video";
+import Features from "sections/features";
 import Pricing from "sections/pricing";
-import Services from "sections/services";
 import ProductFeature from "sections/product-feature";
-import CustomerSupport from "sections/customer-support";
-import { pageview, event } from "analytics/ga";
-import Banner1 from "sections/banner1";
+import Services from "sections/services";
+import Video from "sections/video";
+import theme from "theme";
+import { ThemeProvider } from "theme-ui";
 
 export default function IndexPage() {
   return (

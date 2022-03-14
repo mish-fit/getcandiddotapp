@@ -1,22 +1,10 @@
-import { useEffect, useState, useCallback, useContext, useMemo } from 'react';
+import { Button, Flex, FormLabel, Heading, Input } from '@chakra-ui/react';
+import '@fontsource/poppins';
+import debounce from 'lodash.debounce';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
-import debounce from 'lodash.debounce';
-import {
-	Box,
-	Input,
-	Heading,
-	Text,
-	Button,
-	Container,
-	Stack,
-	Progress,
-	Flex,
-	FormControl,
-	FormLabel,
-} from '@chakra-ui/react';
-import '@fontsource/poppins';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { Layout } from './Layout';
 
 const Step1 = (props) => {
@@ -136,13 +124,13 @@ const Step1 = (props) => {
 							<Flex flexDirection={'row'} alignItems={'center'}>
 								<Input
 									name='username'
-									bg='white'
-									focusBorderColor='#E78692'
-									_hover={{ borderColor: '#E78592' }}
-									borderColor='#E78592'
+									// bg='white'
+									// focusBorderColor='#E78692'
+									// _hover={{ borderColor: '#E78592' }}
+									// borderColor='#E78592'
 									width={'md'}
-									height={50}
-									fontSize={'lg'}
+									// height={50}
+									// fontSize={'lg'}
 									display='inline'
 									placeholder='Username...'
 									value={formValue}
@@ -162,14 +150,16 @@ const Step1 = (props) => {
 							/>
 							<Flex>
 							<Button
-								bg={'#D7354A'}
-								_hover={{ bg: '#C23043' }}
-								borderRadius={10}
-								color='white'
-								fontSize={'lg'}
+								variant={'primary'}
 								width={'md'}
-								height={50}
-								marginTop={'10px'}
+								_hover={{ bg: '#C23043' }}
+								// bg={'#D7354A'}
+								// borderRadius={10}
+								// color='white'
+								// fontSize={'lg'}
+								// width={'md'}
+								// height={50}
+								// marginTop={'10px'}
 								type='submit'
 								disabled={!isValid}
 							>

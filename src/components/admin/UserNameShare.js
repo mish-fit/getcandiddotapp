@@ -1,18 +1,6 @@
-import Head from "next/head";
-import Image from "next/image";
 import {
-  Container,
-  Flex,
-  Box,
-  VStack,
-  HStack,
-  Button,
-  Input,
-  Select,
-  Heading,
-  Text,
+  Button, Flex
 } from "@chakra-ui/react";
-import { Router } from "next/router";
 
 const commonprops = { borderRadius: 0, bg: "white", h: "24px" };
 const usernameprops = { fontWeight: "normal", fontSize: 14 };

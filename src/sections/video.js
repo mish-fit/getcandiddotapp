@@ -1,18 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Text, merge } from "theme-ui";
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  useToast,
-  Textarea,
-} from "@chakra-ui/react";
-import { BsCheckCircleFill } from "react-icons/bs";
-import React from "react";
-import { Input } from "@chakra-ui/react";
-import { nonauthapi } from "lib/api";
+import { Input, Modal, ModalContent, ModalOverlay, Textarea, useToast } from "@chakra-ui/react";
 import axios from "axios";
+import { nonauthapi } from "lib/api";
+import React from "react";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { Container, Flex, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function ContactUsModal({ closeParent, isOpen }) {

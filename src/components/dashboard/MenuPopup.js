@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, Container, Flex, Image, Text, Grid, Divider } from "theme-ui";
+import { Container, Divider, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function MenuPopup() {

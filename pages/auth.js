@@ -1,12 +1,11 @@
-import { Button, Text } from '@chakra-ui/react';
-import { useContext, useEffect, useState } from 'react';
-import { SignInOptions } from '../src/components/auth/SignInOptions';
-import { UserContext } from 'lib/UserDataProvider';
-import { useRouter } from 'next/router'
-import { auth } from 'lib/firebase';
 import { firebaseAdmin } from "lib/firebaseadmin";
-import nookies from "nookies";
+import { UserContext } from 'lib/UserDataProvider';
 import Head from "next/head";
+import { useRouter } from 'next/router';
+import nookies from "nookies";
+import { useContext, useState } from 'react';
+import { SignInOptions } from '../src/components/auth/SignInOptions';
+
 export default function Auth(props) {
 	const router = useRouter()
 	const [ userDataContext, user ] = useContext(UserContext);

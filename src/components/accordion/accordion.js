@@ -1,15 +1,10 @@
+import accordionIconOpen from 'assets/faq-one-minus.svg';
+import accordionIconClose from 'assets/faq-one-plus.svg';
 import React, { Fragment } from 'react';
 import { Image } from 'theme-ui';
 import { BaseAccordion } from './base-accordion';
-import accordionIconClose from 'assets/faq-one-plus.svg';
-import accordionIconOpen from 'assets/faq-one-minus.svg';
 import {
-  AccordionButton,
-  AccordionItem,
-  AccordionContents,
-  single,
-  preventClose,
-  combineReducers,
+  AccordionButton, AccordionContents, AccordionItem, combineReducers, preventClose, single
 } from './shared';
 
 export default function Accordion({ items, ...props }) {

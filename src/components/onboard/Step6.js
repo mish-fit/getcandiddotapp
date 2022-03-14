@@ -1,21 +1,9 @@
-import {
-  Input,
-  Text,
-  Box,
-  Container,
-  Stack,
-  Heading,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-  Progress,
-  Button,
-} from "@chakra-ui/react";
-import { useContext, useState, useEffect } from "react";
+import { Box, Button, Container, FormControl, Heading, Progress, Stack, Text } from "@chakra-ui/react";
+import "@fontsource/poppins";
+import { useContext, useEffect, useState } from "react";
 import { firestore } from "../../lib/firebase";
 import { UserContext } from "../../lib/UserDataProvider";
-import "@fontsource/poppins";
+
 const Step6 = (props) => {
   const ctx = useContext(UserContext);
   const [showPhone, setShowPhone] = useState(true);
