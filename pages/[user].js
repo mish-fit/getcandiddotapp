@@ -12,13 +12,19 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import { Button, Container, Flex, Image, jsx } from "theme-ui";
+import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
 
   React.useEffect(() => {
-    setSummary({ products: recos.length, links: links.length });
+    // console.log(recos.filter((item) => isURL(item.prod_link) == true).length);
+    // console.log(links.filter((item) => isURL(item.link) == true).length);
+    setSummary({
+      products: recos.filter((item) => isURL(item.prod_link) == true).length,
+      links: links.filter((item) => isURL(item.link) == true).length,
+    });
   }, []);
 
   const router = useRouter();

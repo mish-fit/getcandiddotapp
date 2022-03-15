@@ -55,7 +55,8 @@
     "swr": "^1.2.2",
     "theme-ui": "^0.3.5",
     "typeface-bree-serif": "^1.1.13",
-    "typeface-dm-sans": "^1.1.13"
+    "typeface-dm-sans": "^1.1.13",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "eslint": "8.7.0",
