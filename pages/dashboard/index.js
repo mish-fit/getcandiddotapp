@@ -13,6 +13,7 @@ import Head from "next/head";
 import nookies from "nookies";
 import React, { useContext } from "react";
 import { Flex, jsx } from "theme-ui";
+import isURL from "validator/lib/isURL";
 
 // import { firebaseAdmin } from "lib/firebaseadmin";
 export default function Dashboard({
@@ -60,7 +61,10 @@ export default function Dashboard({
   //   links,
   // ]);
   React.useEffect(() => {
-    setSummary({ products: recos.length, links: links.length });
+    setSummary({
+      products: recos.filter((item) => isURL(item.prod_link) == true).length,
+      links: links.filter((item) => isURL(item.link) == true).length,
+    });
 
     auth.onAuthStateChanged((user) => {
       localStorage.setItem("jwt", user.toJSON().stsTokenManager.accessToken);
@@ -148,15 +152,7 @@ export async function getServerSideProps(context) {
       };
     }
   }
-  // if(currentUser.length!==0 && ){
-  //   return {
-  //     redirect: {
-  //       destination: '/onboard',
-  //       permanent: false,
-  //     },
-  //   }
-  // }
-  // console.log("asdf", currentUser[0]);
+
   if (!currentUser[0]) {
     return {
       redirect: {
@@ -202,8 +198,7 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    // backgroundColor:'green',
-    mt: ["", "", "100px", "100px", "100px", "100px"],
+    mt: "50px",
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -212,14 +207,12 @@ const styles = {
     justifyContent: "flex-start",
   },
   mainscreen: {
-    width: ["100%", "100%", null],
-    flex: [1, 1, 1, 2, 2, 2],
+    flex: [1, 1, 1, 2, 3, 3],
+    // backgroundColor: "blue",
   },
   sidebar: {
-    // mt: "96px",
-    width: "100%",
-    // backgroundColor:'red',
-    flex: 1,
+    p: "10px",
+    width: "320px",
     pl: "8px",
     pt: "16px",
     alignItems: "center",
@@ -227,6 +220,7 @@ const styles = {
     position: "sticky",
     bottom: "8px",
     alignSelf: "flex-end",
+    // backgroundColor: "red",
   },
   headerBtn: {
     backgroundColor: "#f29183",

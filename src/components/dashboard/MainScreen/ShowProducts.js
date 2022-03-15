@@ -3,7 +3,12 @@ import { Flex } from "@chakra-ui/react";
 import { ProductsBucket } from "./ProductsBucket";
 
 // Add a custom Link
-export function ShowProducts({ data, bucketData, deleteItem, editProductModal }) {
+export function ShowProducts({
+  data,
+  bucketData,
+  deleteItem,
+  editProductModal,
+}) {
   const router = useRouter();
   const buckets = [];
   data.map((item) => {
@@ -17,7 +22,7 @@ export function ShowProducts({ data, bucketData, deleteItem, editProductModal })
   };
 
   return (
-    <Flex sx={{ width: "95%",  ml:"32px" }}>
+    <Flex sx={{ width: "95%", mx: "auto" }}>
       {buckets.map((item, index) => {
         return (
           <ProductsBucket
@@ -27,10 +32,11 @@ export function ShowProducts({ data, bucketData, deleteItem, editProductModal })
             link={
               bucketData.filter((item) => item.name === buckets[index])[0] || ""
             }
-            deleteItem={(item)=>{deleteItem(item)
-            console.log('recosshow', item);
+            deleteItem={(item) => {
+              deleteItem(item);
+              console.log("recosshow", item);
             }}
-            editProductModal={(item)=>editProductModal(item)}
+            editProductModal={(item) => editProductModal(item)}
           />
         );
       })}

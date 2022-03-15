@@ -1,16 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Menu, MenuButton, MenuItem, MenuList, useToast } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useToast,
+} from "@chakra-ui/react";
 import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { auth } from "lib/firebase";
 import { useRouter } from "next/router";
 import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { AiFillCopy } from 'react-icons/ai';
+import { AiFillCopy } from "react-icons/ai";
 import { Button, Container, Flex, Image, jsx, Text } from "theme-ui";
 import { translation } from "translation";
 import MobileDrawer from "./mobile-drawer";
+import { Link } from "components/link";
+import logo from "assets/CaNDiD_B.png";
 
 export default function Header({ menu, menuActive, data }) {
   const { locale } = useRouter();
@@ -34,7 +42,7 @@ export default function Header({ menu, menuActive, data }) {
   };
 
   const linkClick = () => {
-    window.open("https://www.cndd.in/"+data[0].u_uuid, "_blank");
+    window.open("https://www.cndd.in/" + data[0].u_uuid, "_blank");
     toast({
       title: "Link Copied & Redirecting",
       // description: "Add you Candid link to Instagram Bio",
@@ -52,26 +60,44 @@ export default function Header({ menu, menuActive, data }) {
       duration: 5000,
       isClosable: true,
     });
-  }
+  };
 
   return (
     <DrawerProvider>
       <header sx={styles.header}>
         <Container sx={styles.container}>
-          <Flex as="logo" sx={styles.logoContainer}>
-            <Logo />
+          <Flex as="logo" sx={styles.logoStyles}>
+            <Link
+              path="/"
+              sx={{
+                variant: "links.logo",
+              }}
+            >
+              <Image
+                src={logo}
+                width="120"
+                height="40"
+                sx={styles.logoStyles}
+                alt="startup landing logo"
+              />
+            </Link>
           </Flex>
           <Flex as="nav" sx={styles.nav}>
-          <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
-            <Flex onClick={linkClick}>
-              <Text sx={{fontSize:'24px'}}>{"cndd.in/" + data[0].u_uuid}</Text>
-            </Flex>
-          </CopyToClipboard>
-          <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} >
-            <Flex onClick={linkCopy}>
-              <AiFillCopy sx={{fontSize:'24px', ml:'8px'}} color={"gray"}/>
-            </Flex>
-          </CopyToClipboard>
+            <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
+              <Flex onClick={linkClick}>
+                <Text sx={{ fontSize: "18px" }}>
+                  {"cndd.in/" + data[0].u_uuid}
+                </Text>
+              </Flex>
+            </CopyToClipboard>
+            <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
+              <Flex onClick={linkCopy}>
+                <AiFillCopy
+                  sx={{ fontSize: "24px", ml: "8px" }}
+                  color={"gray"}
+                />
+              </Flex>
+            </CopyToClipboard>
           </Flex>
           <Menu>
             <MenuButton as={Button}>
@@ -100,9 +126,9 @@ export default function Header({ menu, menuActive, data }) {
 const styles = {
   userImage: {
     display: ["none", "none", "none", "inline", "inline", "inline"],
-    height: "48px",
-    width: "48px",
-    borderRadius: "48px",
+    height: "32px",
+    width: "32px",
+    borderRadius: "32px",
   },
   signout: {
     backgroundColor: "white",
@@ -152,7 +178,7 @@ const styles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: ["0px", "0px", "8px", "8px", "8px", "8px"],
+    py: ["0px", "0px", "0px", "0px", "0px", "0px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
@@ -175,7 +201,7 @@ const styles = {
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
-    cursor: 'pointer',
+    cursor: "pointer",
     flex: 1,
     mr: "148px",
     px: "auto",
@@ -205,5 +231,8 @@ const styles = {
       },
     },
   },
-  logoContainer: {},
+  logoStyles: {
+    mr: ["200px", "350px", "350px", "50px", "50px", "50px", "50px"],
+    ml: [null, null, null, "16px", "16px", "16px", "16px"],
+  },
 };

@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, GridItem, SimpleGrid } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { Flex, Grid, Image, Text } from "@chakra-ui/react";
@@ -36,42 +36,58 @@ export function SocialHandles({ social, data }) {
     <Flex
       sx={{
         width: "100%",
-        px: ["0%", "0%", "10%", "10%", "10%", "10%"],
+        px: ["0%", "0%", "5%", "5%", "5%", "5%"],
         // ml: ["0%", "0%", "10%", "10%", "10%", "10%"],
         // mr: ["0%", "10%", "10%", "10%", "10%", "10%"],
-        my: "8px",
+        mt: "12px",
         flexDirection: "column",
       }}
     >
-      <Text sx={style.heading}>Social Handles</Text>
-      <Grid gap={2} columns={[4, 5, 6, 6, 6, 6]} sx={style.grid}>
+      {/* <Text sx={style.heading}>Social Handles</Text> */}
+      <SimpleGrid gap={2} columns={[4, 5, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
-
-        <Flex
-          sx={{
-            justifyContent: "center",
-            alignItems: "center",
-            mb: "8px",
-          }}
-        >
-          <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
-            <BsPlusCircleFill color="#D7354A" size={30} />
-          </Button>
-        </Flex>
-      </Grid>
+      </SimpleGrid>
+      <Flex
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          mb: "0px",
+        }}
+      >
+        <Button as="addbutton" sx={style.addbutton} onClick={addSocial}>
+          <BsPlusCircleFill color="#D7354A" size={15} />
+          <Text
+            sx={{
+              ml: "4px",
+              fontSize: "10px",
+              fontWeight: "bold",
+              fontFamily: "Poppins",
+              color: "#D7354A",
+            }}
+          >
+            Social Handle
+          </Text>
+        </Button>
+      </Flex>
     </Flex>
   );
 }
 
 const style = {
   grid: {},
+  headingTextView: {
+    width: "100%",
+    px: ["0%", "0%", "5%", "5%", "5%", "5%"],
+    my: "4px",
+    flexDirection: "column",
+  },
   heading: {
     fontFamily: "Poppins",
     fontWeight: "bold",
-    fontSize: "24px",
-    py: "8px",
+    fontSize: "12px",
+    py: "4px",
   },
   socialView: {
     ml: ["50px", "50px", "50px", "10px", "10px", "10px"],
@@ -82,8 +98,9 @@ const style = {
     alignItems: "center",
   },
   social: {
-    width: "24px",
-    height: "24px",
+    width: "16px",
+    height: "16px",
+    borderRadius: "16px",
   },
   socialText: {
     fontFamily: "Poppins",
