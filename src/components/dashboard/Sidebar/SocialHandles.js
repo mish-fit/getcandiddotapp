@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
-import { Flex, Grid, Image, jsx, Text } from "theme-ui";
+import { Flex, Grid, Image, Text } from "@chakra-ui/react";
 
 const SocialElement = ({ item }) => (
   <Flex

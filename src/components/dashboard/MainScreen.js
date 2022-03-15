@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Divider } from "@chakra-ui/react";
 import React from "react";
 import * as Scroll from "react-scroll";
-import { Container, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { AddButtons } from "./MainScreen/AddButtons";
 import { ShowLinks } from "./MainScreen/ShowLinks";
 import { ShowProducts } from "./MainScreen/ShowProducts";
@@ -222,8 +220,9 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   }
 
   return (
-    <Container
+    <Flex
       sx={{
+        flexDirection: "column",
         px: "0px",
         width: ["100%", "100%", "100%", null],
       }}
@@ -289,7 +288,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
           editLinkModal={(item)=>editLink(item)}
         />
       </Element>
-    </Container>
+    </Flex>
   );
 }
 

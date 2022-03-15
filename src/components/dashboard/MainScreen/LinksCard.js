@@ -1,11 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { IconButton, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@chakra-ui/react';
+import { Flex, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Text, useDisclosure } from '@chakra-ui/react';
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { Flex, Image, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item, deleteItem, editLinkModal }) {
@@ -62,7 +59,19 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   return (
     <Flex sx={style.button}>
       <Flex 
-        sx={merge(style.container, {
+        sx={{
+          flexDirection: "row",
+          p: "8px",
+          py: "16px",
+          backgroundColor: "white",
+          borderRadius: "16px",
+          width: ["100%", "100%", "350px", "350px", "350px", "350px"],
+          minWidth: "330px",
+          height: "96px",
+          justifyContent: "center",
+          alignItems: "center",
+          mx: "16px",
+          my: "16px",
           boxShadow: "0 0 4px 1px " + item.shadow_color,
           "&:hover": {
             p: {
@@ -70,7 +79,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             },
             backgroundColor: item.shadow_color,
           },
-        })}
+        }}
       >
         {item.photo && item.photo != "" ? (
           <Image src={item.photo+'?'+new Date().getTime()} alt="img" sx={style.image} />
@@ -84,7 +93,15 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
           }}
         onClick={onClickLink}
         >
-          <Text as="p" sx={merge(style.link, { color: item.font_color })}>
+          <Text as="p" sx={{ 
+            fontFamily: "Poppins",
+            fontWeight: "medium",
+            fontSize: "16px",
+            color: "#D7354A",
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            color: item.font_color }}>
             {item.title}
           </Text>
         </Flex>
@@ -109,34 +126,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
 }
 
 const style = {
-  container: {
-    flexDirection: "row",
-    p: "8px",
-    py: "16px",
-    backgroundColor: "white",
-    borderRadius: "16px",
-    width: ["100%", "100%", "350px", "350px", "448px", "448px"],
-    minWidth: "330px",
-    height: "96px",
-    justifyContent: "center",
-    alignItems: "center",
-    mx: "16px",
-    my: "16px",
-  },
   button: {
     display: "flex",
     backgroundColor: "transparent",
     cursor: "pointer",
     borderWidth: "0px",
-  },
-  link: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "16px",
-    color: "#D7354A",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   image: {
     width: "48px",

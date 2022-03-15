@@ -1,8 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
-import { Flex, jsx, Text } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
 
 // Add a custom Link
 export function AddButtons({ addLink, addProduct }) {
@@ -26,7 +24,7 @@ export function AddButtons({ addLink, addProduct }) {
             alignItems: "center",
           }}
         >
-          <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
+          <BsPlusCircleFill color="#D7354A" />
           <Text sx={styles.addbuttonText}>Recommend Products</Text>
         </Flex>
       </Flex>
@@ -39,7 +37,7 @@ export function AddButtons({ addLink, addProduct }) {
             alignItems: "center",
           }}
         >
-          <BsPlusCircleFill color="#D7354A" sx={{ mr: "6px" }} />
+          <BsPlusCircleFill color="#D7354A" />
           <Text sx={styles.addbuttonText}>Custom Links</Text>
         </Flex>
       </Flex>
@@ -82,6 +80,7 @@ const styles = {
     flex: [1, 1, `0 1 auto`],
   },
   addbuttonText: {
+    ml: "6px",
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
@@ -107,5 +106,5 @@ const styles = {
     "&:hover": {
       backgroundColor: "secondary",
     },
-  },
+  }
 };

@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
-import { Container, Flex, jsx, merge, Text } from "theme-ui";
+import { Container, Flex, Text } from "@chakra-ui/react";
 import { ProductsCard } from "./ProductsCard";
 
 // Add a custom Link
@@ -19,18 +17,23 @@ export function ProductsBucket({ bucketName, data, link, deleteItem, editProduct
   };
 
   return (
-    <Container sx={style.container}>
+    <Flex sx={style.container}>
       <Flex
         sx={{
+          flexDirection:"column",
           cursor: link.link ? "pointer" : "default",
           backgroundColor: "white",
         }}
         onClick={link.link ? bucketLinkClick : null}
       >
         <Text
-          sx={merge(style.heading, {
+          sx={{
+            fontFamily: "Poppins",
+            fontWeight: "bold",
+            fontSize: "24px",
+            py: "8px",
             color: link.link ? "#2A5DB0" : "#323232",
-          })}
+          }}
         >
           {bucketName}
         </Text>
@@ -46,12 +49,13 @@ export function ProductsBucket({ bucketName, data, link, deleteItem, editProduct
            />;
         })}
       </Flex>
-    </Container>
+    </Flex>
   );
 }
 
 const style = {
   container: {
+    flexDirection:"column",
     my: "8px",
     width: "100%",
     backgroundColor: "white",
