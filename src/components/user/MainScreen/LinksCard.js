@@ -14,7 +14,7 @@ export function LinksCard({ item }) {
   };
 
   return (
-    <Tooltip label={item.link} placement="top">
+    <Tooltip label={item.link.substring(0, 100) + ".."} placement="top">
       <Flex sx={style.button} onClick={onClickLink}>
         <Flex
           sx={merge(style.container, {
@@ -58,7 +58,7 @@ const style = {
     mx: "16px",
     width: ["100%", "100%", "340px", "340px", "340px", "340px"],
     minWidth: "330px",
-    height: "96px",
+    height: "72px",
     my: "16px",
     justifyContent: "center",
     alignItems: "center",
@@ -71,7 +71,7 @@ const style = {
   link: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "16px",
+    fontSize: "14px",
     color: "#D7354A",
     flex: 1,
     justifyContent: "center",

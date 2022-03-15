@@ -31,7 +31,7 @@ const SocialElement = ({ item }) => (
 export function SocialHandles({ data }) {
   return (
     <Flex sx={style.headingTextView}>
-      <Text sx={style.heading}>Social Handles</Text>
+      {/* <Text sx={style.heading}>Social Handles</Text> */}
       <Grid gap={2} columns={[3, 6, 6, 6, 6, 6]} sx={style.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;

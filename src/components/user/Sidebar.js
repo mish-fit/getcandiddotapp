@@ -27,11 +27,12 @@ export function Sidebar({ socials, user, summary }) {
           "0 0 4px 1px rgba(0, 0, 0, 0.5)",
           "0 0 4px 1px rgba(0, 0, 0, 0.5)",
         ],
+        pb: "8px",
       }}
     >
       <UserCard data={user} />
-      <UserSummary data={summary} />
       <SocialHandles data={currentSocials} />
+      <UserSummary data={summary} />
     </Flex>
   );
 }

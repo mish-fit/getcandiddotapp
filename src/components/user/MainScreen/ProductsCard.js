@@ -1,5 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { Tooltip } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { Flex, Image, jsx, Text } from "theme-ui";
 
@@ -22,32 +23,34 @@ export function ProductsCard({ item }) {
   };
 
   return (
-    <Flex sx={style.container} onClick={buy}>
-      <Flex sx={style.imageMaster}>
-        <Flex sx={style.imageContainer}>
-          <Image
-            src={item.photo || "/user/mobile.png"}
-            alt="img"
-            sx={style.image}
-          />
+    <Tooltip label={item.prod_link.substring(0, 100) + ".."} placement="top">
+      <Flex sx={style.container} onClick={buy}>
+        <Flex sx={style.imageMaster}>
+          <Flex sx={style.imageContainer}>
+            <Image
+              src={item.photo || "/user/mobile.png"}
+              alt="img"
+              sx={style.image}
+            />
+          </Flex>
         </Flex>
-      </Flex>
-      <Flex sx={style.categoryDetailsContainer}>
-        <Flex sx={style.categoryContent}>
-          <Text sx={style.category}>{item.cat_name}</Text>
+        <Flex sx={style.categoryDetailsContainer}>
+          <Flex sx={style.categoryContent}>
+            <Text sx={style.category}>{item.cat_name}</Text>
+          </Flex>
         </Flex>
-      </Flex>
-      <Flex sx={style.detailsContainer}>
-        <Flex sx={style.content}>
-          <Text sx={style.product}>{item.prod_name}</Text>
-        </Flex>
-        {/* <Flex sx={style.buttonContainer}>
+        <Flex sx={style.detailsContainer}>
+          <Flex sx={style.content}>
+            <Text sx={style.product}>{item.prod_name}</Text>
+          </Flex>
+          {/* <Flex sx={style.buttonContainer}>
           <Flex sx={style.button} onClick={buy}>
             <Text sx={style.buttonText}>Buy Now</Text>
           </Flex>
         </Flex> */}
+        </Flex>
       </Flex>
-    </Flex>
+    </Tooltip>
   );
 }
 
@@ -60,7 +63,7 @@ const style = {
     borderRadius: "0px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
     mx: "8px",
-    width: "210px",
+    width: "200px",
     // width: ["100%", "100%", "350px", "350px", "448px", "448px"],
     // minWidth: "330px",
     my: "8px",
@@ -74,8 +77,8 @@ const style = {
     backgroundColor: "white",
   },
   image: {
-    height: "300px",
-    width: "210px",
+    height: "200px",
+    width: "200px",
     borderRadius: "8px",
   },
   categoryDetailsContainer: {
@@ -129,8 +132,9 @@ const style = {
   category: {
     fontFamily: "Poppins",
     fontWeight: "medium",
-    fontSize: "12px",
+    fontSize: "10px",
     color: "white",
+    textAlign: "center",
   },
   buynow: {},
   categoryContent: {
