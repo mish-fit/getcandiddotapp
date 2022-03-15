@@ -1,29 +1,38 @@
-import { Flex, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Text, useDisclosure } from '@chakra-ui/react';
+import {
+  Flex,
+  IconButton,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { merge } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item, deleteItem, editLinkModal }) {
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onClickLink = () => {
-    if(item.link.substring(0, 8)!=="https://"){
-      window.open("https://"+item.link, "_blank");
-    }
-    else{
+    if (item.link.substring(0, 8) !== "https://") {
+      window.open("https://" + item.link, "_blank");
+    } else {
       window.open(item.link, "_blank");
     }
   };
 
-  useEffect(()=>{
-    console.log(item.photo+'?'+new Date().getTime())
-  },[])
-  const deleteLink = ()=>{
-    deleteItem(item.id)
-    console.log('linkscard', item.id);
+  useEffect(() => {
+    console.log(item.photo + "?" + new Date().getTime());
+  }, []);
+  const deleteLink = () => {
+    deleteItem(item.id);
+    console.log("linkscard", item.id);
     axios(
       {
         method: "post",
@@ -35,54 +44,45 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
       },
       { timeout: 1000 }
     )
-    .then((res) => {
-      console.log(res)
-      toast({
-        title: "Link deleted",
-        description: "",
-        status: "success",
-        duration: 1000,
-        isClosable: true,
+      .then((res) => {
+        console.log(res);
+        toast({
+          title: "Link deleted",
+          description: "",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((e) => {
+        // console.log(e);
       });
-    })
-    .catch((e) => {
-      // console.log(e);
-    });
   };
 
   const editLink = () => {
-    console.log('item',item);
+    console.log("item", item);
     editLinkModal(item);
   };
 
-
   return (
-    <Flex sx={style.button}>
-      <Flex 
-        sx={{
-          flexDirection: "row",
-          p: "8px",
-          py: "16px",
-          backgroundColor: "white",
-          borderRadius: "16px",
-          width: ["100%", "100%", "350px", "350px", "350px", "350px"],
-          minWidth: "330px",
-          height: "96px",
-          justifyContent: "center",
-          alignItems: "center",
-          mx: "16px",
-          my: "16px",
-          boxShadow: "0 0 4px 1px " + item.shadow_color,
+    <Flex sx={style.button} onClick={onClickLink}>
+      <Flex
+        sx={merge(style.container, {
+          boxShadow: "0 0 1px 1px " + item.shadow_color,
           "&:hover": {
             p: {
               color: "#fff",
             },
             backgroundColor: item.shadow_color,
           },
-        }}
+        })}
       >
         {item.photo && item.photo != "" ? (
-          <Image src={item.photo+'?'+new Date().getTime()} alt="img" sx={style.image} />
+          <Image
+            src={item.photo + "?" + new Date().getTime()}
+            alt="img"
+            sx={style.image}
+          />
         ) : null}
         <Flex
           sx={{
@@ -91,17 +91,9 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             alignItems: "center",
             textAlign: "center",
           }}
-        onClick={onClickLink}
+          onClick={onClickLink}
         >
-          <Text as="p" sx={{ 
-            fontFamily: "Poppins",
-            fontWeight: "medium",
-            fontSize: "16px",
-            color: "#D7354A",
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            color: item.font_color }}>
+          <Text as="p" sx={merge(style.link, { color: item.font_color })}>
             {item.title}
           </Text>
         </Flex>
@@ -111,11 +103,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             border="none"
             as={IconButton}
             icon={<BsThreeDotsVertical />}
-            variant='outline'
+            variant="outline"
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           />
-          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} >
+          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
             <MenuItem onClick={editLink}> Edit </MenuItem>
             <MenuItem onClick={deleteLink}> Delete </MenuItem>
           </MenuList>
@@ -126,11 +118,33 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
 }
 
 const style = {
+  container: {
+    flexDirection: "row",
+    p: "8px",
+    py: "16px",
+    backgroundColor: "white",
+    borderRadius: "0px",
+    mx: "16px",
+    width: ["100%", "100%", "340px", "340px", "340px", "340px"],
+    minWidth: "330px",
+    height: "72px",
+    my: "16px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   button: {
-    display: "flex",
     backgroundColor: "transparent",
     cursor: "pointer",
     borderWidth: "0px",
+  },
+  link: {
+    fontFamily: "Poppins",
+    fontWeight: "medium",
+    fontSize: "14px",
+    color: "#D7354A",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   image: {
     width: "48px",

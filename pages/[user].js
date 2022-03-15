@@ -177,6 +177,7 @@ const styles = {
   },
   mainscreen: {
     flex: [1, 1, 1, 2, 3, 3],
+    // backgroundColor: "blue",
   },
   sidebar: {
     p: "10px",
@@ -201,6 +202,7 @@ const styles = {
     position: "sticky",
     bottom: "8px",
     alignSelf: "flex-end",
+    // backgroundColor: "red",
   },
 
   header: {

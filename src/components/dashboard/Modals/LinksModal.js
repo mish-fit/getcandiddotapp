@@ -1,6 +1,17 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, useMediaQuery, useToast } from "@chakra-ui/react";
+import {
+  Input,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  useMediaQuery,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -19,6 +30,8 @@ import smm from "../../../../public/lottie/smm.json";
 import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
 import { BucketsModal } from "./BucketModal";
+import isURL from "validator/lib/isURL";
+
 // Add a custom Link
 export function LinksModal({
   closeParent,
@@ -158,43 +171,53 @@ export function LinksModal({
 
   const savenadd = () => {
     if (values.title && values.link) {
-      const body = {
-        ...values,
-        photo: imageSelected ? s3url + imageName + ".png" : "",
-      };
+      if (isURL(values.link)) {
+        const body = {
+          ...values,
+          photo: imageSelected ? s3url + imageName + ".png" : "",
+        };
 
-      const options = {
-        headers: {
-          Authorization: `bearer ${cookie}`,
-          Origin: "localhost:3000",
-        },
-      };
+        const options = {
+          headers: {
+            Authorization: `bearer ${cookie}`,
+            Origin: "localhost:3000",
+          },
+        };
 
-      axios(
-        {
-          method: "post",
-          url: `${authapi}links`,
-          data: { links_array: JSON.stringify([body]) },
-          options: options,
-        },
-        { timeout: 5000 }
-      )
-        .then((res) => {
-          //   console.log("Sucess", res.data);
-          newItem(res.data);
-          setSortId((id) => id + 1);
-          toast({
-            title: "New Link Added",
-            description: "",
-            status: "success",
-            duration: 1000,
-            isClosable: true,
+        axios(
+          {
+            method: "post",
+            url: `${authapi}links`,
+            data: { links_array: JSON.stringify([body]) },
+            options: options,
+          },
+          { timeout: 5000 }
+        )
+          .then((res) => {
+            //   console.log("Sucess", res.data);
+            newItem(res.data);
+            setSortId((id) => id + 1);
+            toast({
+              title: "New Link Added",
+              description: "",
+              status: "success",
+              duration: 1000,
+              isClosable: true,
+            });
+            onRefresh();
+          })
+          .catch((e) => {
+            // console.log(e);
           });
-          onRefresh();
-        })
-        .catch((e) => {
-          // console.log(e);
+      } else {
+        toast({
+          title: "Link not valid",
+          description: "Please add a valid link",
+          status: "error",
+          duration: 1000,
+          isClosable: true,
         });
+      }
     } else {
       toast({
         title: "Title and Link are mandatory",
@@ -208,43 +231,53 @@ export function LinksModal({
 
   const savenclose = () => {
     if (values.title && values.link) {
-      const body = {
-        ...values,
-        photo: imageSelected ? s3url + imageName + ".png" : "",
-      };
+      if (isURL(values.link)) {
+        const body = {
+          ...values,
+          photo: imageSelected ? s3url + imageName + ".png" : "",
+        };
 
-      const options = {
-        headers: {
-          Authorization: `bearer ${cookie}`,
-          Origin: "localhost:3000",
-        },
-      };
+        const options = {
+          headers: {
+            Authorization: `bearer ${cookie}`,
+            Origin: "localhost:3000",
+          },
+        };
 
-      axios(
-        {
-          method: "post",
-          url: `${authapi}links`,
-          data: { links_array: JSON.stringify([body]) },
-          options: options,
-        },
-        { timeout: 1000 }
-      )
-        .then((res) => {
-          //     console.log("Sucess", res.data);
-          newItem(res.data);
-          setSortId((id) => id + 1);
-          toast({
-            title: "New Link Added",
-            description: "",
-            status: "success",
-            duration: 1000,
-            isClosable: true,
+        axios(
+          {
+            method: "post",
+            url: `${authapi}links`,
+            data: { links_array: JSON.stringify([body]) },
+            options: options,
+          },
+          { timeout: 1000 }
+        )
+          .then((res) => {
+            //     console.log("Sucess", res.data);
+            newItem(res.data);
+            setSortId((id) => id + 1);
+            toast({
+              title: "New Link Added",
+              description: "",
+              status: "success",
+              duration: 1000,
+              isClosable: true,
+            });
+            closeModal();
+          })
+          .catch((e) => {
+            // console.log(e);
           });
-          closeModal();
-        })
-        .catch((e) => {
-          // console.log(e);
+      } else {
+        toast({
+          title: "Link not valid",
+          description: "Please add a valid link",
+          status: "error",
+          duration: 1000,
+          isClosable: true,
         });
+      }
     } else {
       toast({
         title: "Title and Link are mandatory",

@@ -79,6 +79,7 @@ export function ProductsBucket({ bucketName, data, link }) {
 
 const style = {
   container: {
+    flexDirection: "column",
     my: "8px",
     width: "100%",
     backgroundColor: "white",

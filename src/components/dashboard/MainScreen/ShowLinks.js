@@ -17,8 +17,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal }) {
   };
 
   return (
-    <Flex sx={{ width: "95%", ml:"32px"
-    }}>
+    <Flex sx={{ width: "95%", mx: "auto" }}>
       {buckets.map((item, index) => {
         return (
           <LinksBucket
@@ -28,10 +27,11 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal }) {
             link={
               bucketData.filter((item) => item.name === buckets[index])[0] || ""
             }
-            deleteItem={(item)=>{deleteItem(item)
-            console.log('linksshow', item);
+            deleteItem={(item) => {
+              deleteItem(item);
+              console.log("linksshow", item);
             }}
-            editLinkModal={(item)=>editLinkModal(item)}
+            editLinkModal={(item) => editLinkModal(item)}
           />
         );
       })}
