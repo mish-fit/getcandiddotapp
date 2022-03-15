@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
-import { Container, Flex, jsx, merge, Text } from "theme-ui";
+import { Container, Flex, Text } from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
 
 // Add a custom Link
@@ -19,7 +17,7 @@ export function LinksBucket({ bucketName, data, link, deleteItem, editLinkModal 
   };
 
   return (
-    <Container sx={style.container}>
+    <Flex sx={style.container}>
       <Flex
         sx={{
           cursor: link.link ? "pointer" : "default",
@@ -28,9 +26,13 @@ export function LinksBucket({ bucketName, data, link, deleteItem, editLinkModal 
         onClick={link.link ? bucketLinkClick : null}
       >
         <Text
-          sx={merge(style.heading, {
+          sx={{
+            fontFamily: "Poppins",
+            fontWeight: "bold",
+            fontSize: "24px",
+            py: "8px",
             color: link.link ? "#2A5DB0" : "#323232",
-          })}
+          }}
         >
           {bucketName}
         </Text>
@@ -46,12 +48,13 @@ export function LinksBucket({ bucketName, data, link, deleteItem, editLinkModal 
           />;
         })}
       </Flex>
-    </Container>
+    </Flex>
   );
 }
 
 const style = {
   container: {
+    flexDirection: "column",
     my: "8px",
     width: "100%",
     backgroundColor: "white",
@@ -59,11 +62,5 @@ const style = {
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
-  },
-  heading: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "24px",
-    py: "8px",
   },
 };

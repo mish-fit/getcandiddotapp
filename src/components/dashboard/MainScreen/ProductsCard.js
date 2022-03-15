@@ -1,11 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { IconButton, Menu, MenuButton, MenuItem, MenuList, useDisclosure } from '@chakra-ui/react';
+import { Flex, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Text, useDisclosure } from '@chakra-ui/react';
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useRouter } from "next/router";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { Flex, Image, jsx, Text } from "theme-ui";
 // Add a custom Link
 export function ProductsCard({ item, deleteItem, editProductModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -112,7 +109,7 @@ const style = {
     backgroundColor: "white",
     borderRadius: "16px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
-    width: ["100%", "100%", "350px", "350px", "448px", "448px"],
+    width: ["100%", "100%", "350px", "350px", "350px", "350px"],
     minWidth: "330px",
     mx: "16px",
     my: "16px",
