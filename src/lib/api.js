@@ -1,3 +1,9 @@
 export const authapi = process.env.NEXT_PUBLIC_AUTH_API;
 export const nonauthapi = process.env.NEXT_PUBLIC_NON_AUTH_API;
 export const s3url = process.env.NEXT_PUBLIC_S3URL;
+export const ampapi = process.env.NEXT_PUBLIC_AMPLITUDE_API;
+export const ampsecret = process.env.NEXT_PUBLIC_AMPLITUDE_SECRET;
+export const ampdashboard = process.env.NEXT_PUBLIC_AMPLITUDE_HTTPS;
+export const mixapi = process.env.NEXT_PUBLIC_MIXPANEL_API;
+export const mixsecret = process.env.NEXT_PUBLIC_MIXPANEL_SECRET;
+export const mixdashboard = process.env.NEXT_PUBLIC_MIXPANEL_HTTPS;

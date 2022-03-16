@@ -6,7 +6,7 @@ import { MainScreen } from "components/user/MainScreen";
 import { Sidebar } from "components/user/Sidebar";
 import { UserNotFound } from "components/user/UserNotFound";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
-import { nonauthapi } from "lib/api";
+import { ampapi, ampdashboard, ampsecret, nonauthapi } from "lib/api";
 import Lottie from "lottie-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -15,17 +15,21 @@ import { Button, Container, Flex, Image, jsx } from "theme-ui";
 import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
+import axios from "axios";
+
+import { event, pageview } from "analytics/ga";
+
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
 
   React.useEffect(() => {
-    // console.log(recos.filter((item) => isURL(item.prod_link) == true).length);
-    // console.log(links.filter((item) => isURL(item.link) == true).length);
+    pageview(user[0].uuid);
+
     setSummary({
       products: recos.filter((item) => isURL(item.prod_link) == true).length,
       links: links.filter((item) => isURL(item.link) == true).length,
     });
-  }, []);
+  }, [recos, links, user]);
 
   const router = useRouter();
   if (!user.length) {
@@ -60,6 +64,7 @@ export default function User({ links, recos, user, socials, buckets }) {
   }
 
   const handleCreateLinkButton = () => {
+    event("CREATE_YOUR_CNDD_LINK", { new_user: true });
     router.push("/auth");
   };
   return (

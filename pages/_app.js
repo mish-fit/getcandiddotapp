@@ -15,7 +15,8 @@ import { createStore } from "redux";
 import { rootreducer } from "redux-lib/reducer";
 import { useUserData } from "../src/lib/hooks";
 import theme from "../src/theme/chakra/index";
-import './../styles/normalize.css';
+import "./../styles/normalize.css";
+
 // import TagManager from "react-gtm-module";
 
 // const tagManagerArgs = {
