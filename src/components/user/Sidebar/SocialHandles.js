@@ -1,12 +1,16 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+
+import { event } from "analytics/ga";
 import { Flex, Grid, Image, jsx, Text } from "theme-ui";
 
 const SocialElement = ({ item }) => (
   <Flex
     sx={style.socialView}
     onClick={() => {
-      // console.log(item);
+      event("SOCIAL_HANDLE_CLICK", {
+        social_name: item.social_ulink + item.u_name,
+      });
       localStorage.setItem(
         "clickLatestSocial",
         item.social_ulink + item.u_name

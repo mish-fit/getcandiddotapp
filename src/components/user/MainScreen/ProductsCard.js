@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { Tooltip } from "@chakra-ui/react";
+import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { Flex, Image, jsx, Text } from "theme-ui";
 
@@ -13,7 +14,7 @@ export function ProductsCard({ item }) {
   };
 
   const buy = () => {
-    // console.log(item);
+    event("PRODUCT_CLICK", item);
     localStorage.setItem("buyLatestItem", item.prod_name);
     if (item.prod_link.substring(0, 8) !== "https://") {
       window.open("https://" + item.prod_link, "_blank");
