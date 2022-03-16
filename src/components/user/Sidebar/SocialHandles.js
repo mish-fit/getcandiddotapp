@@ -8,9 +8,7 @@ const SocialElement = ({ item }) => (
   <Flex
     sx={style.socialView}
     onClick={() => {
-      event("SOCIAL_HANDLE_CLICK", {
-        social_name: item.social_ulink + item.u_name,
-      });
+      event("SOCIAL_HANDLE_CLICK", item);
       localStorage.setItem(
         "clickLatestSocial",
         item.social_ulink + item.u_name
