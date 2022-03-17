@@ -2,10 +2,15 @@
 /** @jsx jsx */
 import { Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
+import { useEffect } from "react";
 import { Flex, Image, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function LinksCard({ item }) {
+  useEffect(() => {
+    event("LINK_EXTENSION", item);
+  }, []);
+
   const onClickLink = () => {
     event("LINK_CLICK", item);
     if (item.link.substring(0, 8) !== "https://") {
