@@ -3,6 +3,7 @@
 import { Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { Flex, Image, jsx, Text } from "theme-ui";
 
 // Add a custom Link
@@ -12,6 +13,10 @@ export function ProductsCard({ item }) {
   const addLinks = () => {
     // console.log("add links");
   };
+
+  useEffect(() => {
+    event("PRODUCT_EXTENSION", item);
+  }, []);
 
   const buy = () => {
     event("PRODUCT_CLICK", item);
