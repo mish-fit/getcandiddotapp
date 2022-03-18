@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React from "react";
-import { Flex, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { SocialHandles } from "./Sidebar/SocialHandles";
 import { UserCard } from "./Sidebar/UserCard";
 import { UserSummary } from "./Sidebar/UserSummary";
@@ -31,8 +29,8 @@ export function Sidebar({ socials, user, summary }) {
       }}
     >
       <UserCard data={user} />
-      <SocialHandles data={currentSocials} />
       <UserSummary data={summary} />
+      <SocialHandles data={currentSocials} />
     </Flex>
   );
 }

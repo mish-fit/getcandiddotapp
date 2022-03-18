@@ -1,9 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
+import { Box, Flex, Input, Modal, ModalContent, ModalOverlay, Text } from "@chakra-ui/react";
 import React from "react";
 import { MdOutlineCategory } from "react-icons/md";
-import { Box, Flex, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function BucketsModal({ isOpen, onSave, onClose }) {

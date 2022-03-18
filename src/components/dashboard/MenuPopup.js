@@ -1,15 +1,13 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Container, Divider, jsx, Text } from "theme-ui";
+import { Flex, Divider, Text } from "@chakra-ui/react";
 
 // Add a custom Link
 export function MenuPopup() {
   return (
-    <Container sx={style.container}>
+    <Flex sx={style.container}>
       <Text sx={style.text}>Edit Profile</Text>
       <Divider />
       <Text sx={style.text}>Sign Out</Text>
-    </Container>
+    </Flex>
   );
 }
 

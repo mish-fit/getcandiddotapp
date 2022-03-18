@@ -1,10 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Tooltip } from "@chakra-ui/react";
+import { Flex, Image, Text, Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Flex, Image, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function ProductsCard({ item }) {

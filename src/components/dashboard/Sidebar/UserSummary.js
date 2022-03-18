@@ -1,10 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { useMediaQuery } from "@chakra-ui/react";
+import { Button, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { Button, Container, Flex, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function UserSummary({ data }) {
@@ -26,7 +23,7 @@ export function UserSummary({ data }) {
   };
 
   return (
-    <Container sx={style.container}>
+    <Flex sx={style.container}>
       <Flex sx={{ flex: 1, width: "100%" }}>
         <Flex sx={style.buttonContainer}>
           <ScrollLink
@@ -84,7 +81,7 @@ export function UserSummary({ data }) {
           {data.links || "0"}
         </Text>
       </Flex>
-    </Container>
+    </Flex>
   );
 }
 
@@ -114,6 +111,7 @@ const style = {
     borderColor: "#D7354A",
     py: "2px",
     width: "120px",
+    height:"40px",
     borderWidth: 1,
   },
   summaryText: {
@@ -123,6 +121,10 @@ const style = {
     fontSize: "12px",
   },
   buttonText: {
+    ':hover': {backgroundColor:"#D7354A", 
+    boxShadow: "none", outline:"none"},
+    ':focus': {backgroundColor:"#D7354A", 
+    boxShadow: "none", outline:"none"},
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
@@ -141,8 +143,13 @@ const style = {
     py: "2px",
     borderWidth: 1,
     width: "120px",
+    height:"40px",
   },
   buttonText1: {
+    ':hover': {backgroundColor:"white", 
+    boxShadow: "none", outline:"none"},
+    ':focus': {backgroundColor:"white", 
+    boxShadow: "none", outline:"none"},
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",

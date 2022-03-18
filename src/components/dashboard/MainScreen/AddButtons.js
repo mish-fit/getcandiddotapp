@@ -48,7 +48,7 @@ export function AddButtons({ addLink, addProduct }) {
 const styles = {
   container: {
     px: ["4%", "4%", "0%", "0%", "0%", "0%"],
-    mb: "16px",
+    // mb: "16px",
     justifyContent: [
       "justify-evenly",
       "justify-evenly",
@@ -61,7 +61,7 @@ const styles = {
     width: ["100%", "100%", null],
   },
   addbutton: {
-    mt: "16px",
+    // mt: "16px",
     borderRadius: "16px",
     borderWidth: "2px",
     borderColor: "#FFF",

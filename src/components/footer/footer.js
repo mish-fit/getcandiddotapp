@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Link } from "components/link";
 import Logo from "components/logo";
 import { useRouter } from "next/router";
-import { Box, Container, jsx, Text } from "theme-ui";
+import { Box,Flex, Text } from "@chakra-ui/react";
 import { translation } from "translation";
 
 export default function Footer() {
@@ -48,7 +46,7 @@ export default function Footer() {
           </Box>
         ))}
       </Container> */}
-      <Container
+      <Flex
         sx={{
           variant: "layout.toolbar",
           flexDirection: ["column", null, null, null, "row"],
@@ -64,7 +62,7 @@ export default function Footer() {
           <Link path="/privacy" label={lang[1]} />
           <Link path="/terms" label={lang[2]} />
         </Box>
-      </Container>
+      </Flex>
     </footer>
   );
 }

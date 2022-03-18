@@ -1,16 +1,13 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {
-  Input,
+  Box, Flex, Image, Input,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Modal,
   ModalContent,
-  ModalOverlay,
-  useMediaQuery,
-  useToast,
+  ModalOverlay, Text, useMediaQuery,
+  useToast
 } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
@@ -25,12 +22,11 @@ import { BiLink } from "react-icons/bi";
 import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import isURL from "validator/lib/isURL";
 import smm from "../../../../public/lottie/smm.json";
 import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
 import { BucketsModal } from "./BucketModal";
-import isURL from "validator/lib/isURL";
 
 // Add a custom Link
 export function LinksModal({
@@ -327,7 +323,7 @@ export function LinksModal({
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>
-          <Container sx={style.container}>
+          <Flex sx={style.container}>
             <Flex sx={style.row1}>
               <Text sx={style.topHeader}>Enter Custom</Text>
               <Flex sx={style.saveContainer} onClick={savenclose}>
@@ -409,9 +405,12 @@ export function LinksModal({
                     </Flex>
                   </Flex>
                   <Flex
-                    sx={merge(style.middleContainer, {
+                    sx={{
+                      flex: 1,
+                      flexDirection: "column",
+                      borderRadius: "8px",
                       boxShadow: `0 0 4px 1px ${values.shadow_color}`,
-                    })}
+                    }}
                   >
                     <Flex sx={style.titleContainer}>
                       <Flex sx={{ flex: 1 }}>
@@ -532,7 +531,7 @@ export function LinksModal({
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>
-          </Container>
+          </Flex>
         </ModalContent>
       </Modal>
     </Flex>
@@ -578,8 +577,8 @@ const style = {
     textAlign: "center",
   },
   lottie: {
-    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
+    width: ["0px", "0px", "0px", "200px", "200px", "300px"],
+    height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
     fontFamily: "Poppins",
@@ -624,12 +623,6 @@ const style = {
     width: "64px",
     height: "64px",
     mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-
-    flexDirection: "column",
-    borderRadius: "8px",
   },
   rightContainer: {
     flexDirection: "column",

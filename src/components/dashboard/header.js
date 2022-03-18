@@ -1,6 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {
+  Divider,
   Menu,
   MenuButton,
   MenuItem,
@@ -14,7 +13,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { AiFillCopy } from "react-icons/ai";
-import { Button, Container, Flex, Image, jsx, Text } from "theme-ui";
+import { Button, Flex, Image, Text } from "@chakra-ui/react";
 import { translation } from "translation";
 import MobileDrawer from "./mobile-drawer";
 import { Link } from "components/link";
@@ -65,7 +64,7 @@ export default function Header({ menu, menuActive, data }) {
   return (
     <DrawerProvider>
       <header sx={styles.header}>
-        <Container sx={styles.container}>
+        <Flex sx={styles.container}>
           <Flex as="logo" sx={styles.logoStyles}>
             <Link
               path="/"
@@ -75,8 +74,8 @@ export default function Header({ menu, menuActive, data }) {
             >
               <Image
                 src={logo}
-                width="120"
-                height="40"
+                width="120px"
+                height="40px"
                 sx={styles.logoStyles}
                 alt="startup landing logo"
               />
@@ -117,7 +116,7 @@ export default function Header({ menu, menuActive, data }) {
             </MenuList>
           </Menu>
           <MobileDrawer />
-        </Container>
+        </Flex>
       </header>
     </DrawerProvider>
   );
@@ -196,6 +195,7 @@ const styles = {
     },
   },
   container: {
+    // backgroundColor: "red",
     display: "flex",
     alignItems: "center",
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],

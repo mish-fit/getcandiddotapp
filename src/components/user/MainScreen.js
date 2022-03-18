@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Divider } from "@chakra-ui/react";
 import React from "react";
 import * as Scroll from "react-scroll";
-import { Container, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { ShowLinks } from "./MainScreen/ShowLinks";
 import { ShowProducts } from "./MainScreen/ShowProducts";
 
@@ -16,8 +14,9 @@ export function MainScreen({ links, recos, user, buckets }) {
 
   return (
     <>
-      <Container 
+      <Flex 
         sx={{
+          flexDirection: "column",
           px: "0px",
           width: ["100%", "100%", "100%", null],
         }}
@@ -37,7 +36,7 @@ export function MainScreen({ links, recos, user, buckets }) {
             bucketData={JSON.parse(buckets).links}
           />
         </Element>
-      </Container>
+      </Flex>
     </>
   );
 }

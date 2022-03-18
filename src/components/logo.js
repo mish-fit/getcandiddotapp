@@ -1,9 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 import logo from "assets/CaNDiD_B.png";
 import { Link } from "components/link";
-import { Image, jsx } from "theme-ui";
+import { Image } from "@chakra-ui/react";
 
 export default function Logo() {
   return (

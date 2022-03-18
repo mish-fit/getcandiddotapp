@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Container, Flex, Image, jsx, Text } from "theme-ui";
+import { Flex, Image, Text } from "@chakra-ui/react";
 
 // Add a custom Link
 export function UserCard({ data }) {
@@ -9,8 +7,8 @@ export function UserCard({ data }) {
   // }, [data]);
 
   return (
-    <Container sx={style.container}>
-      <Container sx={style.coverPhotoView}>
+    <Flex sx={style.container}>
+      <Flex sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
           alt={"cover img"}
@@ -20,7 +18,7 @@ export function UserCard({ data }) {
               : "/user/cover.png"
           }
         />
-      </Container>
+      </Flex>
       <Flex sx={style.userPhotoView}>
         <Image
           sx={style.userImage}
@@ -32,28 +30,30 @@ export function UserCard({ data }) {
           }
         />
       </Flex>
-      <Container sx={style.userNameView}>
-        <Container>
+      <Flex sx={style.userNameView}>
+        <Flex>
           <Text sx={style.userName}>{data[0].u_name}</Text>
-        </Container>
-      </Container>
-      <Container sx={style.aboutMeView}>
-        <Container>
+        </Flex>
+      </Flex>
+      <Flex sx={style.aboutMeView}>
+        <Flex>
           <Text sx={style.aboutMe}>{data[0].u_about}</Text>
-        </Container>
-      </Container>
-    </Container>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
 
 const style = {
   container: {
+    flexDirection: "column",
     width: "full",
     mt: ["48px", "48px", "0px", "0px", "0px", "0px"],
     // mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "0px",
   },
   coverPhotoView: {
+    flexDirection: "column", 
     borderTopRadius: "0px",
     backgroundColor: "white",
     mt: "0px",
@@ -65,13 +65,14 @@ const style = {
   },
   userPhotoView: {
     justifyContent: "center",
-    mt: ["0px", "-48px", "-48px", "-48px", "0px", "0px"],
+    // mt: ["0px", "-48px", "-48px", "-48px", "0px", "0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
     borderRadius: "0px",
   },
   userNameView: {
+    flexDirection: "column", 
     mt: "12px",
     justifyContent: "center",
     alignItems: "center",
@@ -79,7 +80,8 @@ const style = {
     px: "auto",
   },
   aboutMeView: {
-    width: "90%",
+    alignItems:"center",
+    flexDirection: "column",
     mt: "4px",
   },
   aboutMe: {
@@ -96,6 +98,7 @@ const style = {
     borderRadius: "0px",
   },
   userImage: {
+    mt: "-36px",
     width: "120px",
     height: "120px",
     backgroundColor: "yellow",

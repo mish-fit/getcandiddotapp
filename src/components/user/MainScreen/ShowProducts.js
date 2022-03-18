@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
-import { Container, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { ProductsBucket } from "./ProductsBucket";
 
 // Add a custom Link
@@ -19,7 +17,7 @@ export function ShowProducts({ data, bucketData }) {
   };
 
   return (
-    <Container sx={{ width: "95%" }}>
+    <Flex sx={{ width: "95%", mx: "auto" }}>
       {buckets.map((item, index) => {
         return (
           <ProductsBucket
@@ -32,7 +30,7 @@ export function ShowProducts({ data, bucketData }) {
           />
         );
       })}
-    </Container>
+    </Flex>
   );
 }
 

@@ -1,5 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+import { Divider, Flex } from "@chakra-ui/react";
 import Header from "components/dashboard/header";
 import { MainScreen } from "components/dashboard/MainScreen";
 import { MenuPopup } from "components/dashboard/MenuPopup";
@@ -12,7 +11,6 @@ import { UserContext } from "lib/UserDataProvider";
 import Head from "next/head";
 import nookies from "nookies";
 import React, { useContext } from "react";
-import { Flex, jsx } from "theme-ui";
 import isURL from "validator/lib/isURL";
 
 // import { firebaseAdmin } from "lib/firebaseadmin";
@@ -94,6 +92,7 @@ export default function Dashboard({
         menuActive={menuClick}
         data={user}
       />
+      <Divider/>
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={styles.container}>
         <Flex as="sidebar" sx={styles.sidebar}>
@@ -198,7 +197,7 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    mt: "50px",
+    // mt: "50px",
     flex: 1,
     maxWidth: "100%",
     display: "flex",

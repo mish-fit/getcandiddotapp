@@ -1,11 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Input } from "@chakra-ui/react";
 import React from "react";
 import { BiLink } from "react-icons/bi";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { Flex, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { AddImage } from "./AddImage";
 import { BucketSelector } from "./BucketSelector";
 import { ShadowPicker } from "./ShadowPicker";

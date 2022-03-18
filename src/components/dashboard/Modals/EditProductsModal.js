@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, useMediaQuery, useToast } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -16,7 +14,6 @@ import {
   MdOutlineRecommend
 } from "react-icons/md";
 import { RiCouponLine } from "react-icons/ri";
-import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
 import smm from "../../../../public/lottie/smm.json";
 import { BucketsModal } from "./BucketModal";
 
@@ -475,7 +472,7 @@ export function EditProductsModal({
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>
-          <Container sx={style.container}>
+          <Flex sx={style.container}>
             <Flex sx={style.row1}>
               <Text sx={style.topHeader}>Edit Product</Text>
               <Flex sx={style.saveContainer} onClick={savenclose}>
@@ -557,12 +554,18 @@ export function EditProductsModal({
                     </Flex>
                   </Flex>
                   <Flex
-                    sx={merge(style.middleContainer, {
+                    sx={{
+                      flex: 1,
+                      flexGrow: 1,
+                      flexDirection: "column",
+                      borderRadius: "8px",
                       boxShadow: `0 0 1px 1px rgba(0,0,0,0.5)`,
-                    })}
+                    }}
                   >
                     <Flex
-                      sx={merge(style.titleContainer, { position: "relative" })}
+                      sx={{ 
+                      flexDirection: "row", 
+                      position: "relative" }}
                     >
                       <Flex sx={{ flex: 1 }}>
                         <Flex
@@ -622,9 +625,10 @@ export function EditProductsModal({
                     </Flex>
                     {catActive ? null : (
                       <Flex
-                        sx={merge(style.titleContainer, {
+                        sx={{
+                          flexDirection: "row",
                           position: "relative",
-                        })}
+                        }}
                       >
                         <Flex sx={{ flex: 1 }}>
                           <Flex
@@ -798,7 +802,7 @@ export function EditProductsModal({
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>
-          </Container>
+          </Flex>
         </ModalContent>
       </Modal>
     </Flex>
@@ -808,6 +812,7 @@ export function EditProductsModal({
 const style = {
   container: {
     p: "16px",
+    flexDirection: "column",
     backgroundColor: "white",
     borderRadius: "6px",
     flexGrow: 1,
@@ -844,8 +849,8 @@ const style = {
     textAlign: "center",
   },
   lottie: {
-    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
+    width: ["0px", "0px", "0px", "200px", "200px", "300px"],
+    height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
     fontFamily: "Poppins",
@@ -891,12 +896,6 @@ const style = {
     width: "64px",
     height: "64px",
     mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-    flexGrow: 1,
-    flexDirection: "column",
-    borderRadius: "8px",
   },
   rightContainer: {
     flexDirection: "column",

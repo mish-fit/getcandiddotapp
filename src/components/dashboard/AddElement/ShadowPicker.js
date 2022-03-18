@@ -1,12 +1,10 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import React from "react";
-import { Container, Flex, jsx, Text } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
 // Add a custom Link
 function ColorItem({ color }) {
   return (
-    <Container
+    <Flex
       sx={{
         borderRadius: "16px",
         height: "16px",

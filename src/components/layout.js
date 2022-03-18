@@ -1,10 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useStickyDispatch, useStickyState } from 'contexts/app/app.provider';
 import React, { useCallback } from 'react';
 import Sticky from 'react-stickynode';
 import { Waypoint } from 'react-waypoint';
-import { jsx } from 'theme-ui';
 import Footer from './footer/footer';
 import Header from './header/header';
 
@@ -37,7 +34,7 @@ export default function Layout({ children }) {
         // onLeave={setSticky}
         onPositionChange={onWaypointPositionChange}
       />
-      <main
+      <main 
         sx={{
           variant: 'layout.main',
         }}

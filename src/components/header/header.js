@@ -1,11 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { HStack } from "@chakra-ui/react";
+import { Flex, HStack, Text } from "@chakra-ui/react";
 import Logo from "components/logo";
 import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { useRouter } from "next/router";
 import { Link as ScrollLink } from "react-scroll";
-import { Container, Flex, jsx, Text } from "theme-ui";
 import { translation } from "translation";
 import menuItems from "./header.data";
 import MobileDrawer from "./mobile-drawer";
@@ -16,7 +13,7 @@ export default function Header({ className }) {
   return (
     <DrawerProvider>
       <header sx={styles.header} className={className}>
-        <Container sx={styles.container}>
+        <Flex sx={styles.container}>
           <Flex justifyContent={"space-between"}>
             <HStack>
               <Logo />
@@ -52,7 +49,7 @@ export default function Header({ className }) {
               {translation[locale].HeaderSection.Blog}
             </Text>
           </Flex>
-        </Container>
+        </Flex>
       </header>
     </DrawerProvider>
   );
@@ -131,6 +128,7 @@ const styles = {
     },
   },
   container: {
+    flexDirection: "column",
     display: "flex",
     alignItems: "center",
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],

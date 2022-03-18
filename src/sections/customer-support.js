@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import support from "assets/support.png";
 import Image from "next/image";
 import { IoIosCheckmarkCircle } from "react-icons/io";
-import { Box, Container, Grid, Heading, jsx, Text } from "theme-ui";
+import { Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 
 const list = [
   "Medical and vision",
@@ -15,7 +13,7 @@ const list = [
 const CustomerSupport = () => {
   return (
     <Box as="section" id="support" sx={styles.section}>
-      <Container>
+      <Flex>
         <Box sx={styles.grid}>
           <Box sx={styles.illustration}>
             <Image width="675" height="706" src={support} alt="support" />
@@ -47,7 +45,7 @@ const CustomerSupport = () => {
             </Grid>
           </Box>
         </Box>
-      </Container>
+      </Flex>
     </Box>
   );
 };

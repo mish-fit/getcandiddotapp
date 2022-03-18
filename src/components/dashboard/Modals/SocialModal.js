@@ -1,13 +1,10 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, InputGroup, InputLeftAddon, Modal, ModalContent, ModalOverlay, useToast } from "@chakra-ui/react";
+import { Flex, Image, Input, InputGroup, InputLeftAddon, Modal, ModalContent, ModalOverlay, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi } from "lib/api";
 import Lottie from "lottie-react";
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
 import { BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
-import { Container, Flex, Image, jsx, merge, Text } from "theme-ui";
 import smm from "../../../../public/lottie/smm.json";
 
 const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
@@ -39,7 +36,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
           return (
             <Flex
               key={index}
-              sx={merge(style.socialView, {})}
+              sx={style.socialView}
               onClick={() => socialClick(item)}
             >
               <Flex
@@ -243,7 +240,7 @@ export function SocialModal({
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
       <ModalContent maxW={"1000px"}>
-        <Container sx={style.container}>
+        <Flex sx={style.container}>
           <Flex sx={style.row1}>
             <Text sx={style.subHeader}>Add Social Handles </Text>
             <Flex sx={style.saveContainer} onClick={savenclose}>
@@ -292,7 +289,7 @@ export function SocialModal({
                 })}
               </Flex>
               {inputActive && !newInput ? (
-                <Flex sx={merge(style.addlink, { flexDirection: "column" })}>
+                <Flex sx={style.addlink}>
                   <Text
                     sx={{
                       mb: "8px",
@@ -316,7 +313,7 @@ export function SocialModal({
               ) : null}
             </Flex>
           </Flex>
-        </Container>
+        </Flex>
       </ModalContent>
     </Modal>
   );
@@ -324,6 +321,7 @@ export function SocialModal({
 
 const style = {
   container: {
+    flexDirection: "column",
     p: "16px",
     backgroundColor: "white",
     borderRadius: "6px",
@@ -360,8 +358,8 @@ const style = {
     textAlign: "center",
   },
   lottie: {
-    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
+    width: ["0px", "0px", "0px", "200px", "200px", "300px"],
+    height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
     fontFamily: "Poppins",

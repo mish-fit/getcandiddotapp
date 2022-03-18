@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Box, Heading, Image, jsx, Text } from "theme-ui";
+import { Box, Heading, Image, Text } from "@chakra-ui/react";
 
 const SectionHeading = ({ title, slogan, description, emoji, ...props }) => {
   return (
@@ -10,7 +8,7 @@ const SectionHeading = ({ title, slogan, description, emoji, ...props }) => {
           {slogan}
         </Text>
       )}
-      <Heading as="h3" sx={styles.title}>
+      <Heading as="h2" sx={styles.title}>
         {emoji ? <span>{title}</span> : title}
         {emoji && <Image src={emoji} alt="emoji" />}
       </Heading>
@@ -35,15 +33,15 @@ const styles = {
   slogan: {
     color: "#d7354a",
     fontWeight: 500,
-    fontSize: 2,
+    fontSize: 16,
     lineHeight: 2.5,
     fontFamily: "Poppins",
   },
   title: {
     color: "heading",
     fontFamily: "Poppins",
-    fontWeight: 600,
-    fontSize: [4, null, null, 6],
+    fontWeight: 200,
+    fontSize: [24, null, null, 24],
     lineHeight: [1.33, 1.33, 1.5],
     letterSpacing: [null, null, null, "heading"],
     img: {

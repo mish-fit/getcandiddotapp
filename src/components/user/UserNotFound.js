@@ -1,9 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Image } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import logo from "assets/CaNDiD.png";
 import React from "react";
-import { Flex, jsx, Text } from "theme-ui";
 
 // Add a custom Link
 export function UserNotFound() {

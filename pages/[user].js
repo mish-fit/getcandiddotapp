@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import logo from "assets/CaNDiD_B.png";
 import { Link } from "components/link";
 import { MainScreen } from "components/user/MainScreen";
@@ -11,7 +9,7 @@ import Lottie from "lottie-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import { Button, Container, Flex, Image, jsx } from "theme-ui";
+import { Button, Divider, Flex, Image } from "@chakra-ui/react";
 import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
@@ -74,10 +72,9 @@ export default function User({ links, recos, user, socials, buckets }) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href={user[0].u_profile_image} />
       </Head>
-
       <DrawerProvider>
         <header sx={styles.header}>
-          <Container sx={styles.headerContainer}>
+          <Flex sx={styles.headerContainer}>
             <Flex as="logo" sx={styles.logoStyles}>
               <Link
                 path="/"
@@ -87,8 +84,8 @@ export default function User({ links, recos, user, socials, buckets }) {
               >
                 <Image
                   src={logo}
-                  width="120"
-                  height="40"
+                  width="120px"
+                  height="40px"
                   sx={styles.logoStyles}
                   alt="startup landing logo"
                 />
@@ -104,10 +101,10 @@ export default function User({ links, recos, user, socials, buckets }) {
                 Create your CNDD link!
               </Button>
             </Flex>
-          </Container>
+          </Flex>
         </header>
       </DrawerProvider>
-
+      <Divider/>
       <Flex as="container" sx={styles.container}>
         <Flex as="sidebar" sx={styles.sidebarTrial}>
           <Sidebar socials={socials} user={user} summary={summary} />
@@ -172,7 +169,6 @@ export async function getServerSideProps(context) {
 
 const styles = {
   container: {
-    mt: "40px",
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -262,7 +258,7 @@ const styles = {
     borderRadius: [0, 0, 0, 0, 0, 0, 0],
     color: "white",
     fontSize: "12px",
-    width: "md",
+    width: "200px",
     height: [30, 30, 30, 30, 30, 30, 30],
     mt: [24, 24, 0, 0, 0, 0],
     justifyContent: "center",

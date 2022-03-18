@@ -1,11 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Button, useToast } from "@chakra-ui/react";
+import { Button, Flex, Image, Text, useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { AiFillCopy } from "react-icons/ai";
-import { Container, Flex, Image, jsx, Text } from "theme-ui";
 // Add a custom Link
 export function UserCard({ data }) {
   const router = useRouter();
@@ -42,8 +39,8 @@ export function UserCard({ data }) {
   };
 
   return (
-    <Container sx={style.container}>
-      <Container sx={style.coverPhotoView}>
+    <Flex sx={style.container}>
+      <Flex sx={style.coverPhotoView}>
         <Image
           sx={style.coverPhoto}
           alt={"cover img"}
@@ -53,7 +50,7 @@ export function UserCard({ data }) {
               : "/user/cover.png"
           }
         />
-      </Container>
+      </Flex>
       <Flex as="nav" sx={style.nav}>
         <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
           <Flex onClick={linkClick}>
@@ -79,28 +76,30 @@ export function UserCard({ data }) {
           }
         />
       </Flex>
-      <Container sx={style.userNameView}>
-        <Container>
+      <Flex sx={style.userNameView}>
+        <Flex>
           <Text sx={style.userName}>{data[0].u_name}</Text>
-        </Container>
-      </Container>
-      <Container sx={style.aboutMeView}>
-        <Container>
+        </Flex>
+      </Flex>
+      <Flex sx={style.aboutMeView}>
+        <Flex>
           <Text sx={style.aboutMe}>{data[0].u_about}</Text>
-        </Container>
-      </Container>
-    </Container>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
 
 const style = {
   container: {
+    flexDirection: "column",
     width: "full",
     mt: ["48px", "48px", "0px", "0px", "0px", "0px"],
     // mr:["-10%","-10%","0%","0%","0%","0%"],
     borderTopRadius: "0px",
   },
   coverPhotoView: {
+    flexDirection: "column", 
     backgroundColor: "white",
     width: "full",
     // width: ["0px","0px","0px","448px","448px","448px"],
@@ -110,20 +109,21 @@ const style = {
   },
   userPhotoView: {
     justifyContent: "center",
-    mt: ["24px", "24px", "-48px", "-48px", "0px", "0px"],
+    // mt: ["24px", "24px", "-48px", "-48px", "0px", "0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
   },
   userNameView: {
+    flexDirection: "column",
     mt: "12px",
     justifyContent: "center",
     alignItems: "center",
-    width: "90%",
     px: "auto",
   },
   aboutMeView: {
-    width: "90%",
+    alignItems:"center",
+    flexDirection: "column",
     mt: "4px",
   },
   aboutMe: {
@@ -140,6 +140,7 @@ const style = {
     borderRadius: "0px",
   },
   userImage: {
+    mt: "-36px",
     width: "120px",
     height: "120px",
     backgroundColor: "yellow",

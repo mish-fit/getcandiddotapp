@@ -1,9 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { rgba } from "polished";
 import { IoIosCloseCircle, IoMdCheckmarkCircle } from "react-icons/io";
-import { Box, Button, Heading, jsx, Text } from "theme-ui";
 
 const PriceTable = ({ price }) => {
   const router = useRouter();

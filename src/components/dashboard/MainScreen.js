@@ -212,6 +212,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   };
 
   return (
+    
     <Flex
       sx={{
         px: "0px",

@@ -1,12 +1,10 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import SEO from "components/seo";
 import theme from "theme";
-import { Flex, jsx, Text, ThemeProvider } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
 
 function termsandconditions() {
   return (
-    <ThemeProvider theme={theme}>
+    <Flex>
       <SEO
         title="Candid Reviews - Terms and Conditions "
         description="This page contains the terms and conditions of the Candid Reviews App. By downloading the app, you are accepting candid reviews terms and condtions."
@@ -312,7 +310,7 @@ function termsandconditions() {
           </p>
         </Flex>
       </Flex>
-    </ThemeProvider>
+    </Flex>
   );
 }
 

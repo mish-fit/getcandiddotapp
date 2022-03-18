@@ -1,7 +1,6 @@
-import { Button, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
-import { Flex, Grid, Image, Text } from "@chakra-ui/react";
 
 const SocialElement = ({ item }) => (
   <Flex

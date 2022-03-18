@@ -1,10 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import axios from "axios";
 import { nonauthapi } from "lib/api";
 import { useRouter } from "next/router";
 import React from "react";
-import { Flex, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { SocialModal } from "./Modals/SocialModal";
 import { SocialHandles } from "./Sidebar/SocialHandles";
 import { UserCard } from "./Sidebar/UserCard";

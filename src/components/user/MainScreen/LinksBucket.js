@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
-import { Container, Flex, jsx, merge, Text } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
 import isURL from "validator/lib/isURL";
 import { useEffect } from "react";
@@ -30,7 +28,7 @@ export function LinksBucket({ bucketName, data, link }) {
   };
 
   return (
-    <Container sx={style.container}>
+    <Flex sx={style.container}>
       {data.filter((item) => isURL(item.link) == true).length > 0 ? (
         <Flex
           sx={{
@@ -50,7 +48,11 @@ export function LinksBucket({ bucketName, data, link }) {
           }
         >
           <Text
-            sx={merge(style.heading, {
+            sx={{
+              fontFamily: "Poppins",
+              fontWeight: "bold",
+              fontSize: "16px",
+              py: "4px",
               color:
                 link &&
                 link.length != 0 &&
@@ -58,7 +60,7 @@ export function LinksBucket({ bucketName, data, link }) {
                 isURL(link.link.toString())
                   ? "#2A5DB0"
                   : "#323232",
-            })}
+            }}
           >
             {bucketName}
           </Text>
@@ -73,12 +75,13 @@ export function LinksBucket({ bucketName, data, link }) {
           );
         })}
       </Flex>
-    </Container>
+    </Flex>
   );
 }
 
 const style = {
   container: {
+    flexDirection:"column",
     my: "8px",
     width: "100%",
     backgroundColor: "white",
@@ -86,11 +89,5 @@ const style = {
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
-  },
-  heading: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-    py: "4px",
   },
 };
