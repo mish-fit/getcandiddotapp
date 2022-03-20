@@ -1,6 +1,7 @@
 import { Flex, Image, Text, Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useEffect } from "react";
+import linksCardStyles from "styles/LinksCard";
 // Add a custom Link
 export function LinksCard({ item }) {
   useEffect(() => {
@@ -18,7 +19,7 @@ export function LinksCard({ item }) {
 
   return (
     <Tooltip label={item.link.substring(0, 100) + ".."} placement="top">
-      <Flex sx={style.button} onClick={onClickLink}>
+      <Flex sx={linksCardStyles.button} onClick={onClickLink}>
         <Flex
           sx={{
             flexDirection: "row",
@@ -43,7 +44,7 @@ export function LinksCard({ item }) {
           }}
         >
           {item.photo && item.photo != "" ? (
-            <Image src={item.photo} alt="img" sx={style.image} />
+            <Image src={item.photo} alt="img" sx={linksCardStyles.image} />
           ) : null}
           <Flex
             sx={{
@@ -70,16 +71,3 @@ export function LinksCard({ item }) {
     </Tooltip>
   );
 }
-
-const style = {
-  button: {
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    borderWidth: "0px",
-  },
-  image: {
-    width: "48px",
-    height: "48px",
-    borderRadius: "48px",
-  },
-};

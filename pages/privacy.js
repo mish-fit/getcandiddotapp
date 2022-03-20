@@ -1,5 +1,6 @@
 import SEO from 'components/seo';
 import { Flex, Text } from '@chakra-ui/react';
+import privacyStyles from 'styles/privacy';
 
 function Privacypolicy() {
 	return (
@@ -8,9 +9,9 @@ function Privacypolicy() {
 				title='Candid Reviews - Privacy Policy'
 				description='This page contains the privacy policy of the Candid Reviews App. By downloading the app, you are accepting candid reviews privacy policy.'
 			/>
-			<Flex sx={styles.container}>
-				<Text sx={styles.heading}>Privacy Policy</Text>
-				<Flex sx={styles.subContainer}>
+			<Flex sx={privacyStyles.container}>
+				<Text sx={privacyStyles.heading}>Privacy Policy</Text>
+				<Flex sx={privacyStyles.subContainer}>
 					<p>
 						Mish Fit built the Candid Reviews app as a Free app. This SERVICE is
 						provided by Mish Fit at no cost and is intended for use as is. This
@@ -157,31 +158,3 @@ function Privacypolicy() {
 }
 
 export default Privacypolicy;
-
-const styles = {
-	container: {
-		px: '16px',
-		py: '16px',
-		flexDirection: 'column',
-	},
-	subContainer: {
-		mt: '16px',
-		flexDirection: 'column',
-	},
-	heading: {
-		fontFamily: 'Poppins',
-		fontSize: '48px',
-		fontWeight: 'bold',
-		textAlign: 'center',
-	},
-	subHeading: {
-		fontFamily: 'Poppins',
-		fontSize: '18px',
-		fontWeight: 'medium',
-	},
-	text: {
-		fontFamily: 'Poppins',
-		fontSize: '16px',
-		fontWeight: 'normal',
-	},
-};

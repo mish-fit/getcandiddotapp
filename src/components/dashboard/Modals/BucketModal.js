@@ -1,6 +1,7 @@
 import { Box, Flex, Input, Modal, ModalContent, ModalOverlay, Text } from "@chakra-ui/react";
 import React from "react";
 import { MdOutlineCategory } from "react-icons/md";
+import bucketModalStyles from "styles/BucketModal";
 
 // Add a custom Link
 export function BucketsModal({ isOpen, onSave, onClose }) {
@@ -22,18 +23,14 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
     <Modal isOpen={isOpen} isCentered>
       <ModalOverlay bg="rgba(255,255,255)" />
       <ModalContent>
-        <Flex sx={{ pt: "16px", pl: "16px", justifyContent: "space-between" }}>
-          <Box sx={style.subHeaderContainer}>
-            <Text sx={style.subHeader}>New Bucket</Text>
+        <Flex sx={bucketModalStyles.saveFlex}>
+          <Box sx={bucketModalStyles.subHeaderContainer}>
+            <Text sx={bucketModalStyles.subHeader}>New Bucket</Text>
           </Box>
           <Flex sx={{ flexDirection: "row" }}>
             <Flex sx={{ cursor: "pointer" }} onClick={closeModal}>
               <Text
-                sx={{
-                  color: "#878787",
-                  fontFamily: "Poppins",
-                  fontWeight: "medium",
-                }}
+                sx={bucketModalStyles.cancelText}
               >
                 Cancel
               </Text>
@@ -43,53 +40,39 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
               onClick={saveBucket}
             >
               <Text
-                sx={{
-                  color: "#D7354A",
-                  fontFamily: "Poppins",
-                  fontWeight: "bold",
-                }}
+                sx={bucketModalStyles.saveText}
               >
                 Save
               </Text>
             </Flex>
           </Flex>
         </Flex>
-        <Flex sx={style.titleContainer}>
+        <Flex sx={bucketModalStyles.titleContainer}>
           <Flex sx={{ flex: 1 }}>
             <Flex
-              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
+              sx={bucketModalStyles.inputFlex}
             >
               <MdOutlineCategory size={25} />
             </Flex>
 
             <Input
-              sx={{
-                color: "black",
-                fontSize: "16px",
-                fontFamily: "Poppins",
-                fontWeight: "bold",
-              }}
+              sx={bucketModalStyles.inputText}
               placeholder="Bucket Title ( Your blog name, page name etc.)"
               variant="flushed"
               onChange={handleChangeName}
             />
           </Flex>
         </Flex>
-        <Flex sx={style.titleContainer}>
+        <Flex sx={bucketModalStyles.titleContainer}>
           <Flex sx={{ flex: 1 }}>
             <Flex
-              sx={{ justifyContent: "center", alignItems: "center", p: "8px" }}
+              sx={bucketModalStyles.inputFlex}
             >
               <MdOutlineCategory size={25} />
             </Flex>
 
             <Input
-              sx={{
-                color: "black",
-                fontSize: "16px",
-                fontFamily: "Poppins",
-                fontWeight: "bold",
-              }}
+              sx={bucketModalStyles.inputText}
               placeholder="Associated link for this title"
               variant="flushed"
               onChange={handleChangeLink}
@@ -100,22 +83,3 @@ export function BucketsModal({ isOpen, onSave, onClose }) {
     </Modal>
   );
 }
-
-const style = {
-  titleContainer: {
-    width: "100%",
-    height: "48px",
-    mt: "24px",
-    pr: "8px",
-  },
-  subHeaderContainer: {
-    width: "50%",
-    borderBottomWidth: 2,
-    borderBottomColor: "#D7354A",
-  },
-  subHeader: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "24px",
-  },
-};

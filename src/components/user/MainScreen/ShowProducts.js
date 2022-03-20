@@ -33,9 +33,3 @@ export function ShowProducts({ data, bucketData }) {
     </Flex>
   );
 }
-
-const style = {
-  grid: {
-    width: "100%",
-  },
-};

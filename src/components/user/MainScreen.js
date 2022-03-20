@@ -4,6 +4,7 @@ import * as Scroll from "react-scroll";
 import { Flex } from "@chakra-ui/react";
 import { ShowLinks } from "./MainScreen/ShowLinks";
 import { ShowProducts } from "./MainScreen/ShowProducts";
+import mainScreenStyles from "styles/MainScreen";
 
 let Element = Scroll.Element;
 
@@ -15,11 +16,7 @@ export function MainScreen({ links, recos, user, buckets }) {
   return (
     <>
       <Flex 
-        sx={{
-          flexDirection: "column",
-          px: "0px",
-          width: ["100%", "100%", "100%", null],
-        }}
+        sx={mainScreenStyles.container}
       >
         <Element name="products">
           <ShowProducts

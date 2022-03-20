@@ -33,9 +33,3 @@ export function ShowLinks({ data, bucketData }) {
     </Flex>
   );
 }
-
-const style = {
-  grid: {
-    width: "100%",
-  },
-};

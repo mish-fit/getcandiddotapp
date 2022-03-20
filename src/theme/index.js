@@ -105,8 +105,6 @@ export default {
       py: 3,
     },
     toolbar: {
-      display: "flex",
-      alignItems: "center",
       // justifyContent: 'space-between',
     },
     main: {},

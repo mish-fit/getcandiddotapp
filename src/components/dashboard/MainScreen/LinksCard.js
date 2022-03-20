@@ -13,7 +13,7 @@ import axios from "axios";
 import { authapi } from "lib/api";
 import { useEffect } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { merge } from "theme-ui";
+import linksCardStyles from "styles/LinksCard";
 
 // Add a custom Link
 export function LinksCard({ item, deleteItem, editLinkModal }) {
@@ -65,9 +65,21 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   return (
-    <Flex sx={style.button} onClick={onClickLink}>
+    <Flex sx={linksCardStyles.button} onClick={onClickLink}>
       <Flex
-        sx={merge(style.container, {
+        sx={{
+          flexDirection: "row",
+          p: "8px",
+          py: "16px",
+          backgroundColor: "white",
+          borderRadius: "0px",
+          mx: "16px",
+          width: ["100%", "100%", "340px", "340px", "340px", "340px"],
+          minWidth: "330px",
+          height: "72px",
+          my: "16px",
+          justifyContent: "center",
+          alignItems: "center",
           boxShadow: "0 0 1px 1px " + item.shadow_color,
           "&:hover": {
             p: {
@@ -75,25 +87,29 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             },
             backgroundColor: item.shadow_color,
           },
-        })}
+        }}
       >
         {item.photo && item.photo != "" ? (
           <Image
             src={item.photo + "?" + new Date().getTime()}
             alt="img"
-            sx={style.image}
+            sx={linksCardStyles.image}
           />
         ) : null}
         <Flex
-          sx={{
+          sx={linksCardStyles.editButton}
+          onClick={onClickLink}
+        >
+          <Text as="p" sx={{ 
+            fontFamily: "Poppins",
+            fontWeight: "medium",
+            fontSize: "14px",
+            color: "#D7354A",
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            textAlign: "center",
-          }}
-          onClick={onClickLink}
-        >
-          <Text as="p" sx={merge(style.link, { color: item.font_color })}>
+            color: item.font_color 
+          }}>
             {item.title}
           </Text>
         </Flex>
@@ -116,39 +132,3 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
     </Flex>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "row",
-    p: "8px",
-    py: "16px",
-    backgroundColor: "white",
-    borderRadius: "0px",
-    mx: "16px",
-    width: ["100%", "100%", "340px", "340px", "340px", "340px"],
-    minWidth: "330px",
-    height: "72px",
-    my: "16px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    borderWidth: "0px",
-  },
-  link: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "14px",
-    color: "#D7354A",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: "48px",
-    height: "48px",
-    borderRadius: "48px",
-  },
-};

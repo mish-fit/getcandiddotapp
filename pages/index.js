@@ -1,3 +1,4 @@
+import { Flex } from "@chakra-ui/react";
 import "@fontsource/poppins";
 import { initOptimize } from "analytics/go";
 import Layout from "components/layout";
@@ -13,8 +14,6 @@ import FaqTwo from "sections/faq-two";
 import Features from "sections/features";
 import ProductFeature from "sections/product-feature";
 import { ContactUsModal } from "sections/video";
-import theme from "theme";
-import { ThemeProvider } from "theme-ui";
 
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
@@ -59,8 +58,8 @@ export default function IndexPage() {
   }, [router.events, variant]);
 
   return (
-    <ThemeProvider theme={theme}>
 
+      <Flex sx={{flexDirection:"column"}}>
       <Head>
         <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -81,6 +80,6 @@ export default function IndexPage() {
           <FaqTwo addQuestion={() => setOpenLinksModal(true)} />
         </Layout>
       </StickyProvider>
-    </ThemeProvider>
+      </Flex>
   );
 }

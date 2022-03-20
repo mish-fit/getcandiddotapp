@@ -1,7 +1,7 @@
 import accordionIconOpen from 'assets/faq-one-minus.svg';
 import accordionIconClose from 'assets/faq-one-plus.svg';
 import React, { Fragment } from 'react';
-import { Image } from 'theme-ui';
+import { Image } from '@chakra-ui/react';
 import { BaseAccordion } from './base-accordion';
 import {
   AccordionButton, AccordionContents, AccordionItem, combineReducers, preventClose, single

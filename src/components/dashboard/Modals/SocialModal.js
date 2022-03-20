@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
 import { BsCheckCircleFill, BsCheckLg } from "react-icons/bs";
+import socialModalStyles from "styles/SocialModal";
 import smm from "../../../../public/lottie/smm.json";
 
 const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
@@ -29,14 +30,14 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
           borderBottomColor: "#D7354A",
         }}
       >
-        <Text sx={style.subHeader1}>{category}</Text>
+        <Text sx={socialModalStyles.subHeader1}>{category}</Text>
       </Flex>
       <Flex sx={{ flexDirection: "row", mt: "16px", flexWrap: "wrap" }}>
         {data.map((item, index) => {
           return (
             <Flex
               key={index}
-              sx={style.socialView}
+              sx={socialModalStyles.socialView}
               onClick={() => socialClick(item)}
             >
               <Flex
@@ -44,7 +45,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
                   position: "relative",
                 }}
               >
-                <Image src={item.social_logo} alt="img" sx={style.social} />
+                <Image src={item.social_logo} alt="img" sx={socialModalStyles.social} />
                 <Flex sx={{ position: "absolute", top: "-4px", right: "-4px" }}>
                   {currentSocials.filter(
                     (item1, index1) => item1.social_id === item.social_id
@@ -54,7 +55,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
                 </Flex>
               </Flex>
 
-              <Text sx={style.socialText}>{item.social_name}</Text>
+              <Text sx={socialModalStyles.socialText}>{item.social_name}</Text>
             </Flex>
           );
         })}
@@ -240,37 +241,22 @@ export function SocialModal({
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
       <ModalContent maxW={"1000px"}>
-        <Flex sx={style.container}>
-          <Flex sx={style.row1}>
-            <Text sx={style.subHeader}>Add Social Handles </Text>
-            <Flex sx={style.saveContainer} onClick={savenclose}>
-              <Text sx={style.save}>Save </Text>
+        <Flex sx={socialModalStyles.container}>
+          <Flex sx={socialModalStyles.row1}>
+            <Text sx={socialModalStyles.subHeader}>Add Social Handles </Text>
+            <Flex sx={socialModalStyles.saveContainer} onClick={savenclose}>
+              <Text sx={socialModalStyles.save}>Save </Text>
               <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
             </Flex>
           </Flex>
 
-          <Flex sx={style.row3}>
-            <Flex sx={style.lottie}>
+          <Flex sx={socialModalStyles.row3}>
+            <Flex sx={socialModalStyles.lottie}>
               <Lottie animationData={smm} />
             </Flex>
-            <Flex sx={style.linkView}>
+            <Flex sx={socialModalStyles.linkView}>
               <Flex
-                sx={{
-                  flexDirection: "row",
-                  flex: 1,
-                  flexWrap: "wrap",
-                  mb: "32px",
-                  maxHeight: "300px",
-                  overflowY: "scroll",
-                  "&::-webkit-scrollbar": {
-                    width: "0px",
-                    borderRadius: "8px",
-                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
-                  },
-                  "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: `rgba(0, 0, 0, 0.05)`,
-                  },
-                }}
+                sx={socialModalStyles.innerFlex}
               >
                 {uniqueCategories.map((category, index) => {
                   return (
@@ -289,15 +275,9 @@ export function SocialModal({
                 })}
               </Flex>
               {inputActive && !newInput ? (
-                <Flex sx={style.addlink}>
+                <Flex sx={socialModalStyles.addlink}>
                   <Text
-                    sx={{
-                      mb: "8px",
-                      fontStyle: "Poppins",
-                      fontSize: "16px",
-                      fontWeight: "bold",
-                      color: "#D7354A",
-                    }}
+                    sx={socialModalStyles.username}
                   >
                     Enter Username
                   </Text>
@@ -318,175 +298,3 @@ export function SocialModal({
     </Modal>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "column",
-    p: "16px",
-    backgroundColor: "white",
-    borderRadius: "6px",
-  },
-  row1: {
-    justifyContent: "space-between",
-    mt: "8px",
-  },
-  row2: { mt: "16px" },
-  row3: { mt: "16px" },
-  row4: {
-    justifyContent: "center",
-    alignItems: "center",
-    mb: "24px",
-    mt: "16px",
-    ml: ["50px", "50px", "50px", "250px", "250px", "250px"],
-  },
-  addNew: {
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    cursor: "pointer",
-    backgroundColor: "#D7354A",
-    borderRadius: "48px",
-    borderColor: "#D7354A",
-    width: "48px",
-    height: "48px",
-  },
-  addNewText: {
-    color: "white",
-    fontWeight: "medium",
-    fontFamily: "Poppins",
-    fontSize: "32px",
-    textAlign: "center",
-  },
-  lottie: {
-    width: ["0px", "0px", "0px", "200px", "200px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "200px", "300px"],
-  },
-  topHeader: {
-    fontFamily: "Poppins",
-    color: "#D7354A",
-    fontWeight: "Bold",
-    fontSize: "16px",
-  },
-  saveContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  save: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-  },
-  subHeaderContainer: {
-    width: "100%",
-    borderBottomWidth: 2,
-    borderBottomColor: "#D7354A",
-  },
-  subHeader: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "24px",
-  },
-  subHeader1: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "18px",
-  },
-  linkView: {
-    pl: "16px",
-    pr: "16px",
-    flex: 1,
-    flexDirection: "column",
-  },
-
-  addlink: {
-    flexDirection: "row",
-    width: "100%",
-  },
-  leftContainer: {
-    flexDirection: "column",
-    width: "64px",
-    height: "64px",
-    mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-    flexDirection: "column",
-    borderRadius: "8px",
-  },
-  rightContainer: {
-    flexDirection: "column",
-    ml: "8px",
-  },
-  imageContainer: {},
-  addImage: {},
-  titleContainer: {
-    flexDirection: "row",
-  },
-
-  dragIcon: {
-    cursor: "grab",
-    p: "8px",
-    backgroundColor: "gray",
-  },
-  link: {},
-  bucket: {},
-  delete: {
-    cursor: "pointer",
-    mt: "8px",
-    p: "2px",
-  },
-  pickerContainer: {
-    flexDirection: "row",
-    mx: "32px",
-    py: "8px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titleContainer: {
-    width: "100%",
-    height: "48px",
-    mt: "8px",
-    pr: "8px",
-  },
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "100%",
-    borderWidth: 1,
-    position: "relative",
-    cursor: "pointer",
-  },
-  socialView: {
-    textAlign: "center",
-    cursor: "pointer",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center",
-    px: "8px",
-  },
-  social: {
-    width: "32px",
-    height: "32px",
-  },
-  socialText: {
-    fontFamily: "Poppins",
-    fontSize: "12px",
-    color: "#646464",
-    textAlign: "center",
-  },
-  addbutton: {
-    cursor: "pointer",
-    backgroundColor: "transparent",
-  },
-  addContainer: {
-    textAlign: "center",
-  },
-  addbuttonText: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "12px",
-    color: "#FFFFFF",
-  },
-};

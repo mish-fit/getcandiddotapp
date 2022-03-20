@@ -43,9 +43,3 @@ export function ShowProducts({
     </Flex>
   );
 }
-
-const style = {
-  grid: {
-    width: "100%",
-  },
-};

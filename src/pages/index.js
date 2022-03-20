@@ -12,12 +12,9 @@ import Pricing from "sections/pricing";
 import ProductFeature from "sections/product-feature";
 import Services from "sections/services";
 import Video from "sections/video";
-import theme from "theme";
-import { ThemeProvider } from "theme-ui";
 
 export default function IndexPage() {
   return (
-    <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
           <SEO
@@ -35,6 +32,5 @@ export default function IndexPage() {
           <FaqTwo />
         </Layout>
       </StickyProvider>
-    </ThemeProvider>
   );
 }

@@ -4,6 +4,7 @@ import Sticky from 'react-stickynode';
 import { Waypoint } from 'react-waypoint';
 import Footer from './footer/footer';
 import Header from './header/header';
+import { Flex } from '@chakra-ui/react';
 
 export default function Layout({ children }) {
   const isSticky = useStickyState('isSticky');
@@ -25,7 +26,7 @@ export default function Layout({ children }) {
   };
 
   return (
-    <React.Fragment>
+    <Flex flexDirection={"column"}>
       <Sticky enabled={isSticky} innerZ={991}>
         <Header className={`${isSticky ? 'sticky' : 'unSticky'}`} />
       </Sticky>
@@ -42,6 +43,6 @@ export default function Layout({ children }) {
         {children}
       </main>
       <Footer />
-    </React.Fragment>
+    </Flex>
   );
 }

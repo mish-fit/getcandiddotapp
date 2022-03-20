@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import { Box, Button } from "theme-ui";
+import { Box, Button } from "@chakra-ui/react";
+import dahsboardMobileDrawerStyes from "styles/dashboardMobileDrawer";
 
 const MobileDrawer = () => {
   const { state, dispatch } = useContext(DrawerContext);
@@ -32,27 +33,27 @@ const MobileDrawer = () => {
     <Drawer
       width="316px"
       drawerHandler={
-        <Box sx={styles.handler}>
+        <Box sx={dahsboardMobileDrawerStyes.handler}>
           <IoMdMenu size="22px" />
         </Box>
       }
       open={state.isOpen}
       toggleHandler={toggleHandler}
       closeButton={<IoMdClose size="24px" color="#02073E" />}
-      drawerStyle={styles.drawer}
-      closeBtnStyle={styles.close}
+      drawerStyle={dahsboardMobileDrawerStyes.drawer}
+      closeBtnStyle={dahsboardMobileDrawerStyes.close}
     >
       <Scrollbars autoHide>
-        <Box sx={styles.content}>
+        <Box sx={dahsboardMobileDrawerStyes.content}>
           <Logo />
-          <Box sx={styles.menu}>
-          <Button variant="primary" onClick={editProfile} sx={styles.button}>
+          <Box sx={dahsboardMobileDrawerStyes.menu}>
+          <Button onClick={editProfile} sx={dahsboardMobileDrawerStyes.button}>
               Edit Profile
             </Button>
           </Box>
 
-          <Box sx={styles.menuFooter}>
-            <Button variant="primary" onClick={signout} sx={styles.button}>
+          <Box sx={dahsboardMobileDrawerStyes.menuFooter}>
+            <Button onClick={signout} sx={dahsboardMobileDrawerStyes.button}>
               Sign Out
             </Button>
           </Box>
@@ -60,84 +61,6 @@ const MobileDrawer = () => {
       </Scrollbars>
     </Drawer>
   );
-};
-
-const styles = {
-  handler: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    flexShrink: "0",
-    width: "24px",
-
-    "@media screen and (min-width: 960px)": {
-      display: "none",
-    },
-  },
-
-  drawer: {
-    width: "100%",
-    height: "100%",
-    background: "#fff",
-  },
-
-  close: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    top: "24px",
-    right: "24px",
-    zIndex: "1",
-  },
-
-  content: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    pt: "24px",
-    pb: "32px",
-    px: "24px",
-  },
-
-  menu: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    marginTop: "24px",
-
-    a: {
-      fontSize: "16px",
-      fontWeight: "400",
-      color: "black",
-      py: "6px",
-      cursor: "pointer",
-    },
-  },
-
-  menuFooter: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    mt: "auto",
-  },
-
-  button: {
-    fontSize: "16px",
-    fw: "700",
-    height: "48px",
-    borderRadius: "4px",
-    cursor: "pointer",
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    py: "0",
-    backgroundColor: "black",
-    color: "#fff",
-  },
 };
 
 export default MobileDrawer;

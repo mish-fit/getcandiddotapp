@@ -6,9 +6,6 @@ export default function Logo() {
   return (
     <Link
       path="/"
-      sx={{
-        variant: "links.logo",
-      }}
     >
       <Image src={logo} width='210' height='70' sx={style.logoStyles} alt="startup landing logo" />
     </Link>

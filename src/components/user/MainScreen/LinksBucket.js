@@ -3,6 +3,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
 import isURL from "validator/lib/isURL";
 import { useEffect } from "react";
+import linksBucketStyles from "styles/LinksBucket";
 
 // Add a custom Link
 export function LinksBucket({ bucketName, data, link }) {
@@ -28,7 +29,7 @@ export function LinksBucket({ bucketName, data, link }) {
   };
 
   return (
-    <Flex sx={style.container}>
+    <Flex sx={linksBucketStyles.container}>
       {data.filter((item) => isURL(item.link) == true).length > 0 ? (
         <Flex
           sx={{
@@ -66,7 +67,7 @@ export function LinksBucket({ bucketName, data, link }) {
           </Text>
         </Flex>
       ) : null}
-      <Flex sx={style.grid}>
+      <Flex sx={linksBucketStyles.grid}>
         {data.map((item, index) => {
           return (
             isURL(item.link, { require_tld: true }) && (
@@ -78,16 +79,3 @@ export function LinksBucket({ bucketName, data, link }) {
     </Flex>
   );
 }
-
-const style = {
-  container: {
-    flexDirection:"column",
-    my: "8px",
-    width: "100%",
-    backgroundColor: "white",
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-};
