@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { motion } from "framer-motion";
-import { jsx } from "theme-ui";
 
 export const AccordionButton = ({ children, ...rest }) => (
   <div

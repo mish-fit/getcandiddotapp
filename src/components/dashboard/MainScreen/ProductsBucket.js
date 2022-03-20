@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { Container, Flex, Text } from "@chakra-ui/react";
 import { ProductsCard } from "./ProductsCard";
 import isURL from "validator/lib/isURL";
+import productsBucketStyles from "styles/ProductsBucket";
 
 // Add a custom Link
 export function ProductsBucket({
@@ -23,7 +24,7 @@ export function ProductsBucket({
   };
 
   return (
-    <Flex sx={style.container}>
+    <Flex sx={productsBucketStyles.container}>
       <Flex
         sx={{
           cursor:
@@ -57,7 +58,7 @@ export function ProductsBucket({
         </Text>
       </Flex>
 
-      <Flex sx={style.grid}>
+      <Flex sx={productsBucketStyles.grid}>
         {data.map((item, index) => {
           return (
             isURL(item.prod_link, { require_tld: true }) && (
@@ -78,20 +79,3 @@ export function ProductsBucket({
   );
 }
 
-const style = {
-  container: {
-    flexDirection: "column",
-    my: "8px",
-    width: "100%",
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  heading: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-    py: "8px",
-  },
-};

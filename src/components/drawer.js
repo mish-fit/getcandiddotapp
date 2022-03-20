@@ -1,6 +1,6 @@
 import RcDrawer from "rc-drawer";
 import React, { Fragment } from "react";
-import { Box } from "theme-ui";
+import { Box } from "@chakra-ui/react";
 
 const Drawer = ({
   className,

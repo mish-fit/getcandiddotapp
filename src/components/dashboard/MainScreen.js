@@ -9,6 +9,7 @@ import { EditLinksModal } from "./Modals/EditLinksModal";
 import { EditProductsModal } from "./Modals/EditProductsModal";
 import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
+import mainScreenStyles from "styles/MainScreen";
 
 let Element = Scroll.Element;
 
@@ -212,12 +213,9 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   };
 
   return (
+    
     <Flex
-      sx={{
-        px: "0px",
-        width: ["100%", "100%", "100%", null],
-        flexDirection: "column",
-      }}
+      sx={mainScreenStyles.container}
     >
       <LinksModal
         isOpen={isOpenLinksModal}

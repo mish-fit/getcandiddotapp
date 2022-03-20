@@ -1,6 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, useMediaQuery, useToast } from "@chakra-ui/react";
+import { Box, Flex, Image, Input, Menu, MenuButton, MenuItem, MenuList, Modal, ModalContent, ModalOverlay, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -16,7 +14,7 @@ import {
   MdOutlineRecommend
 } from "react-icons/md";
 import { RiCouponLine } from "react-icons/ri";
-import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import productsModalStyles from "styles/ProductsModal";
 import smm from "../../../../public/lottie/smm.json";
 import { BucketsModal } from "./BucketModal";
 
@@ -116,7 +114,7 @@ export function EditProductsModal({
         }}
       >
         <Text
-          sx={{ fontStyle: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontproductsModalStyles: "Poppins", fontSize: "16px", fontWeight: "medium" }}
         >
           {item.prod_name}
         </Text>
@@ -179,7 +177,7 @@ export function EditProductsModal({
         }}
       >
         <Text
-          sx={{ fontStyle: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontproductsModalStyles: "Poppins", fontSize: "16px", fontWeight: "medium" }}
         >
           {item.cat_name}
         </Text>
@@ -475,11 +473,11 @@ export function EditProductsModal({
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>
-          <Container sx={style.container}>
-            <Flex sx={style.row1}>
-              <Text sx={style.topHeader}>Edit Product</Text>
-              <Flex sx={style.saveContainer} onClick={savenclose}>
-                <Text sx={style.save}>Save </Text>
+          <Flex sx={productsModalStyles.container}>
+            <Flex sx={productsModalStyles.row1}>
+              <Text sx={productsModalStyles.topHeader}>Edit Product</Text>
+              <Flex sx={productsModalStyles.saveContainer} onClick={savenclose}>
+                <Text sx={productsModalStyles.save}>Save </Text>
                 <BsCheckCircleFill
                   color="#D7354A"
                   size={15}
@@ -487,19 +485,19 @@ export function EditProductsModal({
                 />
               </Flex>
             </Flex>
-            <Flex sx={style.row2}>
-              <Box sx={style.subHeaderContainer}>
-                <Text sx={style.subHeader}>Recommendations</Text>
+            <Flex sx={productsModalStyles.row2}>
+              <Box sx={productsModalStyles.subHeaderContainer}>
+                <Text sx={productsModalStyles.subHeader}>Recommendations</Text>
               </Box>
             </Flex>
-            <Flex sx={style.row3}>
-              <Flex sx={style.lottie}>
+            <Flex sx={productsModalStyles.row3}>
+              <Flex sx={productsModalStyles.lottie}>
                 <Lottie animationData={smm} />
               </Flex>
-              <Flex sx={style.linkView}>
-                <Flex sx={style.addlink}>
-                  <Flex sx={style.leftContainer}>
-                    <Flex sx={style.imageContainer}>
+              <Flex sx={productsModalStyles.linkView}>
+                <Flex sx={productsModalStyles.addlink}>
+                  <Flex sx={productsModalStyles.leftContainer}>
+                    <Flex sx={productsModalStyles.imageContainer}>
                       {image.preview || editProductItem.photo ? (
                         <Flex
                           sx={{
@@ -557,12 +555,18 @@ export function EditProductsModal({
                     </Flex>
                   </Flex>
                   <Flex
-                    sx={merge(style.middleContainer, {
+                    sx={{
+                      flex: 1,
+                      flexGrow: 1,
+                      flexDirection: "column",
+                      borderRadius: "8px",
                       boxShadow: `0 0 1px 1px rgba(0,0,0,0.5)`,
-                    })}
+                    }}
                   >
                     <Flex
-                      sx={merge(style.titleContainer, { position: "relative" })}
+                      sx={{ 
+                      flexDirection: "row", 
+                      position: "relative" }}
                     >
                       <Flex sx={{ flex: 1 }}>
                         <Flex
@@ -622,9 +626,10 @@ export function EditProductsModal({
                     </Flex>
                     {catActive ? null : (
                       <Flex
-                        sx={merge(style.titleContainer, {
+                        sx={{
+                          flexDirection: "row",
                           position: "relative",
-                        })}
+                        }}
                       >
                         <Flex sx={{ flex: 1 }}>
                           <Flex
@@ -681,7 +686,7 @@ export function EditProductsModal({
                       </Flex>
                     )}
                     {catActive || (prodActive && values.cat_id) ? null : (
-                      <Flex sx={style.titleContainer}>
+                      <Flex sx={productsModalStyles.titleContainer}>
                         <Flex sx={{ flex: 1 }}>
                           <Flex
                             sx={{
@@ -709,7 +714,7 @@ export function EditProductsModal({
                       </Flex>
                     )}
                     {catActive || (prodActive && values.cat_id) ? null : (
-                      <Flex sx={style.pickerContainer}>
+                      <Flex sx={productsModalStyles.pickerContainer}>
                         <Flex
                           sx={{
                             flex: 1,
@@ -785,160 +790,22 @@ export function EditProductsModal({
                       </Flex>
                     )}
                   </Flex>
-                  <Flex sx={style.rightContainer}>
-                    <Flex sx={style.delete} onClick={onRefresh}>
+                  <Flex sx={productsModalStyles.rightContainer}>
+                    <Flex sx={productsModalStyles.delete} onClick={onRefresh}>
                       <IoCloseCircleOutline size={20} />
                     </Flex>
                   </Flex>
                 </Flex>
               </Flex>
             </Flex>
-            <Flex sx={style.row4}>
+            <Flex sx={productsModalStyles.row4}>
               <Flex onClick={savenadd} sx={{ cursor: "pointer" }}>
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>
-          </Container>
+          </Flex>
         </ModalContent>
       </Modal>
     </Flex>
   );
 }
-
-const style = {
-  container: {
-    p: "16px",
-    backgroundColor: "white",
-    borderRadius: "6px",
-    flexGrow: 1,
-  },
-  row1: {
-    justifyContent: "space-between",
-    mt: "8px",
-  },
-  row2: { mt: "16px" },
-  row3: { mt: "16px" },
-  row4: {
-    justifyContent: "center",
-    alignItems: "center",
-    mb: "24px",
-    mt: "16px",
-    ml: ["50px", "50px", "50px", "250px", "250px", "250px"],
-  },
-  addNew: {
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    cursor: "pointer",
-    backgroundColor: "#D7354A",
-    borderRadius: "48px",
-    borderColor: "#D7354A",
-    width: "48px",
-    height: "48px",
-  },
-  addNewText: {
-    color: "white",
-    fontWeight: "medium",
-    fontFamily: "Poppins",
-    fontSize: "32px",
-    textAlign: "center",
-  },
-  lottie: {
-    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
-  },
-  topHeader: {
-    fontFamily: "Poppins",
-    color: "#D7354A",
-    fontWeight: "Bold",
-    fontSize: "16px",
-  },
-  saveContainer: {
-    mx: "4px",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  save: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-  },
-  subHeaderContainer: {
-    width: "50%",
-    borderBottomWidth: 2,
-    borderBottomColor: "#D7354A",
-  },
-  subHeader: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "24px",
-  },
-  linkView: {
-    pl: "16px",
-    pr: "16px",
-    flex: 1,
-  },
-
-  addlink: {
-    flexDirection: "row",
-
-    width: "100%",
-  },
-  leftContainer: {
-    flexDirection: "column",
-    width: "64px",
-    height: "64px",
-    mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-    flexGrow: 1,
-    flexDirection: "column",
-    borderRadius: "8px",
-  },
-  rightContainer: {
-    flexDirection: "column",
-    ml: "8px",
-  },
-  imageContainer: {},
-  addImage: {},
-  titleContainer: {
-    flexDirection: "row",
-  },
-
-  dragIcon: {
-    cursor: "grab",
-    p: "8px",
-    backgroundColor: "gray",
-  },
-  link: {},
-  bucket: {},
-  delete: {
-    cursor: "pointer",
-    mt: "8px",
-    p: "2px",
-  },
-  pickerContainer: {
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
-    justifyContent: "space-between",
-    py: "8px",
-    justifyContent: [null, null, "center"],
-    alignItems: [null, null, "center"],
-  },
-  titleContainer: {
-    width: "100%",
-    height: "48px",
-    mt: "8px",
-    pr: "8px",
-  },
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "100%",
-    borderWidth: 1,
-    position: "relative",
-    cursor: "pointer",
-  },
-};

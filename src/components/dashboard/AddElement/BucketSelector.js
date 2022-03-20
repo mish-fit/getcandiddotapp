@@ -1,8 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { Flex, Input, Menu, MenuButton, MenuItem, MenuList, Text } from "@chakra-ui/react";
 import React from "react";
-import { Flex, jsx, Text } from "theme-ui";
 import { BucketsModal } from "../Modals/BucketModal";
 
 export function BucketSelector({ buckets }) {

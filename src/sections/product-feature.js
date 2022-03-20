@@ -5,8 +5,9 @@ import SectionHeading from "components/section-heading";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import { Box, Container, Grid, Heading, Text } from "theme-ui";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import { translation } from "translation";
+import productFeatureStyles from "styles/product-feature";
 
 const ProductFeature = () => {
   const { locale } = useRouter();
@@ -49,102 +50,28 @@ const ProductFeature = () => {
   };
   const { sectionTitle, posts } = PRODUCT_FEATURE;
   return (
-    <Box sx={styles.section}>
-      <Container>
+    <Box sx={productFeatureStyles.section}>
+      <Flex sx={productFeatureStyles.container}>
         <SectionHeading slogan={sectionTitle.text} title={sectionTitle.title} />
-
-        <Grid sx={styles.grid}>
+        <Flex sx={productFeatureStyles.flex}>
           {posts.map(({ label, icon, title, text, button }, index) => (
-            <Box key={`feature-key-${index}`} sx={styles.items}>
+            <Box key={`feature-key-${index}`} sx={productFeatureStyles.items}>
               <Box className="image">
                 <Image src={icon} alt={title} width="70" height="70" />
               </Box>
-              <Box sx={styles.itemContent}>
+              <Box sx={productFeatureStyles.itemContent}>
                 <Heading as="h3">
                   {title}
                   {label ? <Text as="span">{label}</Text> : null}
                 </Heading>
                 <Text as="p">{text}</Text>
-                {/* <Link href={button.link}>
-                  {button.label}
-                  <IoIosArrowForward />
-                </Link> */}
               </Box>
             </Box>
           ))}
-        </Grid>
-      </Container>
+        </Flex>
+      </Flex>
     </Box>
   );
 };
 
 export default ProductFeature;
-
-const styles = {
-  section: {
-    pt: ["72px", null, null, null, "96px", null, "148px"],
-    pb: ["32px", null, null, null, "72px", null, "96px"],
-    backgroundColor: "#F9FAFC",
-  },
-  grid: {
-    gridColumnGap: "24px",
-    gridTemplateColumns: ["1fr", null, "1fr 1fr", null, "1fr 1fr 1fr"],
-  },
-  items: {
-    display: "flex",
-    mb: ["24px", null, null, null, null, null, "60px"],
-    ".image": {
-      flexShrink: "0",
-      width: "72px",
-      height: "72px",
-      mr: ["16px", null, null, "24px"],
-    },
-  },
-  itemContent: {
-    h3: {
-      fontSize: ["17px", null, null, null, "16px"],
-      color: "#0F2137",
-      fontWeight: 700,
-      lineHeight: 1,
-      alignItems: "center",
-      display: "inline-flex",
-      flexWrap: "wrap",
-      span: {
-        backgroundColor: "#28A5FF",
-        fontSize: "12px",
-        color: "#fff",
-        fontWeight: 700,
-        display: "flex",
-        alignItems: "center",
-        lineHeight: "24px",
-        borderRadius: "24px",
-        letterSpacing: "-0.5px",
-        px: "8px",
-        ml: ["8px", null, "8px", "8px"],
-        mt: ["0", null, "6px", "0"],
-      },
-    },
-    p: {
-      color: "#343D48",
-      fontSize: ["16px", null, null, "16px"],
-      lineHeight: 1.87,
-      mt: "6px",
-      mb: "8px",
-    },
-    a: {
-      display: "inline-flex",
-      alignItems: "center",
-      fontSize: "16px",
-      color: "#3183FF",
-      fontWeight: 500,
-      transition: "all 500ms ease",
-      "&:hover": {
-        color: "black",
-      },
-      svg: {
-        fontSize: "16px",
-        ml: "6px",
-      },
-    },
-  },
-};

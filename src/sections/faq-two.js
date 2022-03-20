@@ -1,11 +1,10 @@
-import { Button, Flex } from "@chakra-ui/react";
-import { keyframes } from "@emotion/core";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
+import SectionHeading from "components/section-heading";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
-import { Box, Container, Heading, Text } from "theme-ui";
+import faqTwostyles from "styles/faq-two";
 import { translation } from "translation";
-
 
 const FaqItem = ({ title, text, status, index }) => {
   const [active, setActive] = useState(status);
@@ -15,7 +14,7 @@ const FaqItem = ({ title, text, status, index }) => {
   return (
     <Box
       id="faq-two"
-      sx={styles.item}
+      sx={faqTwostyles.item}
       className={`${active === true ? "active" : " "}`}
       onClick={handleClick}
     >
@@ -25,7 +24,7 @@ const FaqItem = ({ title, text, status, index }) => {
       </Heading>
       {active === false ? <Text as="p">{text.slice(0, 65)} ...</Text> : null}
       {active === true ? <Text as="p">{text}</Text> : null}
-      <Box sx={styles.icon}>
+      <Box sx={faqTwostyles.icon}>
         {active === false ? <IoIosAdd /> : null}
         {active === true ? <IoIosRemove /> : null}
       </Box>
@@ -80,12 +79,9 @@ const FaqTwo = ({ addQuestion }) => {
   };
 
   return (
-    <Box sx={styles.section}>
-      <Container>
-        <Box sx={styles.sectionTitle}>
-          <Text as="p">{sectionTitle.text}</Text>
-          <Heading as="h3">{sectionTitle.title}</Heading>
-        </Box>
+    <Box sx={faqTwostyles.section}>
+      <Flex flexDirection={"column"}>
+      <SectionHeading slogan={sectionTitle.text} title={sectionTitle.title} />
         <Box>
           {posts.map(({ title, text, status }, index) => (
             <FaqItem
@@ -104,110 +100,13 @@ const FaqTwo = ({ addQuestion }) => {
             textAlign: "center",
           }}
         >
-          <Button sx={styles.buttonWrap} onClick={add}>
+          <Button sx={faqTwostyles.buttonWrap} onClick={add}>
             <Text>{button.label}</Text>
           </Button>
         </Flex>
-      </Container>
+      </Flex>
     </Box>
   );
 };
 
 export default FaqTwo;
-
-const faqAnim = keyframes`
-    from {
-        opacity: 0;
-        transform: translateY(20%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-`;
-
-const styles = {
-  section: {
-    pb: ["72px", null, null, null, "96px", null, "148px"],
-    pt: ["32px", null, null, null, "72px"],
-  },
-  sectionTitle: {
-    mb: ["0", null, null, null, "32px"],
-    textAlign: "center",
-    p: {
-      color: "#d7354a",
-      fontSize: "16px",
-    },
-    h3: {
-      color: "#0F2137",
-      letterSpacing: "-0.5px",
-      fontSize: "24px",
-      fontWeight: 500,
-    },
-  },
-  item: {
-    display: "flex",
-    flexWrap: "wrap",
-    borderBottom: "1px solid #E5E5E5",
-    px: ["16px", "32px"],
-    py: "32px",
-    cursor: "pointer",
-    transition: "all 500ms ease",
-    position: "relative",
-    "&.active": {
-      borderColor: "#0F2137",
-    },
-    h3: {
-      flex: ["0 0 100%", null, null, null, "0 0 50%"],
-      color: "#0F2137",
-      fontSize: ["16px", null, null, "16px", null, "16px"],
-      fontWeight: 500,
-      letterSpacing: "-0.5px",
-      position: "relative",
-      pl: ["0", null, null, null, "32px"],
-      lineHeight: 1.67,
-      whiteSpace: ["normal", null, null, null, "pre-line"],
-      mb: ["8px", null, null, null, "0"],
-      span: {
-        position: ["relative", null, null, null, "absolute"],
-        top: 0,
-        left: 0,
-        mr: ["8px", null, null, null, "0"],
-      },
-    },
-    p: {
-      flex: ["0 0 100%", null, null, null, "0 0 50%"],
-      color: "#343D48",
-      fontSize: ["16px", null, null, "16px"],
-      lineHeight: [1.87, 2],
-      animation: `${faqAnim} .8s linear`,
-    },
-  },
-  buttonWrap: {
-    textAlign: "center",
-    mt: "32px",
-    a: {
-      display: "inline-flex",
-      backgroundColor: "#ECF2F7",
-      borderRadius: "6px",
-      color: "#738295",
-      fontSize: "16px",
-      fontWeight: 700,
-      padding: "8px 24px",
-      transition: "all 500ms ease",
-      "&:hover": {
-        backgroundColor: "#4F96FF",
-        color: "#fff",
-      },
-    },
-  },
-  icon: {
-    position: "absolute",
-    top: "48px",
-    right: 0,
-    svg: {
-      fontSize: "24px",
-      color: "#B1B8C0",
-    },
-  },
-};

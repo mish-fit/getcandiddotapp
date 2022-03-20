@@ -13,6 +13,7 @@ import { useRouter } from 'next/router';
 import nookies from 'nookies';
 import { useContext, useEffect, useState } from 'react';
 import { IoCloseCircle } from 'react-icons/io5';
+import editStyles from 'styles/edit';
 
 const EditProfile = ({ u_data }) => {
 	const [state, setState] = useState({
@@ -183,8 +184,8 @@ const EditProfile = ({ u_data }) => {
 							placeholder='Tell us about you'
 						/>
 						<FormLabel fontSize={'lg'}>Profile Image</FormLabel>
-						<Flex sx={style.leftContainer}>
-							<Flex sx={style.imageContainer}>
+						<Flex sx={editStyles.leftContainer}>
+							<Flex sx={editStyles.imageContainer}>
 								{image.preview ? (
 									<Flex
 										sx={{
@@ -265,29 +266,6 @@ const EditProfile = ({ u_data }) => {
 	);
 };
 
-const style = {
-	imageContainer: {
-		width: '100%',
-		height: '100%',
-		borderRadius: '100%',
-		borderColor: '#C23043',
-		_hover: { bg: 'gray.50' },
-		borderWidth: 1,
-		position: 'relative',
-		cursor: 'pointer',
-	},
-	leftContainer: {
-		margin: '20px',
-		justifyContent: 'center',
-		alignItems: 'center',
-		width: '250px',
-		height: '250px',
-		mx: '18%',
-	},
-};
-
-export default EditProfile;
-
 export async function getServerSideProps(context) {
 	const cookie = nookies.get(context).token;
 	// console.log('c',cookie)
@@ -322,3 +300,5 @@ export async function getServerSideProps(context) {
 		props: { u_data },
 	};
 }
+
+export default EditProfile;

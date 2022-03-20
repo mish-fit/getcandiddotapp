@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
-import { Container, jsx } from "theme-ui";
+import { Flex } from "@chakra-ui/react";
 import { LinksBucket } from "./LinksBucket";
 
 // Add a custom Link
@@ -19,7 +17,7 @@ export function ShowLinks({ data, bucketData }) {
   };
 
   return (
-    <Container sx={{ width: "95%" }}>
+    <Flex sx={{ width: "95%", mx: "auto" }}>
       {buckets.map((item, index) => {
         return (
           <LinksBucket
@@ -32,12 +30,6 @@ export function ShowLinks({ data, bucketData }) {
           />
         );
       })}
-    </Container>
+    </Flex>
   );
 }
-
-const style = {
-  grid: {
-    width: "100%",
-  },
-};

@@ -1,5 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import logo from "assets/CaNDiD_B.png";
 import { Link } from "components/link";
 import { MainScreen } from "components/user/MainScreen";
@@ -11,13 +9,14 @@ import Lottie from "lottie-react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import { Button, Container, Flex, Image, jsx } from "theme-ui";
+import { Button, Divider, Flex, Image } from "@chakra-ui/react";
 import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
 import axios from "axios";
 
 import { event, pageview } from "analytics/ga";
+import userStyles from "styles/user";
 
 export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
@@ -43,17 +42,13 @@ export default function User({ links, recos, user, socials, buckets }) {
   if (!recos.length && !links.length) {
     return (
       <div>
-        <Flex as="container" sx={styles.container}>
-          <Flex as="sidebar" sx={styles.sidebar}>
+        <Flex as="container" sx={userStyles.container}>
+          <Flex as="sidebar" sx={userStyles.sidebar}>
             <Sidebar socials={socials} user={user} summary={summary} />
           </Flex>
-          <Flex as="mainscreen" sx={styles.mainscreen}>
+          <Flex as="mainscreen" sx={userStyles.mainscreen}>
             <Flex
-              sx={{
-                height: ["400px", "400px", "400px", "700px", "800px", "900px"],
-                justifyContent: "center",
-                flex: 1,
-              }}
+              sx={userStyles.lottieFlex}
             >
               <Lottie animationData={smm} />
             </Flex>
@@ -74,45 +69,36 @@ export default function User({ links, recos, user, socials, buckets }) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href={user[0].u_profile_image} />
       </Head>
-
       <DrawerProvider>
-        <header sx={styles.header}>
-          <Container sx={styles.headerContainer}>
-            <Flex as="logo" sx={styles.logoStyles}>
+        <header sx={userStyles.header}>
+          <Flex sx={userStyles.headerContainer}>
+            <Flex as="logo" sx={userStyles.logouserStyles}>
               <Link
                 path="/"
-                sx={{
-                  variant: "links.logo",
-                }}
               >
                 <Image
                   src={logo}
-                  width="120"
-                  height="40"
-                  sx={styles.logoStyles}
+                  width="120px"
+                  height="40px"
+                  sx={userStyles.logouserStyles}
                   alt="startup landing logo"
                 />
               </Link>
             </Flex>
-            <Flex
-              sx={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Button sx={styles.button} onClick={handleCreateLinkButton}>
+            <Flex>
+              <Button sx={userStyles.button} onClick={handleCreateLinkButton}>
                 Create your CNDD link!
               </Button>
             </Flex>
-          </Container>
+          </Flex>
         </header>
       </DrawerProvider>
-
-      <Flex as="container" sx={styles.container}>
-        <Flex as="sidebar" sx={styles.sidebarTrial}>
+      <Divider/>
+      <Flex as="container" sx={userStyles.container}>
+        <Flex as="sidebar" sx={userStyles.sidebarTrial}>
           <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
-        <Flex as="mainscreen" sx={styles.mainscreen}>
+        <Flex as="mainscreen" sx={userStyles.mainscreen}>
           <MainScreen
             links={links}
             recos={recos}
@@ -169,109 +155,3 @@ export async function getServerSideProps(context) {
     };
   }
 }
-
-const styles = {
-  container: {
-    mt: "40px",
-    flex: 1,
-    maxWidth: "100%",
-    display: "flex",
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
-    alignItems: "flex-start",
-    justifyContent: "flex-start",
-  },
-  mainscreen: {
-    flex: [1, 1, 1, 2, 3, 3],
-    // backgroundColor: "blue",
-  },
-  sidebar: {
-    p: "10px",
-    width: "100%",
-    flex: 1,
-    pl: "8px",
-    pt: "16px",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "sticky",
-    bottom: "8px",
-    alignSelf: "flex-end",
-  },
-  sidebarTrial: {
-    p: "10px",
-    width: "320px",
-    //flex: 1,
-    pl: "8px",
-    pt: "16px",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "sticky",
-    bottom: "8px",
-    alignSelf: "flex-end",
-    // backgroundColor: "red",
-  },
-
-  header: {
-    color: "text_white",
-    fontWeight: "normal",
-    py: ["0px", "0px", "0px", "0px", "0px", "0px"],
-    width: "100%",
-    backgroundColor: "#fff",
-    transition: "all 0.4s ease",
-    borderBottom: [
-      null,
-      null,
-      "1px solid #E9EDF5",
-      "1px solid #E9EDF5",
-      "1px solid #E9EDF5",
-      "1px solid #E9EDF5",
-    ],
-    position: ["relative", "relative", "fixed", "fixed", "fixed", "fixed"],
-    top: 0,
-    left: 0,
-    zIndex: 100,
-    "&.sticky": {
-      backgroundColor: "background",
-      color: "text",
-      py: "16px",
-      boxShadow: "0 1px 2px rgba(0, 0, 0, 0.06)",
-    },
-  },
-
-  headerContainer: {
-    mb: [-124, -124, 0, 0, 0, 0],
-    display: "flex",
-    alignItems: "center",
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
-    justifyContent: [
-      "center",
-      "center",
-      "space-between",
-      "space-between",
-      "space-between",
-      "space-between",
-    ],
-    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
-  },
-
-  button: {
-    mx: 2,
-    bg: "#D7354A",
-    ":hover": {
-      bg: "#C23043",
-    },
-    borderRadius: [0, 0, 0, 0, 0, 0, 0],
-    color: "white",
-    fontSize: "12px",
-    width: "md",
-    height: [30, 30, 30, 30, 30, 30, 30],
-    mt: [24, 24, 0, 0, 0, 0],
-    justifyContent: "center",
-    alignItems: "center",
-    p: "2px",
-    px: "8px",
-  },
-  logoStyles: {
-    mr: ["200px", "350px", "350px", "50px", "50px", "50px", "50px"],
-    ml: [null, null, null, "16px", "16px", "16px", "16px"],
-  },
-};

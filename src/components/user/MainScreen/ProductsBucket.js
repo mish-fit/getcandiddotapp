@@ -1,10 +1,9 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Container, Flex, jsx, merge, Text } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
 import isURL from "validator/lib/isURL";
 import { ProductsCard } from "./ProductsCard";
+import productsBucketStyles from "styles/ProductsBucket";
 
 // Add a custom Link
 export function ProductsBucket({ bucketName, data, link }) {
@@ -30,7 +29,7 @@ export function ProductsBucket({ bucketName, data, link }) {
   };
 
   return (
-    <Container sx={style.container}>
+    <Flex sx={productsBucketStyles.container}>
       {data.filter((item) => isURL(item.prod_link) == true).length > 0 ? (
         <Flex
           sx={{
@@ -50,7 +49,11 @@ export function ProductsBucket({ bucketName, data, link }) {
           }
         >
           <Text
-            sx={merge(style.heading, {
+            sx={{
+              fontFamily: "Poppins",
+              fontWeight: "bold",
+              fontSize: "16px",
+              py: "4px",
               color:
                 link &&
                 link.length != 0 &&
@@ -58,13 +61,13 @@ export function ProductsBucket({ bucketName, data, link }) {
                 isURL(link.link.toString())
                   ? "#2A5DB0"
                   : "#323232",
-            })}
+            }}
           >
             {bucketName}
           </Text>
         </Flex>
       ) : null}
-      <Flex sx={style.grid}>
+      <Flex sx={productsBucketStyles.grid}>
         {data.map((item, index) => {
           return (
             isURL(item.prod_link, { require_tld: true }) && (
@@ -73,25 +76,6 @@ export function ProductsBucket({ bucketName, data, link }) {
           );
         })}
       </Flex>
-    </Container>
+    </Flex>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "column",
-    my: "8px",
-    width: "100%",
-    backgroundColor: "white",
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  heading: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-    py: "4px",
-  },
-};

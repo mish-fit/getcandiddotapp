@@ -1,10 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Tooltip } from "@chakra-ui/react";
+import { Flex, Image, Text, Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useEffect } from "react";
-import { Flex, Image, jsx, merge, Text } from "theme-ui";
-
+import linksCardStyles from "styles/LinksCard";
 // Add a custom Link
 export function LinksCard({ item }) {
   useEffect(() => {
@@ -22,9 +19,21 @@ export function LinksCard({ item }) {
 
   return (
     <Tooltip label={item.link.substring(0, 100) + ".."} placement="top">
-      <Flex sx={style.button} onClick={onClickLink}>
+      <Flex sx={linksCardStyles.button} onClick={onClickLink}>
         <Flex
-          sx={merge(style.container, {
+          sx={{
+            flexDirection: "row",
+            p: "8px",
+            py: "16px",
+            backgroundColor: "white",
+            borderRadius: "0px",
+            mx: "16px",
+            width: ["100%", "100%", "340px", "340px", "340px", "340px"],
+            minWidth: "330px",
+            height: "72px",
+            my: "16px",
+            justifyContent: "center",
+            alignItems: "center",
             boxShadow: "0 0 1px 1px " + item.shadow_color,
             "&:hover": {
               p: {
@@ -32,10 +41,10 @@ export function LinksCard({ item }) {
               },
               backgroundColor: item.shadow_color,
             },
-          })}
+          }}
         >
           {item.photo && item.photo != "" ? (
-            <Image src={item.photo} alt="img" sx={style.image} />
+            <Image src={item.photo} alt="img" sx={linksCardStyles.image} />
           ) : null}
           <Flex
             sx={{
@@ -45,7 +54,15 @@ export function LinksCard({ item }) {
               textAlign: "center",
             }}
           >
-            <Text as="p" sx={merge(style.link, { color: item.font_color })}>
+            <Text as="p" sx={{
+              fontFamily: "Poppins",
+              fontWeight: "medium",
+              fontSize: "14px",
+              color: "#D7354A",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              color: item.font_color }}>
               {item.title}
             </Text>
           </Flex>
@@ -54,39 +71,3 @@ export function LinksCard({ item }) {
     </Tooltip>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "row",
-    p: "8px",
-    py: "16px",
-    backgroundColor: "white",
-    borderRadius: "0px",
-    mx: "16px",
-    width: ["100%", "100%", "340px", "340px", "340px", "340px"],
-    minWidth: "330px",
-    height: "72px",
-    my: "16px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    backgroundColor: "transparent",
-    cursor: "pointer",
-    borderWidth: "0px",
-  },
-  link: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "14px",
-    color: "#D7354A",
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: "48px",
-    height: "48px",
-    borderRadius: "48px",
-  },
-};

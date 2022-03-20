@@ -38,9 +38,3 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal }) {
     </Flex>
   );
 }
-
-const style = {
-  grid: {
-    width: "100%",
-  },
-};

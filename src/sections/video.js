@@ -1,11 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Input, Modal, ModalContent, ModalOverlay, Textarea, useToast } from "@chakra-ui/react";
+import { Flex, Input, Modal, ModalContent, ModalOverlay, Text, Textarea, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { nonauthapi } from "lib/api";
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { Container, Flex, jsx, merge, Text } from "theme-ui";
 
 // Add a custom Link
 export function ContactUsModal({ closeParent, isOpen }) {
@@ -64,7 +61,7 @@ export function ContactUsModal({ closeParent, isOpen }) {
     <Modal onClose={closeModal} isOpen={isOpen} isCentered>
       <ModalOverlay />
       <ModalContent maxW={"1000px"}>
-        <Container sx={style.container}>
+        <Flex sx={style.container}>
           <Flex sx={style.row1}>
             <Text sx={style.topHeader}>Contact us</Text>
             <Flex sx={style.saveContainer} onClick={savenclose}>
@@ -73,10 +70,13 @@ export function ContactUsModal({ closeParent, isOpen }) {
             </Flex>
           </Flex>
           <Flex
-            sx={merge(style.middleContainer, {
+            sx={{
+              flex: 1,
+              flexDirection: "column",
+              borderRadius: "8px",
               boxShadow: `0 0 4px 1px ${values.shadow_color}`,
               mt: "16px",
-            })}
+            }}
           >
             <Flex sx={style.titleContainer}>
               <Flex sx={{ flex: 1 }}>
@@ -147,7 +147,7 @@ export function ContactUsModal({ closeParent, isOpen }) {
               </Flex>
             </Flex>
           </Flex>
-        </Container>
+        </Flex>
       </ModalContent>
     </Modal>
   );
@@ -155,6 +155,7 @@ export function ContactUsModal({ closeParent, isOpen }) {
 
 const style = {
   container: {
+    flexDirection:"column",
     pb: "16px",
     backgroundColor: "white",
     borderRadius: "6px",
@@ -211,6 +212,7 @@ const style = {
     cursor: "pointer",
   },
   save: {
+    mr:"4px",
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
@@ -233,7 +235,6 @@ const style = {
 
   addlink: {
     flexDirection: "row",
-
     width: "100%",
   },
   leftContainer: {
@@ -241,12 +242,6 @@ const style = {
     width: "64px",
     height: "64px",
     mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-
-    flexDirection: "column",
-    borderRadius: "8px",
   },
   rightContainer: {
     flexDirection: "column",

@@ -1,20 +1,19 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import SEO from "components/seo";
 import theme from "theme";
-import { Flex, jsx, Text, ThemeProvider } from "theme-ui";
+import { Flex, Text } from "@chakra-ui/react";
+import termsStyles from "styles/terms";
 
 function termsandconditions() {
   return (
-    <ThemeProvider theme={theme}>
+    <Flex>
       <SEO
         title="Candid Reviews - Terms and Conditions "
         description="This page contains the terms and conditions of the Candid Reviews App. By downloading the app, you are accepting candid reviews terms and condtions."
       />
 
-      <Flex sx={styles.container}>
-        <Text sx={styles.heading}>Terms and Conditions</Text>
-        <Flex sx={styles.subContainer}>
+      <Flex sx={termsStyles.container}>
+        <Text sx={termsStyles.heading}>Terms and Conditions</Text>
+        <Flex sx={termsStyles.subContainer}>
           <p>
           These Terms of Use govern your use of our website located at
           https://www.cndd.in and/or the Candid Mobile Application
@@ -312,36 +311,8 @@ function termsandconditions() {
           </p>
         </Flex>
       </Flex>
-    </ThemeProvider>
+    </Flex>
   );
 }
 
 export default termsandconditions;
-
-const styles = {
-  container: {
-    px: "16px",
-    py: "16px",
-    flexDirection: "column",
-  },
-  subContainer: {
-    mt: "16px",
-    flexDirection: "column",
-  },
-  heading: {
-    fontFamily: "Poppins",
-    fontSize: "48px",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  subHeading: {
-    fontFamily: "Poppins",
-    fontSize: "18px",
-    fontWeight: "medium",
-  },
-  text: {
-    fontFamily: "Poppins",
-    fontSize: "16px",
-    fontWeight: "normal",
-  },
-};

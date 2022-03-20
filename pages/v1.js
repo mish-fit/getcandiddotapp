@@ -8,8 +8,6 @@ import FaqTwo from "sections/faq-two";
 import Features from "sections/features";
 import Pricing from "sections/pricing";
 import ProductFeature from "sections/product-feature";
-import theme from "theme";
-import { ThemeProvider } from "theme-ui";
 
 export default function V1() {
   const router = useRouter();
@@ -29,7 +27,6 @@ export default function V1() {
     };
   }, [router.events]);
   return (
-    <ThemeProvider theme={theme}>
       <StickyProvider>
         <Layout>
           <SEO
@@ -47,6 +44,5 @@ export default function V1() {
           <FaqTwo />
         </Layout>
       </StickyProvider>
-    </ThemeProvider>
   );
 }

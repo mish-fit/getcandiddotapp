@@ -1,16 +1,13 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import {
-  Input,
+  Box, Flex, Image, Input,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Modal,
   ModalContent,
-  ModalOverlay,
-  useMediaQuery,
-  useToast,
+  ModalOverlay, Text, useMediaQuery,
+  useToast
 } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
@@ -25,12 +22,12 @@ import { BiLink } from "react-icons/bi";
 import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { Box, Container, Flex, Image, jsx, merge, Text } from "theme-ui";
+import linksModalStyles from "styles/LinksModal";
+import isURL from "validator/lib/isURL";
 import smm from "../../../../public/lottie/smm.json";
 import { ShadowPicker } from "../AddElement/ShadowPicker";
 import { TextColorPicker } from "../AddElement/TextColorPicker";
 import { BucketsModal } from "./BucketModal";
-import isURL from "validator/lib/isURL";
 
 // Add a custom Link
 export function LinksModal({
@@ -327,11 +324,11 @@ export function LinksModal({
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>
-          <Container sx={style.container}>
-            <Flex sx={style.row1}>
-              <Text sx={style.topHeader}>Enter Custom</Text>
-              <Flex sx={style.saveContainer} onClick={savenclose}>
-                <Text sx={style.save}>Save </Text>
+          <Flex sx={linksModalStyles.container}>
+            <Flex sx={linksModalStyles.row1}>
+              <Text sx={linksModalStyles.topHeader}>Enter Custom</Text>
+              <Flex sx={linksModalStyles.saveContainer} onClick={savenclose}>
+                <Text sx={linksModalStyles.save}>Save </Text>
                 <BsCheckCircleFill
                   color="#D7354A"
                   size={15}
@@ -339,19 +336,19 @@ export function LinksModal({
                 />
               </Flex>
             </Flex>
-            <Flex sx={style.row2}>
-              <Box sx={style.subHeaderContainer}>
-                <Text sx={style.subHeader}>Links</Text>
+            <Flex sx={linksModalStyles.row2}>
+              <Box sx={linksModalStyles.subHeaderContainer}>
+                <Text sx={linksModalStyles.subHeader}>Links</Text>
               </Box>
             </Flex>
-            <Flex sx={style.row3}>
-              <Flex sx={style.lottie}>
+            <Flex sx={linksModalStyles.row3}>
+              <Flex sx={linksModalStyles.lottie}>
                 <Lottie animationData={smm} />
               </Flex>
-              <Flex sx={style.linkView}>
-                <Flex sx={style.addlink}>
-                  <Flex sx={style.leftContainer}>
-                    <Flex sx={style.imageContainer}>
+              <Flex sx={linksModalStyles.linkView}>
+                <Flex sx={linksModalStyles.addlink}>
+                  <Flex sx={linksModalStyles.leftContainer}>
+                    <Flex sx={linksModalStyles.imageContainer}>
                       {image.preview ? (
                         <Flex
                           sx={{
@@ -409,11 +406,14 @@ export function LinksModal({
                     </Flex>
                   </Flex>
                   <Flex
-                    sx={merge(style.middleContainer, {
+                    sx={{
+                      flex: 1,
+                      flexDirection: "column",
+                      borderRadius: "8px",
                       boxShadow: `0 0 4px 1px ${values.shadow_color}`,
-                    })}
+                    }}
                   >
-                    <Flex sx={style.titleContainer}>
+                    <Flex sx={linksModalStyles.titleContainer}>
                       <Flex sx={{ flex: 1 }}>
                         <Flex
                           sx={{
@@ -441,7 +441,7 @@ export function LinksModal({
                         />
                       </Flex>
                     </Flex>
-                    <Flex sx={style.titleContainer}>
+                    <Flex sx={linksModalStyles.titleContainer}>
                       <Flex sx={{ flex: 1 }}>
                         <Flex
                           sx={{
@@ -464,7 +464,7 @@ export function LinksModal({
                         />
                       </Flex>
                     </Flex>
-                    <Flex sx={style.pickerContainer}>
+                    <Flex sx={linksModalStyles.pickerContainer}>
                       <Flex sx={{ flex: 2, mr: "16px" }}>
                         <Menu>
                           <BucketsModal
@@ -519,162 +519,22 @@ export function LinksModal({
                       </Flex>
                     </Flex>
                   </Flex>
-                  <Flex sx={style.rightContainer}>
-                    <Flex sx={style.delete} onClick={onRefresh}>
+                  <Flex sx={linksModalStyles.rightContainer}>
+                    <Flex sx={linksModalStyles.delete} onClick={onRefresh}>
                       <IoCloseCircleOutline size={20} />
                     </Flex>
                   </Flex>
                 </Flex>
               </Flex>
             </Flex>
-            <Flex sx={style.row4}>
+            <Flex sx={linksModalStyles.row4}>
               <Flex onClick={savenadd} sx={{ cursor: "pointer" }}>
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>
-          </Container>
+          </Flex>
         </ModalContent>
       </Modal>
     </Flex>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "column",
-    p: "16px",
-    backgroundColor: "white",
-    borderRadius: "6px",
-  },
-  row1: {
-    justifyContent: "space-between",
-    mt: "8px",
-  },
-  row2: { mt: "16px" },
-  row3: { mt: "16px" },
-  row4: {
-    justifyContent: "center",
-    alignItems: "center",
-    mb: "24px",
-    mt: "16px",
-    ml: ["50px", "50px", "50px", "250px", "250px", "250px"],
-  },
-  addNew: {
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    cursor: "pointer",
-    backgroundColor: "#D7354A",
-    borderRadius: "48px",
-    borderColor: "#D7354A",
-    width: "48px",
-    height: "48px",
-  },
-  addNewText: {
-    color: "white",
-    fontWeight: "medium",
-    fontFamily: "Poppins",
-    fontSize: "32px",
-    textAlign: "center",
-  },
-  lottie: {
-    width: ["0px", "0px", "0px", "200px", "300px", "300px"],
-    height: ["0px", "0px", "0px", "200px", "300px", "300px"],
-  },
-  topHeader: {
-    fontFamily: "Poppins",
-    color: "#D7354A",
-    fontWeight: "Bold",
-    fontSize: "16px",
-  },
-  saveContainer: {
-    mx: "4px",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-  },
-  save: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "16px",
-  },
-  subHeaderContainer: {
-    width: "50%",
-    borderBottomWidth: 2,
-    borderBottomColor: "#D7354A",
-  },
-  subHeader: {
-    fontFamily: "Poppins",
-    fontWeight: "bold",
-    fontSize: "24px",
-  },
-  linkView: {
-    pl: "16px",
-    pr: "16px",
-    flex: 1,
-  },
-
-  addlink: {
-    flexDirection: "row",
-    width: "100%",
-  },
-  leftContainer: {
-    flexDirection: "column",
-    width: "64px",
-    height: "64px",
-    mx: "8px",
-  },
-  middleContainer: {
-    flex: 1,
-
-    flexDirection: "column",
-    borderRadius: "8px",
-  },
-  rightContainer: {
-    flexDirection: "column",
-    ml: "8px",
-  },
-  imageContainer: {},
-  addImage: {},
-  titleContainer: {
-    flexDirection: "row",
-  },
-
-  dragIcon: {
-    cursor: "grab",
-    p: "8px",
-    backgroundColor: "gray",
-  },
-  link: {},
-  bucket: {},
-  delete: {
-    cursor: "pointer",
-    mt: "8px",
-    p: "2px",
-  },
-  pickerContainer: {
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
-
-    mx: ["8px", "8px", "32px", "32px", "32px", "32px"],
-    py: ["2px", "2px", "8px", "8px", "8px", "8px"],
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    // justifyContent: ["flex-start","flex-start","center","center","center","center"],
-    // alignItems: ["flex-start","flex-start","center","center","center","center"],
-  },
-  titleContainer: {
-    width: "100%",
-    height: "48px",
-    mt: "8px",
-    pr: "8px",
-  },
-  imageContainer: {
-    width: "100%",
-    height: "100%",
-    borderRadius: "100%",
-    borderWidth: 1,
-    position: "relative",
-    cursor: "pointer",
-  },
-};

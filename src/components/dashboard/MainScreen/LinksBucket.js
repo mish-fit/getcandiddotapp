@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { Container, Flex, Text } from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
+import linksBucketStyles from "styles/LinksBucket";
 
 // Add a custom Link
 export function LinksBucket({
@@ -22,7 +23,7 @@ export function LinksBucket({
   };
 
   return (
-    <Flex sx={style.container}>
+    <Flex sx={linksBucketStyles.container}>
       <Flex
         sx={{
           cursor:
@@ -55,7 +56,7 @@ export function LinksBucket({
           {bucketName}
         </Text>
       </Flex>
-      <Flex sx={style.grid}>
+      <Flex sx={linksBucketStyles.grid}>
         {data.map((item, index) => {
           return (
             <LinksCard
@@ -73,16 +74,3 @@ export function LinksBucket({
     </Flex>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "column",
-    my: "8px",
-    width: "100%",
-    backgroundColor: "white",
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-};

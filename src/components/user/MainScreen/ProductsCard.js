@@ -1,10 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { Tooltip } from "@chakra-ui/react";
+import { Flex, Image, Text, Tooltip } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Flex, Image, jsx, Text } from "theme-ui";
+import productsCardStyles from "styles/ProductsCard";
 
 // Add a custom Link
 export function ProductsCard({ item }) {
@@ -30,28 +28,28 @@ export function ProductsCard({ item }) {
 
   return (
     <Tooltip label={item.prod_link.substring(0, 100) + ".."} placement="top">
-      <Flex sx={style.container} onClick={buy}>
-        <Flex sx={style.imageMaster}>
-          <Flex sx={style.imageContainer}>
+      <Flex sx={productsCardStyles.container} onClick={buy}>
+        <Flex sx={productsCardStyles.imageMaster}>
+          <Flex sx={productsCardStyles.imageContainer}>
             <Image
               src={item.photo || "/user/mobile.png"}
               alt="img"
-              sx={style.image}
+              sx={productsCardStyles.image}
             />
           </Flex>
         </Flex>
-        <Flex sx={style.categoryDetailsContainer}>
-          <Flex sx={style.categoryContent}>
-            <Text sx={style.category}>{item.cat_name}</Text>
+        <Flex sx={productsCardStyles.categoryDetailsContainer}>
+          <Flex sx={productsCardStyles.categoryContent}>
+            <Text sx={productsCardStyles.category}>{item.cat_name}</Text>
           </Flex>
         </Flex>
-        <Flex sx={style.detailsContainer}>
-          <Flex sx={style.content}>
-            <Text sx={style.product}>{item.prod_name}</Text>
+        <Flex sx={productsCardStyles.detailsContainer}>
+          <Flex sx={productsCardStyles.content}>
+            <Text sx={productsCardStyles.product}>{item.prod_name}</Text>
           </Flex>
-          {/* <Flex sx={style.buttonContainer}>
-          <Flex sx={style.button} onClick={buy}>
-            <Text sx={style.buttonText}>Buy Now</Text>
+          {/* <Flex sx={productsCardStyles.buttonContainer}>
+          <Flex sx={productsCardStyles.button} onClick={buy}>
+            <Text sx={productsCardStyles.buttonText}>Buy Now</Text>
           </Flex>
         </Flex> */}
         </Flex>
@@ -59,96 +57,3 @@ export function ProductsCard({ item }) {
     </Tooltip>
   );
 }
-
-const style = {
-  container: {
-    flexDirection: "column",
-    // p: "8px",
-    // py: "16px",
-    backgroundColor: "white",
-    borderRadius: "0px",
-    boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
-    mx: "8px",
-    width: "200px",
-    // width: ["100%", "100%", "350px", "350px", "448px", "448px"],
-    // minWidth: "330px",
-    my: "8px",
-    cursor: "pointer",
-  },
-  imageMaster: {
-    backgroundColor: "white",
-  },
-  imageContainer: {
-    // mx: "8px",
-    backgroundColor: "white",
-  },
-  image: {
-    height: "200px",
-    width: "200px",
-    borderRadius: "8px",
-  },
-  categoryDetailsContainer: {
-    mt: "-20px",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  detailsContainer: {
-    backgroundColor: "white",
-    flexDirection: "column",
-    my: "6px",
-    justifyContent: "space-between",
-    textAlign: "center",
-  },
-  buttonText: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: "transparent",
-    borderWidth: "0px",
-    color: "white",
-    fontWeight: "medium",
-    fontFamily: "Poppins",
-    fontSize: "16px",
-    cursor: "pointer",
-    textAlign: "center",
-  },
-  button: {
-    backgroundColor: "#D7354A",
-    borderRadius: "24px",
-    borderColor: "#D7354A",
-    py: "4px",
-    width: "148px",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  content: {
-    flexDirection: "column",
-    px: "4px",
-  },
-  buttonContainer: {
-    justifyContent: "center",
-    width: "100%",
-  },
-  product: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "12px",
-    fontWeight: "bold",
-    color: "#000",
-  },
-  category: {
-    fontFamily: "Poppins",
-    fontWeight: "medium",
-    fontSize: "10px",
-    color: "white",
-    textAlign: "center",
-  },
-  buynow: {},
-  categoryContent: {
-    backgroundColor: "#D7354A",
-    height: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-    px: "4px",
-    borderRadius: "8px",
-  },
-};

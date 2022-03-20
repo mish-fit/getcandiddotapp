@@ -1,8 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import SectionHeading from "components/section-heading";
 import ServiceCard from "components/service-card";
-import { Box, Container, jsx } from "theme-ui";
+import { Box, Flex } from "@chakra-ui/react";
 
 const services = [
   {
@@ -42,7 +40,7 @@ const services = [
 const Services = () => {
   return (
     <Box as="section" id="services" sx={styles.section}>
-      <Container>
+      <Flex>
         <SectionHeading
           slogan="Ideal solutions for you"
           title="Didn’t find what you were looking for?"
@@ -52,7 +50,7 @@ const Services = () => {
             <ServiceCard key={i} service={service} />
           ))}
         </Box>
-      </Container>
+      </Flex>
     </Box>
   );
 };
