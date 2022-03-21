@@ -14,7 +14,6 @@
     "@emotion/styled": "^11",
     "@fontsource/poppins": "^4.5.1",
     "@next/bundle-analyzer": "^12.1.0",
-  
     "aws-sdk": "^2.1076.0",
     "axios": "^0.25.0",
     "chakra-ui-autocomplete": "^1.4.5",
@@ -25,14 +24,12 @@
     "lodash.debounce": "^4.0.8",
     "lottie-react": "^2.2.1",
     "lottie-web": "^5.8.1",
-   
     "nanoid": "^3.3.1",
     "next": "12",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^2.6.2",
     "nookies": "^2.5.2",
     "polished": "^4.0.5",
-    "prettier": "^2.2.1",
     "rc-drawer": "^4.1.0",
     "react": "17.0.1",
     "react-aws-s3": "^1.5.0",
@@ -55,7 +52,6 @@
     "redux-actions": "^2.6.5",
     "redux-thunk": "^2.4.1",
     "swr": "^1.2.2",
-    "theme-ui": "^0.3.5",
     "typeface-bree-serif": "^1.1.13",
     "typeface-dm-sans": "^1.1.13",
     "validator": "^13.7.0"
