@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { rootreducer } from "redux-lib/reducer";
 import { useUserData } from "../src/lib/hooks";
-import theme from "../src/theme/chakra/index";
+import theme from "../src/theme/index";
 import "./../styles/normalize.css";
 
 // import TagManager from "react-gtm-module";

@@ -46,6 +46,7 @@ const MobileDrawer = () => {
                 offset={10}
                 duration={500}
                 key={i}
+                onClick={toggleHandler}
               >
                 {label}
               </ScrollLink>
@@ -54,7 +55,7 @@ const MobileDrawer = () => {
 
           <Box sx={headerMobileDrawerStyles.menuFooter}>
             <Button variant="primary" sx={headerMobileDrawerStyles.button}>
-              Sign Up
+              Sign Up!
             </Button>
           </Box>
         </Box>

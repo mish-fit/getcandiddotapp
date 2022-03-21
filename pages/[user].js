@@ -22,7 +22,9 @@ export default function User({ links, recos, user, socials, buckets }) {
   const [summary, setSummary] = React.useState({});
 
   React.useEffect(() => {
-    pageview(user[0].uuid);
+    if(user[0]){
+      pageview(user[0].uuid);
+    }
 
     setSummary({
       products: recos.filter((item) => isURL(item.prod_link) == true).length,
