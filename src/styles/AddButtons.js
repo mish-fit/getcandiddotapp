@@ -7,8 +7,8 @@ const addButtonsStyles = {
       "justify-evenly",
       "flex-end",
       "flex-end",
-      "flex-end",
-      "flex-end",
+      "space-between",
+      "space-between",
     ],
     alignItems: "flex-start",
     width: ["100%", "100%", null],
@@ -44,6 +44,32 @@ const addButtonsStyles = {
     fontSize: "16px",
     color: "#D7354A",
   },
+  showAnalytics: {
+    // mt: "16px",
+    borderRadius: "16px",
+    borderWidth: "2px",
+    borderColor: "#FFF",
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "16px",
+    // ml: "16px",
+    color: "#4B0082",
+    flexDirection: "row",
+    cursor: "pointer",
+    justifyContent: "center",
+    alignItems: "center",
+    py: ["2px", "2px", "4px", "8px"],
+    px: ["4px", "4px", "8px", "16px"],
+    mx: "4px",
+    flex: [1, 1, `0 1 auto`],
+  },
+  showAnalyticsText: {
+    ml: "6px",
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "16px",
+    color: "#4B0082",
+  },
   button: {
     fontSize: "16px",
     color: "#ffff",
@@ -64,7 +90,7 @@ const addButtonsStyles = {
     "&:hover": {
       backgroundColor: "secondary",
     },
-  }
+  },
 };
 
 export default addButtonsStyles;
