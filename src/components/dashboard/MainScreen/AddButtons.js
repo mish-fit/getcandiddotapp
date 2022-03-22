@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { IoMdAnalytics } from "react-icons/io";
 import { Flex, Text } from "@chakra-ui/react";
 import addButtonsStyles from "styles/AddButtons";
 
@@ -24,12 +25,12 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
       <Flex>
         <Flex
           as="addbutton"
-          sx={addButtonsStyles.addbutton}
+          sx={addButtonsStyles.showAnalytics}
           onClick={showAnalytics}
         >
           <Flex sx={addButtonsStyles.flex}>
-            <BsPlusCircleFill color="#D7354A" />
-            <Text sx={addButtonsStyles.addbuttonText}>Show Analytics</Text>
+            <IoMdAnalytics color="#4B0082" />
+            <Text sx={addButtonsStyles.showAnalyticsText}>Show Analytics</Text>
           </Flex>
         </Flex>
       </Flex>
