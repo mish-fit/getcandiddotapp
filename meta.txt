@@ -1,0 +1,1681 @@
+{
+	"dimensions": [{
+		"deprecatedApiNames": [],
+		"apiName": "achievementId",
+		"uiName": "Achievement ID",
+		"description": "The achieventment ID in a game for an event. Populated by the event parameter 'achievement_id'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "adFormat",
+		"uiName": "Ad format",
+		"description": "Describes the way ads looked and where they were located. Typical formats include 'Interstitial', 'Banner', 'Rewarded', and 'Native advanced'.",
+		"customDefinition": false,
+		"category": "Publisher"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "adSourceName",
+		"uiName": "Ad source",
+		"description": "The source network that served the ad. Typical sources include 'AdMob Network', 'Liftoff', 'Facebook Audience Network', and 'Mediated house ads'.",
+		"customDefinition": false,
+		"category": "Publisher"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "adUnitName",
+		"uiName": "Ad unit",
+		"description": "The name you chose to describe this Ad unit. Ad units are containers you place in your apps to show ads to users.",
+		"customDefinition": false,
+		"category": "Publisher"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "appVersion",
+		"uiName": "App version",
+		"description": "The app's versionName (Android) or short bundle version (iOS).",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "audienceId",
+		"uiName": "Audience ID",
+		"description": "The numeric identifier of an Audience. Users are reported in the audiences to which they belonged during the report's date range. Current user behavior does not affect historical audience membership in reports.",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "audienceName",
+		"uiName": "Audience name",
+		"description": "The given name of an Audience. Users are reported in the audiences to which they belonged during the report's date range. Current user behavior does not affect historical audience membership in reports.",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "brandingInterest",
+		"uiName": "Interests",
+		"description": "Interests demonstrated by users who are higher in the shopping funnel. Users can be counted in multiple interest categories. For example, 'Shoppers', 'Lifestyles & Hobbies/Pet Lovers', or 'Travel/Travel Buffs/Beachbound Travelers'.",
+		"customDefinition": false,
+		"category": "Demographics"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "browser",
+		"uiName": "Browser",
+		"description": "The browsers used to view your website.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "campaignId",
+		"uiName": "Campaign ID",
+		"description": "The identifier of the marketing campaign. Present only for conversion events.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "campaignName",
+		"uiName": "Campaign",
+		"description": "The name of the marketing campaign. Present only for conversion events.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "character",
+		"uiName": "Character",
+		"description": "The player character in a game for an event. Populated by the event parameter 'character'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "city",
+		"uiName": "City",
+		"description": "The city from which the user activity originated.",
+		"customDefinition": false,
+		"category": "Geography"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "cityId",
+		"uiName": "City ID",
+		"description": "The geographic ID of the city from which the user activity originated, derived from their IP address.",
+		"customDefinition": false,
+		"category": "Geography"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "cohort",
+		"uiName": "Cohort",
+		"description": "The cohort's name in the request. A cohort is a set of users who started using your website or app in any consecutive group of days. If a cohort name is not specified in the request, cohorts are named by their zero based index: cohort_0, cohort_1, etc.",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "cohortNthDay",
+		"uiName": "Daily cohort",
+		"description": "Day offset relative to the firstSessionDate for the users in the cohort. For example, if a cohort is selected with the start and end date of 2020-03-01, then for the date 2020-03-02, cohortNthDay will be 0001.",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "cohortNthMonth",
+		"uiName": "Monthly cohort",
+		"description": "Month offset relative to the firstSessionDate for the users in the cohort. Month boundaries align with calendar month boundaries. For example, if a cohort is selected with the start and end date in March 2020, then for any date in April 2020, cohortNthMonth will be 0001.",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "cohortNthWeek",
+		"uiName": "Weekly cohort",
+		"description": "Week offset relative to the firstSessionDate for the users in the cohort. Weeks start on Sunday and end on Saturday. For example, if a cohort is selected with the start and end date in the range 2020-11-08 to 2020-11-14, then for the dates in the range 2020-11-15 to 2020-11-21, cohortNthWeek will be 0001.",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "contentGroup",
+		"uiName": "Content group",
+		"description": "A category that applies to items of published content. Populated by the event parameter 'content_group'.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "contentId",
+		"uiName": "Content ID",
+		"description": "The identifier of the selected content. Populated by the event parameter 'content_id'.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "contentType",
+		"uiName": "Content type",
+		"description": "The category of the selected content. Populated by the event parameter 'content_type'.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "country",
+		"uiName": "Country",
+		"description": "The country from which the user activity originated.",
+		"customDefinition": false,
+		"category": "Geography"
+	}, {
+		"deprecatedApiNames": ["countryIsoCode"],
+		"apiName": "countryId",
+		"uiName": "Country ID",
+		"description": "The geographic ID of the country from which the user activity originated, derived from their IP address. Formatted according to ISO 3166-1 alpha-2 standard.",
+		"customDefinition": false,
+		"category": "Geography"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "date",
+		"uiName": "Date",
+		"description": "The date of the event, formatted as YYYYMMDD.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "dateHour",
+		"uiName": "Date + hour (YYYYMMDDHH)",
+		"description": "The combined values of date and hour formatted as YYYYMMDDHH.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "dateHourMinute",
+		"uiName": "Date hour and minute",
+		"description": "The combined values of date, hour, and minute formatted as YYYYMMDDHHMM.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "day",
+		"uiName": "Day",
+		"description": "The day of the month, a two-digit number from 01 to 31.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": ["dayOfWeekZero"],
+		"apiName": "dayOfWeek",
+		"uiName": "Day of week",
+		"description": "The day of the week. It returns values in the range [0,6] with Sunday as the first day of the week.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "defaultChannelGrouping",
+		"uiName": "Default channel grouping",
+		"description": "The conversion's default channel grouping is based primarily on source and medium. An enumeration which includes 'Direct', 'Organic Search', 'Paid Social', 'Organic Social', 'Email', 'Affiliates', 'Referral', 'Paid Search', 'Video', and 'Display'.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "deviceCategory",
+		"uiName": "Device category",
+		"description": "The type of device: Desktop, Tablet, or Mobile.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "deviceModel",
+		"uiName": "Device model",
+		"description": "The mobile device model (example: iPhone 10,6).",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "eventName",
+		"uiName": "Event name",
+		"description": "The name of the event.",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "fileExtension",
+		"uiName": "File extension",
+		"description": "The extension of the downloaded file (for example, 'pdf' or 'txt'). Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'file_extension'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "fileName",
+		"uiName": "File name",
+		"description": "The page path of the downloaded file (for example, '/menus/dinner-menu.pdf'). Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'file_name'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": ["firstTouchDate"],
+		"apiName": "firstSessionDate",
+		"uiName": "First session date",
+		"description": "The date the user's first session occurred, formatted as YYYYMMDD.",
+		"customDefinition": false,
+		"category": "User Lifetime"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserCampaignId",
+		"uiName": "First user campaign ID",
+		"description": "Identifier of the marketing campaign that first acquired the user. Includes Google Ads Campaigns.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserCampaignName",
+		"uiName": "First user campaign",
+		"description": "Name of the marketing campaign that first acquired the user. Includes Google Ads and Manual Campaigns.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserDefaultChannelGrouping",
+		"uiName": "First user default channel grouping",
+		"description": "The default channel grouping that first acquired the user. Default channel grouping is based primarily on source and medium. An enumeration which includes 'Direct', 'Organic Search', 'Paid Social', 'Organic Social', 'Email', 'Affiliates', 'Referral', 'Paid Search', 'Video', and 'Display'.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsAdGroupId",
+		"uiName": "First user Google Ads ad group ID",
+		"description": "The Ad Group Id in Google Ads that first acquired the user.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsAdGroupName",
+		"uiName": "First user Google Ads ad group name",
+		"description": "The Ad Group Name in Google Ads that first acquired the user.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsAdNetworkType",
+		"uiName": "First user Google Ads ad network type",
+		"description": "The advertising network that first acquired the user. An enumeration which includes 'Google search', 'Search partners', 'Google Display Network', 'Youtube Search', 'Youtube Videos', 'Cross-network', 'Social', and '(universal campaign)'.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsCampaignType",
+		"uiName": "First user Google Ads campaign type",
+		"description": "The campaign type of the Google Ads campaign that first acquired the user. Campaign types determine where customers see your ads and the settings and options available to you in Google Ads. Campaign type is an enumeration that includes: Search, Display, Shopping, Video, Discovery, App, Smart, Hotel, Local, and Performance Max. To learn more, see https://support.google.com/google-ads/answer/2567043.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": ["firstUserCreativeId"],
+		"apiName": "firstUserGoogleAdsCreativeId",
+		"uiName": "First user Google Ads creative ID",
+		"description": "The ID of the Google Ads creative that first acquired the user. Creative IDs identify individual ads.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsKeyword",
+		"uiName": "First user Google Ads keyword text",
+		"description": "The matched keyword that first acquired the user. Keywords are words or phrases describing your product or service that you choose to get your ad in front of the right customers. To learn more about Keywords, see <https://support.google.com/google-ads/answer/6323>.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserGoogleAdsQuery",
+		"uiName": "First user Google Ads query",
+		"description": "The search query that first acquired the user.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserManualAdContent",
+		"uiName": "First user manual ad content",
+		"description": "The ad content that first acquired the user. Populated by the utm_content parameter.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserManualTerm",
+		"uiName": "First user manual term",
+		"description": "The term that first acquired the user. Populated by the utm_term parameter.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserMedium",
+		"uiName": "First user medium",
+		"description": "The medium that first acquired the user to your website or app.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "firstUserSource",
+		"uiName": "First user source",
+		"description": "The source that first acquired the user to your website or app.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": ["firstUserTrafficOrigin"],
+		"apiName": "firstUserSourcePlatform",
+		"uiName": "First user source platform",
+		"description": "The source platform that first acquired the user. Please do not depend on this field returning 'Manual' for traffic that uses UTMs; this field will update from returning 'Manual' to returning '(not set)' for an upcoming feature launch.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "fullPageUrl",
+		"uiName": "Full page URL",
+		"description": "The hostname, page path, and query string for web pages visited; for example, the fullPageUrl portion of https://www.example.com/store/contact-us?query_string=true is www.example.com/store/contact-us?query_string=true.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsAccountName",
+		"uiName": "Google Ads account name",
+		"description": "The customer's descriptive name in Google Ads for the conversion event's campaign. Corresponding to customer.descriptive_name in the Google Ads API.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsAdGroupId",
+		"uiName": "Google Ads ad group ID",
+		"description": "The ad group id attributed to the conversion event.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsAdGroupName",
+		"uiName": "Google Ads ad group name",
+		"description": "The ad group name attributed to the conversion event.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsAdNetworkType",
+		"uiName": "Google Ads ad network type",
+		"description": "The advertising network type of the conversion. An enumeration which includes 'Google search', 'Search partners', 'Google Display Network', 'Youtube Search', 'Youtube Videos', 'Cross-network', 'Social', and '(universal campaign)'.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsCampaignType",
+		"uiName": "Google Ads campaign type",
+		"description": "The campaign type for the Google Ads campaign attributed to the conversion event. Campaign types determine where customers see your ads and the settings and options available to you in Google Ads. Campaign type is an enumeration that includes: Search, Display, Shopping, Video, Discovery, App, Smart, Hotel, Local, and Performance Max. To learn more, see https://support.google.com/google-ads/answer/2567043.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsCreativeId",
+		"uiName": "Google Ads creative ID",
+		"description": "The ID of the Google Ads creative attributed to the conversion event. Creative IDs identify individual ads.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsKeyword",
+		"uiName": "Google Ads keyword text",
+		"description": "The matched keyword that led to the conversion event. Keywords are words or phrases describing your product or service that you choose to get your ad in front of the right customers. To learn more about Keywords, see <https://support.google.com/google-ads/answer/6323>.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "googleAdsQuery",
+		"uiName": "Google Ads query",
+		"description": "The search query that led to the conversion event.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "groupId",
+		"uiName": "Group ID",
+		"description": "The player group ID in a game for an event. Populated by the event parameter 'group_id'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "hostName",
+		"uiName": "Hostname",
+		"description": "Includes the subdomain and domain names of a URL; for example, the Host Name of www.example.com/contact.html is www.example.com.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "hour",
+		"uiName": "Hour",
+		"description": "The two-digit hour of the day that the event was logged. This dimension ranges from 0-23 and is reported in your property's timezone.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "isConversionEvent",
+		"uiName": "Is conversion event",
+		"description": "The string 'true' if the event is a conversion. Events are marked as conversions at collection time; changes to an event's conversion marking apply going forward. You can mark any event as a conversion in Google Analytics, and some events (i.e. first_open, purchase) are marked as conversions by default. To learn more, see <https://support.google.com/analytics/answer/9267568>.",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemBrand",
+		"uiName": "Item brand",
+		"description": "Brand name of the item.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemCategory",
+		"uiName": "Item category",
+		"description": "The hierarchical category in which the item is classified. For example, in Apparel/Mens/Summer/Shirts/T-shirts, Apparel is the item category.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemCategory2",
+		"uiName": "Item category 2",
+		"description": "The hierarchical category in which the item is classified. For example, in Apparel/Mens/Summer/Shirts/T-shirts, Mens is the item category 2.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemCategory3",
+		"uiName": "Item category 3",
+		"description": "The hierarchical category in which the item is classified. For example, in Apparel/Mens/Summer/Shirts/T-shirts, Summer is the item category 3.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemCategory4",
+		"uiName": "Item category 4",
+		"description": "The hierarchical category in which the item is classified. For example, in Apparel/Mens/Summer/Shirts/T-shirts, Shirts is the item category 4.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemCategory5",
+		"uiName": "Item category 5",
+		"description": "The hierarchical category in which the item is classified. For example, in Apparel/Mens/Summer/Shirts/T-shirts, T-shirts is the item category 5.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemId",
+		"uiName": "Item ID",
+		"description": "The ID of the item.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemListId",
+		"uiName": "Item list ID",
+		"description": "The ID of the item list.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemListName",
+		"uiName": "Item list name",
+		"description": "The name of the item list.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemName",
+		"uiName": "Item name",
+		"description": "The name of the item.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemPromotionCreativeName",
+		"uiName": "Item promotion creative name",
+		"description": "The name of the item-promotion creative.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemPromotionId",
+		"uiName": "Item promotion ID",
+		"description": "The ID of the item promotion.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "itemPromotionName",
+		"uiName": "Item promotion name",
+		"description": "The name of the promotion for the item.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "landingPage",
+		"uiName": "Landing page",
+		"description": "The page path + query string associated with the first pageview in a session.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "language",
+		"uiName": "Language",
+		"description": "The language setting of the user's browser or device. e.g. English",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "languageCode",
+		"uiName": "Language code",
+		"description": "The language setting (ISO 639) of the user's browser or device. e.g. 'en-us'",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "linkClasses",
+		"uiName": "Link classes",
+		"description": "The HTML class attribute for an outbound link. For example if a user clicks a link '<a class=\"center\" href=\"www.youtube.com\">', this dimension will return 'center'. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'link_classes'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "linkDomain",
+		"uiName": "Link domain",
+		"description": "The destination domain of the outbound link. For example if a user clicks a link '<a href=\"www.youtube.com\">', this dimension will return 'youtube.com'. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'link_domain'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "linkId",
+		"uiName": "Link ID",
+		"description": "The HTML id attribute for an outbound link or file download. For example if a user clicks a link '<a id=\"socialLinks\" href=\"www.youtube.com\">', this dimension will return 'socialLinks'. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'link_id'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "linkText",
+		"uiName": "Link text",
+		"description": "The link text of the file download. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'link_text'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "linkUrl",
+		"uiName": "Link URL",
+		"description": "The full url for an outbound link or file download. For example if a user clicks a link '<a href=\"https://www.youtube.com/results?search_query=analytics\">', this dimension will return 'https://www.youtube.com/results?search_query=analytics'. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'link_url'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "manualAdContent",
+		"uiName": "Manual ad content",
+		"description": "The ad content attributed to the conversion event. Populated by the utm_content parameter.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "manualTerm",
+		"uiName": "Manual term",
+		"description": "The term attributed to the conversion event. Populated by the utm_term parameter.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "medium",
+		"uiName": "Medium",
+		"description": "The medium attributed to the conversion event.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "method",
+		"uiName": "Method",
+		"description": "The method by which an event was triggered. Populated by the event parameter 'method'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "minute",
+		"uiName": "Minute",
+		"description": "The two-digit minute of the hour that the event was logged. This dimension ranges from 0-59 and is reported in your property's timezone.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "mobileDeviceBranding",
+		"uiName": "Device brand",
+		"description": "Manufacturer or branded name (examples: Samsung, HTC, Verizon, T-Mobile).",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "mobileDeviceMarketingName",
+		"uiName": "Device",
+		"description": "The branded device name (examples: Galaxy S10 or P30 Pro).",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "mobileDeviceModel",
+		"uiName": "Mobile model",
+		"description": "The mobile device model name (examples: iPhone X or SM-G950F).",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "month",
+		"uiName": "Month",
+		"description": "The month of the event, a two digit integer from 01 to 12.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "newVsReturning",
+		"uiName": "New / returning",
+		"description": "New users have 0 previous sessions, and returning users have 1 or more previous sessions. This dimension returns two values: 'new' or 'returning'.",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthDay",
+		"uiName": "Nth day",
+		"description": "The number of days since the start of the date range.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthHour",
+		"uiName": "Nth hour",
+		"description": "The number of hours since the start of the date range. The starting hour is 0000.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthMinute",
+		"uiName": "Nth minute",
+		"description": "The number of minutes since the start of the date range. The starting minute is 0000.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthMonth",
+		"uiName": "Nth month",
+		"description": "The number of months since the start of a date range. The starting month is 0000.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthWeek",
+		"uiName": "Nth week",
+		"description": "A number representing the number of weeks since the start of a date range.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "nthYear",
+		"uiName": "Nth year",
+		"description": "The number of years since the start of the date range. The starting year is 0000.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "operatingSystem",
+		"uiName": "Operating system",
+		"description": "The operating systems used by visitors to your app or website. Includes desktop and mobile operating systems such as Windows and Android.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "operatingSystemVersion",
+		"uiName": "OS version",
+		"description": "The operating system versions used by visitors to your website or app. For example, Android 10's version is 10, and iOS 13.5.1's version is 13.5.1.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "operatingSystemWithVersion",
+		"uiName": "Operating system with version",
+		"description": "The operating system and version. For example, Android 10 or Windows 7.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "orderCoupon",
+		"uiName": "Order coupon",
+		"description": "Code for the order-level coupon.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "outbound",
+		"uiName": "Outbound",
+		"description": "Returns 'true' if the link lead to a site is not a part of the property’s domain. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'outbound'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "pageLocation",
+		"uiName": "Page location",
+		"description": "The protocol, hostname, page path, and query string for web pages visited; for example, the pageLocation portion of https://www.example.com/store/contact-us?query_string=true is https://www.example.com/store/contact-us?query_string=true. Populated by the event parameter 'page_location'.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "pagePath",
+		"uiName": "Page path",
+		"description": "The portion of the URL between the hostname and query string for web pages visited; for example, the pagePath portion of https://www.example.com/store/contact-us?query_string=true is /store/contact-us.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "pagePathPlusQueryString",
+		"uiName": "Page path + query string",
+		"description": "The portion of the URL following the hostname for web pages visited; for example, the pagePathPlusQueryString portion of https://www.example.com/store/contact-us?query_string=true is /store/contact-us?query_string=true.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "pageReferrer",
+		"uiName": "Page referrer",
+		"description": "The full referring URL including the hostname and path. This referring URL is the user's previous URL and can be this website's domain or other domains. Populated by the event parameter 'page_referrer'.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "pageTitle",
+		"uiName": "Page title",
+		"description": "The web page titles used on your site.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "percentScrolled",
+		"uiName": "Percent scrolled",
+		"description": "The percentage down the page that the user has scrolled (for example, '90'). Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'percent_scrolled'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "platform",
+		"uiName": "Platform",
+		"description": "The platform on which your app or website ran; for example, web, iOS, or Android. To determine a stream's type in a report, use both platform and streamId.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "platformDeviceCategory",
+		"uiName": "Platform / device category",
+		"description": "The platform and type of device on which your website or mobile app ran. (example: Android / mobile)",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "region",
+		"uiName": "Region",
+		"description": "The geographic region from which the user activity originated, derived from their IP address.",
+		"customDefinition": false,
+		"category": "Geography"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "screenResolution",
+		"uiName": "Screen resolution",
+		"description": "The screen resolution of the user's monitor. For example, 1920x1080.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "searchTerm",
+		"uiName": "Search term",
+		"description": "The term searched by the user. For example if the user visits '/some-page.html?q=some-term', this dimension returns 'some-term'. Automatically populated if Enhanced Measurement is enabled. Populated by the event parameter 'search_term'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionCampaignId",
+		"uiName": "Session campaign ID",
+		"description": "The marketing campaign id for a session. Includes Google Ads Campaigns.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionCampaignName",
+		"uiName": "Session campaign",
+		"description": "The marketing campaign name for a session. Includes Google Ads and Manual Campaigns.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionDefaultChannelGrouping",
+		"uiName": "Session default channel grouping",
+		"description": "The session's default channel grouping is based primarily on source and medium. An enumeration which includes 'Direct', 'Organic Search', 'Paid Social', 'Organic Social', 'Email', 'Affiliates', 'Referral', 'Paid Search', 'Video', and 'Display'.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsAccountName",
+		"uiName": "Session Google Ads account name",
+		"description": "A customer's descriptive name in Google Ads. Corresponding to customer.descriptive_name in the Google Ads API.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsAdGroupId",
+		"uiName": "Session Google Ads ad group ID",
+		"description": "The Ad Group Id in Google Ads for a session.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsAdGroupName",
+		"uiName": "Session Google Ads ad group name",
+		"description": "The Ad Group Name in Google Ads for a session.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsAdNetworkType",
+		"uiName": "Session Google Ads ad network type",
+		"description": "The advertising network that led to the session. An enumeration which includes 'Google search', 'Search partners', 'Google Display Network', 'Youtube Search', 'Youtube Videos', 'Cross-network', 'Social', and '(universal campaign)'.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsCampaignType",
+		"uiName": "Session Google Ads campaign type",
+		"description": "The campaign type for the Google Ads campaign that led to this session. Campaign types determine where customers see your ads and the settings and options available to you in Google Ads. Campaign type is an enumeration that includes: Search, Display, Shopping, Video, Discovery, App, Smart, Hotel, Local, and Performance Max. To learn more, see https://support.google.com/google-ads/answer/2567043.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsCreativeId",
+		"uiName": "Session Google Ads creative ID",
+		"description": "The ID of the Google Ads creative that lead to a session on your website or app. Creative IDs identify individual ads.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsKeyword",
+		"uiName": "Session Google Ads keyword text",
+		"description": "The matched keyword that led to the session. Keywords are words or phrases describing your product or service that you choose to get your ad in front of the right customers. To learn more about Keywords, see <https://support.google.com/google-ads/answer/6323>.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionGoogleAdsQuery",
+		"uiName": "Session Google Ads query",
+		"description": "The search query that led to the session.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionManualAdContent",
+		"uiName": "Session manual ad content",
+		"description": "The ad content that led to a session. Populated by the utm_content parameter.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionManualTerm",
+		"uiName": "Session manual term",
+		"description": "The term that led to a session. Populated by the utm_term parameter.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionMedium",
+		"uiName": "Session medium",
+		"description": "The medium that initiated a session on your website or app.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "sessionSource",
+		"uiName": "Session source",
+		"description": "The source that initiated a session on your website or app.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": ["sessionTrafficOrigin"],
+		"apiName": "sessionSourcePlatform",
+		"uiName": "Session source platform",
+		"description": "The source platform of the session's campaign. Please do not depend on this field returning 'Manual' for traffic that uses UTMs; this field will update from returning 'Manual' to returning '(not set)' for an upcoming feature launch.",
+		"customDefinition": false,
+		"category": "Traffic Source"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "signedInWithUserId",
+		"uiName": "Signed in with user ID",
+		"description": "The string 'yes' if the user signed in with the User-ID feature. To learn more about User-ID, see <https://support.google.com/analytics/answer/9213390>.",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "source",
+		"uiName": "Source",
+		"description": "The source attributed to the conversion event.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": ["trafficOrigin"],
+		"apiName": "sourcePlatform",
+		"uiName": "Source platform",
+		"description": "The source platform of the conversion event's campaign. Please do not depend on this field returning 'Manual' for traffic that uses UTMs; this field will update from returning 'Manual' to returning '(not set)' for an upcoming feature launch.",
+		"customDefinition": false,
+		"category": "Attribution"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "streamId",
+		"uiName": "Stream ID",
+		"description": "The numeric data stream identifier for your app or website.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "streamName",
+		"uiName": "Stream name",
+		"description": "The data stream name for your app or website.",
+		"customDefinition": false,
+		"category": "Platform / Device"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "testDataFilterName",
+		"uiName": "Test data filter name",
+		"description": "The name of data filters in testing state. You use data filters to include or exclude event data from your reports based on event-parameter values. To learn more, see <https://support.google.com/analytics/answer/10108813>.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "transactionId",
+		"uiName": "Transaction ID",
+		"description": "The ID of the ecommerce transaction.",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "unifiedPagePathScreen",
+		"uiName": "Page path and screen class",
+		"description": "The page path (web) or screen class (app) on which the event was logged.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "unifiedPageScreen",
+		"uiName": "Page path + query string and screen class",
+		"description": "The page path and query string (web) or screen class (app) on which the event was logged.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "unifiedScreenClass",
+		"uiName": "Page title and screen class",
+		"description": "The page title (web) or screen class (app) on which the event was logged.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "unifiedScreenName",
+		"uiName": "Page title and screen name",
+		"description": "The page title (web) or screen name (app) on which the event was logged.",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "userAgeBracket",
+		"uiName": "Age",
+		"description": "User age brackets.",
+		"customDefinition": false,
+		"category": "Demographics"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "userGender",
+		"uiName": "Gender",
+		"description": "User gender.",
+		"customDefinition": false,
+		"category": "Demographics"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "videoProvider",
+		"uiName": "Video provider",
+		"description": "The source of the video (for example, 'youtube'). Automatically populated for embedded videos if Enhanced Measurement is enabled. Populated by the event parameter 'video_provider'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "videoTitle",
+		"uiName": "Video title",
+		"description": "The title of the video. Automatically populated for embedded videos if Enhanced Measurement is enabled. Populated by the event parameter 'video_title'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "videoUrl",
+		"uiName": "Video URL",
+		"description": "The url of the video. Automatically populated for embedded videos if Enhanced Measurement is enabled. Populated by the event parameter 'video_url'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "visible",
+		"uiName": "Visible",
+		"description": "Returns 'true' if the content is visible. Automatically populated for embedded videos if Enhanced Measurement is enabled. Populated by the event parameter 'visible'.",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "week",
+		"uiName": "Week",
+		"description": "The week of the event, a two-digit number from 01 to 53. Each week starts on Sunday. January 1st is always in week 01. The first and last week of the year have fewer than 7 days in most years. Weeks other than the first and the last week of the year always have 7 days. For years where January 1st is a Sunday, the first week of that year and the last week of the prior year have 7 days.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "year",
+		"uiName": "Year",
+		"description": "The four-digit year of the event e.g. 2020.",
+		"customDefinition": false,
+		"category": "Time"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:bucket",
+		"uiName": "bucket_name",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:cat_name",
+		"uiName": "category_name",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:font_color",
+		"uiName": "font_color",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:prod_name",
+		"uiName": "product_name",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:shadow_color",
+		"uiName": "shadow_color",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:title",
+		"uiName": "link_title",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}, {
+		"deprecatedApiNames": [],
+		"apiName": "customEvent:u_id",
+		"uiName": "user_id",
+		"description": "An event scoped custom dimension for your Analytics property.",
+		"customDefinition": true,
+		"category": "Event-scoped Custom Dimension"
+	}],
+	"metrics": [{
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "active1DayUsers",
+		"uiName": "1-day active users",
+		"description": "The number of distinct active users on your site or app within a 1 day period. The 1 day period includes the last day in the report's date range. Note: this is the same as Active Users.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "active28DayUsers",
+		"uiName": "28-day active users",
+		"description": "The number of distinct active users on your site or app within a 28 day period. The 28 day period includes the last day in the report's date range.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "active7DayUsers",
+		"uiName": "7-day active users",
+		"description": "The number of distinct active users on your site or app within a 7 day period. The 7 day period includes the last day in the report's date range.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "activeUsers",
+		"uiName": "Active users",
+		"description": "The number of distinct users who visited your site or app.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "addToCarts",
+		"uiName": "Add-to-carts",
+		"description": "The number of times users added items to their shopping carts.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": ["adUnitExposureMs"],
+		"blockedReasons": [],
+		"apiName": "adUnitExposure",
+		"uiName": "Ad unit exposure",
+		"description": "The time that an ad unit was exposed to a user, in milliseconds.",
+		"type": "TYPE_MILLISECONDS",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Publisher"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "averagePurchaseRevenue",
+		"uiName": "Average purchase revenue",
+		"description": "The average purchase revenue in the transaction group of events.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Revenue"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "averagePurchaseRevenuePerPayingUser",
+		"uiName": "ARPPU",
+		"description": "Average revenue per paying user (ARPPU) is the total purchase revenue per active user that logged a purchase event. The summary metric is for the time period selected.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Revenue"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "averagePurchaseRevenuePerUser",
+		"uiName": "Average purchase revenue per user",
+		"description": "The average purchase revenue per active user is the total purchase revenue per active user that logged any event. The summary metric is for the time period selected.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Revenue"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "averageRevenuePerUser",
+		"uiName": "ARPU",
+		"description": "Average revenue per active user (ARPU). The summary metric is for the time period selected. ARPU uses Total Revenue and includes AdMob estimated earnings.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Revenue"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "averageSessionDuration",
+		"uiName": "Average session duration",
+		"description": "The average duration (in seconds) of users' sessions.",
+		"type": "TYPE_SECONDS",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Session"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "cartToViewRate",
+		"uiName": "Cart-to-view rate",
+		"description": "The number of users who added a product(s) to their cart divided by the number of users who viewed the same product(s). This metric is returned as a fraction; for example, 0.1132 means 11.32% of users who viewed a product also added the same product to their cart.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "checkouts",
+		"uiName": "Checkouts",
+		"description": "The number of times users started the checkout process.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "cohortActiveUsers",
+		"uiName": "Cohort active users",
+		"description": "The number of users in the cohort who are active in the time window corresponding to the cohort nth day/week/month. For example for the row where cohortNthWeek = 0001, this metric is the number of users (in the cohort) who are active in week 1.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "cohortTotalUsers",
+		"uiName": "Cohort total users",
+		"description": "The total number of users in the cohort. This metric is the same value in every row of the report for each cohort. Because cohorts are defined by a shared acquisition date, cohortTotalUsers is the same as cohortActiveUsers for the cohort's selection date range. For report rows later than the ochort's selection range, it is typical for cohortActiveUsers to be smaller than cohortTotalUsers. This difference represents users from the cohort that were not active for the later date. cohortTotalUsers is commonly used in the metric expression cohortActiveUsers/cohortTotalUsers to compute a user retention fraction for the cohort. The relationship between activeUsers and totalUsers is not equivalent to the relationship between cohortActiveUsers and cohortTotalUsers.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Cohort"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "conversions",
+		"uiName": "Conversions",
+		"description": "The count of conversion events. Events are marked as conversions at collection time; changes to an event's conversion marking apply going forward. You can mark any event as a conversion in Google Analytics, and some events (i.e. first_open, purchase) are marked as conversions by default. To learn more, see <https://support.google.com/analytics/answer/9267568>.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "crashAffectedUsers",
+		"uiName": "Crash-affected users",
+		"description": "The number of users that logged a crash in this row of the report. For example if the report is time series by date, this metrics reports total users with at least one crash on this date. Crashes are events with the name \"app_exception\".",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "crashFreeUsersRate",
+		"uiName": "Crash-free users rate",
+		"description": "The number of users without crash events (in this row of the report) divided by the total number of users. This metric is returned as a fraction; for example, 0.9243 means 92.43% of users were crash-free.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "dauPerMau",
+		"uiName": "DAU / MAU",
+		"description": "The rolling percent of 30-day active users who are also 1-day active users. This metric is returned as a fraction; for example, 0.113 means 11.3% of 30-day active users were also 1-day active users.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "dauPerWau",
+		"uiName": "DAU / WAU",
+		"description": "The rolling percent of 7-day active users who are also 1-day active users. This metric is returned as a fraction; for example, 0.082 means 8.2% of 7-day active users were also 1-day active users.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "ecommercePurchases",
+		"uiName": "Ecommerce purchases",
+		"description": "The number of times users completed a purchase. This metric counts 'purchase' events; this metric does not count 'in_app_purchase' and subscription events.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "engagedSessions",
+		"uiName": "Engaged sessions",
+		"description": "The number of sessions that lasted longer than 10 seconds, or had a conversion event, or had 2 or more screen views.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Session"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "engagementRate",
+		"uiName": "Engagement rate",
+		"description": "The percentage of engaged sessions (Engaged sessions divided by Sessions). This metric is returned as a fraction; for example, 0.7239 means 72.39% of sessions were engaged sessions.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Session"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "eventCount",
+		"uiName": "Event count",
+		"description": "The count of events.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "eventCountPerUser",
+		"uiName": "Event count per user",
+		"description": "The average number of events per user (Event count divided by Active users).",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "eventsPerSession",
+		"uiName": "Events per session",
+		"description": "The average number of events per session (Event count divided by Sessions).",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "eventValue",
+		"uiName": "Event value",
+		"description": "The sum of the event parameter named 'value'.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Event"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "firstTimePurchaserConversionRate",
+		"uiName": "First-time purchaser conversion",
+		"description": "The percentage of active users who made their first purchase. This metric is returned as a fraction; for example, 0.092 means 9.2% of active users were first time purchasers.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "firstTimePurchasers",
+		"uiName": "First time purchasers",
+		"description": "The number of users that completed their first purchase event.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "firstTimePurchasersPerNewUser",
+		"uiName": "First-time purchasers per new user",
+		"description": "The average number of first time purchasers per new user.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemListClicks",
+		"uiName": "Item list clicks",
+		"description": "The number of times users clicked an item when it appeared in a list.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemListClickThroughRate",
+		"uiName": "Item list click through rate",
+		"description": "The number of users who selected a list(s) divided by the number of users who viewed the same list(s). This metric is returned as a fraction; for example, 0.2145 means 21.45% of users who viewed a list also selected the same list.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemListViews",
+		"uiName": "Item list views",
+		"description": "The number of times the item list was viewed.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemPromotionClicks",
+		"uiName": "Item promotion clicks",
+		"description": "The number of times an item promotion was clicked.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemPromotionClickThroughRate",
+		"uiName": "Item promotion click through rate",
+		"description": "The number of users who selected a promotion(s) divided by the number of users who viewed the same promotion(s). This metric is returned as a fraction; for example, 0.1382 means 13.82% of users who viewed a promotion also selected the promotion.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemPromotionViews",
+		"uiName": "Item promotion views",
+		"description": "The number of times an item promotion was viewed.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemPurchaseQuantity",
+		"uiName": "Item purchase quantity",
+		"description": "The number of units for a single item included in purchase events.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemRevenue",
+		"uiName": "Item revenue",
+		"description": "The total revenue from items only. Item revenue is the product of its price and quantity. Item revenue excludes tax and shipping values; tax & shipping values are specified at the event and not item level.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "itemViews",
+		"uiName": "Item views",
+		"description": "The number of times the item details were viewed.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "newUsers",
+		"uiName": "New users",
+		"description": "The number of users who interacted with your site or launched your app for the first time (event triggered: first_open or first_visit).",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "publisherAdClicks",
+		"uiName": "Publisher ad clicks",
+		"description": "The number of ad_click events.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "publisherAdImpressions",
+		"uiName": "Publisher ad impressions",
+		"description": "The number of ad_impression events.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "purchaserConversionRate",
+		"uiName": "Purchaser conversion",
+		"description": "The percentage of active users who made 1 or more purchase transactions. This metric is returned as a fraction; for example, 0.412 means 41.2% of users were purchasers.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "purchaseRevenue",
+		"uiName": "Purchase revenue",
+		"description": "The sum of revenue from purchases made in your app or site. Purchase revenue sums the revenue for these events: 'purchase', 'ecommerce_purchase', 'in_app_purchase', 'app_store_subscription_convert', and 'app_store_subscription_renew'. Purchase revenue is specified by the 'value' parameter in tagging.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "purchaseToViewRate",
+		"uiName": "Purchase-to-view rate",
+		"description": "The number of users who purchased a product(s) divided by the number of users who viewed the same product(s). This metric is returned as a fraction; for example, 0.128 means 12.8% of users that viewed a product(s) also purchased the same product(s).",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "screenPageViews",
+		"uiName": "Views",
+		"description": "The number of app screens or web pages your users viewed. Repeated views of a single page or screen are counted. (screen_view + page_view events).",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "screenPageViewsPerSession",
+		"uiName": "Views per session",
+		"description": "The number of app screens or web pages your users viewed per session. Repeated views of a single page or screen are counted. (screen_view + page_view events) / sessions.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Page / Screen"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "sessions",
+		"uiName": "Sessions",
+		"description": "The number of sessions that began on your site or app (event triggered: session_start).",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Session"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "sessionsPerUser",
+		"uiName": "Sessions per user",
+		"description": "The average number of sessions per user (Sessions divided by Active Users).",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Session"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "totalAdRevenue",
+		"uiName": "Total ad revenue",
+		"description": "The total advertising revenue from both Admob and third-party sources.",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Other"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "totalPurchasers",
+		"uiName": "Total purchasers",
+		"description": "The number of users that logged purchase events for the time period selected.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "totalRevenue",
+		"uiName": "Total revenue",
+		"description": "The sum of revenue from purchases, subscriptions, and advertising (Purchase revenue plus Subscription revenue plus Ad revenue).",
+		"type": "TYPE_CURRENCY",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Revenue"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "totalUsers",
+		"uiName": "Total users",
+		"description": "The number of distinct users who have logged at least one event, regardless of whether the site or app was in use when that event was logged.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "transactions",
+		"uiName": "Transactions",
+		"description": "The count of transaction events with purchase revenue. Transaction events are in_app_purchase, ecommerce_purchase, purchase, app_store_subscription_renew, app_store_subscription_convert, and refund.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "transactionsPerPurchaser",
+		"uiName": "Transactions per purchaser",
+		"description": "The average numer of transactions per purchaser.",
+		"type": "TYPE_INTEGER",
+		"expression": "",
+		"customDefinition": false,
+		"category": "Ecommerce"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "userEngagementDuration",
+		"uiName": "User engagement",
+		"description": "The total amount of time (in seconds) your website or app was in the foreground of users' devices.",
+		"type": "TYPE_SECONDS",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}, {
+		"deprecatedApiNames": [],
+		"blockedReasons": [],
+		"apiName": "wauPerMau",
+		"uiName": "WAU / MAU",
+		"description": "The rolling percent of 30-day active users who are also 7-day active users. This metric is returned as a fraction; for example, 0.234 means 23.4% of 30-day active users were also 7-day active users.",
+		"type": "TYPE_FLOAT",
+		"expression": "",
+		"customDefinition": false,
+		"category": "User"
+	}],
+	"name": "properties/307191351/metadata"
+}

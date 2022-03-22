@@ -25,6 +25,8 @@ export default function Dashboard({
   currentUser,
   cookies,
   masterSocials,
+  linkAnalytics,
+  prodAnalytics,
 }) {
   const [userDataContext] = useContext(UserContext);
 
@@ -113,6 +115,8 @@ export default function Dashboard({
             buckets={buckets[0].u_buckets}
             user={user}
             cookie={cookies[0]}
+            linkAnalytics={linkAnalytics}
+            prodAnalytics={prodAnalytics}
           />
         </Flex>
       </Flex>
@@ -169,6 +173,8 @@ export async function getServerSideProps(context) {
     { value: buckets, reason: bucketsError },
     { value: user, reason: userError },
     { value: masterSocials, reason: masterSocialsError },
+    { value: linkAnalytics, reason: linkAnalyticsError },
+    { value: prodAnalytics, reason: prodAnalyticsError },
   ] = await Promise.allSettled(
     [
       fetch(nonauthapi + "links" + "?u_id=" + currentUser[0]),
@@ -177,10 +183,12 @@ export async function getServerSideProps(context) {
       fetch(nonauthapi + "buckets" + "?u_id=" + currentUser[0]),
       fetch(nonauthapi + "user" + "?u_id=" + currentUser[0]),
       fetch(authapi + "socials/master"),
+      fetch(authapi + "analytics/link" + "?u_id=" + currentUser[0]),
+      fetch(authapi + "analytics/prod" + "?u_id=" + currentUser[0]),
     ].map((fetchApi) => fetchApi.then((res) => res.json()))
   );
 
-  console.log(currentUser[0], buckets);
+  // console.log(currentUser[0], linkAnalytics, prodAnalytics);
 
   return {
     props: {
@@ -192,6 +200,8 @@ export async function getServerSideProps(context) {
       currentUser,
       cookies,
       masterSocials,
+      linkAnalytics,
+      prodAnalytics,
     },
   };
 }

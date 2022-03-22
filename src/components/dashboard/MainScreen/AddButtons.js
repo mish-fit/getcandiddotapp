@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { IoMdAnalytics } from "react-icons/io";
 import { Flex, Text } from "@chakra-ui/react";
 
 // Add a custom Link
-export function AddButtons({ addLink, addProduct }) {
+export function AddButtons({ addLink, addProduct, showAnalytics }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -14,31 +15,51 @@ export function AddButtons({ addLink, addProduct }) {
     addProduct();
   };
 
+  const analytics = () => {
+    showAnalytics();
+  };
+
   return (
     <Flex as="container" sx={styles.container}>
-      <Flex as="addbutton" sx={styles.addbutton} onClick={addProducts}>
-        <Flex
-          sx={{
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <BsPlusCircleFill color="#D7354A" />
-          <Text sx={styles.addbuttonText}>Recommend Products</Text>
+      <Flex>
+        <Flex as="addbutton" sx={styles.addbutton} onClick={analytics}>
+          <Flex
+            sx={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <IoMdAnalytics color="#4B0082" />
+            <Text sx={styles.showAnalyticsText}>Show Analytics</Text>
+          </Flex>
         </Flex>
       </Flex>
-      <Flex as="addbutton" sx={styles.addbutton} onClick={addLinks}>
-        <Flex
-          sx={{
-            // ml: ["80px", "80px", "0px", "0px", "0px", "0px"],
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <BsPlusCircleFill color="#D7354A" />
-          <Text sx={styles.addbuttonText}>Custom Links</Text>
+      <Flex>
+        <Flex as="addbutton" sx={styles.addbutton} onClick={addProducts}>
+          <Flex
+            sx={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <BsPlusCircleFill color="#D7354A" />
+            <Text sx={styles.addbuttonText}>Recommend Products</Text>
+          </Flex>
+        </Flex>
+        <Flex as="addbutton" sx={styles.addbutton} onClick={addLinks}>
+          <Flex
+            sx={{
+              // ml: ["80px", "80px", "0px", "0px", "0px", "0px"],
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <BsPlusCircleFill color="#D7354A" />
+            <Text sx={styles.addbuttonText}>Custom Links</Text>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
@@ -54,8 +75,8 @@ const styles = {
       "justify-evenly",
       "flex-end",
       "flex-end",
-      "flex-end",
-      "flex-end",
+      "space-between",
+      "space-between",
     ],
     alignItems: "flex-start",
     width: ["100%", "100%", null],
@@ -86,6 +107,13 @@ const styles = {
     fontSize: "16px",
     color: "#D7354A",
   },
+  showAnalyticsText: {
+    ml: "6px",
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: "16px",
+    color: "#4B0082",
+  },
   button: {
     fontSize: "16px",
     color: "#ffff",
@@ -106,5 +134,5 @@ const styles = {
     "&:hover": {
       backgroundColor: "secondary",
     },
-  }
+  },
 };

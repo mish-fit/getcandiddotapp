@@ -9,13 +9,23 @@ import { EditLinksModal } from "./Modals/EditLinksModal";
 import { EditProductsModal } from "./Modals/EditProductsModal";
 import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
+import { AnalyticsModal } from "./Modals/AnalyticsModal";
 
 let Element = Scroll.Element;
 
 // Add a custom Link
-export function MainScreen({ links, recos, buckets, user, cookie }) {
+export function MainScreen({
+  links,
+  recos,
+  buckets,
+  user,
+  cookie,
+  linkAnalytics,
+  prodAnalytics,
+}) {
   const [isOpenLinksModal, setOpenLinksModal] = React.useState(false);
   const [isOpenProductsModal, setOpenProductsModal] = React.useState(false);
+  const [isOpenAnalyticsModal, setOpenAnalyticsModal] = React.useState(false);
 
   const [isOpenEditLinksModal, setOpenEditLinksModal] = React.useState(false);
   const [editLinkItem, setEditLinkItem] = React.useState({});
@@ -53,6 +63,11 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
   const onCloseProductsModal = (item) => {
     // console.log("close");
     setOpenProductsModal(false);
+  };
+
+  const onCloseAnalyticsModal = (item) => {
+    // console.log("close");
+    setOpenAnalyticsModal(false);
   };
 
   const newReco = (item) => {
@@ -237,6 +252,14 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
         cookie={cookie}
         newItem={(item) => newReco(item)}
       />
+      <AnalyticsModal
+        isOpen={isOpenAnalyticsModal}
+        closeParent={(item) => onCloseAnalyticsModal(item)}
+        user={user}
+        linkAnalytics={linkAnalytics}
+        prodAnalytics={prodAnalytics}
+      />
+
       <EditLinksModal
         isOpen={isOpenEditLinksModal}
         closeParent={(item) => onCloseEditLinksModal(item)}
@@ -260,6 +283,7 @@ export function MainScreen({ links, recos, buckets, user, cookie }) {
       <AddButtons
         addLink={() => setOpenLinksModal(true)}
         addProduct={() => setOpenProductsModal(true)}
+        showAnalytics={() => setOpenAnalyticsModal(true)}
       />
       <Element name="products">
         <ShowProducts

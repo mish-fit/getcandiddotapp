@@ -15,8 +15,6 @@ import { Button, Container, Flex, Image, jsx } from "theme-ui";
 import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
-import axios from "axios";
-
 import { event, pageview } from "analytics/ga";
 
 export default function User({ links, recos, user, socials, buckets }) {
@@ -148,7 +146,7 @@ export async function getServerSideProps(context) {
       ].map((fetchApi) => fetchApi.then((res) => res.json()))
     );
 
-    console.log(recos, links);
+    // console.log(recos, links);
 
     return {
       props: {
