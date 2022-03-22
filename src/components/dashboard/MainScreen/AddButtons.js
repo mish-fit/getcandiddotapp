@@ -4,7 +4,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import addButtonsStyles from "styles/AddButtons";
 
 // Add a custom Link
-export function AddButtons({ addLink, addProduct }) {
+export function AddButtons({ addLink, addProduct, showAnalytics }) {
   const router = useRouter();
 
   const addLinks = () => {
@@ -15,22 +15,40 @@ export function AddButtons({ addLink, addProduct }) {
     addProduct();
   };
 
+  const analytics = () => {
+    showAnalytics();
+  };
+
   return (
     <Flex as="container" sx={addButtonsStyles.container}>
-      <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addProducts}>
+      <Flex>
         <Flex
-          sx={addButtonsStyles.flex}
+          as="addbutton"
+          sx={addButtonsStyles.addbutton}
+          onClick={showAnalytics}
         >
-          <BsPlusCircleFill color="#D7354A" />
-          <Text sx={addButtonsStyles.addbuttonText}>Recommend Products</Text>
+          <Flex sx={addButtonsStyles.flex}>
+            <BsPlusCircleFill color="#D7354A" />
+            <Text sx={addButtonsStyles.addbuttonText}>Show Analytics</Text>
+          </Flex>
         </Flex>
       </Flex>
-      <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addLinks}>
+      <Flex>
         <Flex
-          sx={addButtonsStyles.flex}
+          as="addbutton"
+          sx={addButtonsStyles.addbutton}
+          onClick={addProducts}
         >
-          <BsPlusCircleFill color="#D7354A" />
-          <Text sx={addButtonsStyles.addbuttonText}>Custom Links</Text>
+          <Flex sx={addButtonsStyles.flex}>
+            <BsPlusCircleFill color="#D7354A" />
+            <Text sx={addButtonsStyles.addbuttonText}>Recommend Products</Text>
+          </Flex>
+        </Flex>
+        <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addLinks}>
+          <Flex sx={addButtonsStyles.flex}>
+            <BsPlusCircleFill color="#D7354A" />
+            <Text sx={addButtonsStyles.addbuttonText}>Custom Links</Text>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
