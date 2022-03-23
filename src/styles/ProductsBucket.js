@@ -5,6 +5,7 @@ const productsBucketStyles = {
     width: "100%",
   },
   grid: {
+    justifyContent:["center","center","left","left","left","left"],
     flexDirection: "row",
     flexWrap: "wrap",
   },

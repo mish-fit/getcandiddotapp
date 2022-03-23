@@ -331,8 +331,6 @@ export function LinksModal({
                 <Text sx={linksModalStyles.save}>Save </Text>
                 <BsCheckCircleFill
                   color="#D7354A"
-                  size={15}
-                  sx={{ ml: "6px" }}
                 />
               </Flex>
             </Flex>

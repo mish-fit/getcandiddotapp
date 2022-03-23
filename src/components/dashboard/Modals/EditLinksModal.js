@@ -306,11 +306,9 @@ export function EditLinksModal({
             <Flex sx={linksModalStyles.row1}>
               <Text sx={linksModalStyles.topHeader}>Edit Link</Text>
               <Flex sx={linksModalStyles.saveContainer} onClick={savenclose}>
-                <Text sx={linksModalStyles.save}>Save </Text>
+                <Text sx={linksModalStyles.save}>Save</Text>
                 <BsCheckCircleFill
                   color="#D7354A"
-                  size={15}
-                  sx={{ ml: "6px" }}
                 />
               </Flex>
             </Flex>
