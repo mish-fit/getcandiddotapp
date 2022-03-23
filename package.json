@@ -54,7 +54,8 @@
     "swr": "^1.2.2",
     "typeface-bree-serif": "^1.1.13",
     "typeface-dm-sans": "^1.1.13",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "victory": "^36.3.1"
   },
   "devDependencies": {
     "eslint": "8.7.0",
