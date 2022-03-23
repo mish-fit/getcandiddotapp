@@ -25,7 +25,7 @@ export function UserSummary({ data }) {
 
   return (
     <Flex sx={userSummaryStyles.container}>
-      <Flex sx={{ flex: 1, width: "100%" }}>
+      <Flex>
         <Flex sx={userSummaryStyles.buttonContainer}>
           <ScrollLink
             sx={{}}

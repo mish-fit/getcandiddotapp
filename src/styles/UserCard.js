@@ -2,25 +2,24 @@ const userCardStyles = {
   container: {
     flexDirection: "column",
     width: "full",
-    mt: ["48px", "48px", "0px", "0px", "0px", "0px"],
+    // justifyContent:"center",
     // mr:["-10%","-10%","0%","0%","0%","0%"],
-    borderTopRadius: "0px",
   },
   coverPhotoView: {
     flexDirection: "column", 
     backgroundColor: "white",
     width: "full",
+    justifyContent: "flex-start",
     // width: ["0px","0px","0px","448px","448px","448px"],
     // width: ["0px","448px","448px","448px","448px","448px"],
     // height: ["48rem", "248rem","248px","160px","248px","248px"],
-    justifyContent: "flex-start",
   },
   userPhotoView: {
     justifyContent: "center",
-    // mt: ["24px", "24px", "-48px", "-48px", "0px", "0px"],
     width: "100%",
     height: "100%",
     backgroundColor: "transparent",
+    // mt: ["24px", "24px", "-48px", "-48px", "0px", "0px"],
   },
   userNameView: {
     flexDirection: "column",
@@ -42,8 +41,12 @@ const userCardStyles = {
     fontWeight: "400",
   },
   coverPhoto: {
-    display: ["none", "inline", "inline", "inline", "inline", "inline"],
+    // width:"350px",
+    // mb:"140px",
+    // mb: ["148px", "148px", "0px", "0px", "0px", "0px"],
     // mt: ["-150px" ,"0px","0px","0px","0px","0px"],
+    mx:"auto",
+    display: ["none", "none", "inline", "inline", "inline", "inline"],
     textAlign: "center",
     borderRadius: "0px",
   },
@@ -65,8 +68,9 @@ const userCardStyles = {
 
   nav: {
     cursor: "pointer",
-    display: ["", "", "none", "none", "none", "none"],
-    justifyContent: "center",
+    mb:"48px",
+    display: [null, null, "none", "none", "none", "none"],
+    mx:"auto",
     navLink: {
       // textDecoration:"underline",
       fontFamily: "Poppins",

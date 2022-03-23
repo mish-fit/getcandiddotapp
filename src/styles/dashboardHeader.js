@@ -74,6 +74,8 @@ const dashboardHeaderStyles = {
     // backgroundColor: "red",
     display: "flex",
     alignItems: "center",
+    mx:"8px",
+    justifyContent: "space-between",
     maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {

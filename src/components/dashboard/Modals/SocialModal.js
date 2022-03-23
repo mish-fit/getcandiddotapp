@@ -46,7 +46,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
                 }}
               >
                 <Image src={item.social_logo} alt="img" sx={socialModalStyles.social} />
-                <Flex sx={{ position: "absolute", top: "-4px", right: "-4px" }}>
+                <Flex sx={{ position: "absolute", top: "-4px", right: "40px" }}>
                   {currentSocials.filter(
                     (item1, index1) => item1.social_id === item.social_id
                   ).length ? (

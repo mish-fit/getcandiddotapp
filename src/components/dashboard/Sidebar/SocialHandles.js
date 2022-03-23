@@ -37,7 +37,7 @@ export function SocialHandles({ social, data }) {
       sx={socialHandlesStyles.container}
     >
       {/* <Text sx={socialHandlesStyles.heading}>Social Handles</Text> */}
-      <SimpleGrid gap={2} columns={[4, 5, 6, 6, 6, 6]} sx={socialHandlesStyles.grid}>
+      <SimpleGrid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={socialHandlesStyles.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
@@ -46,7 +46,7 @@ export function SocialHandles({ social, data }) {
         sx={socialHandlesStyles.socialAddFlex}
       >
         <Button as="addbutton" sx={socialHandlesStyles.addbutton} onClick={addSocial}>
-          <BsPlusCircleFill color="#D7354A" size={15} />
+          <BsPlusCircleFill color="#D7354A"/>
           <Text
             sx={socialHandlesStyles.socialAddText}
           >

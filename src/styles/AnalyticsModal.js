@@ -127,6 +127,10 @@ const analyticsModalStyles = {
     position: "relative",
     cursor: "pointer",
   },
+  icon: { 
+    ml: "16px",
+    color:"#4B0082"
+  }
 };
 
 export default analyticsModalStyles;

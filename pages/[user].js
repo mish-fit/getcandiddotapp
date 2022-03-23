@@ -82,14 +82,14 @@ export default function User({ links, recos, user, socials, buckets }) {
                   src={logo}
                   width="120px"
                   height="40px"
-                  sx={userStyles.logouserStyles}
+                  // sx={userStyles.logouserStyles}
                   alt="startup landing logo"
                 />
               </Link>
             </Flex>
             <Flex>
               <Button sx={userStyles.button} onClick={handleCreateLinkButton}>
-                Create your CNDD link!
+                Create your own CNDD link!
               </Button>
             </Flex>
           </Flex>
@@ -97,7 +97,7 @@ export default function User({ links, recos, user, socials, buckets }) {
       </DrawerProvider>
       <Divider/>
       <Flex as="container" sx={userStyles.container}>
-        <Flex as="sidebar" sx={userStyles.sidebarTrial}>
+        <Flex as="sidebar" sx={userStyles.sidebar}>
           <Sidebar socials={socials} user={user} summary={summary} />
         </Flex>
         <Flex as="mainscreen" sx={userStyles.mainscreen}>

@@ -9,7 +9,7 @@ const userSummaryStyles = {
     justifyContent: "space-evenly",
     flex: 1,
     // mr: ["-25%","0%","0%","0%","0%","0%"],
-    my: "2%",
+    // my: "16px",
   },
   summaryView: {
     flexDirection: "row",

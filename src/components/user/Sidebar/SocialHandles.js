@@ -39,7 +39,7 @@ export function SocialHandles({ social, data }) {
       sx={socialHandlesStyles.container}
     >
       {/* <Text sx={socialHandlesStyles.heading}>Social Handles</Text> */}
-      <SimpleGrid gap={2} columns={[4, 5, 6, 6, 6, 6]} sx={socialHandlesStyles.grid}>
+      <SimpleGrid gap={2} columns={[6, 6, 6, 6, 6, 6]} sx={socialHandlesStyles.grid}>
         {data.map((item, index) => {
           return <SocialElement item={item} key={index} />;
         })}
