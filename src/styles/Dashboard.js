@@ -1,6 +1,6 @@
 const dashboardStyles = {
   container: {
-    // mt: "50px",
+    mt:["16px","16px","0px","0px","0px","0px"],
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -14,7 +14,8 @@ const dashboardStyles = {
   },
   sidebar: {
     p: "10px",
-    width: "320px",
+    width: "full",
+    flex: 1,
     pl: "8px",
     pt: "16px",
     alignItems: "center",
@@ -80,7 +81,6 @@ const dashboardStyles = {
       boxShadow: "0 1px 2px rgba(0, 0, 0, 0.06)",
     },
   },
-  logoContainer: {},
   signoutContainer: {
     loginBtn: {
       ml: "auto",

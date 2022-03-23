@@ -54,14 +54,14 @@ export function UserCard({ data }) {
       </Flex>
       <Flex as="nav" sx={userCardStyles.nav}>
         <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
-          <Flex onClick={linkClick}>
-            <Button sx={{ fontSize: "24px" }}>
+          <Flex onClick={linkClick} display="inline">
+            <Button sx={{ fontSize: "16px" }}>
               {"cndd.in/" + data[0].u_uuid}
             </Button>
           </Flex>
         </CopyToClipboard>
-        <CopyToClipboard mt="6px" text={"cndd.in/" + data[0].u_uuid}>
-          <Flex onClick={linkCopy}>
+        <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
+          <Flex onClick={linkCopy} display="inline-block">
             <AiFillCopy sx={{ fontSize: "24px", ml: "8px" }} color={"gray"} />
           </Flex>
         </CopyToClipboard>

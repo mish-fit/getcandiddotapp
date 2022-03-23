@@ -1,12 +1,15 @@
 const socialHandlesStyles = {
   container: {
     width: "100%",
-    px: ["0%", "0%", "5%", "5%", "5%", "5%"],
+    // mx: "10%",
+    // ml:"2%",
+    // mr: ["0%", "0%", "5%", "5%", "5%", "5%"],
+    mx:"auto",
     mt: "12px",
     flexDirection: "column",
   },
   headingTextView: {
-    width: "100%",
+    // width: "100%",
     px: ["0%", "0%", "5%", "5%", "5%", "5%"],
     my: "4px",
     flexDirection: "column",
@@ -18,7 +21,11 @@ const socialHandlesStyles = {
     py: "4px",
   },
   socialView: {
-    ml: ["50px", "50px", "50px", "10px", "10px", "10px"],
+    // width:"full",
+    // mx:"auto",
+    // mx: ["25px", "25px", "25px", "5px", "5px", "5px"],
+    // ml: ["-50px", "-50px", "50px", "10px", "10px", "10px"],
+    mx:["10px","10px","0px","0px","0px","0px"],
     textAlign: "center",
     cursor: "pointer",
     justifyContent: "center",
@@ -28,7 +35,7 @@ const socialHandlesStyles = {
   social: {
     width: "16px",
     height: "16px",
-    borderRadius: "16px",
+    borderRadius: "8px",
   },
   socialText: {
     fontFamily: "Poppins",
@@ -52,11 +59,11 @@ const socialHandlesStyles = {
   socialAddFlex: {
       justifyContent: "center",
       alignItems: "center",
-      mb: "0px",
+      mt: "8px",
   },
   socialAddText: {
       ml: "4px",
-      fontSize: "10px",
+      fontSize: "16px",
       fontWeight: "bold",
       fontFamily: "Poppins",
       color: "#D7354A",

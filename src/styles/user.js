@@ -1,5 +1,6 @@
 const userStyles= {
   container: {
+    mt:["16px","16px","0px","0px","0px","0px"],
     flex: 1,
     maxWidth: "100%",
     display: "flex",
@@ -12,21 +13,10 @@ const userStyles= {
     // backgroundColor: "blue",
   },
   sidebar: {
+    mt:["148px","148px","0px","0px","0px","0px"],
     p: "10px",
-    width: "100%",
+    width: "full",
     flex: 1,
-    pl: "8px",
-    pt: "16px",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "sticky",
-    bottom: "8px",
-    alignSelf: "flex-end",
-  },
-  sidebarTrial: {
-    p: "10px",
-    width: "320px",
-    //flex: 1,
     pl: "8px",
     pt: "16px",
     alignItems: "center",
@@ -77,9 +67,11 @@ const userStyles= {
       "space-between",
       "space-between",
     ],
-    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
+    maxWidth: ["100%", "100%", null, null, null, "1172px", "1280px"],
   },
+  logouserStyles: {
 
+  },
   button: {
     mx: 2,
     bg: "#D7354A",
@@ -91,11 +83,13 @@ const userStyles= {
     fontSize: "12px",
     width: "200px",
     height: [30, 30, 30, 30, 30, 30, 30],
-    mt: [24, 24, 0, 0, 0, 0],
+    mt: [4, 4, 0, 0, 0, 0],
     justifyContent: "center",
     alignItems: "center",
     p: "2px",
     px: "8px",
+    // my:"64px",
+    // display:"none",
   },
   logoStyles: {
     mr: ["200px", "350px", "350px", "50px", "50px", "50px", "50px"],

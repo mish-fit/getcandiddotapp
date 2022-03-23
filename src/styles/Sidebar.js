@@ -1,8 +1,8 @@
 const sidebarStyles = {
   container: {
     flexDirection: "column",
-    width: ["100%", "100%", null],
-    mx: ["1rem", "1rem", "0px", "0px", "0px", "0px"],
+    // ml:"-248px",
+    mx: ["2rem", "2rem", "0px", "0px", "0px", "0px"],
     borderRadius: "0px",
     boxShadow: [
       " ",

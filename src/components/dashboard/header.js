@@ -97,7 +97,7 @@ export default function Header({ menu, menuActive, data }) {
             </CopyToClipboard>
           </Flex>
           <Menu>
-            <MenuButton as={Button} sx={dashboardHeaderStyles.menuButton}>
+            <MenuButton sx={dashboardHeaderStyles.menuButton}>
               <Image
                 sx={dashboardHeaderStyles.userImage}
                 alt={"profile img"}
