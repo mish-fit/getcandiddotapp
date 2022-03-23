@@ -26,6 +26,7 @@ export function LinksBucket({
     <Flex sx={linksBucketStyles.container}>
       <Flex
         sx={{
+          justifyContent:["center","center","left","left","left","left"],
           cursor:
             link && link.length != 0 && link.link && isURL(link.link.toString())
               ? "pointer"

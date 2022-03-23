@@ -65,7 +65,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   return (
-    <Flex sx={linksCardStyles.button} onClick={onClickLink}>
+    <Flex sx={linksCardStyles.button}>
       <Flex
         sx={{
           flexDirection: "row",

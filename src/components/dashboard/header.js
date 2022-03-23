@@ -66,7 +66,7 @@ export default function Header({ menu, menuActive, data }) {
     <DrawerProvider>
       <header sx={dashboardHeaderStyles.header}>
         <Flex sx={dashboardHeaderStyles.container}>
-          <Flex as="logo" sx={dashboardHeaderStyles.logodashboardHeaderStyles}>
+          <Flex as="logo">
             <Link
               path="/"
             >

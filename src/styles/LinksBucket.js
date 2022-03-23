@@ -6,6 +6,7 @@ const linksBucketStyles = {
     backgroundColor: "white",
   },
   grid: {
+    justifyContent:["center","center","left","left","left","left"],
     flexDirection: "row",
     flexWrap: "wrap",
   },

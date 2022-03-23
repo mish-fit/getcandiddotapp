@@ -33,6 +33,7 @@ export function LinksBucket({ bucketName, data, link }) {
       {data.filter((item) => isURL(item.link) == true).length > 0 ? (
         <Flex
           sx={{
+            justifyContent:["center","center","left","left","left","left"],
             cursor:
               link &&
               link.length != 0 &&
