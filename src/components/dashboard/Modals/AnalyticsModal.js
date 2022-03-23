@@ -20,11 +20,14 @@ import analyticsModalStyles from "styles/AnalyticsModal";
 export function AnalyticsModal({
   closeParent,
   isOpen,
-
   user,
   linkAnalytics,
   prodAnalytics,
 }) {
+  React.useEffect(() => {
+    console.log(prodAnalytics);
+  }, [prodAnalytics]);
+
   const closeModal = () => {
     closeParent(true);
   };
