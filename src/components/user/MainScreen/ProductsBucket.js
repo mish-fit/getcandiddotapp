@@ -55,7 +55,7 @@ export function ProductsBucket({ bucketName, data, link }) {
             sx={{
               fontFamily: "Poppins",
               fontWeight: "bold",
-              fontSize: "16px",
+              fontSize: "18px",
               py: "4px",
               color:
                 link &&

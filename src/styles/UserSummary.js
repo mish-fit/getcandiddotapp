@@ -31,7 +31,7 @@ const userSummaryStyles = {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "bold",
     fontFamily: "Poppins",
-    fontSize: "12px",
+    fontSize: "14px",
   },
   buttonText: {
     ':hover': {backgroundColor:"#D7354A", 
@@ -83,7 +83,7 @@ const userSummaryStyles = {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "medium",
     fontFamily: "Poppins",
-    fontSize: "12px",
+    fontSize: "14px",
   },
 };
 

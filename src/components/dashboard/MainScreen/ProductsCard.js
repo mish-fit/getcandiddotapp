@@ -96,14 +96,14 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
 
       <Menu isOpen={isOpen}>
         <MenuButton
-          width={"fit-content"}
-          border="none"
           as={IconButton}
           icon={<BsThreeDotsVertical />}
           variant="outline"
           onMouseEnter={onOpen}
           onMouseLeave={onClose}
           sx={{
+            width:"fit-content",
+            border:"none",
             position: "absolute",
             top: "-12px",
             right: "-18px",

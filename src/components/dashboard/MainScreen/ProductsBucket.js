@@ -45,7 +45,7 @@ export function ProductsBucket({
           sx={{
             fontFamily: "Poppins",
             fontWeight: "bold",
-            fontSize: "16px",
+            fontSize: "18px",
             py: "4px",
             color:
               link &&
@@ -59,7 +59,7 @@ export function ProductsBucket({
           {bucketName}
         </Text>
       </Flex>
-      {/* <Divider display={isLargerThan768 ? "none" : "block"}/> */}
+      <Divider mb="8px" display={isLargerThan768 ? "none" : "block"}/>
       <Flex sx={productsBucketStyles.grid}>
         {data.map((item, index) => {
           return (

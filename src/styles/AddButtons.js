@@ -10,10 +10,16 @@ const addButtonsStyles = {
       "space-between",
       "space-between",
     ],
+    flexDirection: ["column","column","row","row","row","row"],
     alignItems: "flex-start",
     width: ["100%", "100%", null],
   },
+  analytics: {
+    width: ["100%", "100%", "50%","50%"],
+  },
   flex: {
+    ml:["0px","0px","-8px","-8px","-8px","-8px"],
+    backgroundColor: "transparent",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -33,8 +39,8 @@ const addButtonsStyles = {
     justifyContent: "center",
     alignItems: "center",
     py: ["2px", "2px", "4px", "8px"],
-    px: ["4px", "4px", "8px", "16px"],
-    mx: "4px",
+    // px: ["4px", "4px", "8px", "16px"],
+    // mx: "4px",
     flex: [1, 1, `0 1 auto`],
   },
   addbuttonText: {

@@ -71,19 +71,19 @@ const userStyles= {
     maxWidth: ["100%", "100%", null, null, null, "1172px", "1280px"],
   },
   logouserStyles: {
-
   },
   button: {
+    mt:["16px", "16px", "0px", "0px", "0px", "0px"],
     mx: 2,
     bg: "#D7354A",
     ":hover": {
       bg: "#C23043",
     },
-    borderRadius: "3px",
+    borderRadius: "4px",
     color: "white",
     fontSize: "12px",
     width: "200px",
-    height: [30, 30, 30, 30, 30, 30, 30],
+    height: "40px",
     justifyContent: "center",
     alignItems: "center",
     p: "2px",

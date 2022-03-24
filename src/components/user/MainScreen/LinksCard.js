@@ -56,8 +56,8 @@ export function LinksCard({ item }) {
           >
             <Text as="p" sx={{
               fontFamily: "Poppins",
-              fontWeight: "medium",
-              fontSize: "14px",
+              // fontWeight: "medium",
+              fontSize: "16px",
               color: "#D7354A",
               flex: 1,
               justifyContent: "center",

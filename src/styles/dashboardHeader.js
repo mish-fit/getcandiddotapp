@@ -2,8 +2,8 @@
 const dashboardHeaderStyles = {
   userImage: {
     mr:"8px",
-    height: "32px",
-    width: "32px",
+    height: "40px",
+    width: "40px",
     borderRadius: "32px",
   },
   signout: {
@@ -82,7 +82,7 @@ const dashboardHeaderStyles = {
   nav: {
     cursor: "pointer",
     flex: 1,
-    mr: "148px",
+    // mr: "148px",
     px: "auto",
     justifyContent: "center",
     "@media screen and (max-width: 960px)": {

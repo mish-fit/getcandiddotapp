@@ -72,8 +72,8 @@ export default function Header({ menu, menuActive, data }) {
             >
               <Image
                 src={logo}
-                width="120px"
-                height="40px"
+                width="150px"
+                height="50px"
                 sx={dashboardHeaderStyles.logodashboardHeaderStyles}
                 alt="startup landing logo"
               />
