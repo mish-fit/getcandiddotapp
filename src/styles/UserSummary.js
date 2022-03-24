@@ -3,13 +3,12 @@ const userSummaryStyles = {
     width: "full",
     display: "flex",
     flexDirection: "column",
+    mr:["64px","64px","0px","0px","0px","0px"],
     mt: "16px",
   },
   buttonContainer: {
     justifyContent: "space-evenly",
     flex: 1,
-    // mr: ["-25%","0%","0%","0%","0%","0%"],
-    // my: "16px",
   },
   summaryView: {
     flexDirection: "row",
