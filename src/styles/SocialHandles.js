@@ -1,11 +1,12 @@
 const socialHandlesStyles = {
   container: {
     width: "100%",
-    // mx: "10%",
-    // ml:"2%",
-    // mr: ["0%", "0%", "5%", "5%", "5%", "5%"],
     mt: "12px",
     flexDirection: "column",
+  },
+  grid: {
+    mx: ["-64px","-64px","0px","0px","0px","0px"],
+    // backgroundColor:"red",
   },
   headingTextView: {
     // width: "100%",
@@ -21,9 +22,6 @@ const socialHandlesStyles = {
   },
   socialView: {
     // width:"full",
-    // mx:"auto",
-    // mx: ["25px", "25px", "25px", "5px", "5px", "5px"],
-    // ml: ["-50px", "-50px", "50px", "10px", "10px", "10px"],
     mx:["10px","10px","0px","0px","0px","0px"],
     textAlign: "center",
     cursor: "pointer",
