@@ -45,7 +45,7 @@ const analyticsModalStyles = {
   },
   topHeader: {
     fontFamily: "Poppins",
-    color: "#4B0082",
+    color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
   },
@@ -60,6 +60,8 @@ const analyticsModalStyles = {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
+    color: "#D7354A",
+    mr: 2,
   },
   subHeaderContainer: {
     width: "50%",
@@ -70,6 +72,7 @@ const analyticsModalStyles = {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "24px",
+    color: "#4B0082",
   },
   linkView: {
     pl: "16px",
@@ -127,10 +130,67 @@ const analyticsModalStyles = {
     position: "relative",
     cursor: "pointer",
   },
-  icon: { 
+  icon: {
     ml: "16px",
-    color:"#4B0082"
-  }
+    color: "#4B0082",
+  },
+  analyticsElement: {
+    flexDirection: "column",
+    m: 4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  analyticsElementTitleView: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#E35335",
+    ml: 2,
+  },
+  analyticsElementTitleClick: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#2AAA8A",
+    ml: 2,
+  },
+  analyticsElementTitleCtr: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 16,
+    color: "#E3963E",
+    ml: 2,
+  },
+  analyticsElementValueView: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 24,
+    mt: 3,
+    color: "#E35335",
+  },
+  analyticsElementValueClick: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 24,
+    mt: 3,
+    color: "#2AAA8A",
+  },
+  analyticsElementValueCtr: {
+    fontStyle: "Poppins",
+    fontWeight: "bold",
+    fontSize: 24,
+    mt: 3,
+    color: "#E3963E",
+  },
+  analyticsCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+
+    flex: 1,
+  },
+  row3: {},
+  bucketTitle: {},
 };
 
 export default analyticsModalStyles;
