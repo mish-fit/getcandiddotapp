@@ -78,8 +78,8 @@ export default function User({ links, recos, user, socials, buckets }) {
               >
                 <Image
                   src={logo}
-                  width="120px"
-                  height="40px"
+                  width="150px"
+                  height="50px"
                   // sx={userStyles.logouserStyles}
                   alt="startup landing logo"
                 />

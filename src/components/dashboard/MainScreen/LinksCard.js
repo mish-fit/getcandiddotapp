@@ -102,8 +102,8 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
         >
           <Text as="p" sx={{ 
             fontFamily: "Poppins",
-            fontWeight: "medium",
-            fontSize: "14px",
+            // fontWeight: "medium",
+            fontSize: "16px",
             color: "#D7354A",
             flex: 1,
             justifyContent: "center",
@@ -114,9 +114,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
           </Text>
         </Flex>
         <Menu isOpen={isOpen}>
-          <MenuButton
-            width={"fit-content"}
-            border="none"
+          <MenuButton 
+            sx={{
+              width:"fit-content",
+              // border:"none",
+            }}
             as={IconButton}
             icon={<BsThreeDotsVertical />}
             variant="outline"

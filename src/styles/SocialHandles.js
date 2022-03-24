@@ -4,7 +4,6 @@ const socialHandlesStyles = {
     // mx: "10%",
     // ml:"2%",
     // mr: ["0%", "0%", "5%", "5%", "5%", "5%"],
-    mx:"auto",
     mt: "12px",
     flexDirection: "column",
   },
@@ -33,9 +32,9 @@ const socialHandlesStyles = {
     alignItems: "center",
   },
   social: {
-    width: "16px",
-    height: "16px",
-    borderRadius: "8px",
+    width: "20px",
+    height: "20px",
+    borderRadius: "10px",
   },
   socialText: {
     fontFamily: "Poppins",

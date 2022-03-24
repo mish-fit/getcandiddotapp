@@ -279,6 +279,8 @@ export function MainScreen({
         addProduct={() => setOpenProductsModal(true)}
         showAnalytics={() => setOpenAnalyticsModal(true)}
       />
+
+      <Divider />
       <Element name="products">
         <ShowProducts
           id="products"

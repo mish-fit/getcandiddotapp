@@ -1,14 +1,17 @@
+import { Flex, Text, useMediaQuery, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IoMdAnalytics } from "react-icons/io";
-import { Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import addButtonsStyles from "styles/AddButtons";
 
 // Add a custom Link
 export function AddButtons({ addLink, addProduct, showAnalytics }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
-
+  useEffect(()=>{
+    console.log("isLargerThan768", isLargerThan768);
+  },[isLargerThan768])
   const addLinks = () => {
     addLink();
   };
@@ -22,17 +25,17 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
   };
 
   return (
-    <Flex as="container" sx={addButtonsStyles.container}>
-      <Flex>
+    <Flex as="container" sx={addButtonsStyles.container} >
+      <Flex sx={addButtonsStyles.analytics}>
         <Flex
           as="addbutton"
           sx={addButtonsStyles.showAnalytics}
           onClick={showAnalytics}
         >
-          <Flex sx={addButtonsStyles.flex}>
-            <IoMdAnalytics color={isLargerThan768 ? "#4B0082" : "#D7354A"} />
-            <Text sx={addButtonsStyles.showAnalyticsText} color={isLargerThan768 ? "#4B0082" : "#D7354A"}>Show Analytics</Text>
-          </Flex>
+          <Button sx={addButtonsStyles.flex} >
+            <IoMdAnalytics  />
+            <Text sx={addButtonsStyles.showAnalyticsText} >Show Analytics</Text>
+          </Button>
         </Flex>
       </Flex>
       <Flex>
@@ -41,16 +44,16 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
           sx={addButtonsStyles.addbutton}
           onClick={addProducts}
         >
-          <Flex sx={addButtonsStyles.flex}>
+          <Button sx={addButtonsStyles.flex}>
             <BsPlusCircleFill color="#D7354A" />
             <Text sx={addButtonsStyles.addbuttonText}>Recommend Products</Text>
-          </Flex>
+          </Button>
         </Flex>
         <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addLinks}>
-          <Flex sx={addButtonsStyles.flex}>
+          <Button sx={addButtonsStyles.flex}>
             <BsPlusCircleFill color="#D7354A" />
             <Text sx={addButtonsStyles.addbuttonText}>Custom Links</Text>
-          </Flex>
+          </Button>
         </Flex>
       </Flex>
     </Flex>
