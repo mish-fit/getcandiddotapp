@@ -108,7 +108,7 @@ export default function Header({ menu, menuActive, data }) {
                 }
               />
             </MenuButton>
-            <MenuList>
+            <MenuList minWidth="148px">
               <MenuItem onClick={editProfile}>Edit Profile</MenuItem>
               <MenuItem onClick={signout}>Sign Out</MenuItem>
             </MenuList>

@@ -42,8 +42,6 @@ export function ProductsModal({
   const [catActive, setCatActive] = React.useState(false);
   const [prodActive, setProdActive] = React.useState(false);
 
-  const [isLargerThan480] = useMediaQuery("(min-width: 360px)");
-
   let hiddenInput = null;
 
   const [values, setValues] = React.useState({
@@ -430,12 +428,12 @@ export function ProductsModal({
 
   return (
     <Flex>
-      <Head>
+      {/* <Head>
         <meta
           name="viewport"
           content="initial-scale=0.75, width=device-width"
         />
-      </Head>
+      </Head> */}
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>

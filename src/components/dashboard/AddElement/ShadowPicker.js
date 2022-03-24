@@ -49,7 +49,7 @@ function ListItem({ color, name, pick }) {
 }
 
 export function ShadowPicker({ borderShadowColor }) {
-  const [color, setColor] = React.useState("#00000088");
+  const [color, setColor] = React.useState("#3D3B3C");
   const [name, setName] = React.useState("Default Shadow Color");
 
   const selectedColor = (color, name) => {

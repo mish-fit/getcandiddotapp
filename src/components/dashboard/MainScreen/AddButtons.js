@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
 import { IoMdAnalytics } from "react-icons/io";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import addButtonsStyles from "styles/AddButtons";
 
 // Add a custom Link
 export function AddButtons({ addLink, addProduct, showAnalytics }) {
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
 
   const addLinks = () => {
@@ -29,8 +30,8 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
           onClick={showAnalytics}
         >
           <Flex sx={addButtonsStyles.flex}>
-            <IoMdAnalytics color="#4B0082" />
-            <Text sx={addButtonsStyles.showAnalyticsText}>Show Analytics</Text>
+            <IoMdAnalytics color={isLargerThan768 ? "#4B0082" : "#D7354A"} />
+            <Text sx={addButtonsStyles.showAnalyticsText} color={isLargerThan768 ? "#4B0082" : "#D7354A"}>Show Analytics</Text>
           </Flex>
         </Flex>
       </Flex>

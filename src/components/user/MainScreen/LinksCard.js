@@ -26,7 +26,7 @@ export function LinksCard({ item }) {
             p: "8px",
             py: "16px",
             backgroundColor: "white",
-            borderRadius: "0px",
+            borderRadius: "5px",
             mx: "16px",
             width: ["100%", "100%", "340px", "340px", "340px", "340px"],
             minWidth: "330px",

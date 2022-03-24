@@ -20,7 +20,7 @@ const userSummaryStyles = {
   button: {
     backgroundColor: "#D7354A",
     // mr:"50px",
-    borderRadius: "0px",
+    borderRadius: "4px",
     borderColor: "#D7354A",
     py: "2px",
     width: "120px",
@@ -51,7 +51,7 @@ const userSummaryStyles = {
   button1: {
     // ml:"50px",
     backgroundColor: "white",
-    borderRadius: "0px",
+    borderRadius: "4px",
     borderColor: "#D7354A",
     py: "2px",
     borderWidth: 1,

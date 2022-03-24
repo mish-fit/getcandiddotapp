@@ -111,7 +111,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
             padding: "0px",
           }}
         />
-        <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
+        <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} minWidth="148px">
           <MenuItem onClick={editProduct}> Edit </MenuItem>
           <MenuItem onClick={deleteProduct}> Delete </MenuItem>
         </MenuList>

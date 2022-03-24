@@ -1,6 +1,7 @@
 
 const dashboardHeaderStyles = {
   userImage: {
+    mr:"8px",
     height: "32px",
     width: "32px",
     borderRadius: "32px",
