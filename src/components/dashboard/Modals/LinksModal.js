@@ -50,7 +50,6 @@ export function LinksModal({
   const [imageSelected, setImageSelected] = React.useState(false);
   const [sortId, setSortId] = React.useState(maxSortId + 1);
   const [signedURL, setSignedURL] = React.useState("");
-  const [isLargerThan480] = useMediaQuery("(min-width: 300px)");
   let hiddenInput = null;
 
   const [values, setValues] = React.useState({
@@ -315,12 +314,12 @@ export function LinksModal({
 
   return (
     <Flex>
-      <Head>
+      {/* <Head>
         <meta
           name="viewport"
           content="initial-scale=0.75, width=device-width"
         />
-      </Head>
+      </Head> */}
       <Modal onClose={closeModal} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent maxW={"1000px"}>

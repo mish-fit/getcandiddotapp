@@ -65,14 +65,14 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   return (
-    <Flex sx={linksCardStyles.button}>
+    <Flex sx={linksCardStyles.button} >
       <Flex
         sx={{
           flexDirection: "row",
           p: "8px",
           py: "16px",
           backgroundColor: "white",
-          borderRadius: "0px",
+          borderRadius: "5px",
           mx: "16px",
           width: ["100%", "100%", "340px", "340px", "340px", "340px"],
           minWidth: "330px",
@@ -123,7 +123,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           />
-          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose}>
+          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} minWidth="148px">
             <MenuItem onClick={editLink}> Edit </MenuItem>
             <MenuItem onClick={deleteLink}> Delete </MenuItem>
           </MenuList>

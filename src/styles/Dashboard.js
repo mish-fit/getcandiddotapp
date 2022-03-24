@@ -23,7 +23,6 @@ const dashboardStyles = {
     position: "sticky",
     bottom: "8px",
     alignSelf: "flex-end",
-    // backgroundColor: "red",
   },
   headerBtn: {
     backgroundColor: "#f29183",

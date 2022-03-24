@@ -79,12 +79,11 @@ const userStyles= {
     ":hover": {
       bg: "#C23043",
     },
-    borderRadius: [0, 0, 0, 0, 0, 0, 0],
+    borderRadius: "3px",
     color: "white",
     fontSize: "12px",
     width: "200px",
     height: [30, 30, 30, 30, 30, 30, 30],
-    mt: [4, 4, 0, 0, 0, 0],
     justifyContent: "center",
     alignItems: "center",
     p: "2px",

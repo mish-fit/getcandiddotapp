@@ -68,7 +68,7 @@ const addButtonsStyles = {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
-    color: "#4B0082",
+    // color: "#D7354A",
   },
   button: {
     fontSize: "16px",

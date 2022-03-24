@@ -3,7 +3,7 @@ const sidebarStyles = {
     flexDirection: "column",
     // ml:"-248px",
     mx: ["2rem", "2rem", "0px", "0px", "0px", "0px"],
-    borderRadius: "0px",
+    borderRadius: "5px",
     boxShadow: [
       " ",
       " ",

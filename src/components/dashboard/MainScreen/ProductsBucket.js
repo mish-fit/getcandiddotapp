@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Container, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Divider, useMediaQuery } from "@chakra-ui/react";
 import { ProductsCard } from "./ProductsCard";
 import isURL from "validator/lib/isURL";
 import productsBucketStyles from "styles/ProductsBucket";
@@ -13,6 +13,7 @@ export function ProductsBucket({
   editProductModal,
 }) {
   const router = useRouter();
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const bucketLinkClick = () => {
     console.log("link click", link.link);
@@ -58,7 +59,7 @@ export function ProductsBucket({
           {bucketName}
         </Text>
       </Flex>
-
+      {/* <Divider display={isLargerThan768 ? "none" : "block"}/> */}
       <Flex sx={productsBucketStyles.grid}>
         {data.map((item, index) => {
           return (

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Flex, Text } from "@chakra-ui/react";
+import { Divider, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
 import isURL from "validator/lib/isURL";
 import { useEffect } from "react";
@@ -8,6 +8,7 @@ import linksBucketStyles from "styles/LinksBucket";
 // Add a custom Link
 export function LinksBucket({ bucketName, data, link }) {
   const router = useRouter();
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     console.log(link.link.toString());
@@ -68,6 +69,8 @@ export function LinksBucket({ bucketName, data, link }) {
           </Text>
         </Flex>
       ) : null}
+
+      <Divider display={isLargerThan768 ? "none" : "block"}/>
       <Flex sx={linksBucketStyles.grid}>
         {data.map((item, index) => {
           return (

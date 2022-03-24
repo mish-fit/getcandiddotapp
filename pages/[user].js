@@ -13,8 +13,6 @@ import { Button, Divider, Flex, Image } from "@chakra-ui/react";
 import isURL from "validator/lib/isURL";
 import smm from "../public/lottie/smn.json";
 
-import axios from "axios";
-
 import { event, pageview } from "analytics/ga";
 import userStyles from "styles/user";
 
