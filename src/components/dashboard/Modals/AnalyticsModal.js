@@ -5,6 +5,7 @@ import {
   Modal,
   ModalContent,
   ModalOverlay,
+  Select,
   Text,
   useMediaQuery,
   useToast,
@@ -142,10 +143,7 @@ export function AnalyticsModal({
     setCurrentProdAnalytics(
       prodAnalytics.filter((item, index) => item.rollup === rollup)
     );
-    console.log(
-      JSON.stringify(groupByOverall(currentProdAnalytics, currentLinkAnalytics))
-    );
-  }, []);
+  }, [linkAnalytics, prodAnalytics, rollup]);
 
   const closeModal = () => {
     closeParent(true);
@@ -249,19 +247,48 @@ export function AnalyticsModal({
         <ModalContent maxW={"760px"}>
           <Flex sx={analyticsModalStyles.container}>
             <Flex sx={analyticsModalStyles.row1}>
-              <Text sx={analyticsModalStyles.topHeader}>
-                See your profile insights
-              </Text>
               <Flex
-                sx={analyticsModalStyles.saveContainer}
-                onClick={closeModal}
+                sx={{
+                  flex: 1,
+
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                <Text sx={analyticsModalStyles.save}>Close </Text>
-                <BsCheckCircleFill
-                  color="#D7354A"
-                  size={15}
-                  sx={{ ml: "6px" }}
-                />
+                <Text sx={analyticsModalStyles.topHeader}>
+                  See your profile insights
+                </Text>
+              </Flex>
+              <Flex sx={{ flex: 1 }}>
+                <Select
+                  value={rollup}
+                  onChange={(e) => setRollup(e.target.value)}
+                >
+                  <option value="LIFETIME">Lifetime</option>
+                  <option value="Last 7 Days">Last 7 Days</option>
+                  <option value="Last 15 Days">Last 15 Days</option>
+                  <option value="Last 30 Days">Last 30 Days</option>
+                </Select>
+              </Flex>
+              <Flex
+                sx={{
+                  flex: 1,
+
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                }}
+              >
+                <Flex
+                  sx={analyticsModalStyles.saveContainer}
+                  onClick={closeModal}
+                >
+                  <Text sx={analyticsModalStyles.save}>Close </Text>
+                  <BsCheckCircleFill
+                    color="#D7354A"
+                    size={15}
+                    sx={{ ml: "6px" }}
+                  />
+                </Flex>
               </Flex>
             </Flex>
             <Flex
