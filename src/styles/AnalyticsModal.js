@@ -144,7 +144,7 @@ const analyticsModalStyles = {
     fontStyle: "Poppins",
     fontWeight: "bold",
     fontSize: 16,
-    color: "#E35335",
+    color: "#0066b2",
     ml: 2,
   },
   analyticsElementTitleClick: {
@@ -166,7 +166,7 @@ const analyticsModalStyles = {
     fontWeight: "bold",
     fontSize: 24,
     mt: 3,
-    color: "#E35335",
+    color: "#0066b2",
   },
   analyticsElementValueClick: {
     fontStyle: "Poppins",
