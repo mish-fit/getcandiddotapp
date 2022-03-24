@@ -5,7 +5,7 @@ const socialHandlesStyles = {
     flexDirection: "column",
   },
   grid: {
-    mx: ["-64px","-64px","0px","0px","0px","0px"],
+    mx: ["-48px","-48px","8px","8px","8px","8px"],
     // backgroundColor:"red",
   },
   headingTextView: {
