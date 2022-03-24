@@ -3,7 +3,7 @@ const userSummaryStyles = {
     width: "full",
     display: "flex",
     flexDirection: "column",
-    mr:["64px","64px","0px","0px","0px","0px"],
+    mr:["32px","32px","0px","0px","0px","0px"],
     mt: "16px",
   },
   buttonContainer: {
