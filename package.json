@@ -13,6 +13,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fontsource/poppins": "^4.5.1",
+    "@google-analytics/data": "^2.8.0",
     "@next/bundle-analyzer": "^12.1.0",
     "aws-sdk": "^2.1076.0",
     "axios": "^0.25.0",

@@ -20,7 +20,7 @@ import { IoAnalytics } from "react-icons/io5";
 import analyticsModalStyles from "styles/AnalyticsModal";
 
 const AnalyticsBucket = ({ level, DATA }) => {
-  return (
+  return DATA.length ? (
     <Flex sx={{ flexDirection: "column", mt: 8 }}>
       <Box sx={analyticsModalStyles.subHeaderContainer}>
         <Text sx={analyticsModalStyles.subHeader}>{level}</Text>
@@ -33,14 +33,14 @@ const AnalyticsBucket = ({ level, DATA }) => {
               title={item.title}
               views={item.views}
               clicks={item.clicks}
-              ctr={item.clicks / item.views}
+              ctr={item.views > 0 ? item.clicks / item.views : 0}
             />
           );
         })}
       </Flex>
       <Divider />
     </Flex>
-  );
+  ) : null;
 };
 
 const AnalyticsCard = ({ title, views, clicks, ctr }) => {
@@ -60,7 +60,7 @@ const AnalyticsCard = ({ title, views, clicks, ctr }) => {
           fontWeight: "bold",
           fontSize: 14,
           mt: 2,
-          color: "#722F37",
+          color: "#D7354A",
         }}
       >
         {title}
@@ -75,7 +75,7 @@ const AnalyticsCard = ({ title, views, clicks, ctr }) => {
               alignItems: "center",
             }}
           >
-            <FiEye color="#E35335" size={16} sx={{ ml: "6px" }} />
+            <FiEye color="#0066b2" size={16} sx={{ ml: "6px" }} />
             <Text sx={analyticsModalStyles.analyticsElementTitleView}>
               Views
             </Text>
@@ -129,8 +129,22 @@ export function AnalyticsModal({
   linkAnalytics,
   prodAnalytics,
 }) {
+  const [rollup, setRollup] = React.useState("LIFETIME");
+  const [currentLinkAnalytics, setCurrentLinkAnalytics] =
+    React.useState(linkAnalytics);
+  const [currentProdAnalytics, setCurrentProdAnalytics] =
+    React.useState(prodAnalytics);
+
   React.useEffect(() => {
-    console.log(JSON.stringify(groupByOverall(prodAnalytics, linkAnalytics)));
+    setCurrentLinkAnalytics(
+      linkAnalytics.filter((item, index) => item.rollup === rollup)
+    );
+    setCurrentProdAnalytics(
+      prodAnalytics.filter((item, index) => item.rollup === rollup)
+    );
+    console.log(
+      JSON.stringify(groupByOverall(currentProdAnalytics, currentLinkAnalytics))
+    );
   }, []);
 
   const closeModal = () => {
@@ -266,28 +280,31 @@ export function AnalyticsModal({
               }}
             >
               <AnalyticsBucket
-                level="LIFETIME ANALYTICS"
-                DATA={groupByOverall(prodAnalytics, linkAnalytics)}
+                level="OVERALL ANALYTICS"
+                DATA={groupByOverall(
+                  currentProdAnalytics,
+                  currentLinkAnalytics
+                )}
               />
               <AnalyticsBucket
                 level="RECO BUCKETS"
-                DATA={groupByProduct(prodAnalytics, "bucket")}
+                DATA={groupByProduct(currentProdAnalytics, "bucket")}
               />
               <AnalyticsBucket
                 level="CATEGORY"
-                DATA={groupByProduct(prodAnalytics, "cat_name")}
+                DATA={groupByProduct(currentProdAnalytics, "cat_name")}
               />
               <AnalyticsBucket
                 level="PRODUCT"
-                DATA={groupByProduct(prodAnalytics, "prod_name")}
+                DATA={groupByProduct(currentProdAnalytics, "prod_name")}
               />
               <AnalyticsBucket
                 level="LINK BUCKETS"
-                DATA={groupByLink(linkAnalytics, "bucket")}
+                DATA={groupByLink(currentLinkAnalytics, "bucket")}
               />
               <AnalyticsBucket
                 level="LINK TITLE"
-                DATA={groupByLink(linkAnalytics, "title")}
+                DATA={groupByLink(currentLinkAnalytics, "title")}
               />
             </Flex>
           </Flex>
