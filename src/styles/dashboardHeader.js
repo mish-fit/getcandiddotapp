@@ -1,7 +1,6 @@
 
 const dashboardHeaderStyles = {
   userImage: {
-    mr:"8px",
     height: "40px",
     width: "40px",
     borderRadius: "32px",
@@ -54,7 +53,6 @@ const dashboardHeaderStyles = {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: ["0px", "0px", "0px", "0px", "0px", "0px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
@@ -73,7 +71,7 @@ const dashboardHeaderStyles = {
   },
   container: {
     // backgroundColor: "red",
-    // m:"8px",
+    mx:"8px",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",

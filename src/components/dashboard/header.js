@@ -65,7 +65,7 @@ export default function Header({ menu, menuActive, data }) {
   return (
     <DrawerProvider>
       <header sx={dashboardHeaderStyles.header}>
-        <Flex sx={dashboardHeaderStyles.container}>
+        <Flex sx={dashboardHeaderStyles.container} >
           <Flex as="logo">
             <Link
               path="/"
@@ -96,6 +96,7 @@ export default function Header({ menu, menuActive, data }) {
               </Flex>
             </CopyToClipboard>
           </Flex>
+          <Flex id="editprofile">
           <Menu>
             <MenuButton sx={dashboardHeaderStyles.menuButton}>
               <Image
@@ -113,6 +114,7 @@ export default function Header({ menu, menuActive, data }) {
               <MenuItem onClick={signout}>Sign Out</MenuItem>
             </MenuList>
           </Menu>
+          </Flex>
           <MobileDrawer />
         </Flex>
       </header>

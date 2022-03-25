@@ -10,14 +10,11 @@ const dashboardStyles = {
   },
   mainscreen: {
     flex: [1, 1, 1, 2, 3, 3],
-    // backgroundColor: "blue",
   },
   sidebar: {
-    p: "10px",
+    p: "4px",
     width: "full",
     flex: 1,
-    pl: "8px",
-    pt: "16px",
     alignItems: "center",
     justifyContent: "center",
     position: "sticky",

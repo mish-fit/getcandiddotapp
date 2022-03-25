@@ -6,14 +6,18 @@ import { Sidebar } from "components/dashboard/Sidebar";
 import { authapi, nonauthapi } from "lib/api";
 import { auth } from "lib/firebase";
 import { firebaseAdmin } from "lib/firebaseadmin";
-// import { UserContext } from "../../src/lib/UserDataProvider";
-import { UserContext } from "lib/UserDataProvider";
 import Head from "next/head";
 import nookies from "nookies";
-import React, { useContext } from "react";
+import { useState, useEffect } from "react";
 import isURL from "validator/lib/isURL";
 import dashboardStyles from "styles/Dashboard";
-// import { firebaseAdmin } from "lib/firebaseadmin";
+import dynamic from "next/dynamic";
+
+const DynamicIntro = dynamic(() => import("./Intro"), {
+  ssr: false,
+  loading: () => <div>...</div>
+});
+
 export default function Dashboard({
   links,
   recos,
@@ -26,10 +30,9 @@ export default function Dashboard({
   linkAnalytics,
   prodAnalytics,
 }) {
-  const [userDataContext] = useContext(UserContext);
+  const [menuClick, setMenuClick] = useState(false);
+  const [summary, setSummary] = useState({});
 
-  const [menuClick, setMenuClick] = React.useState(false);
-  const [summary, setSummary] = React.useState({});
   // auth.signOut();
   // React.useEffect(() => {
   //   console.log(
@@ -60,7 +63,7 @@ export default function Dashboard({
   //   socials,
   //   links,
   // ]);
-  React.useEffect(() => {
+  useEffect(() => {
     setSummary({
       products: recos.filter((item) => isURL(item.prod_link) == true).length,
       links: links.filter((item) => isURL(item.link) == true).length,
@@ -94,10 +97,11 @@ export default function Dashboard({
         menuActive={menuClick}
         data={user}
       />
+      { (links.length === 0 && recos.length === 0) ? <DynamicIntro/> : <></>}
       <Divider />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={dashboardStyles.container}>
-        <Flex as="sidebar" sx={dashboardStyles.sidebar}>
+        <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar">
           <Sidebar
             socials={socials}
             user={user}
