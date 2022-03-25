@@ -32,13 +32,13 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
           sx={addButtonsStyles.showAnalytics}
           onClick={showAnalytics}
         >
-          <Button sx={addButtonsStyles.flex} >
+          <Button sx={addButtonsStyles.flex} id="analytics">
             <IoMdAnalytics  />
             <Text sx={addButtonsStyles.showAnalyticsText} >Show Analytics</Text>
           </Button>
         </Flex>
       </Flex>
-      <Flex>
+      <Flex id="addbuttons" >
         <Flex
           as="addbutton"
           sx={addButtonsStyles.addbutton}

@@ -30,7 +30,6 @@ const userStyles= {
   header: {
     color: "text_white",
     fontWeight: "normal",
-    py: ["0px", "0px", "0px", "0px", "0px", "0px"],
     width: "100%",
     backgroundColor: "#fff",
     transition: "all 0.4s ease",
@@ -55,7 +54,7 @@ const userStyles= {
   },
 
   headerContainer: {
-    // m:"8px",
+    mx:"8px",
     mb: [-124, -124, 0, 0, 0, 0],
     display: "flex",
     alignItems: "center",
@@ -74,7 +73,6 @@ const userStyles= {
   },
   button: {
     mt:["16px", "16px", "0px", "0px", "0px", "0px"],
-    mx: 2,
     bg: "#D7354A",
     ":hover": {
       bg: "#C23043",
@@ -86,8 +84,6 @@ const userStyles= {
     height: "40px",
     justifyContent: "center",
     alignItems: "center",
-    p: "2px",
-    px: "8px",
     // my:"64px",
     // display:"none",
   },

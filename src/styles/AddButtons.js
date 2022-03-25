@@ -32,7 +32,7 @@ const addButtonsStyles = {
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
-    // ml: "16px",
+    ml: "8px",
     color: "#D7354A",
     flexDirection: "row",
     cursor: "pointer",
