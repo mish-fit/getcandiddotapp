@@ -97,7 +97,7 @@ export default function Dashboard({
         menuActive={menuClick}
         data={user}
       />
-      { (links.length === 0 && recos.length === 0) ? <DynamicIntro/> : <></>}
+      { ( links.length === 0 && recos.length === 0 && socials.length === 0 ) ? <DynamicIntro/> : <></>}
       <Divider />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={dashboardStyles.container}>
