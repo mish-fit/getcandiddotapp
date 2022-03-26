@@ -75,7 +75,6 @@ const dashboardHeaderStyles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
     cursor: "pointer",

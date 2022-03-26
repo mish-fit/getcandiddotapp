@@ -105,7 +105,6 @@ const styles = {
   },
   container: {
     flexDirection: "column",
-    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
     position: "relative",
   },
   flex: {
