@@ -29,7 +29,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal }) {
             }
             deleteItem={(item) => {
               deleteItem(item);
-              console.log("linksshow", item);
+              // console.log("linksshow", item);
             }}
             editLinkModal={(item) => editLinkModal(item)}
           />

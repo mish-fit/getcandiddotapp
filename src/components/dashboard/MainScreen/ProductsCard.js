@@ -24,7 +24,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
   };
 
   const buy = () => {
-    console.log(item);
+    // console.log(item);
     localStorage.setItem("buyLatestItem", item.prod_name);
     if (item.prod_link.substring(0, 8) !== "https://") {
       window.open("https://" + item.prod_link, "_blank");
@@ -35,7 +35,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
 
   const deleteProduct = () => {
     deleteItem(item.id);
-    console.log("recoscard", item.id);
+    // console.log("recoscard", item.id);
     axios(
       {
         method: "post",
@@ -48,7 +48,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
       { timeout: 1000 }
     )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         toast({
           title: "Card deleted",
           description: "",
@@ -63,7 +63,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
   };
 
   const editProduct = () => {
-    console.log("item", item);
+    // console.log("item", item);
     editProductModal(item);
   };
 

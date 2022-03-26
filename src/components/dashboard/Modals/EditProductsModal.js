@@ -84,7 +84,7 @@ export function EditProductsModal({
       .catch((error) => {
         // console.log(error);
       });
-      console.log("REACHED")
+      // console.log("REACHED")
   }, [imageName, editProductItem]);
 
   const ProdItem = ({ item }) => {
@@ -102,13 +102,13 @@ export function EditProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          console.log("REACHED")
-          console.log(item);
-          console.log("BEFORE", values);
+          // console.log("REACHED")
+          // console.log(item);
+          // console.log("BEFORE", values);
           setValues({ ...values, prod_name: item.prod_name });
           setProdActive(false);
-          console.log("AFTER", values);
-          console.log("REACHED")
+          // console.log("AFTER", values);
+          // console.log("REACHED")
           return false;
         }}
       >
@@ -136,11 +136,11 @@ export function EditProductsModal({
           alignItems: "center",
         }}
         onMouseDown={(e) => {
-          console.log("REACHED")
-          console.log(item);
-          console.log(item.cat_name);
-          console.log(item.cat_id);
-          console.log("BEFORE", values);
+          // console.log("REACHED")
+          // console.log(item);
+          // console.log(item.cat_name);
+          // console.log(item.cat_id);
+          // console.log("BEFORE", values);
           // setValues({
           //   ...values,
           //   cat_name: item.cat_name,
@@ -149,8 +149,8 @@ export function EditProductsModal({
 
           setValues({ ...values, cat_name: item.cat_name, cat_id: item.cat_id });
           setCatActive(false);
-          console.log("AFTER", values);
-          console.log("REACHED")
+          // console.log("AFTER", values);
+          // console.log("REACHED")
           // const vals = {...values, cat_name:item.cat_name, cat_id:item.cat_id}; 
           // setValues((prev)=>vals);
           // console.log({...values, cat_name:item.cat_name, cat_id:item.cat_id})
@@ -170,7 +170,7 @@ export function EditProductsModal({
               setProdArray(res.data);
             })
             .catch((error) => {
-              console.log(error);
+              // console.log(error);
             });
           return false;
         }}
@@ -362,7 +362,7 @@ export function EditProductsModal({
           closeModal();
         })
         .catch((e) => {
-          console.log(e);
+          // console.log(e);
         });
     } else {
       toast({
@@ -378,7 +378,7 @@ export function EditProductsModal({
   };
 
   const onRefresh = () => {
-    console.log("REACHED")
+    // console.log("REACHED")
     setImageName(nanoid());
     setImage({ preview: "", raw: "" });
     setImageSelected(false);
@@ -395,14 +395,14 @@ export function EditProductsModal({
       sort_id: sortId,
       others: {},
     });
-    console.log("REACHED")
+    // console.log("REACHED")
   };
 
   const categorySearch = React.useMemo(
     () =>
       debounce(async () => {
         // console.log(values.cat_name);
-        console.log("REACHED")
+        // console.log("REACHED")
         if (values.cat_name.length >= 0) {
           axios
             .get(
@@ -425,7 +425,7 @@ export function EditProductsModal({
   const productSearch = React.useMemo(
     () =>
       debounce(async () => {
-        console.log("REACHED")
+        // console.log("REACHED")
         if (values.prod_name.length >= 3) {
           axios
             .get(
@@ -579,7 +579,7 @@ export function EditProductsModal({
                                 ...values,
                                 cat_name: e.target.value,
                               }));
-                              console.log(e.target.value);
+                              // console.log(e.target.value);
                             // catNameHandler(e.target.value);
                             // onChangeCategory(e.target.value);
                             categorySearch();

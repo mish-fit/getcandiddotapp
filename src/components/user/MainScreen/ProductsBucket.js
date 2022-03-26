@@ -11,11 +11,11 @@ export function ProductsBucket({ bucketName, data, link }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
-    console.log("PRoduct bucket", link.length);
+    // console.log("PRoduct bucket", link.length);
   }, []);
 
   const bucketLinkClick = () => {
-    console.log("link click", link.link);
+    // console.log("link click", link.link);
     if (
       link &&
       link.length != 0 &&

@@ -45,7 +45,9 @@ export function ContactUsModal({ closeParent, isOpen }) {
           setValues({ name: "", email: "", question: "" });
           closeModal();
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          // console.log(e)
+        });
     } else {
       toast({
         title: "Please provide your name and email",

@@ -16,7 +16,7 @@ export function ProductsBucket({
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const bucketLinkClick = () => {
-    console.log("link click", link.link);
+    // console.log("link click", link.link);
     if (link.link.substring(0, 8) !== "https://") {
       window.open("https://" + link.link, "_blank");
     } else {
@@ -68,7 +68,7 @@ export function ProductsBucket({
                 key={index}
                 item={item}
                 deleteItem={(item) => {
-                  console.log("recosbucket", item);
+                  // console.log("recosbucket", item);
                   deleteItem(item);
                 }}
                 editProductModal={(item) => editProductModal(item)}

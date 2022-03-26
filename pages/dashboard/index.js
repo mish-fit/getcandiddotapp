@@ -13,7 +13,7 @@ import isURL from "validator/lib/isURL";
 import dashboardStyles from "styles/Dashboard";
 import dynamic from "next/dynamic";
 
-const DynamicIntro = dynamic(() => import("./Intro"), {
+const DynamicIntro = dynamic(() => import("../../src/components/dashboard/Intro"), {
   ssr: false,
   loading: () => <div>...</div>
 });

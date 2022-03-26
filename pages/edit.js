@@ -85,7 +85,7 @@ const EditProfile = ({ u_data }) => {
 			u_about: u_data[0].u_about === state.about ? u_data[0].u_about : state.about,
 			u_profile_image: u_data[0].u_profile_image === image.preview ? u_data[0].u_profile_image : new_profile_image,
 		};
-		console.log(u_update);
+		// console.log(u_update);
 
 		// API Call: Update User Data
 		axios(
@@ -97,7 +97,7 @@ const EditProfile = ({ u_data }) => {
 			},
 			{ timeout: 5000 }
 		).then((res) => {
-			console.log('Success', res.data);
+			// console.log('Success', res.data);
 			toast({
 				title: 'Profile Updated',
 				description: '',

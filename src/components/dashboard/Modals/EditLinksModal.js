@@ -45,7 +45,7 @@ export function EditLinksModal({
   const [values, setValues] = React.useState(editLinkItem);
 
   React.useEffect(() => {
-    console.log("UFX",editLinkItem)
+    // console.log("UFX",editLinkItem)
     // console.log(editLinkItem.photo+'?'+new Date())
     setValues((prev)=>editLinkItem);
     if(editLinkItem.photo){
@@ -163,7 +163,7 @@ export function EditLinksModal({
         others:{},
         photo: imageChanged ? imageSelected ? s3url + imageName + ".png" : "" : editLinkItem.photo,
       };
-      console.log("SAVENADD",values);
+      // console.log("SAVENADD",values);
       const options = {
         headers: {
           Authorization: `bearer ${cookie}`,
@@ -210,7 +210,7 @@ export function EditLinksModal({
   };
 
   const savenclose = () => {
-    console.log("SAVENCLOSE", values.others);
+    // console.log("SAVENCLOSE", values.others);
     if (values.title && values.link) {
       const body = {
         ...values,
