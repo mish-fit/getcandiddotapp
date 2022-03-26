@@ -137,13 +137,14 @@ export function AnalyticsModal({
     React.useState(prodAnalytics);
 
   React.useEffect(() => {
+    console.log(rollup);
     setCurrentLinkAnalytics(
       linkAnalytics.filter((item, index) => item.rollup === rollup)
     );
     setCurrentProdAnalytics(
       prodAnalytics.filter((item, index) => item.rollup === rollup)
     );
-  }, [linkAnalytics, prodAnalytics, rollup]);
+  }, [rollup, linkAnalytics, prodAnalytics]);
 
   const closeModal = () => {
     closeParent(true);
@@ -247,33 +248,25 @@ export function AnalyticsModal({
         <ModalContent maxW={"760px"}>
           <Flex sx={analyticsModalStyles.container}>
             <Flex sx={analyticsModalStyles.row1}>
-              <Flex
-                sx={{
-                  flex: 1,
-
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <Flex sx={{ flex: 1, alignItems: "center" }}>
                 <Text sx={analyticsModalStyles.topHeader}>
                   See your profile insights
                 </Text>
               </Flex>
-              <Flex sx={{ flex: 1 }}>
+              <Flex sx={{ flex: 1, alignItems: "center" }}>
                 <Select
                   value={rollup}
                   onChange={(e) => setRollup(e.target.value)}
                 >
                   <option value="LIFETIME">Lifetime</option>
-                  <option value="Last 7 Days">Last 7 Days</option>
-                  <option value="Last 15 Days">Last 15 Days</option>
-                  <option value="Last 30 Days">Last 30 Days</option>
+                  <option value="Last 30 days">Last 30 days</option>
+                  <option value="Last 15 days">Last 15 days</option>
+                  <option value="Last 7 days">Last 7 days</option>
                 </Select>
               </Flex>
               <Flex
                 sx={{
                   flex: 1,
-
                   justifyContent: "flex-end",
                   alignItems: "center",
                 }}
