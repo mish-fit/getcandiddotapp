@@ -11,11 +11,11 @@ export function LinksBucket({ bucketName, data, link }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
-    console.log(link.link.toString());
+    // console.log(link.link.toString());
   }, []);
 
   const bucketLinkClick = () => {
-    console.log("link click", link.link);
+    // console.log("link click", link.link);
     if (
       link &&
       link.length != 0 &&

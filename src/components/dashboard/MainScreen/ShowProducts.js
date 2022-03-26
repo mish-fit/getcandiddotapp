@@ -34,7 +34,7 @@ export function ShowProducts({
             }
             deleteItem={(item) => {
               deleteItem(item);
-              console.log("recosshow", item);
+              // console.log("recosshow", item);
             }}
             editProductModal={(item) => editProductModal(item)}
           />

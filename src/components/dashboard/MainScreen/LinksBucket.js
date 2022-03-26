@@ -14,7 +14,7 @@ export function LinksBucket({
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   
   const bucketLinkClick = () => {
-    console.log("link click", link.link);
+    // console.log("link click", link.link);
     if (link.link.substring(0, 8) !== "https://") {
       window.open("https://" + link.link, "_blank");
     } else {
@@ -65,7 +65,7 @@ export function LinksBucket({
               key={index}
               item={item}
               deleteItem={(item) => {
-                console.log("linksbucket", item);
+                // console.log("linksbucket", item);
                 deleteItem(item);
               }}
               editLinkModal={(item) => editLinkModal(item)}

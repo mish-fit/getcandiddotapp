@@ -340,7 +340,7 @@ export function ProductsModal({
           closeModal();
         })
         .catch((e) => {
-          console.log(e);
+          // console.log(e);
         });
     } else {
       toast({

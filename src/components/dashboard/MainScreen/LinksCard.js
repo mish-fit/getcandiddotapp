@@ -28,11 +28,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   useEffect(() => {
-    console.log(item.photo + "?" + new Date().getTime());
+    // console.log(item.photo + "?" + new Date().getTime());
   }, []);
   const deleteLink = () => {
     deleteItem(item.id);
-    console.log("linkscard", item.id);
+    // console.log("linkscard", item.id);
     axios(
       {
         method: "post",
@@ -45,7 +45,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
       { timeout: 1000 }
     )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         toast({
           title: "Link deleted",
           description: "",
@@ -60,7 +60,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   const editLink = () => {
-    console.log("item", item);
+    // console.log("item", item);
     editLinkModal(item);
   };
 

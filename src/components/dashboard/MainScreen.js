@@ -42,9 +42,9 @@ export function MainScreen({
   const [dbRecos, setDbRecos] = React.useState(recos);
 
   React.useEffect(() => {
-    console.log("MAINSCREEN UFX");
-    console.log("CUR LINKS", currentLinks);
-    console.log("NEW LINKS", newLinks);
+    // console.log("MAINSCREEN UFX");
+    // console.log("CUR LINKS", currentLinks);
+    // console.log("NEW LINKS", newLinks);
     // console.log("DB LINKS", dbLinks);
     // console.log("CUR PRODUCTS", currentRecos);
     // console.log("Main Screen", editLinkItem);
@@ -80,7 +80,7 @@ export function MainScreen({
   };
 
   const deleteLink = (item) => {
-    console.log(item);
+    // console.log(item);
     // console.log("CUR LINKS", currentLinks);
     // console.log("NEW LINKS", newLinks);
     // console.log("DB LINKS", dbLinks);
@@ -142,7 +142,7 @@ export function MainScreen({
   };
 
   const editLink = (item) => {
-    console.log("reached", item);
+    // console.log("reached", item);
     setEditLinkItem((prev) => item);
     if (item) {
       setOpenEditLinksModal(true);
@@ -151,23 +151,23 @@ export function MainScreen({
   // console.log("DB LINKS", dbLinks);
 
   const editLinkSave = (item) => {
-    console.log("EDIT LINK");
-    console.log("CUR LINKS", currentLinks);
-    console.log("NEW LINKS", newLinks);
+    // console.log("EDIT LINK");
+    // console.log("CUR LINKS", currentLinks);
+    // console.log("NEW LINKS", newLinks);
 
     const curLinks = [...currentLinks];
     curLinks.forEach((element, idx) => {
       if (element.id === item.id) {
-        console.log("BEFORE", curLinks);
+        // console.log("BEFORE", curLinks);
         curLinks.splice(idx, 1, item);
       }
     });
     setCurrentLinks(curLinks);
 
     const nLinks = [...newLinks];
-    console.log("nLinks", nLinks);
+    // console.log("nLinks", nLinks);
     nLinks.forEach((element, idx) => {
-      console.log("ELEMENT.ID", element.id);
+      // console.log("ELEMENT.ID", element.id);
       if (element.id === item.id) {
         nLinks.splice(idx, 1, item);
       }
@@ -190,7 +190,7 @@ export function MainScreen({
   };
 
   const editProduct = (item) => {
-    console.log("reached", item);
+    // console.log("reached", item);
     setEditProductItem((prev) => item);
     if (item) {
       setOpenEditProductsModal(true);
@@ -198,11 +198,11 @@ export function MainScreen({
   };
 
   const editProductSave = (item) => {
-    console.log("SAVE", item);
+    // console.log("SAVE", item);
     const curRecos = [...currentRecos];
     curRecos.forEach((element, idx) => {
       if (element.id === item.id) {
-        console.log("BEFORE", curRecos);
+        // console.log("BEFORE", curRecos);
         curRecos.splice(idx, 1, item);
       }
     });
