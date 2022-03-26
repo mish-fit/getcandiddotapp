@@ -9,22 +9,22 @@ const Intro = () => {
     setEnabled(false)
   }
   const steps = [
-      {
-        element: '#sidebar',
-        intro: 'Hey there! Quick Tour? This is your user profile!',
-      },
-      {
-        element: '#editprofile',
-        intro: ' Here you can edit your profile.',
-      },
-      {
-        element: '#analytics',
-        intro: ' Here you can find your analytics stats.',
-      },
-      {
-        element: '#addbuttons',
-        intro: ' Add your recommend products and custom links.',
-      },
+    {
+      element: '#sidebar',
+      intro: 'Hey there! Quick Tour? This is your user profile!',
+    },
+    {
+      element: '#editprofile',
+      intro: ' Here you can edit your profile.',
+    },
+    {
+      element: '#analytics',
+      intro: ' Here you can find your analytics stats.',
+    },
+    {
+      element: '#addbuttons',
+      intro: ' Add your recommend products and custom links.',
+    },
   ];
 
   return (
