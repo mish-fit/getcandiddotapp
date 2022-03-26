@@ -80,7 +80,6 @@ const headerStyles = {
     alignContent: "center",
     justifyContent:"center",
     alignItems: "center",
-    maxWidth: ["100%", null, null, null, null, "1172px", "1280px"],
   },
   nav: {
     flex: 1,

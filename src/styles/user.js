@@ -67,7 +67,6 @@ const userStyles= {
       "space-between",
       "space-between",
     ],
-    maxWidth: ["100%", "100%", null, null, null, "1172px", "1280px"],
   },
   logouserStyles: {
   },
