@@ -9,9 +9,11 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { event } from "analytics/ga";
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useRouter } from "next/router";
+
 import { BsThreeDotsVertical } from "react-icons/bs";
 import productsCardStyles from "styles/ProductsCard";
 // Add a custom Link
@@ -24,7 +26,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
   };
 
   const buy = () => {
-    // console.log(item);
+    event("SIGNED_IN_USER_BUY_PRODUCT", item);
     localStorage.setItem("buyLatestItem", item.prod_name);
     if (item.prod_link.substring(0, 8) !== "https://") {
       window.open("https://" + item.prod_link, "_blank");
@@ -63,12 +65,11 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
   };
 
   const editProduct = () => {
-    // console.log("item", item);
     editProductModal(item);
   };
 
   return (
-    <Flex sx={productsCardStyles.container}>
+    <Flex sx={productsCardStyles.container} onClick={buy}>
       <Flex sx={productsCardStyles.imageMaster}>
         <Flex sx={productsCardStyles.imageContainer}>
           <Image
@@ -102,8 +103,8 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
           onMouseEnter={onOpen}
           onMouseLeave={onClose}
           sx={{
-            width:"fit-content",
-            border:"none",
+            width: "fit-content",
+            border: "none",
             position: "absolute",
             top: "-12px",
             right: "-18px",

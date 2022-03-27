@@ -1,4 +1,5 @@
 import { Flex, Text, useMediaQuery, Button } from "@chakra-ui/react";
+import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { BsPlusCircleFill } from "react-icons/bs";
@@ -9,9 +10,9 @@ import addButtonsStyles from "styles/AddButtons";
 export function AddButtons({ addLink, addProduct, showAnalytics }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
-  useEffect(()=>{
+  useEffect(() => {
     // console.log("isLargerThan768", isLargerThan768);
-  },[isLargerThan768])
+  }, [isLargerThan768]);
   const addLinks = () => {
     addLink();
   };
@@ -25,7 +26,7 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
   };
 
   return (
-    <Flex as="container" sx={addButtonsStyles.container} >
+    <Flex as="container" sx={addButtonsStyles.container}>
       <Flex sx={addButtonsStyles.analytics}>
         <Flex
           as="addbutton"
@@ -33,12 +34,12 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
           onClick={showAnalytics}
         >
           <Button sx={addButtonsStyles.flex} id="analytics">
-            <IoMdAnalytics  />
-            <Text sx={addButtonsStyles.showAnalyticsText} >Show Analytics</Text>
+            <IoMdAnalytics />
+            <Text sx={addButtonsStyles.showAnalyticsText}>Show Analytics</Text>
           </Button>
         </Flex>
       </Flex>
-      <Flex id="addbuttons" >
+      <Flex id="addbuttons">
         <Flex
           as="addbutton"
           sx={addButtonsStyles.addbutton}
