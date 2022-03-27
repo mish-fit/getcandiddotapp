@@ -1,4 +1,5 @@
 import { Button, Flex, Image, Text, useToast } from "@chakra-ui/react";
+import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
@@ -18,6 +19,7 @@ export function UserCard({ data }) {
   };
 
   const linkClick = () => {
+    event("LOGGED_IN_USER_HEADER_LINK_CLICKED", { uuid: data[0].u_uuid });
     window.open("https://www.cndd.in/" + data[0].u_uuid, "_blank");
     // router.push(data[0].u_uuid);
     toast({
@@ -30,6 +32,7 @@ export function UserCard({ data }) {
   };
 
   const linkCopy = () => {
+    event("LOGGED_IN_USER_HEADER_LINK_COPIED", { uuid: data[0].u_uuid });
     toast({
       title: "Link Copied",
       description: "Add you Candid link to Instagram Bio",

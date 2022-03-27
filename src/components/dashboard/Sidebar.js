@@ -8,6 +8,7 @@ import { SocialHandles } from "./Sidebar/SocialHandles";
 import { UserCard } from "./Sidebar/UserCard";
 import { UserSummary } from "./Sidebar/UserSummary";
 import sidebarStyles from "styles/Sidebar";
+import { event } from "analytics/ga";
 // Add a custom Link
 export function Sidebar({
   socials,
@@ -44,9 +45,7 @@ export function Sidebar({
   const router = useRouter();
 
   return (
-    <Flex
-      sx={sidebarStyles.container}
-    >
+    <Flex sx={sidebarStyles.container}>
       <SocialModal
         isOpen={isOpenSocialModal}
         closeParent={(item) => onCloseSocialModal(item)}
@@ -60,7 +59,10 @@ export function Sidebar({
       <UserCard data={user} />
       <UserSummary data={summary} />
       <SocialHandles
-        social={() => setOpenSocialModal(true)}
+        social={() => {
+          event("SIGNED_IN_USER_OPEN_SOCIAL_MODAL", { user: user });
+          setOpenSocialModal(true);
+        }}
         data={currentSocials}
       />
     </Flex>

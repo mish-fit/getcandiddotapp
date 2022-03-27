@@ -1,7 +1,14 @@
 import { useRouter } from "next/router";
-import { Container, Divider, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import {
+  Container,
+  Divider,
+  Flex,
+  Text,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { LinksCard } from "./LinksCard";
 import linksBucketStyles from "styles/LinksBucket";
+import { event } from "analytics/ga";
 // Add a custom Link
 export function LinksBucket({
   bucketName,
@@ -12,9 +19,9 @@ export function LinksBucket({
 }) {
   const router = useRouter();
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
-  
+
   const bucketLinkClick = () => {
-    // console.log("link click", link.link);
+    event("SIGNED_IN_USER_BUCKET_LINK_CLICK", link.link);
     if (link.link.substring(0, 8) !== "https://") {
       window.open("https://" + link.link, "_blank");
     } else {
@@ -26,7 +33,7 @@ export function LinksBucket({
     <Flex sx={linksBucketStyles.container}>
       <Flex
         sx={{
-          justifyContent:["center","center","left","left","left","left"],
+          justifyContent: ["center", "center", "left", "left", "left", "left"],
           cursor:
             link && link.length != 0 && link.link && isURL(link.link.toString())
               ? "pointer"
@@ -57,7 +64,7 @@ export function LinksBucket({
           {bucketName}
         </Text>
       </Flex>
-      <Divider display={isLargerThan768 ? "none" : "block"}/>
+      <Divider display={isLargerThan768 ? "none" : "block"} />
       <Flex sx={linksBucketStyles.grid}>
         {data.map((item, index) => {
           return (
@@ -74,6 +81,5 @@ export function LinksBucket({
         })}
       </Flex>
     </Flex>
-    
   );
 }

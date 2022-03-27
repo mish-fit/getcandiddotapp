@@ -9,6 +9,7 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { event } from "analytics/ga";
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useEffect } from "react";
@@ -20,6 +21,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onClickLink = () => {
+    event("SIGNED_IN_USER_CLICK_LINK", item);
     if (item.link.substring(0, 8) !== "https://") {
       window.open("https://" + item.link, "_blank");
     } else {
@@ -32,7 +34,6 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   }, []);
   const deleteLink = () => {
     deleteItem(item.id);
-    // console.log("linkscard", item.id);
     axios(
       {
         method: "post",
@@ -60,12 +61,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   };
 
   const editLink = () => {
-    // console.log("item", item);
     editLinkModal(item);
   };
 
   return (
-    <Flex sx={linksCardStyles.button} >
+    <Flex sx={linksCardStyles.button}>
       <Flex
         sx={{
           flexDirection: "row",
@@ -96,27 +96,27 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             sx={linksCardStyles.image}
           />
         ) : null}
-        <Flex
-          sx={linksCardStyles.editButton}
-          onClick={onClickLink}
-        >
-          <Text as="p" sx={{ 
-            fontFamily: "Poppins",
-            // fontWeight: "medium",
-            fontSize: "16px",
-            color: "#D7354A",
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            color: item.font_color 
-          }}>
+        <Flex sx={linksCardStyles.editButton} onClick={onClickLink}>
+          <Text
+            as="p"
+            sx={{
+              fontFamily: "Poppins",
+              // fontWeight: "medium",
+              fontSize: "16px",
+              color: "#D7354A",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              color: item.font_color,
+            }}
+          >
             {item.title}
           </Text>
         </Flex>
         <Menu isOpen={isOpen}>
-          <MenuButton 
+          <MenuButton
             sx={{
-              width:"fit-content",
+              width: "fit-content",
               // border:"none",
             }}
             as={IconButton}
@@ -125,7 +125,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           />
-          <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} minWidth="148px">
+          <MenuList
+            onMouseEnter={onOpen}
+            onMouseLeave={onClose}
+            minWidth="148px"
+          >
             <MenuItem onClick={editLink}> Edit </MenuItem>
             <MenuItem onClick={deleteLink}> Delete </MenuItem>
           </MenuList>
