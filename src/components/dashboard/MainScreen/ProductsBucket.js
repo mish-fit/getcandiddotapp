@@ -3,6 +3,7 @@ import { Flex, Text, Divider, useMediaQuery } from "@chakra-ui/react";
 import { ProductsCard } from "./ProductsCard";
 import isURL from "validator/lib/isURL";
 import productsBucketStyles from "styles/ProductsBucket";
+import { event } from "analytics/ga";
 
 // Add a custom Link
 export function ProductsBucket({
@@ -16,7 +17,7 @@ export function ProductsBucket({
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   const bucketLinkClick = () => {
-    // console.log("link click", link.link);
+    event("SIGNED_IN_USER_BUCKET_LINK_CLICK", link.link);
     if (link.link.substring(0, 8) !== "https://") {
       window.open("https://" + link.link, "_blank");
     } else {
@@ -28,7 +29,7 @@ export function ProductsBucket({
     <Flex sx={productsBucketStyles.container}>
       <Flex
         sx={{
-          justifyContent:["center","center","left","left","left","left"],
+          justifyContent: ["center", "center", "left", "left", "left", "left"],
           cursor:
             link && link.length != 0 && link.link && isURL(link.link.toString())
               ? "pointer"
@@ -59,7 +60,7 @@ export function ProductsBucket({
           {bucketName}
         </Text>
       </Flex>
-      <Divider mb="8px" display={isLargerThan768 ? "none" : "block"}/>
+      <Divider mb="8px" display={isLargerThan768 ? "none" : "block"} />
       <Flex sx={productsBucketStyles.grid}>
         {data.map((item, index) => {
           return (
@@ -80,4 +81,3 @@ export function ProductsBucket({
     </Flex>
   );
 }
-

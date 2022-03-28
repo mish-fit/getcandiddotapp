@@ -11,6 +11,7 @@ import { LinksModal } from "./Modals/LinksModal";
 import { ProductsModal } from "./Modals/ProductsModal";
 import mainScreenStyles from "styles/MainScreen";
 import { AnalyticsModal } from "./Modals/AnalyticsModal";
+import { event } from "analytics/ga";
 
 let Element = Scroll.Element;
 
@@ -275,9 +276,24 @@ export function MainScreen({
         editProductSave={editProductSave}
       />
       <AddButtons
-        addLink={() => setOpenLinksModal(true)}
-        addProduct={() => setOpenProductsModal(true)}
-        showAnalytics={() => setOpenAnalyticsModal(true)}
+        addLink={() => {
+          event("SIGNED_IN_USER_ADD_LINKS_MODAL", {
+            user: user,
+          });
+          setOpenLinksModal(true);
+        }}
+        addProduct={() => {
+          event("SIGNED_IN_USER_ADD_RECOS_MODAL", {
+            user: user,
+          });
+          setOpenProductsModal(true);
+        }}
+        showAnalytics={() => {
+          event("SIGNED_IN_USER_SHOW_ANALYTICS_MODAL", {
+            user: user,
+          });
+          setOpenAnalyticsModal(true);
+        }}
       />
 
       <Divider />
@@ -287,7 +303,13 @@ export function MainScreen({
           data={currentRecos}
           bucketData={JSON.parse(buckets).recos}
           deleteItem={(item) => deleteReco(item)}
-          editProductModal={(item) => editProduct(item)}
+          editProductModal={(item) => {
+            event("SIGNED_IN_USER_EDIT_RECOS_MODAL", {
+              user: user,
+              item: item,
+            });
+            editProduct(item);
+          }}
         />
       </Element>
       <Divider />
@@ -297,7 +319,13 @@ export function MainScreen({
           data={currentLinks}
           bucketData={JSON.parse(buckets).links}
           deleteItem={(item) => deleteLink(item)}
-          editLinkModal={(item) => editLink(item)}
+          editLinkModal={(item) => {
+            event("SIGNED_IN_USER_EDIT_LINKS_MODAL", {
+              user: user,
+              item: item,
+            });
+            editLink(item);
+          }}
         />
       </Element>
     </Flex>
