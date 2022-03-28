@@ -15,10 +15,6 @@ import Features from "sections/features";
 import ProductFeature from "sections/product-feature";
 import { ContactUsModal } from "sections/video";
 
-import nookies from "nookies";
-import { nonauthapi } from 'lib/api';
-import { firebaseAdmin } from 'lib/firebaseadmin';
-
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
   React.useEffect(() => {
@@ -38,7 +34,7 @@ const useExperiment = (experimentId) => {
   return variant;
 };
 
-export default function IndexPage() {
+export default function Home() {
   const router = useRouter();
   const variant = useExperiment("65elEA0zTVyfg-IGET3tYA");
   const [isOpenLinksModal, setOpenLinksModal] = React.useState(false);
@@ -87,39 +83,3 @@ export default function IndexPage() {
       </Flex>
   );
 }
-
-export async function getServerSideProps(context) {
-
-	const cookie = nookies.get(context).token;
-	// console.log('c',cookie)
-	let uid = ''
-	if(cookie){
-		const token = await firebaseAdmin.auth().verifyIdToken(cookie)
-		.then((res)=>{
-			uid = res.uid;
-			// console.log('res', res)
-		}).catch((err)=>{
-			// console.log(err)
-		});
-		// console.log('token', token)
-		// console.log('onboard', uid)
-		if(uid!==''){
-			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
-			const data = await res.json()
-			// console.log('data',data)
-			if (data.length!==0 && data[0].u_uuid!=='') {
-				// console.log(data)
-				return {
-					redirect: {
-						destination: '/dashboard',
-						permanent: false,
-					},
-				}
-			}
-		}
-	}
-	return{
-		props: {},
-	}
-}
-

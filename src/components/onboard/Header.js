@@ -14,7 +14,7 @@ const Header = (props) => {
 	//   }
 	// })
 	const handleClick=()=>{
-		router.push('/');
+		router.push("/home");
 	}
 	return (
 		<Flex

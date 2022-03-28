@@ -74,7 +74,7 @@ export default function User({ links, recos, user, socials, buckets }) {
           <Flex sx={userStyles.headerContainer}>
             <Flex as="logo" sx={userStyles.logouserStyles}>
               <Link
-                path="/"
+                path="/home"
               >
                 <Image
                   src={logo}
