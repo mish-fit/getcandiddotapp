@@ -68,7 +68,7 @@ export default function Header({ menu, menuActive, data }) {
         <Flex sx={dashboardHeaderStyles.container} >
           <Flex as="logo">
             <Link
-              path="/"
+              path="/home"
             >
               <Image
                 src={logo}

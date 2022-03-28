@@ -5,7 +5,7 @@ import { Image } from "@chakra-ui/react";
 export default function Logo() {
   return (
     <Link
-      path="/"
+      path="/home"
     >
       <Image src={logo} width='210' height='70' sx={style.logoStyles} alt="startup landing logo" />
     </Link>

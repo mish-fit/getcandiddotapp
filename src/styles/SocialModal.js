@@ -69,6 +69,7 @@ const  socialModalStyles= {
     cursor: "pointer",
   },
   save: {
+    mr:"4px",
     fontFamily: "Poppins",
     fontWeight: "bold",
     fontSize: "16px",
