@@ -6,6 +6,7 @@ import { ProductsBucket } from "./ProductsBucket";
 export function ShowProducts({
   data,
   bucketData,
+  cookie,
   deleteItem,
   editProductModal,
 }) {
@@ -29,6 +30,7 @@ export function ShowProducts({
             key={index}
             bucketName={buckets[index]}
             data={data.filter((item) => item.bucket === buckets[index])}
+            cookie={cookie}
             link={
               bucketData.filter((item) => item.name === buckets[index])[0] || ""
             }

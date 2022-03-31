@@ -10,9 +10,6 @@ import "assets/css/react-slick.css";
 import UserDataProvider from "lib/UserDataProvider";
 import "rc-drawer/assets/index.css";
 import "react-modal-video/css/modal-video.min.css";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import { rootreducer } from "redux-lib/reducer";
 import { useUserData } from "../src/lib/hooks";
 import theme from "../src/theme/index";
 import "./../styles/normalize.css";
@@ -30,7 +27,6 @@ import "./../styles/normalize.css";
 
 export default function CustomApp({ Component, pageProps }) {
   const userData = useUserData();
-  const store = createStore(rootreducer);
   /** 
    useEffect(() => {
      initGA();
@@ -40,12 +36,10 @@ export default function CustomApp({ Component, pageProps }) {
    */
 
   return (
-    <Provider store={store}>
       <UserDataProvider>
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
         </ChakraProvider>
       </UserDataProvider>
-    </Provider>
   );
 }

@@ -301,6 +301,7 @@ export function MainScreen({
         <ShowProducts
           id="products"
           data={currentRecos}
+          cookie={cookie}
           bucketData={JSON.parse(buckets).recos}
           deleteItem={(item) => deleteReco(item)}
           editProductModal={(item) => {
@@ -318,6 +319,7 @@ export function MainScreen({
           id="links"
           data={currentLinks}
           bucketData={JSON.parse(buckets).links}
+          cookie={cookie}
           deleteItem={(item) => deleteLink(item)}
           editLinkModal={(item) => {
             event("SIGNED_IN_USER_EDIT_LINKS_MODAL", {

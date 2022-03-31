@@ -1,7 +1,6 @@
 import SEO from "components/seo";
 import { Flex, Text } from "@chakra-ui/react";
 import privacyStyles from "styles/privacy";
-// import { BetaAnalyticsDataClient } from "@google-analytics/data";
 
 function Privacypolicy() {
   return (
