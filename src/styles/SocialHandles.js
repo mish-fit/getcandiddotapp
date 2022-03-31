@@ -54,7 +54,7 @@ const socialHandlesStyles = {
     color: "#FFFFFF",
   },
   socialAddFlex: {
-      justifyContent: "center",
+      justifyContent: "space-between",
       alignItems: "center",
       mt: "8px",
   },

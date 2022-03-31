@@ -69,8 +69,8 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
   };
 
   return (
-    <Flex sx={productsCardStyles.container} onClick={buy}>
-      <Flex sx={productsCardStyles.imageMaster}>
+    <Flex sx={productsCardStyles.container}>
+      <Flex sx={productsCardStyles.imageMaster} onClick={buy}>
         <Flex sx={productsCardStyles.imageContainer}>
           <Image
             src={item.photo || "/user/mobile.png"}

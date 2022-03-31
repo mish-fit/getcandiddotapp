@@ -20,7 +20,6 @@ export function Sidebar({
 }) {
   const [isOpenSocialModal, setOpenSocialModal] = React.useState(false);
   const [currentSocials, setCurrentSocials] = React.useState(socials);
-  React.useEffect(() => {}, []);
 
   React.useEffect(() => {
     axios
@@ -64,6 +63,7 @@ export function Sidebar({
           setOpenSocialModal(true);
         }}
         data={currentSocials}
+        cookie={cookie}
       />
     </Flex>
   );
