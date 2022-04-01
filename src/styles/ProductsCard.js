@@ -8,8 +8,8 @@ const productsCardStyles = {
     borderRadius: "0px",
     boxShadow: "0 0 4px 1px rgba(0, 0, 0, 0.1)",
     mx: "8px",
-    width: "200px",
-    // width: ["100%", "100%", "350px", "350px", "448px", "448px"],
+    // width: "200px",
+    width: ["200px", "200px", "200px", "182px", "200px", "200px"],
     // minWidth: "330px",
     my: "8px",
     cursor: "pointer",
@@ -23,8 +23,8 @@ const productsCardStyles = {
     backgroundColor: "white",
   },
   image: {
-    height: "200px",
-    width: "200px",
+    height: ["200px", "200px", "200px", "182px", "200px", "200px"],
+    width: ["200px", "200px", "200px", "182px", "200px", "200px"],
     borderRadius: "8px",
   },
   categoryDetailsContainer: {

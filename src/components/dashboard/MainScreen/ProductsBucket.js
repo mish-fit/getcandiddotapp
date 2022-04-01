@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Flex, Text, Divider, useMediaQuery, Button, useToast } from "@chakra-ui/react";
+import { Flex, Text, Divider, useMediaQuery, Button, useToast, Image } from "@chakra-ui/react";
 import { ProductsCard } from "./ProductsCard";
 import isURL from "validator/lib/isURL";
 import productsBucketStyles from "styles/ProductsBucket";
@@ -9,6 +9,8 @@ import NoSSR from "react-no-ssr";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { authapi } from "lib/api";
+import rearrange from "assets/rearrange.png";
+import { MdOutlineCancel, MdOutlineDone, MdOutlineDoneOutline } from "react-icons/md";
 // Add a custom Link
 export function ProductsBucket({
   bucketName,
@@ -107,7 +109,7 @@ export function ProductsBucket({
     <Flex sx={productsBucketStyles.container}>
       <Flex
         sx={{
-          justifyContent: ["center", "center", "left", "left", "left", "left"],
+					justifyContent: ['center', 'center', 'space-between', 'space-between', 'space-between', 'space-between'],
           cursor:
             link && link.length != 0 && link.link && isURL(link.link.toString())
               ? "pointer"
@@ -136,14 +138,17 @@ export function ProductsBucket({
           }}
         >
           {bucketName}
+        </Text>
+
+        <Flex mb="8px">
           {
-            !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}>REORDER</Button> :
+            !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
             <Flex display={"inline"}>
-              <Button ml={"16px"} onClick={handleCancel} size={'sm'}>Cancel</Button>
-              <Button ml={"6px"} onClick={handleSave} size={'sm'}>Save</Button>
+              <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={20}/></Button>
+              <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
             </Flex>
           }
-        </Text>
+        </Flex>
       </Flex>
       <Divider mb="8px" display={isLargerThan768 ? "none" : "block"} />
 
@@ -170,7 +175,7 @@ export function ProductsBucket({
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Droppable droppableId="droppable" isDropDisabled={!toggle}>
 					{(provided) => (
-						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={productsBucketStyles.grid}>
+						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={productsBucketStyles.grid} backgroundColor={toggle ? "gray.100" : ""}>
 							{items.map((item, index) => (
 								<Draggable
 									draggableId={item.sort_id.toString()}

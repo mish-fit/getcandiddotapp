@@ -25,6 +25,14 @@ const Intro = () => {
       element: "#editprofile",
       intro: " Here you can edit your profile.",
     },
+    {
+      element: "#recos",
+      intro: " Here are your products. You can edit or delete them. You can also reorder them using button at right of bucket name.",
+    },
+    {
+      element: "#links",
+      intro: " Here are your custom links. You can edit or delete them. You can also reorder them using button at right of bucket name.",
+    },
   ];
 
   return (

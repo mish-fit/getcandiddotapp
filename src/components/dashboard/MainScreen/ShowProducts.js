@@ -23,7 +23,7 @@ export function ShowProducts({
   };
 
   return (
-    <Flex sx={{ width: "95%", mx: "auto" }}>
+    <Flex sx={{ width: "95%", mx: "auto" }} id="recos">
       {buckets.map((item, index) => {
         return (
           <ProductsBucket
