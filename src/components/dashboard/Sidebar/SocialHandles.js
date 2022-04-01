@@ -3,12 +3,13 @@ import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
 import socialHandlesStyles from "styles/SocialHandles";
-
+import rearrange from "assets/rearrange.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import NoSSR from "react-no-ssr";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { authapi } from "lib/api";
+import { MdOutlineCancel, MdOutlineDoneOutline } from "react-icons/md";
 
 const SocialElement = ({ item }) => (
   <Flex
@@ -132,6 +133,7 @@ export function SocialHandles({ social, data, cookie }) {
             gap={2}
             columns={[5, 5, 5, 5, 5, 5]}
             sx={socialHandlesStyles.grid}
+            backgroundColor={toggle ? "gray.100" : ""}
             >
 							{items.map((item, index) => (
 								<Draggable
@@ -163,15 +165,6 @@ export function SocialHandles({ social, data, cookie }) {
       </NoSSR>
 
       <Flex sx={socialHandlesStyles.socialAddFlex}>
-        <Flex >
-        {
-          !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}>REORDER</Button> :
-          <Flex display={"inline"}>
-            <Button ml={"16px"} onClick={handleCancel} size={'sm'}>Cancel</Button>
-            <Button ml={"6px"} onClick={handleSave} size={'sm'}>Save</Button>
-          </Flex>
-        }
-        </Flex>
         <Button
           as="addbutton"
           sx={socialHandlesStyles.addbutton}
@@ -181,6 +174,15 @@ export function SocialHandles({ social, data, cookie }) {
           <BsPlusCircleFill color="#D7354A" />
           <Text sx={socialHandlesStyles.socialAddText}>Social Handle</Text>
         </Button>
+        <Flex sx={socialHandlesStyles.addButton1}>
+        {
+          !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
+          <Flex display={"inline"}>
+            <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={20}/></Button>
+            <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
+          </Flex>
+        }
+        </Flex>
       </Flex>
     </Flex>
   );

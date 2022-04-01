@@ -143,6 +143,7 @@ const Step3 = (props) => {
       links: [{ name: "My Links", link: "" }],
       recos: [{ name: "My Recos", link: "" }],
     };
+
     // API Call 2: Buckets
     const buckets = {
       u_id: userDataContext.userSignInInfo.user.uid,
@@ -171,6 +172,118 @@ const Step3 = (props) => {
         // });
       })
       .catch((e) => console.log(e));
+
+      // API Call 3: Adding 2 Default Recos
+      const recos = [
+        {
+          id: "",
+          u_id: userDataContext.userSignInInfo.user.uid,
+          u_name: userDataContext.userData.name ||
+          userDataContext.userSignInInfo.user.displayName,
+          prod_name: "Apple MacBook Air (M1, 2020)",
+          cat_name: "Laptop",
+          bucket: "My Recommendations",
+          photo: "https://m.media-amazon.com/images/I/71vFKBpKakL._SL1500_.jpg",
+          prod_link: "https://amazon.in/Apple-MacBook-Chip-13-inch-512GB/dp/B08N5T6CZ6",
+          aff_code: "",
+          sort_id: 0,
+          others: {},
+        },
+        {
+          id: "",
+          u_id: userDataContext.userSignInInfo.user.uid,
+          u_name: userDataContext.userData.name ||
+          userDataContext.userSignInInfo.user.displayName,
+          prod_name: "Samsung Galaxy F22",
+          cat_name: "Mobile",
+          bucket: "My Recommendations",
+          photo: "https://www.mobiledor.com/wp-content/uploads/Samsung-Galaxy-F22-Bangladesh.jpg",
+          prod_link: "https://www.amazon.in/SAMSUNG-Galaxy-Denim-Blue-Storage/dp/B09QXBCSPS",
+          aff_code: "",
+          sort_id: 1,
+          others: {},
+        }
+      ]
+
+      axios(
+        {
+          method: "post",
+          url: `${authapi}recos`,
+          data: { recos_array: JSON.stringify(recos)},
+          options: origin,
+        },
+        { timeout: 2000 }
+      )
+        .then((res) => {
+          // console.log(res);
+          toast({
+            title: "Recos Added",
+            description: "",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
+        })
+        .catch((e) => {
+          // console.log(e);
+        });
+
+
+      // API Call 4: Adding 2 Default Links
+      const links = [
+        {
+          id: "",
+          u_id: userDataContext.userSignInInfo.user.uid,
+          u_name: userDataContext.userData.name ||
+          userDataContext.userSignInInfo.user.displayName,
+          title: "Candid Home",
+          link: "https://cndd.in/home",
+          bucket: "My Links",
+          photo: "",
+          font_color: "black",
+          shadow_color: "rgba(0,0,0,.5)",
+          sort_id: 0,
+          others: {},
+        },
+        {
+          id: "",
+          u_id: userDataContext.userSignInInfo.user.uid,
+          u_name: userDataContext.userData.name ||
+          userDataContext.userSignInInfo.user.displayName,
+          title: "Candid Blog",
+          link: "https://medium.com/@cndd_india",
+          bucket: "My Links",
+          photo: "",
+          font_color: "black",
+          shadow_color: "rgba(0,0,0,.5)",
+          sort_id: 1,
+          others: {},
+        },
+      ]
+
+      axios(
+        {
+          method: "post",
+          url: `${authapi}links`,
+          data: { links_array: JSON.stringify(links)},
+          options: origin,
+        },
+        { timeout: 2000 }
+      )
+        .then((res) => {
+          // console.log(res);
+          toast({
+            title: "Links Added",
+            description: "",
+            status: "success",
+            duration: 1000,
+            isClosable: true,
+          });
+        })
+        .catch((e) => {
+          // console.log(e);
+        });
+
   };
 
   const back = (e) => {

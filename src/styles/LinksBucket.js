@@ -9,6 +9,7 @@ const linksBucketStyles = {
     justifyContent:["center","center","left","left","left","left"],
     flexDirection: "row",
     flexWrap: "wrap",
+    borderRadius: "5px",
   },
 }
 

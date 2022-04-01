@@ -5,6 +5,7 @@ import {
   useMediaQuery,
   Button,
   useToast,
+  Image,
 } from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import linksBucketStyles from "styles/LinksBucket";
@@ -14,6 +15,8 @@ import NoSSR from "react-no-ssr";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { authapi } from "lib/api";
+import rearrange from "assets/rearrange.png";
+import { MdOutlineCancel, MdOutlineDoneOutline } from "react-icons/md";
 // Add a custom Link
 export function LinksBucket({
   bucketName,
@@ -116,7 +119,7 @@ export function LinksBucket({
 		<Flex sx={linksBucketStyles.container}>
 			<Flex
 				sx={{
-					justifyContent: ['center', 'center', 'left', 'left', 'left', 'left'],
+					justifyContent: ['center', 'center', 'space-between', 'space-between', 'space-between', 'space-between'],
 					cursor:
 						link && link.length != 0 && link.link && isURL(link.link.toString())
 							? 'pointer'
@@ -145,14 +148,16 @@ export function LinksBucket({
 					}}
 				>
 					{bucketName}
+				</Text>
+        <Flex>
           {
-            !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}>REORDER</Button> :
+            !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
             <Flex display={"inline"}>
-              <Button ml={"16px"} onClick={handleCancel} size={'sm'}>Cancel</Button>
-              <Button ml={"6px"} onClick={handleSave} size={'sm'}>Save</Button>
+              <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={20}/></Button>
+              <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
             </Flex>
           }
-				</Text>
+        </Flex>
 			</Flex>
 			<Divider display={isLargerThan768 ? 'none' : 'block'} />
 			{/* <Flex sx={linksBucketStyles.grid}>
@@ -174,7 +179,7 @@ export function LinksBucket({
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Droppable droppableId="droppable" isDropDisabled={!toggle}>
 					{(provided) => (
-						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={linksBucketStyles.grid}>
+						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={linksBucketStyles.grid} backgroundColor={toggle ? "gray.100" : ""}>
 							{items.map((item, index) => (
 								<Draggable
 									draggableId={item.sort_id.toString()}

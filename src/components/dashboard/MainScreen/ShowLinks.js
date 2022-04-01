@@ -21,7 +21,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie 
   };
 
   return (
-    <Flex sx={{ width: "95%", mx: "auto" }}>
+    <Flex sx={{ width: "95%", mx: "auto" }} id="links">
       {buckets.map((item, index) => {
         return (
           <LinksBucket

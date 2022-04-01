@@ -32,7 +32,7 @@ export default function Dashboard({
 }) {
   const [menuClick, setMenuClick] = useState(false);
   const [summary, setSummary] = useState({});
-
+  const [ initState, setInitState ]= useState(false);
   // auth.signOut();
   // React.useEffect(() => {
   //   console.log(
@@ -63,6 +63,89 @@ export default function Dashboard({
   //   socials,
   //   links,
   // ]);
+  
+  useEffect(()=>{
+
+    const initialLinks = [
+      {
+        id: "",
+        u_id: "",
+        u_name: "",
+        title: "Candid Home",
+        link: "https://cndd.in/home",
+        bucket: "My Links",
+        photo: "",
+        font_color: "black",
+        shadow_color: "rgba(0,0,0,.5)",
+        sort_id: 0,
+        others: {},
+      },
+      {
+        id: "",
+        u_id: "",
+        u_name: "",
+        title: "Candid Blog",
+        link: "https://medium.com/@cndd_india",
+        bucket: "My Links",
+        photo: "",
+        font_color: "black",
+        shadow_color: "rgba(0,0,0,.5)",
+        sort_id: 1,
+        others: {},
+      },
+    ]
+  
+    const initialRecos = [
+      {
+        id: "",
+        u_id: "",
+        u_name: "",
+        prod_name: "Apple MacBook Air (M1, 2020)",
+        cat_name: "Laptop",
+        bucket: "My Recommendations",
+        photo: "https://m.media-amazon.com/images/I/71vFKBpKakL._SL1500_.jpg",
+        prod_link: "https://amazon.in/Apple-MacBook-Chip-13-inch-512GB/dp/B08N5T6CZ6",
+        aff_code: "",
+        sort_id: 0,
+        others: {},
+      },
+      {
+        id: "",
+        u_id: "",
+        u_name: "",
+        prod_name: "Samsung Galaxy F22",
+        cat_name: "Mobile",
+        bucket: "My Recommendations",
+        photo: "https://www.mobiledor.com/wp-content/uploads/Samsung-Galaxy-F22-Bangladesh.jpg",
+        prod_link: "https://www.amazon.in/SAMSUNG-Galaxy-Denim-Blue-Storage/dp/B09QXBCSPS",
+        aff_code: "",
+        sort_id: 1,
+        others: {},
+      }
+    ]
+    let loopState = true;
+    for(let i=0; i<2; i++){        
+      if(initialLinks[i].title === links[i].title &&
+        initialLinks[i].link === links[i].link &&
+        initialLinks[i].bucket === links[i].bucket &&
+        initialLinks[i].photo === links[i].photo &&
+        initialLinks[i].shadow_color === links[i].shadow_color &&
+        initialRecos[i].prod_name === recos[i].prod_name &&
+        initialRecos[i].prod_link === recos[i].prod_link &&
+        initialRecos[i].bucket === recos[i].bucket &&
+        initialRecos[i].cat_name === recos[i].cat_name &&
+        initialRecos[i].photo === recos[i].photo &&
+        initialRecos[i].aff_code === recos[i].aff_code &&
+        loopState){
+          loopState=true;
+      }
+      else{
+        loopState=false;
+      }
+    }
+    setInitState(loopState);
+  },[links, recos, initState])
+
   useEffect(() => {
     setSummary({
       products: recos.filter((item) => isURL(item.prod_link) == true).length,
@@ -97,7 +180,7 @@ export default function Dashboard({
         menuActive={menuClick}
         data={user}
       />
-      { ( links.length === 0 && recos.length === 0 && socials.length === 0 ) ? <DynamicIntro/> : <></>}
+      { ( links.length===2 && recos.length===2 && socials.length===0 && initState ) ? <DynamicIntro/> : <></>}
       <Divider />
       {menuClick ? <MenuPopup /> : null}
       <Flex as="container" sx={dashboardStyles.container}>
