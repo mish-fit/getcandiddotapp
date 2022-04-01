@@ -4,10 +4,10 @@ import { initOptimize } from "analytics/go";
 import Layout from "components/layout";
 import SEO from "components/seo";
 import { StickyProvider } from "contexts/app/app.provider";
-import Head from 'next/head';
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import { pageview } from "react-ga";
+import { pageview, event } from "analytics/ga";
 import Banner from "sections/banner";
 import Banner1 from "sections/banner1";
 import FaqTwo from "sections/faq-two";
@@ -44,6 +44,7 @@ export default function Home() {
     // console.log("Variant", variant);
     const handleRouteChange = (url) => {
       pageview(url);
+      event("LANDED_ON_HOME_PAGE");
     };
 
     //When the component is mounted, subscribe to router changes
@@ -58,8 +59,7 @@ export default function Home() {
   }, [router.events, variant]);
 
   return (
-
-      <Flex sx={{flexDirection:"column"}}>
+    <Flex sx={{ flexDirection: "column" }}>
       <Head>
         <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -80,6 +80,6 @@ export default function Home() {
           <FaqTwo addQuestion={() => setOpenLinksModal(true)} />
         </Layout>
       </StickyProvider>
-      </Flex>
+    </Flex>
   );
 }
