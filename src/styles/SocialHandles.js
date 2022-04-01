@@ -6,7 +6,6 @@ const socialHandlesStyles = {
   },
   grid: {
     mx: ["-48px","-48px","8px","8px","8px","8px"],
-    py:"8px",
     borderRadius: "5px",
     // backgroundColor:"red",
   },

@@ -133,6 +133,7 @@ export function SocialHandles({ social, data, cookie }) {
             gap={2}
             columns={[5, 5, 5, 5, 5, 5]}
             sx={socialHandlesStyles.grid}
+            py={social.length===0 ? "0px" : "8px"}
             backgroundColor={toggle ? "gray.100" : ""}
             >
 							{items.map((item, index) => (
