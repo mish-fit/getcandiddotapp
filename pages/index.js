@@ -4,10 +4,10 @@ import { initOptimize } from "analytics/go";
 import Layout from "components/layout";
 import SEO from "components/seo";
 import { StickyProvider } from "contexts/app/app.provider";
-import Head from 'next/head';
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import { pageview } from "react-ga";
+import { pageview, event } from "analytics/ga";
 import Banner from "sections/banner";
 import Banner1 from "sections/banner1";
 import FaqTwo from "sections/faq-two";
@@ -16,8 +16,8 @@ import ProductFeature from "sections/product-feature";
 import { ContactUsModal } from "sections/video";
 
 import nookies from "nookies";
-import { nonauthapi } from 'lib/api';
-import { firebaseAdmin } from 'lib/firebaseadmin';
+import { nonauthapi } from "lib/api";
+import { firebaseAdmin } from "lib/firebaseadmin";
 
 const useExperiment = (experimentId) => {
   const [variant, setVariant] = React.useState();
@@ -48,6 +48,7 @@ export default function IndexPage() {
     // console.log("Variant", variant);
     const handleRouteChange = (url) => {
       pageview(url);
+      event("LANDED_ON_LANDING_PAGE");
     };
 
     //When the component is mounted, subscribe to router changes
@@ -62,8 +63,7 @@ export default function IndexPage() {
   }, [router.events, variant]);
 
   return (
-
-      <Flex sx={{flexDirection:"column"}}>
+    <Flex sx={{ flexDirection: "column" }}>
       <Head>
         <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -84,42 +84,43 @@ export default function IndexPage() {
           <FaqTwo addQuestion={() => setOpenLinksModal(true)} />
         </Layout>
       </StickyProvider>
-      </Flex>
+    </Flex>
   );
 }
 
 export async function getServerSideProps(context) {
-
-	const cookie = nookies.get(context).token;
-	// console.log('c',cookie)
-	let uid = ''
-	if(cookie){
-		const token = await firebaseAdmin.auth().verifyIdToken(cookie)
-		.then((res)=>{
-			uid = res.uid;
-			// console.log('res', res)
-		}).catch((err)=>{
-			// console.log(err)
-		});
-		// console.log('token', token)
-		// console.log('onboard', uid)
-		if(uid!==''){
-			const res = await fetch(`${nonauthapi}user?u_id=${uid}`)
-			const data = await res.json()
-			// console.log('data',data)
-			if (data.length!==0 && data[0].u_uuid!=='') {
-				// console.log(data)
-				return {
-					redirect: {
-						destination: '/dashboard',
-						permanent: false,
-					},
-				}
-			}
-		}
-	}
-	return{
-		props: {},
-	}
+  const cookie = nookies.get(context).token;
+  // console.log('c',cookie)
+  let uid = "";
+  if (cookie) {
+    const token = await firebaseAdmin
+      .auth()
+      .verifyIdToken(cookie)
+      .then((res) => {
+        uid = res.uid;
+        // console.log('res', res)
+      })
+      .catch((err) => {
+        // console.log(err)
+      });
+    // console.log('token', token)
+    // console.log('onboard', uid)
+    if (uid !== "") {
+      const res = await fetch(`${nonauthapi}user?u_id=${uid}`);
+      const data = await res.json();
+      // console.log('data',data)
+      if (data.length !== 0 && data[0].u_uuid !== "") {
+        // console.log(data)
+        return {
+          redirect: {
+            destination: "/dashboard",
+            permanent: false,
+          },
+        };
+      }
+    }
+  }
+  return {
+    props: {},
+  };
 }
-
