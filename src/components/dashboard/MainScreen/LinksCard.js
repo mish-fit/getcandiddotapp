@@ -12,13 +12,15 @@ import {
 import { event } from "analytics/ga";
 import axios from "axios";
 import { authapi } from "lib/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import linksCardStyles from "styles/LinksCard";
+import { ReactShare } from "../ReactShare";
 
 // Add a custom Link
 export function LinksCard({ item, deleteItem, editLinkModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [share, setShare] = useState(false);
 
   const onClickLink = () => {
     event("SIGNED_IN_USER_CLICK_LINK", item);
@@ -63,6 +65,11 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
   const editLink = () => {
     editLinkModal(item);
   };
+
+  const shareHandler = () => {
+    setShare(!share);
+  };
+
 
   return (
     <Flex sx={linksCardStyles.button}>
@@ -125,11 +132,18 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
           />
+          <ReactShare
+          openProp = {!share}
+          title={item.title +  + " from Candid Reviews"}
+          url={item.link}
+          hashtags={["cndd", "candidreviews"]}/
+          >
           <MenuList
             onMouseEnter={onOpen}
             onMouseLeave={onClose}
             minWidth="148px"
           >
+            <MenuItem onClick={shareHandler}>Share</MenuItem>
             <MenuItem onClick={editLink}> Edit </MenuItem>
             <MenuItem onClick={deleteLink}> Delete </MenuItem>
           </MenuList>

@@ -13,12 +13,17 @@ import { event } from "analytics/ga";
 import axios from "axios";
 import { authapi } from "lib/api";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaShareAlt } from "react-icons/fa";
 import productsCardStyles from "styles/ProductsCard";
+import { ReactShare } from "../ReactShare";
+
 // Add a custom Link
 export function ProductsCard({ item, deleteItem, editProductModal }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [share, setShare] = useState(false);
   const router = useRouter();
 
   const addLinks = () => {
@@ -68,6 +73,10 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
     editProductModal(item);
   };
 
+  const shareHandler = () => {
+    setShare(!share);
+   }
+
   return (
     <Flex sx={productsCardStyles.container}>
       <Flex sx={productsCardStyles.imageMaster} onClick={buy}>
@@ -94,7 +103,12 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
           </Flex>
         </Flex> */}
       </Flex>
-
+        <ReactShare 
+          openProp = {!share}
+          title={item.prod_name + " from Candid Reviews"}
+          url={item.prod_link}
+          hashtags={["cndd", "candidreviews"]}/
+        >
       <Menu isOpen={isOpen}>
         <MenuButton
           as={IconButton}
@@ -113,6 +127,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
           }}
         />
         <MenuList onMouseEnter={onOpen} onMouseLeave={onClose} minWidth="148px">
+          <MenuItem onClick={shareHandler}>Share</MenuItem>
           <MenuItem onClick={editProduct}> Edit </MenuItem>
           <MenuItem onClick={deleteProduct}> Delete </MenuItem>
         </MenuList>
