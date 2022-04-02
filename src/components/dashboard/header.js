@@ -19,12 +19,15 @@ import MobileDrawer from "./mobile-drawer";
 import { Link } from "components/link";
 import logo from "assets/CaNDiD_B.png";
 import dashboardHeaderStyles from "styles/dashboardHeader";
+import { ReactShare } from "./ReactShare";
+import { FaShareAlt } from "react-icons/fa";
 
 export default function Header({ menu, menuActive, data }) {
   const { locale } = useRouter();
   const router = useRouter();
   const lang = translation[locale].HeaderSection.Header;
   const [active, setActive] = React.useState(menuActive);
+  const [share, setShare] = React.useState(false);
   const toast = useToast();
 
   const onClickIcon = () => {
@@ -62,6 +65,10 @@ export default function Header({ menu, menuActive, data }) {
     });
   };
 
+   const shareHandler = () => {
+     setShare(!share);
+   }
+
   return (
     <DrawerProvider>
       <header sx={dashboardHeaderStyles.header}>
@@ -88,13 +95,21 @@ export default function Header({ menu, menuActive, data }) {
               </Flex>
             </CopyToClipboard>
             <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
-              <Flex onClick={linkCopy}>
+              <Flex onClick={linkCopy} mx= "8px">
                 <AiFillCopy
                   sx={{ fontSize: "24px", ml: "8px" }}
                   color={"gray"}
                 />
               </Flex>
             </CopyToClipboard>
+           <Text onClick={shareHandler} ><FaShareAlt color='#D7354A' _hover={{color:"#C23043"}}/></Text>
+          <ReactShare 
+            openProp = {!share}
+            title={data[0].u_name + " on Candid Reviews"}
+            url={"https://www.cndd.in/" + data[0].u_uuid}
+            description={"Here are my all recommendations at one place!"}
+            hashtags={["cndd", "candidreviews"]}/
+          >
           </Flex>
           <Flex id="editprofile">
           <Menu>
