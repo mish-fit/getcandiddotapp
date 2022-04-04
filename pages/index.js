@@ -82,9 +82,9 @@ export default function IndexPage() {
             isOpen={isOpenLinksModal}
             closeParent={() => setOpenLinksModal(false)}
           />
-          {variant ? <Banner1 /> : <Banner />}
-          <Features />
-          <ProductFeature />
+          <Banner />
+          {/* <Features />
+          <ProductFeature /> */}
           <FaqTwo addQuestion={() => setOpenLinksModal(true)} />
         </Layout>
       </StickyProvider>
