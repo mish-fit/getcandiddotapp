@@ -1,4 +1,11 @@
-import { Button, Flex, Image, SimpleGrid, Text, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Image,
+  SimpleGrid,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import { event } from "analytics/ga";
 import { useRouter } from "next/router";
 import { BsPlusCircleFill } from "react-icons/bs";
@@ -40,18 +47,18 @@ const SocialElement = ({ item }) => (
 export function SocialHandles({ social, data, cookie }) {
   const [items, setItems] = useState(data);
   const [toggle, setToggle] = useState(false);
-  const [ cancelState, setCancelState ] = useState(items);
+  const [cancelState, setCancelState] = useState(items);
   const toast = useToast();
 
-  useEffect(()=>{
-    console.log("onDragEnd data", data);
+  useEffect(() => {
+    // console.log("onDragEnd data", data);
     setItems(data);
     setCancelState(items);
-  }, [data])
+  }, [data]);
 
-  useEffect(()=>{
-    console.log("onDragEnd items", items);
-  },[items])
+  useEffect(() => {
+    //  console.log("onDragEnd items", items);
+  }, [items]);
 
   function onDragEnd(result) {
     if (!result.destination) {
@@ -60,14 +67,14 @@ export function SocialHandles({ social, data, cookie }) {
     const newItems = [...items];
     const [removed] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, removed);
-    console.log("onDragEnd newitems",newItems);
-    setItems(newItems)
+    // console.log("onDragEnd newitems",newItems);
+    setItems(newItems);
   }
 
   const handleCancel = () => {
     setToggle(!toggle);
     setItems(cancelState);
-  }
+  };
 
   const handleSave = () => {
     setToggle(!toggle);
@@ -93,7 +100,7 @@ export function SocialHandles({ social, data, cookie }) {
       {
         method: "post",
         url: `${authapi}socials`,
-        data: { socials_array: JSON.stringify(body)},
+        data: { socials_array: JSON.stringify(body) },
         options: options,
       },
       { timeout: 2000 }
@@ -113,7 +120,7 @@ export function SocialHandles({ social, data, cookie }) {
       .catch((e) => {
         // console.log(e);
       });
-  }
+  };
 
   const addSocial = () => {
     social();
@@ -122,47 +129,42 @@ export function SocialHandles({ social, data, cookie }) {
   return (
     <Flex sx={socialHandlesStyles.container}>
       <NoSSR>
-			<DragDropContext onDragEnd={onDragEnd}>
-				<Droppable droppableId="droppable" 
-        isDropDisabled={!toggle}
-        >
-					{(provided) => (
-						<SimpleGrid 
-            {...provided.droppableProps} 
-            ref={provided.innerRef}
-            gap={2}
-            columns={[5, 5, 5, 5, 5, 5]}
-            sx={socialHandlesStyles.grid}
-            py={social.length===0 ? "0px" : "8px"}
-            backgroundColor={toggle ? "gray.100" : ""}
-            >
-							{items.map((item, index) => (
-								<Draggable
-									draggableId={item.sort_id.toString()}
-									key={item.id}
-									index={index}
-                  isDragDisabled={!toggle}
-								>
-									{(provided) => (
-                    <Flex
-                      flexDirection={"column"}
-											ref={provided.innerRef}
-											{...provided.draggableProps}
-											{...provided.dragHandleProps}
-										>
-                      <SocialElement
-                      item={item}
-                      key={index}
-                      />
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable" isDropDisabled={!toggle}>
+            {(provided) => (
+              <SimpleGrid
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                gap={2}
+                columns={[5, 5, 5, 5, 5, 5]}
+                sx={socialHandlesStyles.grid}
+                py={social.length === 0 ? "0px" : "8px"}
+                backgroundColor={toggle ? "gray.100" : ""}
+              >
+                {items.map((item, index) => (
+                  <Draggable
+                    draggableId={item.sort_id.toString()}
+                    key={item.id}
+                    index={index}
+                    isDragDisabled={!toggle}
+                  >
+                    {(provided) => (
+                      <Flex
+                        flexDirection={"column"}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <SocialElement item={item} key={index} />
                       </Flex>
-									)}
-								</Draggable>
-							))}
-						{provided.placeholder}
-						</SimpleGrid>
-					)}
-				</Droppable>
-			</DragDropContext>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </SimpleGrid>
+            )}
+          </Droppable>
+        </DragDropContext>
       </NoSSR>
 
       <Flex sx={socialHandlesStyles.socialAddFlex}>
@@ -170,19 +172,32 @@ export function SocialHandles({ social, data, cookie }) {
           as="addbutton"
           sx={socialHandlesStyles.addbutton}
           onClick={addSocial}
-          size={'sm'}
+          size={"sm"}
         >
           <BsPlusCircleFill color="#D7354A" />
           <Text sx={socialHandlesStyles.socialAddText}>Social Handle</Text>
         </Button>
         <Flex sx={socialHandlesStyles.addButton1}>
-        {
-          !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
-          <Flex display={"inline"}>
-            <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={20}/></Button>
-            <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
-          </Flex>
-        }
+          {!toggle ? (
+            <Button
+              ml={"16px"}
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+              size={"sm"}
+            >
+              <Image src={rearrange} h="4" alt="rearrange log"></Image>
+            </Button>
+          ) : (
+            <Flex display={"inline"}>
+              <Button ml={"16px"} onClick={handleCancel} size={"sm"}>
+                <MdOutlineCancel size={20} />
+              </Button>
+              <Button ml={"6px"} onClick={handleSave} size={"sm"}>
+                <MdOutlineDoneOutline size={20} color="#D7354A" />
+              </Button>
+            </Flex>
+          )}
         </Flex>
       </Flex>
     </Flex>
