@@ -44,7 +44,7 @@ export default function Home() {
     // console.log("Variant", variant);
     const handleRouteChange = (url) => {
       pageview(url);
-      event("LANDED_ON_HOME_PAGE");
+      event("LANDED_ON_HOME_PAGE", {});
     };
 
     //When the component is mounted, subscribe to router changes

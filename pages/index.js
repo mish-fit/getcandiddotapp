@@ -45,10 +45,14 @@ export default function IndexPage() {
 
   React.useEffect(() => {
     initOptimize();
+
+    pageview("/");
+    event("LANDED_ON_LANDING_PAGE", {});
+
     // console.log("Variant", variant);
     const handleRouteChange = (url) => {
       pageview(url);
-      event("LANDED_ON_LANDING_PAGE");
+      event("LANDED_ON_LANDING_PAGE", {});
     };
 
     //When the component is mounted, subscribe to router changes
