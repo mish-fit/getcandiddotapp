@@ -1,5 +1,5 @@
 import { Box, Button, Container, FormControl, Heading, Progress, Stack, Text } from "@chakra-ui/react";
-import "@fontsource/poppins";
+import "@fontsource/open-sans";
 import { useContext, useEffect, useState } from "react";
 import { firestore } from "../../lib/firebase";
 import { UserContext } from "../../lib/UserDataProvider";
@@ -35,7 +35,7 @@ const Step6 = (props) => {
   return (
     <>
       <Container
-        fontFamily={"Poppins"}
+        fontFamily={"Open Sans"}
         maxW={"container.lg"}
         h={"100vh"}
         p={0}

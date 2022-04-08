@@ -35,7 +35,7 @@ const productsModalStyles = {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -44,7 +44,7 @@ const productsModalStyles = {
     height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
@@ -58,7 +58,7 @@ const productsModalStyles = {
   },
   save: {
     mr:"4px",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
   },
@@ -68,7 +68,7 @@ const productsModalStyles = {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },

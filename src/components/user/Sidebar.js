@@ -13,7 +13,7 @@ export function Sidebar({ socials, user, summary }) {
 
   return (
     <Flex
-      sx={sidebarStyles.container}
+      sx={{flexDirection:"column"}}
     >
       <UserCard data={user} />
       <UserSummary data={summary} />

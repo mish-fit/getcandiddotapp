@@ -12,7 +12,8 @@ import { useState, useEffect } from "react";
 import isURL from "validator/lib/isURL";
 import dashboardStyles from "styles/Dashboard";
 import dynamic from "next/dynamic";
-
+import cheerio from "cheerio";
+import axios from "axios";
 const DynamicIntro = dynamic(() => import("../../src/components/dashboard/Intro"), {
   ssr: false,
   loading: () => <div>...</div>
@@ -102,7 +103,7 @@ export default function Dashboard({
         u_name: "",
         prod_name: "Apple MacBook Air (M1, 2020)",
         cat_name: "Laptop",
-        bucket: "My Recommendations",
+        bucket: "My Recos",
         photo: "https://m.media-amazon.com/images/I/71vFKBpKakL._SL1500_.jpg",
         prod_link: "https://amazon.in/Apple-MacBook-Chip-13-inch-512GB/dp/B08N5T6CZ6",
         aff_code: "",
@@ -115,7 +116,7 @@ export default function Dashboard({
         u_name: "",
         prod_name: "Samsung Galaxy F22",
         cat_name: "Mobile",
-        bucket: "My Recommendations",
+        bucket: "My Recos",
         photo: "https://www.mobiledor.com/wp-content/uploads/Samsung-Galaxy-F22-Bangladesh.jpg",
         prod_link: "https://www.amazon.in/SAMSUNG-Galaxy-Denim-Blue-Storage/dp/B09QXBCSPS",
         aff_code: "",
@@ -183,8 +184,8 @@ export default function Dashboard({
       { ( links.length===2 && recos.length===2 && socials.length===0 && initState ) ? <DynamicIntro/> : <></>}
       <Divider />
       {menuClick ? <MenuPopup /> : null}
-      <Flex as="container" sx={dashboardStyles.container}>
-        <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar">
+      {/* <Flex as="container" sx={dashboardStyles.container}>
+        <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar"> */}
           <Sidebar
             socials={socials}
             user={user}
@@ -193,8 +194,8 @@ export default function Dashboard({
             buckets={buckets}
             masterSocials={masterSocials}
           />
-        </Flex>
-        <Flex as="mainscreen" sx={dashboardStyles.mainscreen}>
+        {/* </Flex> */}
+        {/* <Flex as="mainscreen" sx={dashboardStyles.mainscreen}> */}
           <MainScreen
             links={links}
             recos={recos}
@@ -204,8 +205,8 @@ export default function Dashboard({
             linkAnalytics={linkAnalytics}
             prodAnalytics={prodAnalytics}
           />
-        </Flex>
-      </Flex>
+        {/* </Flex> */}
+      {/* </Flex> */}
     </div>
   );
 }
@@ -274,7 +275,125 @@ export async function getServerSideProps(context) {
     ].map((fetchApi) => fetchApi.then((res) => res.json()))
   );
 
-  // console.log(currentUser[0], buckets);
+  const fetchProduct = async () => {
+    try {
+        let link = ''
+        if(link.toString().substring(0, 8) !== "https://"){
+          link = "https://" + link;
+        }
+        if(link.toString().substring(8,12) !== "www."){
+          link = link.slice(0, 8) + 'www.' + link.slice(8);
+        }
+        console.log(link)
+        let site='';
+        let i=12;
+        while(link.charAt(i)!=='.'){
+          site+=link.charAt(i);
+          i++;
+        }
+        console.log(site)
+        console.log('link', link)
+        const response = await axios.get(link);
+        const html = response.data;
+        const $ = cheerio.load(html);
+        const i1 = $('#f271f8e29560878 > div > div > span > a > span')
+        console.log(i1.text())
+        const yid = $('#watch7-content > meta:nth-child(5)')
+        const yname = $('#watch7-content > span:nth-child(9) > link:nth-child(2)')
+        const yid1 = $('#watch7-content > span:nth-child(9) > link:nth-child(1)')
+        console.log(yid.attr('content'))
+        console.log(yid1.attr('href'))
+        console.log(yname.attr('content'))
+        
+        const productData = [];
+
+      //not working
+      const myntra = () => {
+        const title = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > h1.pdp-name')
+        const image = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.image-grid-container.common-clearfix > div.desktop-image-zoom-container > div > div.desktop-image-zoom-image-container > img')
+        const price = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > p.pdp-discount-container > span.pdp-price > strong')
+        const rating = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > div > div > div:nth-child(1)')
+        productData.push(brand.text() + title.text(),link,image.attr('src'),price.text(),rating.text());
+      }
+
+        const amazon = () => {
+          const title = $('#productTitle')
+          const image = $('#landingImage')
+          const price = $('#corePrice_desktop > div > table > tbody > tr:nth-child(2) > td.a-span12 > span.a-price.a-text-price.a-size-medium.apexPriceToPay > span:nth-child(2)')
+          const rating = $('#acrPopover > span.a-declarative > a > i.a-icon.a-icon-star.a-star-4-5')
+          productData.push(title.text().split("  ").join(""),link,image.attr('src'),price.text(),rating.text())
+        }
+
+        const flipkart = () => {
+          const title = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span')
+          const image = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-5-12._78xt5Y > div:nth-child(1) > div > div._3li7GG > div._1BweB8 > div._3kidJX > div.CXW8mj._3nMexc > img')
+          const price = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d')
+          const rating = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div.aMaAEs > div:nth-child(2) > div > div > span > div')
+          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text());
+        }
+
+        const nykaa = () => {
+          const title = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > h1')
+          const image = $('#app > div > div > div.css-11ayi09 > div.css-o21o8r > div.css-ov1ktg > div.productSelectedImage.css-eyk94w > div > div > img')
+          const price = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-f5j3vf > div > span.css-1jczs19')
+          const rating = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-173satf > div.css-4zp2mz > div.css-m6n3ou')
+          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text())
+        }
+
+        const meesho = () => {
+          const title = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > span')
+          const image = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.eewkZT > div > div.Card__BaseCard-sc-b3n78k-0.cWVjzZ.ProductCard__Container-sc-camkhj-0.gjLyQd.ProductCard__Container-sc-camkhj-0.gjLyQd > div.ProductDesktopImage__ImageWrapperDesktop-sc-8sgxcr-0.echLZw > div > img')
+          const price = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.gdwhYz.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx > h4')
+          const rating = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.fpIkxz.ShippingInfo__RatingSection-sc-dflqn4-12.hqUvHB.ShippingInfo__RatingSection-sc-dflqn4-12.hqUvHB > span > span.Rating__StyledPill-sc-5nayi4-0 > span')
+          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text())
+        }
+
+        const snapdeal = () => {
+          const title = $('#productOverview > div.col-xs-14.right-card-zoom.reset-padding > div > div.pdp-fash-topcenter-inner.layout > div.row > div.col-xs-18 > h1')
+          const image = $('#bx-slider-left-image-panel > li:nth-child(1) > img')
+          const price = $('#buyPriceBox > div.row.reset-margin > div.col-xs-14.reset-padding.padL8 > div.disp-table > div.pdp-e-i-PAY-r.disp-table-cell.lfloat > span.pdp-final-price > span')
+          const rating = $('#productOverview > div.col-xs-14.right-card-zoom.reset-padding > div > div.pdp-fash-topcenter-inner.layout > div.pdp-e-i-ratereviewQA.marT10 > div.pdp-e-i-ratings > div > span.avrg-rating')
+          productData.push(title.text().split("\n   \t\t\t").join(""),link,image.attr('src'),price.text(),rating.text());
+        }
+        
+        //not working
+        const ajio = () => {
+          const brand = $('#appContainer > div.content > div > div > div.prod-container > div > div.col-4 > div > h2')
+          const title = $('#appContainer > div.content > div > div > div.prod-container > div > div.col-4 > div > h1')
+          const image = $('#appContainer > div.content > div > div > div.prod-container > div > div.col-6 > div > div.img-mv-left.col-10 > div.image-slick-container > div > div > div > div:nth-child(6) > div > img')
+          const price = $('#appContainer > div.content > div > div > div.prod-container > div > div.col-4 > div > div.prod-price-section > div.prod-sp')
+          productData.push(brand.text() + title.text(),link,image.attr('src'),price.text());
+        }
+
+        //not working
+        const purplle = () => {
+          const title = $('#body > app > main > product-app > div > div > div > div.pp-g30.mrb30 > div.pp-2-5.w39pi.sp30 > h1')
+          const image = $('#mainImage > img')
+          const price = $('#body > app > main > product-app > div > div > div > div.pp-g30.mrb30 > div.pp-2-5.w39pi.sp30 > table > tr > td:nth-child(1) > span > span')
+          const rating = $('#body > app > main > product-app > div > div > div > div.pp-g30.mrb30 > div.pp-2-5.w39pi.sp30 > p.mr0.mrb20 > span.tr-box2.bg-green')
+          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text());
+        }
+
+        switch(site){
+          case 'amazon': amazon(); break;
+          case 'flipkart': flipkart(); break;
+          case 'meesho': meesho(); break;
+          case 'nykaa': nykaa(); break;
+          case 'snapdeal': snapdeal(); break;
+          case 'myntra': myntra(); break;
+          case 'ajio': ajio(); break;
+          case 'purplle': purplle(); break;
+          default: return '';
+        }
+        return productData;
+    } catch (error) {
+        throw error;
+    }
+ };
+ 
+//  fetchProduct().then((productData) => console.log(productData));
+
+
 
   return {
     props: {

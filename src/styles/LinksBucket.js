@@ -2,13 +2,14 @@ const linksBucketStyles = {
   container: {
     flexDirection: "column",
     my: "8px",
-    width: "100%",
+    // justifyContent:"center",
+    // width: "25%",
     backgroundColor: "white",
   },
   grid: {
-    justifyContent:["center","center","left","left","left","left"],
-    flexDirection: "row",
-    flexWrap: "wrap",
+    // justifyContent:["center","center","left","left","left","left"],
+    flexDirection: "column",
+    // flexWrap: "wrap",
     borderRadius: "5px",
   },
 }

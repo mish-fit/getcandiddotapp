@@ -5,7 +5,7 @@ import userSummaryStyles from "styles/UserSummary";
 
 // Add a custom Link
 export function UserSummary({ data }) {
-  const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const [activeTab, setActiveTab] = React.useState(0);
 
   const onClickProducts = () => {
@@ -33,7 +33,7 @@ export function UserSummary({ data }) {
                 onClick={onClickProducts}
                 sx={activeTab == 0 ? userSummaryStyles.buttonText : userSummaryStyles.buttonText1}
               >
-                {isLargerThan480 ? "" : data.products} Products
+                {isLargerThan768 ? "" : data.products} Products
               </Button>
             </Flex>
           </ScrollLink>
@@ -50,7 +50,7 @@ export function UserSummary({ data }) {
                 onClick={onClickLinks}
                 sx={activeTab > 0 ? userSummaryStyles.buttonText : userSummaryStyles.buttonText1}
               >
-                {isLargerThan480 ? "" : data.links} Links
+                {isLargerThan768 ? "" : data.links} Links
               </Button>
             </Flex>
           </ScrollLink>

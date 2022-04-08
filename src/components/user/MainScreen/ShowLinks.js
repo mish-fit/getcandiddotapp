@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { Flex } from "@chakra-ui/react";
 import { LinksBucket } from "./LinksBucket";
+import { useEffect } from "react";
 
 // Add a custom Link
 export function ShowLinks({ data, bucketData }) {
@@ -12,20 +13,26 @@ export function ShowLinks({ data, bucketData }) {
     }
   });
 
+  useEffect(()=>{
+    console.log("User Page",'data', data)
+    console.log('bucketData',bucketData);
+    console.log('bucketsArr',buckets);
+  },[])
+
   const addLinks = () => {
     // console.log("add links");
   };
 
   return (
-    <Flex sx={{ width: "95%", mx: "auto" }}>
+    <Flex sx={{ width:"fit-content", mx:"auto" }} flexDirection={"column"}>
       {buckets.map((item, index) => {
         return (
           <LinksBucket
             key={index}
-            bucketName={buckets[index]}
-            data={data.filter((item) => item.bucket === buckets[index])}
+            bucketName={bucketData[index].name}
+            data={data.filter((item) => item.bucket === bucketData[index].name)}
             link={
-              bucketData.filter((item) => item.name === buckets[index])[0] || ""
+              bucketData.filter((item) => item.name === bucketData[index].name)[0] || ""
             }
           />
         );

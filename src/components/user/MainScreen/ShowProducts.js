@@ -17,15 +17,15 @@ export function ShowProducts({ data, bucketData }) {
   };
 
   return (
-    <Flex sx={{ width: "95%", mx: "auto" }}>
+    <Flex sx={{ width:["200px","480px","704px","704px","704px","704px"], mx:"auto" }} flexDirection={"column"}>
       {buckets.map((item, index) => {
         return (
           <ProductsBucket
             key={index}
-            bucketName={buckets[index]}
-            data={data.filter((item) => item.bucket === buckets[index])}
+            bucketName={bucketData[index].name}
+            data={data.filter((item) => item.bucket === bucketData[index].name)}
             link={
-              bucketData.filter((item) => item.name === buckets[index])[0] || ""
+              bucketData.filter((item) => item.name === bucketData[index].name)[0] || ""
             }
           />
         );

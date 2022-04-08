@@ -74,7 +74,7 @@ const styles = {
       button: {
         backgroundColor: "#d95f76",
         color: "white",
-        fontFamily: "Poppins",
+        fontFamily: "Open Sans",
         transition: "all 500ms ease",
         "&:hover": {
           backgroundColor: "black",
@@ -85,7 +85,7 @@ const styles = {
   },
   recomLabel: {
     fontWeight: 700,
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: [0, 1],
     lineHeight: 1.29,
     backgroundColor: "#52ACFF",
@@ -103,7 +103,7 @@ const styles = {
   },
   title: {
     fontWeight: 700,
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: [1, 2, 3],
     lineHeight: 1.31,
     letterSpacing: "-0.60px",
@@ -111,13 +111,13 @@ const styles = {
   subtitle: {
     color: rgba("#343D48", 0.65),
     fontSize: [1, null, 1, 2],
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     lineHeight: 1.62,
     mt: "8px",
   },
   priceAmount: {
     color: "#0F2137",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: 700,
     fontSize: [1, 2, null, 4, "24px"],
     lineHeight: 1.3,
@@ -155,7 +155,7 @@ const styles = {
     color: "#d95f76",
     cursor: "pointer",
     fontWeight: 700,
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     minHeight: [40, null, null, null, 50],
     padding: ["0 24px", null, "0 32px"],
     fontSize: [1, null, null, null, 2],

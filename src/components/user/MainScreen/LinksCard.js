@@ -25,11 +25,9 @@ export function LinksCard({ item }) {
             flexDirection: "row",
             p: "8px",
             py: "16px",
-            backgroundColor: "white",
-            borderRadius: "5px",
-            mx: "16px",
-            width: ["100%", "100%", "340px", "340px", "340px", "340px"],
-            minWidth: "330px",
+            backgroundColor: "white",          
+            // mx: "16px",
+            width:["sm","md","2xl","2xl","2xl","2xl"],
             height: "72px",
             my: "16px",
             justifyContent: "center",
@@ -55,7 +53,7 @@ export function LinksCard({ item }) {
             }}
           >
             <Text as="p" sx={{
-              fontFamily: "Poppins",
+              fontFamily: "Open Sans",
               // fontWeight: "medium",
               fontSize: "16px",
               color: "#D7354A",

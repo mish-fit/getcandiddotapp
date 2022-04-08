@@ -115,7 +115,7 @@ const styles = {
     textAlign: ["center", "left", null, "center", "left"],
     flex: ["0 0 100%", null, null, null, "0 0 50%", "0 0 40%"],
     h2: {
-      fontFamily: "Poppins",
+      fontFamily: "Open Sans",
       color: "#02073E",
       letterSpacing: "-1px",
       fontSize: ["28px", null, "32px", null, null, "48px", "60px"],

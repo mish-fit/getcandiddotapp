@@ -1,5 +1,5 @@
 import { Button, Container, Flex, Heading, Input, Select, Stack } from "@chakra-ui/react";
-import "@fontsource/poppins";
+import "@fontsource/open-sans";
 import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../lib/UserDataProvider";
 import Header from "./Header";
@@ -45,7 +45,7 @@ const Step5 = (props) => {
   return (
     <>
       <Container
-        fontFamily={"Poppins"}
+        fontFamily={"Open Sans"}
         maxW={"container.md"}
         p={0}
         align="center"

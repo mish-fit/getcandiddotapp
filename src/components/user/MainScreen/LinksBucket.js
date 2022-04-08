@@ -52,7 +52,7 @@ export function LinksBucket({ bucketName, data, link }) {
         >
           <Text
             sx={{
-              fontFamily: "Poppins",
+              fontFamily: "Open Sans",
               fontWeight: "bold",
               fontSize: "18px",
               py: "4px",

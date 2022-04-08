@@ -34,6 +34,7 @@ export function LinksModal({
   closeParent,
   isOpen,
   buckets,
+  bucketsMaxSortId,
   user,
   maxSortId,
   cookie,
@@ -50,6 +51,7 @@ export function LinksModal({
   const [imageSelected, setImageSelected] = React.useState(false);
   const [sortId, setSortId] = React.useState(maxSortId + 1);
   const [signedURL, setSignedURL] = React.useState("");
+  const [isSaveClicked, setIsSaveClicked] = React.useState(false);
   let hiddenInput = null;
 
   const [values, setValues] = React.useState({
@@ -166,6 +168,7 @@ export function LinksModal({
   };
 
   const savenadd = () => {
+    setIsSaveClicked(true);
     if (values.title && values.link) {
       if (isURL(values.link)) {
         const body = {
@@ -190,6 +193,7 @@ export function LinksModal({
           { timeout: 5000 }
         )
           .then((res) => {
+            setIsSaveClicked(false);
             //   console.log("Sucess", res.data);
             newItem(res.data);
             setSortId((id) => id + 1);
@@ -226,6 +230,7 @@ export function LinksModal({
   };
 
   const savenclose = () => {
+    setIsSaveClicked(true);
     if (values.title && values.link) {
       if (isURL(values.link)) {
         const body = {
@@ -250,6 +255,7 @@ export function LinksModal({
           { timeout: 1000 }
         )
           .then((res) => {
+            setIsSaveClicked(false);
             //     console.log("Sucess", res.data);
             newItem(res.data);
             setSortId((id) => id + 1);
@@ -326,7 +332,7 @@ export function LinksModal({
           <Flex sx={linksModalStyles.container}>
             <Flex sx={linksModalStyles.row1}>
               <Text sx={linksModalStyles.topHeader}>Enter Custom</Text>
-              <Flex sx={linksModalStyles.saveContainer} onClick={savenclose}>
+              <Flex sx={linksModalStyles.saveContainer} onClick={isSaveClicked ? null : savenclose}>
                 <Text sx={linksModalStyles.save}>Save </Text>
                 <BsCheckCircleFill
                   color="#D7354A"
@@ -468,6 +474,7 @@ export function LinksModal({
                             isOpen={input}
                             onClose={onCancelBucket}
                             onSave={(item) => onSaveBucket(item)}
+                            bucketsMaxSortId={bucketsMaxSortId}
                           />
                           <MenuButton
                             px={4}
@@ -525,7 +532,7 @@ export function LinksModal({
               </Flex>
             </Flex>
             <Flex sx={linksModalStyles.row4}>
-              <Flex onClick={savenadd} sx={{ cursor: "pointer" }}>
+              <Flex onClick={isSaveClicked ? null : savenadd} sx={{ cursor: "pointer" }}>
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>

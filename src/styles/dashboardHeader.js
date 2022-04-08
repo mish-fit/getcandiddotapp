@@ -79,16 +79,16 @@ const dashboardHeaderStyles = {
   nav: {
     cursor: "pointer",
     flex: 1,
-    // mr: "148px",
+    mr: "96px",
     px: "auto",
     justifyContent: "center",
-    "@media screen and (max-width: 960px)": {
+    "@media screen and (max-width: 768px)": {
       display: "none",
     },
     alignItems: "center",
 
     navLink: {
-      fontFamily: "Poppins",
+      fontFamily: "Open Sans",
       fontSize: "24px",
       color: "#323232",
       fontWeight: "bold",
@@ -96,7 +96,7 @@ const dashboardHeaderStyles = {
       lineHeight: "1.2",
       mr: "48px",
       transition: "500ms",
-      "@media(max-width:1024px)": {
+      "@media(max-width:768px)": {
         mr: "24px",
       },
       ":last-child": {
@@ -112,7 +112,7 @@ const dashboardHeaderStyles = {
     ml: [null, null, null, "16px", "16px", "16px", "16px"],
   },
   menuButton:{
-    display: ["none", "none", "none", "none", "inline", "inline"],
+    display: ["none", "none", "inline", "inilne", "inline", "inline"],
   }
 };
 

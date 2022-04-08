@@ -1,5 +1,5 @@
 import { Button, Flex, FormControl, FormLabel, Heading, Image, Text, useToast } from "@chakra-ui/react";
-import "@fontsource/poppins";
+import "@fontsource/open-sans";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -140,8 +140,8 @@ const Step3 = (props) => {
     });
 
     const u_buckets = {
-      links: [{ name: "My Links", link: "" }],
-      recos: [{ name: "My Recos", link: "" }],
+      links: [{ id: 0, name: "My Links", link: "", sort_id: 0 }],
+      recos: [{ id: 0, name: "My Recos", link: "", sort_id: 0 }],
     };
 
     // API Call 2: Buckets
@@ -182,7 +182,7 @@ const Step3 = (props) => {
           userDataContext.userSignInInfo.user.displayName,
           prod_name: "Apple MacBook Air (M1, 2020)",
           cat_name: "Laptop",
-          bucket: "My Recommendations",
+          bucket: "My Recos",
           photo: "https://m.media-amazon.com/images/I/71vFKBpKakL._SL1500_.jpg",
           prod_link: "https://amazon.in/Apple-MacBook-Chip-13-inch-512GB/dp/B08N5T6CZ6",
           aff_code: "",
@@ -196,7 +196,7 @@ const Step3 = (props) => {
           userDataContext.userSignInInfo.user.displayName,
           prod_name: "Samsung Galaxy F22",
           cat_name: "Mobile",
-          bucket: "My Recommendations",
+          bucket: "My Recos",
           photo: "https://www.mobiledor.com/wp-content/uploads/Samsung-Galaxy-F22-Bangladesh.jpg",
           prod_link: "https://www.amazon.in/SAMSUNG-Galaxy-Denim-Blue-Storage/dp/B09QXBCSPS",
           aff_code: "",

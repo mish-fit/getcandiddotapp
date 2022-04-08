@@ -55,13 +55,13 @@ const userStyles= {
 
   headerContainer: {
     mx:"8px",
-    mb: [-124, -124, 0, 0, 0, 0],
+    // mb: [-124, -124, 0, 0, 0, 0],
     display: "flex",
     alignItems: "center",
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
+    flexDirection: ["row", "row", "row", "row", "row", "row"],
     justifyContent: [
-      "center",
-      "center",
+      "space-between",
+      "space-between",
       "space-between",
       "space-between",
       "space-between",
@@ -71,7 +71,7 @@ const userStyles= {
   logouserStyles: {
   },
   button: {
-    mt:["16px", "16px", "0px", "0px", "0px", "0px"],
+    // mt:["16px", "16px", "0px", "0px", "0px", "0px"],
     bg: "#D7354A",
     ":hover": {
       bg: "#C23043",
@@ -79,7 +79,7 @@ const userStyles= {
     borderRadius: "4px",
     color: "white",
     fontSize: "12px",
-    width: "200px",
+    // width: "200px",
     height: "40px",
     justifyContent: "center",
     alignItems: "center",

@@ -4,8 +4,9 @@ import { MdOutlineCategory } from "react-icons/md";
 import bucketModalStyles from "styles/BucketModal";
 
 // Add a custom Link
-export function BucketsModal({ isOpen, onSave, onClose }) {
-  const [name, setName] = React.useState({ name: "", link: "" });
+export function BucketsModal({ isOpen, onSave, onClose,bucketsMaxSortId }) {
+  const [bucketsSortId, setBucketsSortId] = React.useState(bucketsMaxSortId + 1);
+  const [name, setName] = React.useState({ id: bucketsSortId, name: "", link: "", sort_id :bucketsSortId});
   const handleChangeName = (event) =>
     setName({ ...name, name: event.target.value });
   const handleChangeLink = (event) =>

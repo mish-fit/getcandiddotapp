@@ -23,6 +23,7 @@ export function ProductsModal({
   closeParent,
   isOpen,
   buckets,
+  bucketsMaxSortId,
   user,
   maxSortId,
   cookie,
@@ -41,6 +42,7 @@ export function ProductsModal({
   const [prodArray, setProdArray] = React.useState([]);
   const [catActive, setCatActive] = React.useState(false);
   const [prodActive, setProdActive] = React.useState(false);
+  const [isSaveClicked, setIsSaveClicked] = React.useState(false);
 
   let hiddenInput = null;
 
@@ -50,7 +52,7 @@ export function ProductsModal({
     u_name: user[0].u_name,
     prod_name: "",
     cat_name: "",
-    bucket: "My Recommendations",
+    bucket: "My Recos",
     photo: "",
     prod_link: "",
     aff_code: "",
@@ -107,7 +109,7 @@ export function ProductsModal({
         }}
       >
         <Text
-          sx={{ fontproductsModalStyles: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontproductsModalStyles: "Open Sans", fontSize: "16px", fontWeight: "medium" }}
         >
           {item.prod_name}
         </Text>
@@ -158,7 +160,7 @@ export function ProductsModal({
         }}
       >
         <Text
-          sx={{ fontproductsModalStyles: "Poppins", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontproductsModalStyles: "Open Sans", fontSize: "16px", fontWeight: "medium" }}
         >
           {item.cat_name}
         </Text>
@@ -253,6 +255,7 @@ export function ProductsModal({
   };
 
   const savenadd = () => {
+    setIsSaveClicked(true);
     if (values.prod_name && values.prod_link) {
       const body = {
         ...values,
@@ -276,6 +279,7 @@ export function ProductsModal({
         { timeout: 5000 }
       )
         .then((res) => {
+          setIsSaveClicked(false);
           //  console.log("Recos Success", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
@@ -304,6 +308,7 @@ export function ProductsModal({
   };
 
   const savenclose = () => {
+    setIsSaveClicked(true);
     if (values.prod_name && values.prod_link) {
       const body = {
         ...values,
@@ -327,6 +332,7 @@ export function ProductsModal({
         { timeout: 1000 }
       )
         .then((res) => {
+          setIsSaveClicked(false);
           //   console.log("Recos Success", res.data);
           newItem(res.data);
           setSortId((id) => id + 1);
@@ -364,7 +370,7 @@ export function ProductsModal({
       u_name: user[0].u_name,
       prod_name: "",
       cat_name: "",
-      bucket: "My Recommendations",
+      bucket: "My Recos",
       photo: "",
       prod_link: "",
       aff_code: "",
@@ -440,7 +446,7 @@ export function ProductsModal({
           <Flex sx={productsModalStyles.container}>
             <Flex sx={productsModalStyles.row1}>
               <Text sx={productsModalStyles.topHeader}>Add Product</Text>
-              <Flex sx={productsModalStyles.saveContainer} onClick={savenclose}>
+              <Flex sx={productsModalStyles.saveContainer} onClick={isSaveClicked ? null : savenclose}>
                 <Text sx={productsModalStyles.save}>Save </Text>
                 <BsCheckCircleFill
                   color="#D7354A"
@@ -712,6 +718,8 @@ export function ProductsModal({
                               isOpen={input}
                               onClose={onCancelBucket}
                               onSave={(item) => onSaveBucket(item)}
+                              bucketsMaxSortId={bucketsMaxSortId}
+
                             />
                             <MenuButton
                               px={4}
@@ -757,7 +765,7 @@ export function ProductsModal({
               </Flex>
             </Flex>
             <Flex sx={productsModalStyles.row4}>
-              <Flex onClick={savenadd} sx={{ cursor: "pointer" }}>
+              <Flex onClick={isSaveClicked ? null : savenadd} sx={{ cursor: "pointer" }}>
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
             </Flex>

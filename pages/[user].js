@@ -87,26 +87,26 @@ export default function User({ links, recos, user, socials, buckets }) {
             </Flex>
             <Flex>
               <Button sx={userStyles.button} onClick={handleCreateLinkButton}>
-                Create your own CNDD link!
+                Create your CNDD link!
               </Button>
             </Flex>
           </Flex>
         </header>
       </DrawerProvider>
       <Divider/>
-      <Flex as="container" sx={userStyles.container}>
-        <Flex as="sidebar" sx={userStyles.sidebar}>
+      {/* <Flex as="container" sx={userStyles.container}>
+        <Flex as="sidebar" sx={userStyles.sidebar}> */}
           <Sidebar socials={socials} user={user} summary={summary} />
-        </Flex>
-        <Flex as="mainscreen" sx={userStyles.mainscreen}>
+        {/* </Flex>
+        <Flex as="mainscreen" sx={userStyles.mainscreen}> */}
           <MainScreen
             links={links}
             recos={recos}
             user={user}
             buckets={buckets[0].u_buckets}
           />
-        </Flex>
-      </Flex>
+        {/* </Flex> */}
+      {/* </Flex> */}
     </div>
   );
 }

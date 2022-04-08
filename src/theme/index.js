@@ -5,7 +5,7 @@ import {
   withDefaultVariant
 } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
-import '@fontsource/poppins';
+import '@fontsource/open-sans';
 
 const brandRing = {
   _focus: {
@@ -109,8 +109,8 @@ const brandColors = {
 const theme = extendTheme(
     {
     fonts: {
-      heading: `Poppins, ${base.fonts?.heading}`,
-      body: `Poppins, ${base.fonts?.body}`,
+      heading: `Open Sans, ${base.fonts?.heading}`,
+      body: `Open Sans, ${base.fonts?.body}`,
     },
     colors: {
       brand: { ...brandColors },
