@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { initGA, logPageView } from 'analytics';
 */
 import { ChakraProvider } from "@chakra-ui/react";
-import "@fontsource/poppins";
+// import "@fontsource/open-sans";
 import "assets/css/react-slick.css";
 import UserDataProvider from "lib/UserDataProvider";
 import "rc-drawer/assets/index.css";

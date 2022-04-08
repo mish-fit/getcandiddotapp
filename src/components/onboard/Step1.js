@@ -1,5 +1,5 @@
 import { Button, Flex, FormLabel, Heading, Input } from '@chakra-ui/react';
-import '@fontsource/poppins';
+import '@fontsource/open-sans';
 import debounce from 'lodash.debounce';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { AiOutlineCheckCircle } from 'react-icons/ai';

@@ -9,7 +9,7 @@ export function UserCard({ data }) {
 
   return (
     <Flex sx={userCardStyles.container}>
-      <Flex>
+      {/* <Flex>
         <Image
           sx={userCardStyles.coverPhoto}
           alt={"cover img"}
@@ -19,7 +19,7 @@ export function UserCard({ data }) {
               : "/user/cover.png"
           }
         />
-      </Flex>
+      </Flex> */}
       <Flex sx={userCardStyles.userPhotoView}>
         <Image
           sx={userCardStyles.userImage}

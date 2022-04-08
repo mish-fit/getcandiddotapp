@@ -1,15 +1,4 @@
-import {
-  Flex,
-  Image,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  Modal,
-  ModalContent,
-  ModalOverlay,
-  Text,
-  useToast,
-} from "@chakra-ui/react";
+import { Flex, Image, Input, InputGroup, InputLeftAddon, Modal, ModalContent, ModalOverlay, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { authapi } from "lib/api";
 import Lottie from "lottie-react";
@@ -56,11 +45,7 @@ const SocialCategory = ({ category, data, onClickItem, currentSocials }) => {
                   position: "relative",
                 }}
               >
-                <Image
-                  src={item.social_logo}
-                  alt="img"
-                  sx={socialModalStyles.social}
-                />
+                <Image src={item.social_logo} alt="img" sx={socialModalStyles.social} />
                 <Flex sx={{ position: "absolute", top: "-4px", right: "40px" }}>
                   {currentSocials.filter(
                     (item1, index1) => item1.social_id === item.social_id
@@ -101,6 +86,7 @@ export function SocialModal({
   const [socialId, setSocialId] = React.useState(0);
   const [userName, setUserName] = React.useState("");
   const [activeItem, setActiveItem] = React.useState({});
+  const [isSaveClicked, setIsSaveClicked] = React.useState(false);
 
   const uniqueCategories = [
     ...new Set(masterSocials.map((item) => item.social_cat)),
@@ -110,7 +96,8 @@ export function SocialModal({
 
   useEffect(() => {
     setValues([]);
-    // console.log("data in social modal", data);
+    setIsSaveClicked(false);
+    console.log("data in social modal", data);
     data.map((item, index) => {
       setValues((values) => [
         ...values,
@@ -132,7 +119,7 @@ export function SocialModal({
   React.useEffect(() => {
     const a = [];
 
-    // console.log("data", data);
+    console.log("data", data);
 
     axios
       .get(`${authapi}image`, { params: { id: imageName } }, { timeout: 3000 })
@@ -150,14 +137,15 @@ export function SocialModal({
   };
 
   const savenclose = () => {
-    console.log("SAVE AND CLOSE values", values);
+    setIsSaveClicked(true);
+    // console.log("values", values);
     const options = {
       headers: {
         Authorization: `bearer ${cookie}`,
         Origin: "localhost:3000",
       },
     };
-
+    console.log("values", values)
     axios(
       {
         method: "post",
@@ -168,7 +156,7 @@ export function SocialModal({
       { timeout: 1000 }
     )
       .then((res) => {
-        console.log("Sucess", res.data);
+        // console.log("Sucess", res.data);
         setSortId((id) => id + 1);
         toast({
           title: "Socials Updated",
@@ -185,8 +173,8 @@ export function SocialModal({
   };
 
   const onClickSocialItem = (socialItem) => {
-    console.log("On click social item values ", values);
-    console.log("On click social item social item ", socialItem);
+    // console.log(values);
+    // console.log(socialItem);
     setActiveItem(socialItem);
     setInputActive(true);
     setSocialId(socialItem.social_id);
@@ -211,13 +199,14 @@ export function SocialModal({
   };
 
   const onChangeUserName = (e) => {
-    console.log("Values in on Change User name", values);
     setUserName(e.target.value);
     let currentSocialIds = [...new Set(values.map((item) => item.social_id))];
+    console.log("currentSocialIds", currentSocialIds)
     let arrayIndex = values.findIndex(
       (item, index) => item.social_id === socialId
     );
     let newArray = [...values];
+    console.log(...values);
     if (currentSocialIds.includes(socialId) && e.target.value.length > 0) {
       newArray[arrayIndex] = {
         id: newArray[arrayIndex].id,
@@ -261,7 +250,7 @@ export function SocialModal({
         <Flex sx={socialModalStyles.container}>
           <Flex sx={socialModalStyles.row1}>
             <Text sx={socialModalStyles.subHeader}>Add Social Handles </Text>
-            <Flex sx={socialModalStyles.saveContainer} onClick={savenclose}>
+            <Flex sx={socialModalStyles.saveContainer} onClick={isSaveClicked ? null : savenclose}>
               <Text sx={socialModalStyles.save}>Save </Text>
               <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
             </Flex>
@@ -272,7 +261,9 @@ export function SocialModal({
               <Lottie animationData={smm} />
             </Flex>
             <Flex sx={socialModalStyles.linkView}>
-              <Flex sx={socialModalStyles.innerFlex}>
+              <Flex
+                sx={socialModalStyles.innerFlex}
+              >
                 {uniqueCategories.map((category, index) => {
                   return (
                     <SocialCategory
@@ -291,7 +282,11 @@ export function SocialModal({
               </Flex>
               {inputActive && !newInput ? (
                 <Flex sx={socialModalStyles.addlink}>
-                  <Text sx={socialModalStyles.username}>Enter Username</Text>
+                  <Text
+                    sx={socialModalStyles.username}
+                  >
+                    Enter Username
+                  </Text>
                   <InputGroup size="lg">
                     <InputLeftAddon>{inputLink}</InputLeftAddon>
                     <Input

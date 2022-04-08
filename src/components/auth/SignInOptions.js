@@ -2,7 +2,7 @@ import {
   Button, Flex, Heading, Input, InputGroup,
   InputLeftAddon, Text, useToast
 } from "@chakra-ui/react";
-import "@fontsource/poppins";
+import "@fontsource/open-sans";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "lib/firebase";
 import { useRouter } from "next/router";

@@ -73,7 +73,7 @@ const headerMobileDrawerStyles = {
     py: "0",
     backgroundColor: "#D7354A",
     color: "#fff",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
   },
 };
 

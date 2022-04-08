@@ -44,7 +44,7 @@ export function Sidebar({
   const router = useRouter();
 
   return (
-    <Flex sx={sidebarStyles.container}>
+    <Flex sx={{ flexDirection: "column" }}>
       <SocialModal
         isOpen={isOpenSocialModal}
         closeParent={(item) => onCloseSocialModal(item)}

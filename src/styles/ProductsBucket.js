@@ -2,16 +2,16 @@ const productsBucketStyles = {
   container: {
     flexDirection: "column",
     my: "8px",
-    width: "100%",
+    // width: "100%",
   },
   grid: {
-    justifyContent:["center","center","left","left","left","left"],
+    // justifyContent:["center","center","center","center","center","center"],
     flexDirection: "row",
     flexWrap: "wrap",
     borderRadius: "5px",
   },
   heading: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     py: "8px",

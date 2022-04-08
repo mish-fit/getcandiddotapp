@@ -12,7 +12,7 @@ const menuPopupStyles = {
     backgroundColor: "white",
   },
   text: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: "16px",
   },

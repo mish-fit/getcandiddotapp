@@ -7,7 +7,7 @@ import {
 	Text,
 	Textarea,
 } from '@chakra-ui/react';
-import '@fontsource/poppins';
+import '@fontsource/open-sans';
 import { auth, googleAuthProvider } from 'lib/firebase';
 import { UserContext } from 'lib/UserDataProvider';
 import { useContext, useEffect, useState } from 'react';

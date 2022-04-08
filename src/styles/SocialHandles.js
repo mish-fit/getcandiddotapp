@@ -1,11 +1,14 @@
 const socialHandlesStyles = {
   container: {
-    width: "100%",
+    width: ["300px","300px","300px","300px","300px","300px"],
+    mx:"auto",
     mt: "12px",
     flexDirection: "column",
   },
   grid: {
-    mx: ["-48px","-48px","8px","8px","8px","8px"],
+    // justifyContent:"center",
+    mx:"-16px",
+    // mx: ["-48px","-48px","8px","8px","8px","8px"],
     borderRadius: "5px",
     // backgroundColor:"red",
   },
@@ -16,7 +19,7 @@ const socialHandlesStyles = {
     flexDirection: "column",
   },
   heading: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "12px",
     py: "4px",
@@ -36,30 +39,30 @@ const socialHandlesStyles = {
     borderRadius: "10px",
   },
   socialText: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "8px",
     color: "#646464",
     textAlign: "center",
   },
   addbutton: {
-    ml:["auto", "auto", "16px", "16px", "16px", "16px"],
+    // ml:["auto", "auto", "16px", "16px", "16px", "16px"],
     cursor: "pointer",
     backgroundColor: "transparent",
   },
   addButton1: {
-    mr:["auto", "auto", "16px", "16px", "16px", "16px"],
+    // mr:["auto", "auto", "16px", "16px", "16px", "16px"],
   },
   addContainer: {
     textAlign: "center",
   },
   addbuttonText: {
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "12px",
     color: "#FFFFFF",
   },
   socialAddFlex: {
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignItems: "center",
       mt: "8px",
   },
@@ -67,7 +70,7 @@ const socialHandlesStyles = {
       ml: "4px",
       fontSize: "16px",
       fontWeight: "bold",
-      fontFamily: "Poppins",
+      fontFamily: "Open Sans",
       color: "#D7354A",
   }
 }

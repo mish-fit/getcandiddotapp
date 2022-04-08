@@ -79,10 +79,8 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
           p: "8px",
           py: "16px",
           backgroundColor: "white",
-          borderRadius: "5px",
           mx: "16px",
-          width: ["sm", "md", "md", "270px", "270px", "330px"],
-          // minWidth: "270px",
+          width:["sm","md","2xl","2xl","2xl","2xl"],
           height: "72px",
           my: "16px",
           justifyContent: "center",
@@ -107,7 +105,7 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
           <Text
             as="p"
             sx={{
-              fontFamily: "Poppins",
+              fontFamily: "Open Sans",
               // fontWeight: "medium",
               fontSize: "16px",
               color: "#D7354A",
@@ -124,8 +122,8 @@ export function LinksCard({ item, deleteItem, editLinkModal }) {
           <MenuButton
             sx={{
               width: "fit-content",
-              // border:"none",
             }}
+            boxShadow= {"none !important"}
             as={IconButton}
             icon={<BsThreeDotsVertical />}
             variant="outline"

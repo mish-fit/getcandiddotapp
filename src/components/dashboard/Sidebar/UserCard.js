@@ -4,10 +4,13 @@ import { useRouter } from "next/router";
 import React from "react";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { AiFillCopy } from "react-icons/ai";
+import { FaShareAlt } from "react-icons/fa";
 import userCardStyles from "styles/UserCard";
+import { ReactShare } from "../ReactShare";
 // Add a custom Link
 export function UserCard({ data }) {
-  const router = useRouter();
+
+  const [share, setShare] = React.useState(false);
   const toast = useToast();
 
   React.useEffect(() => {
@@ -42,9 +45,13 @@ export function UserCard({ data }) {
     });
   };
 
+  const shareHandler = () => {
+    setShare(!share);
+  }
+
   return (
     <Flex sx={userCardStyles.container}>
-      <Flex sx={userCardStyles.coverPhotoView}>
+      {/* <Flex sx={userCardStyles.coverPhotoView}>
         <Image
           sx={userCardStyles.coverPhoto}
           alt={"cover img"}
@@ -54,7 +61,7 @@ export function UserCard({ data }) {
               : "/user/cover.png"
           }
         />
-      </Flex>
+      </Flex> */}
       <Flex as="nav" sx={userCardStyles.nav}>
         <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
           <Flex onClick={linkClick} display="inline">
@@ -63,11 +70,19 @@ export function UserCard({ data }) {
             </Button>
           </Flex>
         </CopyToClipboard>
-        <CopyToClipboard text={"cndd.in/" + data[0].u_uuid}>
+        <CopyToClipboard text={"cndd.in/" + data[0].u_uuid} ml='4px'>
           <Flex onClick={linkCopy} display="inline-block">
             <AiFillCopy sx={{ fontSize: "24px", ml: "8px" }} color={"gray"} />
           </Flex>
         </CopyToClipboard>
+        <Text onClick={shareHandler} display="inline-block" mx='4px' ><FaShareAlt color='#D7354A' _hover={{color:"#C23043"}}/></Text>
+        <ReactShare
+            openProp = {!share}
+            title={data[0].u_name + " on Candid Reviews"}
+            url={"https://www.cndd.in/" + data[0].u_uuid}
+            description={"Here are my all recommendations at one place!"}
+            hashtags={["cndd", "candidreviews"]}/
+        >
       </Flex>
       <Flex sx={userCardStyles.userPhotoView}>
         <Image

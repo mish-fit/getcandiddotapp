@@ -6,12 +6,12 @@ const footerStyles = {
   //   fontWeight: 500,
   //   letterSpacing: "-0.5px",
   //   mb: "0",
-  //   fontFamily: "Poppins",
+  //   fontFamily: "Open Sans",
   // },
   // link: {
   //   color: "#02073E",
   //   fontSize: "14px",
-  //   fontFamily: "Poppins",
+  //   fontFamily: "Open Sans",
   //   lineHeight: 2.5,
   //   display: "block",
   //   opacity: 0.8,
@@ -36,7 +36,7 @@ const footerStyles = {
     opacity: 0.6,
     fontSize: "14px",
     ml: ["8px"],
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
   },
   copyright: {
     justifyContent:"center",

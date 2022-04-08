@@ -1,5 +1,5 @@
 import { Divider } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import * as Scroll from "react-scroll";
 import { Flex } from "@chakra-ui/react";
 import { AddButtons } from "./MainScreen/AddButtons";
@@ -12,6 +12,8 @@ import { ProductsModal } from "./Modals/ProductsModal";
 import mainScreenStyles from "styles/MainScreen";
 import { AnalyticsModal } from "./Modals/AnalyticsModal";
 import { event } from "analytics/ga";
+import axios from "axios";
+import { authapi } from "lib/api"; 
 
 let Element = Scroll.Element;
 
@@ -42,9 +44,15 @@ export function MainScreen({
   const [dbLinks, setDbLinks] = React.useState(links);
   const [dbRecos, setDbRecos] = React.useState(recos);
 
+  const [recosBuckets, setRecosBuckets]=useState(JSON.parse(buckets).recos);
+  const [linksBuckets, setLinksBuckets]=useState(JSON.parse(buckets).links);
+
   React.useEffect(() => {
+console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0))
+// console.log('maxbucket',JSON.parse(buckets));
+// console.log('maxbucket',);
     // console.log("MAINSCREEN UFX");
-    // console.log("CUR LINKS", currentLinks);
+    console.log("CUR LINKS", currentLinks);
     // console.log("NEW LINKS", newLinks);
     // console.log("DB LINKS", dbLinks);
     // console.log("CUR PRODUCTS", currentRecos);
@@ -228,12 +236,144 @@ export function MainScreen({
     setOpenEditProductsModal(false);
   };
 
+  const recosBucketsHandler = (prev) => {
+    console.log("mainscreen", prev)
+    // Recos updation
+    const curRecosBuckets = []
+    prev.sort((a,b) => (a.sort_id > b.sort_id) ? 1 : ((b.sort_id > a.sort_id) ? -1 : 0)).map((item)=>{
+      curRecosBuckets.push(item.name)
+    })
+    console.log(curRecosBuckets);
+
+    function mapOrder (array, order, key) {
+      array.sort( function (a, b) {
+        var A = a[key], B = b[key];
+        console.log('  A  ', A, '  B  ', B, 'order.indexOf(A)', order.indexOf(A), 'order.indexOf(B)', order.indexOf(B));
+        if (order.indexOf(A) > order.indexOf(B)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      return array;
+    };
+
+    const orderedRecos = mapOrder(currentRecos, curRecosBuckets, 'bucket');
+    console.log('Ordered:', JSON.stringify(orderedRecos));
+
+    orderedRecos.forEach((element, idx) => {
+      element.others={}
+    })
+    console.log(orderedRecos)
+
+    //Buckets updation
+    setRecosBuckets(prev);
+
+    const body = {}
+    body.links = linksBuckets;
+    body.recos = prev;
+    console.log(body)
+
+    const buckets = {
+      u_id: user[0].u_id,
+      u_buckets: body,
+    };
+
+    axios(
+      {
+        method: "post",
+        url: `${ authapi }buckets`,
+        data: buckets,
+        options: origin,
+      },
+      { timeout: 2000 }
+    )
+      .then((res) => {
+        console.log(" Buckets Reordered", res.data);
+        // toast({
+        // 	title: "Aff codes added",
+        // 	description: "",
+        // 	status: "success",
+        // 	duration: 1000,
+        // 	isClosable: true,
+        // });
+      })
+      .catch((e) => console.log(e));
+  }
+
+
+  const linksBucketsHandler = (prev) => {
+    console.log("mainscreen", prev)
+    // Links updation
+    const curLinksBuckets = []
+    prev.sort((a,b) => (a.sort_id > b.sort_id) ? 1 : ((b.sort_id > a.sort_id) ? -1 : 0)).map((item)=>{
+      curLinksBuckets.push(item.name)
+    })
+    console.log(curLinksBuckets);
+
+    function mapOrder (array, order, key) {
+      array.sort( function (a, b) {
+        var A = a[key], B = b[key];
+        console.log('  A  ', A, '  B  ', B, 'order.indexOf(A)', order.indexOf(A), 'order.indexOf(B)', order.indexOf(B));
+        if (order.indexOf(A) > order.indexOf(B)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      return array;
+    };
+
+    const orderedLinks = mapOrder(currentLinks, curLinksBuckets, 'bucket');
+    console.log('Ordered:', JSON.stringify(orderedLinks));
+
+    orderedLinks.forEach((element, idx) => {
+      element.others={}
+    })
+    console.log(orderedLinks)
+
+    //Buckets updation
+    setLinksBuckets(prev);
+
+    const body = {}
+    body.links = prev;
+    body.recos = recosBuckets;
+    console.log(body)
+
+    const buckets = {
+      u_id: user[0].u_id,
+      u_buckets: body,
+    };
+
+    axios(
+      {
+        method: "post",
+        url: `${ authapi }buckets`,
+        data: buckets,
+        options: origin,
+      },
+      { timeout: 2000 }
+    )
+      .then((res) => {
+        console.log(" Buckets Reordered", res.data);
+        // toast({
+        // 	title: "Aff codes added",
+        // 	description: "",
+        // 	status: "success",
+        // 	duration: 1000,
+        // 	isClosable: true,
+        // });
+      })
+      .catch((e) => console.log(e));
+  }
+
   return (
     <Flex sx={mainScreenStyles.container}>
       <LinksModal
         isOpen={isOpenLinksModal}
         closeParent={(item) => onCloseLinksModal(item)}
         buckets={JSON.parse(buckets)}
+        bucketsMaxSortId={Math.max(...JSON.parse(buckets).links.map((o) => o.sort_id), 0)}
         maxSortId={Math.max(...currentLinks.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
@@ -243,6 +383,7 @@ export function MainScreen({
         isOpen={isOpenProductsModal}
         closeParent={(item) => onCloseProductsModal(item)}
         buckets={JSON.parse(buckets)}
+        bucketsMaxSortId={Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0)}
         maxSortId={Math.max(...currentRecos.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
@@ -259,6 +400,7 @@ export function MainScreen({
         isOpen={isOpenEditLinksModal}
         closeParent={(item) => onCloseEditLinksModal(item)}
         buckets={JSON.parse(buckets)}
+        bucketsMaxSortId={Math.max(...JSON.parse(buckets).links.map((o) => o.sort_id), 0)}
         maxSortId={Math.max(...currentLinks.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
@@ -269,6 +411,7 @@ export function MainScreen({
         isOpen={isOpenEditProductsModal}
         closeParent={(item) => onCloseEditProductsModal(item)}
         buckets={JSON.parse(buckets)}
+        bucketsMaxSortId={Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0)}
         maxSortId={Math.max(...currentRecos.map((o) => o.sort_id), 0)}
         user={user}
         cookie={cookie}
@@ -302,7 +445,7 @@ export function MainScreen({
           id="products"
           data={currentRecos}
           cookie={cookie}
-          bucketData={JSON.parse(buckets).recos}
+          bucketData={recosBuckets}
           deleteItem={(item) => deleteReco(item)}
           editProductModal={(item) => {
             event("SIGNED_IN_USER_EDIT_RECOS_MODAL", {
@@ -311,6 +454,7 @@ export function MainScreen({
             });
             editProduct(item);
           }}
+          recosBucketsHandler={recosBucketsHandler}
         />
       </Element>
       <Divider />
@@ -318,7 +462,7 @@ export function MainScreen({
         <ShowLinks
           id="links"
           data={currentLinks}
-          bucketData={JSON.parse(buckets).links}
+          bucketData={linksBuckets}
           cookie={cookie}
           deleteItem={(item) => deleteLink(item)}
           editLinkModal={(item) => {
@@ -328,10 +472,9 @@ export function MainScreen({
             });
             editLink(item);
           }}
+          linksBucketsHandler={linksBucketsHandler}
         />
       </Element>
     </Flex>
   );
 }
-
-const style = {};

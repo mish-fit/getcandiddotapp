@@ -1,7 +1,7 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import logo from "assets/CaNDiD.png";
 import React from "react";
-
+import '@fontsource/open-sans'
 // Add a custom Link
 export function UserNotFound() {
   React.useEffect(() => {}, []);
@@ -17,6 +17,7 @@ export function UserNotFound() {
         alignItems: "center",
         width: "100%",
         height: "100%",
+        mx: "16px"
       }}
     >
       <Image
@@ -28,13 +29,13 @@ export function UserNotFound() {
       />
       <Text
         sx={{
-          fontFamily: "Poppins",
+          fontFamily: "Open Sans",
           fontSize: "32px",
-          fontWeight: "bold",
+          // fontWeight: "bold",
           mt: "128px",
         }}
       >
-        The page you are looking for doesn&apos;t exist.
+       The page you are looking for doesn&apos;t exist.
       </Text>
       <Flex
         sx={{
@@ -46,7 +47,7 @@ export function UserNotFound() {
       >
         <Text
           sx={{
-            fontFamily: "Poppins",
+            fontFamily: "Open Sans",
             fontSize: "18px",
             fontWeight: "bold",
 

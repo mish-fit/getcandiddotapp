@@ -1,5 +1,6 @@
 const userCardStyles = {
   container: {
+    mt:"16px",
     flexDirection: "column",
     width: "full",
     // justifyContent:"center",
@@ -36,7 +37,7 @@ const userCardStyles = {
   aboutMe: {
     textAlign: "center",
     color: "#868686",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "12px",
     fontWeight: "400",
   },
@@ -51,7 +52,6 @@ const userCardStyles = {
     borderRadius: "0px",
   },
   userImage: {
-    mt: "-36px",
     width: "120px",
     height: "120px",
     backgroundColor: "yellow",
@@ -62,18 +62,18 @@ const userCardStyles = {
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "18px",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     color: "#323232",
   },
 
   nav: {
     cursor: "pointer",
-    mb:"48px",
+    mb:"24px",
     display: [null, null, "none", "none", "none", "none"],
     mx:"auto",
     navLink: {
       // textDecoration:"underline",
-      fontFamily: "Poppins",
+      fontFamily: "Open Sans",
       fontSize: "16px",
       color: "#323232",
       fontWeight: "bold",

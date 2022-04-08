@@ -111,6 +111,7 @@ export function ProductsCard({ item, deleteItem, editProductModal }) {
         >
       <Menu isOpen={isOpen}>
         <MenuButton
+          boxShadow= {"none !important"}
           as={IconButton}
           icon={<BsThreeDotsVertical />}
           variant="outline"

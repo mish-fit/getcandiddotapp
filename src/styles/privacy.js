@@ -10,18 +10,18 @@ const privacyStyles = {
 		flexDirection: 'column',
 	},
 	heading: {
-		fontFamily: 'Poppins',
+		fontFamily: 'Open Sans',
 		fontSize: '48px',
 		fontWeight: 'bold',
 		textAlign: 'center',
 	},
 	subHeading: {
-		fontFamily: 'Poppins',
+		fontFamily: 'Open Sans',
 		fontSize: '18px',
 		fontWeight: 'medium',
 	},
 	text: {
-		fontFamily: 'Poppins',
+		fontFamily: 'Open Sans',
 		fontSize: '16px',
 		fontWeight: 'normal',
 	},

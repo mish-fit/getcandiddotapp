@@ -1,19 +1,20 @@
 const userSummaryStyles = {
   container: {
-    width: "full",
     display: "flex",
     flexDirection: "column",
-    mr:["32px","32px","0px","0px","0px","0px"],
     mt: "16px",
   },
   buttonContainer: {
-    justifyContent: "space-evenly",
-    flex: 1,
+    width: "300px",
+    mx:"auto",
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   summaryView: {
+    width: "300px",
+    mx:"auto",
     flexDirection: "row",
     justifyContent: "space-between",
-    mx: "10%",
     mt: "8px",
   },
   button: {
@@ -29,7 +30,7 @@ const userSummaryStyles = {
   summaryText: {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "bold",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "14px",
   },
   buttonText: {
@@ -43,7 +44,7 @@ const userSummaryStyles = {
     borderWidth: "0px",
     color: "white",
     fontWeight: "bold",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "12px",
     cursor: "pointer",
   },
@@ -68,7 +69,7 @@ const userSummaryStyles = {
     borderWidth: "0px",
     color: "#D7354A",
     fontWeight: "bold",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "12px",
     cursor: "pointer",
   },
@@ -81,7 +82,7 @@ const userSummaryStyles = {
   summaryText1: {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "medium",
-    fontFamily: "Poppins",
+    fontFamily: "Open Sans",
     fontSize: "14px",
   },
 };
