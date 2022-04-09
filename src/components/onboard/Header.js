@@ -30,8 +30,8 @@ const Header = (props) => {
 			{/* <Flex align='center' mr={5}> */}
 			<Image
 				onClick={handleClick}
-				height={70}
-				w={210}
+				height={50}
+				w={150}
         src={logo}
 				cursor='pointer'
         alt="startup landing logo"

@@ -47,7 +47,6 @@ const productsCardStyles = {
     borderWidth: "0px",
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "16px",
     cursor: "pointer",
     textAlign: "center",
@@ -70,14 +69,12 @@ const productsCardStyles = {
     width: "100%",
   },
   product: {
-    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: "12px",
     fontWeight: "bold",
     color: "#000",
   },
   category: {
-    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: "10px",
     color: "white",

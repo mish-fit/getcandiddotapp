@@ -24,7 +24,6 @@ const bannerStyles = {
       color: "#02073E",
       letterSpacing: "-1px",
       fontSize: ["36px", null, "36px", null, "48px", "48px"],
-      fontFamily: "Open Sans",
       lineHeight: 1.45,
       maxWidth: "546px",
       mb: "8px",
@@ -35,7 +34,6 @@ const bannerStyles = {
       lineHeight: [2, null, 2.62],
       color: "#02073E",
       maxWidth: "486px",
-      fontFamily: "Open Sans",
     },
     h3: {
       fontSize: ["8px", null, "16px"],
@@ -43,7 +41,6 @@ const bannerStyles = {
       lineHeight: [2, null, 2.62],
       color: "#02073E",
       maxWidth: "486px",
-      fontFamily: "Open Sans",
     },
     p: {
       fontSize: ["8px", null, "16px"],
@@ -52,7 +49,6 @@ const bannerStyles = {
       color: "#d95f76",
       maxWidth: "486px",
       fontStyle: "italic",
-      fontFamily: "Open Sans",
     },
     form: {
       display: "flex",
@@ -68,7 +64,6 @@ const bannerStyles = {
         mb: ["8px", "0"],
         height: ["48px", null, null, null, null, "60px", "60px"],
         fontSize: "16px",
-        fontFamily: "Open Sans",
         color: "rgba(2,7,62,.4)",
         backgroundColor: "#ffffff",
         px: "24px",
@@ -83,7 +78,6 @@ const bannerStyles = {
       },
       button: {
         fontSize: "16px",
-        fontFamily: "Open Sans",
         color: "#ffff",
         fontWeight: 700,
         borderRadius: "8px",
@@ -145,7 +139,6 @@ const bannerStyles = {
     cursor: "pointer",
   },
   signupButtonText: {
-    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: "16px",
     color: "white",
@@ -162,7 +155,6 @@ const bannerStyles = {
     width: "248px",
     borderRadius: "32px",
     cursor: "pointer",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "md",
     "&:hover": {

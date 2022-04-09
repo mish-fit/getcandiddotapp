@@ -53,7 +53,6 @@ export function LinksCard({ item }) {
             }}
           >
             <Text as="p" sx={{
-              fontFamily: "Open Sans",
               // fontWeight: "medium",
               fontSize: "16px",
               color: "#D7354A",

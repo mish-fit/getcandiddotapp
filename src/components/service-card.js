@@ -20,7 +20,6 @@ const styles = {
     justifyContent: "center",
     minHeight: [107, null, null, 130],
     textAlign: "center",
-    fontFamily: "Open Sans",
     transition: "all 0.3s ease-in-out 0s",
     ":hover": {
       boxShadow: "0px 12px 24px rgba(51, 83, 145, 0.07)",
@@ -31,14 +30,12 @@ const styles = {
       fontSize: [1, null, null, "16px"],
       lineHeight: 1.77,
       color: "heading",
-      fontFamily: "Open Sans",
     },
     span: {
       color: "#3183FF",
       fontWeight: 700,
       fontSize: [1, null, null, "16px"],
       lineHeight: 2,
-      fontFamily: "Open Sans",
     },
   },
 };

@@ -11,14 +11,12 @@ const  bucketModalStyles= {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },
   inputText: {
     color: "black",
     fontSize: "16px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
   },
   saveFlex: { 
@@ -28,13 +26,11 @@ const  bucketModalStyles= {
   },
   saveText: {
     color: "#D7354A",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
   },
   inputFlex: { justifyContent: "center", alignItems: "center", p: "8px" },
   cancelText:{
     color: "#878787",
-    fontFamily: "Open Sans",
     fontWeight: "medium",
   }
 };

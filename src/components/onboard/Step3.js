@@ -1,5 +1,4 @@
 import { Button, Flex, FormControl, FormLabel, Heading, Image, Text, useToast } from "@chakra-ui/react";
-import "@fontsource/open-sans";
 import axios from "axios";
 import { authapi, s3url } from "lib/api";
 import { UploadImageToS3WithNativeSdk } from "lib/aws";
@@ -46,6 +45,8 @@ const Step3 = (props) => {
 
   const handleUpdate = (image) => {
     // console.log(image);
+
+    // get image using FormData and sends to s3
     const formData = new FormData();
     formData.append("image", image.raw);
     UploadImageToS3WithNativeSdk(
@@ -76,6 +77,7 @@ const Step3 = (props) => {
       userDataContext.setMail(userDataContext.userSignInInfo.user.email);
     }
 
+    // batches the all the data to be sent to the firestore
     const batch = firestore.batch();
     const usernameDoc = firestore.doc(
       `usernames/${userDataContext.userData.username}`
@@ -96,6 +98,7 @@ const Step3 = (props) => {
     });
     await batch.commit();
 
+    // sends all the auth and onboarding data to the database
     const u_data = {
       u_id: userDataContext.userSignInInfo.user.uid,
       u_name:
@@ -119,6 +122,7 @@ const Step3 = (props) => {
       },
     };
     console.log(u_data);
+    
     // API Call 1: User Data
     axios(
       {

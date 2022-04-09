@@ -26,7 +26,6 @@ export default SectionHeading;
 const styles = {
   heading: {
     textAlign: "center",
-    fontFamily: "Open Sans",
     maxWidth: 660,
     margin: "0 auto 48px",
   },
@@ -35,11 +34,9 @@ const styles = {
     fontWeight: 500,
     fontSize: 16,
     lineHeight: 2.5,
-    fontFamily: "Open Sans",
   },
   title: {
     color: "heading",
-    fontFamily: "Open Sans",
     fontWeight: 200,
     fontSize: [24, null, null, 24],
     lineHeight: [1.33, 1.33, 1.5],
@@ -53,7 +50,6 @@ const styles = {
   },
   description: {
     color: "heading",
-    fontFamily: "Open Sans",
     fontSize: ["16px", null, "16px"],
     lineHeight: [1.86, null, 2.2],
     mt: [5],

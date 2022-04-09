@@ -33,7 +33,6 @@ const linksModalStyles = {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -42,7 +41,6 @@ const linksModalStyles = {
     height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
-    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
@@ -56,7 +54,6 @@ const linksModalStyles = {
   },
   save: {
     mr:"4px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
   },
@@ -66,7 +63,6 @@ const linksModalStyles = {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },

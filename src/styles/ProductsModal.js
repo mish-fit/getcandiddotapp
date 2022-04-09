@@ -35,7 +35,6 @@ const productsModalStyles = {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -44,7 +43,6 @@ const productsModalStyles = {
     height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
-    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
@@ -58,7 +56,6 @@ const productsModalStyles = {
   },
   save: {
     mr:"4px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
   },
@@ -68,7 +65,6 @@ const productsModalStyles = {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },

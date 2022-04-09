@@ -36,7 +36,6 @@ function ListItem({ color, name, pick }) {
         <Text
           sx={{
             ml: "8px",
-            fontFamily: "Open Sans",
             fontSize: "12px",
             fontWeight: "bold",
           }}

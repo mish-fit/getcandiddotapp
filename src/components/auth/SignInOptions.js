@@ -2,7 +2,6 @@ import {
   Button, Flex, Heading, Input, InputGroup,
   InputLeftAddon, Text, useToast
 } from "@chakra-ui/react";
-import "@fontsource/open-sans";
 import firebase from "firebase";
 import { auth, googleAuthProvider } from "lib/firebase";
 import { useRouter } from "next/router";
@@ -17,6 +16,8 @@ export function SignInOptions() {
   const [show, setShow] = useState(false);
   const [googleShow, setGoogleShow] = useState(true);
   const [final, setFinal] = useState("");
+
+  // restrict the calling of the function once the button clicked
   const [isVerifyClicked, setIsVerifyClicked] = useState(true);
   const [isConfirmClicked, setIsConfirmClicked] = useState(true);
 
@@ -87,6 +88,8 @@ export function SignInOptions() {
     setShow(!show);
     setGoogleShow(!googleShow);
   };
+
+  // calls the function when Enter button clicked
   const handleKeyPressVerify = (e) => {
     if (e.key === "Enter") {
       signInWithPhone();

@@ -19,7 +19,6 @@ const linksCardStyles = {
     borderWidth: "0px",
   },
   link: {
-    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: "14px",
     color: "#D7354A",

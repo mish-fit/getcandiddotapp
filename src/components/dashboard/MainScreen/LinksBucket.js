@@ -135,7 +135,6 @@ export function LinksBucket({
 			>
 				<Text
 					sx={{
-						fontFamily: 'Open Sans',
 						fontWeight: 'bold',
 						fontSize: '18px',
 						py: '4px',
