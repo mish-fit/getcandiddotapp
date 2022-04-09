@@ -37,7 +37,6 @@ const userCardStyles = {
   aboutMe: {
     textAlign: "center",
     color: "#868686",
-    fontFamily: "Open Sans",
     fontSize: "12px",
     fontWeight: "400",
   },
@@ -62,7 +61,6 @@ const userCardStyles = {
     textAlign: "center",
     fontWeight: "bold",
     fontSize: "18px",
-    fontFamily: "Open Sans",
     color: "#323232",
   },
 
@@ -73,7 +71,6 @@ const userCardStyles = {
     mx:"auto",
     navLink: {
       // textDecoration:"underline",
-      fontFamily: "Open Sans",
       fontSize: "16px",
       color: "#323232",
       fontWeight: "bold",

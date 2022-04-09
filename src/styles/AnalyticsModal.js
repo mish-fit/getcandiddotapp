@@ -35,7 +35,6 @@ const analyticsModalStyles = {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -44,7 +43,6 @@ const analyticsModalStyles = {
     height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
-    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
@@ -57,7 +55,6 @@ const analyticsModalStyles = {
     cursor: "pointer",
   },
   save: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     color: "#D7354A",
@@ -69,7 +66,6 @@ const analyticsModalStyles = {
     borderBottomColor: "#4B0082",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
     color: "#4B0082",
@@ -141,42 +137,36 @@ const analyticsModalStyles = {
     alignItems: "center",
   },
   analyticsElementTitleView: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 16,
     color: "#0066b2",
     ml: 2,
   },
   analyticsElementTitleClick: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 16,
     color: "#2AAA8A",
     ml: 2,
   },
   analyticsElementTitleCtr: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 16,
     color: "#E3963E",
     ml: 2,
   },
   analyticsElementValueView: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 24,
     mt: 3,
     color: "#0066b2",
   },
   analyticsElementValueClick: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 24,
     mt: 3,
     color: "#2AAA8A",
   },
   analyticsElementValueCtr: {
-    fontStyle: "Open Sans",
     fontWeight: "bold",
     fontSize: 24,
     mt: 3,

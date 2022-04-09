@@ -11,7 +11,6 @@ const productsBucketStyles = {
     borderRadius: "5px",
   },
   heading: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     py: "8px",

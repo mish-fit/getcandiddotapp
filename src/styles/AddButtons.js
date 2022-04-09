@@ -30,7 +30,6 @@ const addButtonsStyles = {
     borderRadius: "16px",
     borderWidth: "2px",
     borderColor: "#FFF",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     ml: "8px",
@@ -45,7 +44,6 @@ const addButtonsStyles = {
   },
   addbuttonText: {
     ml: "6px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     color: "#D7354A",
@@ -55,7 +53,6 @@ const addButtonsStyles = {
     borderRadius: "16px",
     borderWidth: "2px",
     borderColor: "#FFF",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     // ml: "16px",
@@ -71,7 +68,6 @@ const addButtonsStyles = {
   },
   showAnalyticsText: {
     ml: "6px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
     // color: "#D7354A",

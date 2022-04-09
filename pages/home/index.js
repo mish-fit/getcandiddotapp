@@ -1,5 +1,4 @@
 import { Flex, Text } from "@chakra-ui/react";
-import "@fontsource/open-sans";
 import { initOptimize } from "analytics/go";
 import Layout from "components/layout";
 import SEO from "components/seo";

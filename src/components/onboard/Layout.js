@@ -1,11 +1,9 @@
 import { Container, Flex, Stack } from '@chakra-ui/react';
-import '@fontsource/open-sans';
 import Header from './Header';
 
 export function Layout({ children, value = 0 }){
   return(
     <Container
-			fontFamily={'Open Sans'}
 			maxW={'container.md'}
 			p={0}
       h='100vh'

@@ -115,7 +115,7 @@ export function EditProductsModal({
         }}
       >
         <Text
-          sx={{ fontproductsModalStyles: "Open Sans", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontSize: "16px", fontWeight: "medium" }}
         >
           {item.prod_name}
         </Text>
@@ -178,7 +178,7 @@ export function EditProductsModal({
         }}
       >
         <Text
-          sx={{ fontproductsModalStyles: "Open Sans", fontSize: "16px", fontWeight: "medium" }}
+          sx={{ fontSize: "16px", fontWeight: "medium" }}
         >
           {item.cat_name}
         </Text>

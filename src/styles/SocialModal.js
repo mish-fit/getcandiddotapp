@@ -48,7 +48,6 @@ const  socialModalStyles= {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -57,7 +56,6 @@ const  socialModalStyles= {
     height: ["0px", "0px", "0px", "200px", "200px", "300px"],
   },
   topHeader: {
-    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "16px",
@@ -70,7 +68,6 @@ const  socialModalStyles= {
   },
   save: {
     mr:"4px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
   },
@@ -80,12 +77,10 @@ const  socialModalStyles= {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },
   subHeader1: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "18px",
   },
@@ -167,7 +162,6 @@ const  socialModalStyles= {
     height: "32px",
   },
   socialText: {
-    fontFamily: "Open Sans",
     fontSize: "12px",
     color: "#646464",
     textAlign: "center",
@@ -180,14 +174,12 @@ const  socialModalStyles= {
     textAlign: "center",
   },
   addbuttonText: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "12px",
     color: "#FFFFFF",
   },
   username: {
     mb: "8px",
-    fontStyle: "Open Sans",
     fontSize: "16px",
     fontWeight: "bold",
     color: "#D7354A",

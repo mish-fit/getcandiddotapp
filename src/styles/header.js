@@ -3,7 +3,6 @@ const headerStyles = {
   headerBtn: {
     backgroundColor: "#f29183",
     fontSize: "16px",
-    fontFamily: "Open Sans",
     fontWeight: "normal",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -23,7 +22,6 @@ const headerStyles = {
   blogBtn: {
     backgroundColor: "#d95f76",
     fontSize: "16px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     letterSpacing: "-0.16px",
     borderRadius: "6px",
@@ -41,7 +39,6 @@ const headerStyles = {
   loginBtn: {
     ml: "auto",
     display: "inline-flex",
-    fontFamily: "Open Sans",
     alignItems: "center",
     fontSize: "16px",
     color: "#0F2137",
@@ -53,7 +50,6 @@ const headerStyles = {
   },
   header: {
     color: "text_white",
-    fontFamily: "Open Sans",
     fontWeight: "normal",
     py: "16px",
     width: "100%",
@@ -120,7 +116,6 @@ const headerStyles = {
     alignItems: "center",
   },
   signupButtonText: {
-    fontFamily: "Open Sans",
     fontWeight: "medium",
     fontSize: ["12px", null, null, "16px", null, null],
     color: "white",

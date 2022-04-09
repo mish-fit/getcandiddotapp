@@ -30,7 +30,6 @@ const userSummaryStyles = {
   summaryText: {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "bold",
-    fontFamily: "Open Sans",
     fontSize: "14px",
   },
   buttonText: {
@@ -44,7 +43,6 @@ const userSummaryStyles = {
     borderWidth: "0px",
     color: "white",
     fontWeight: "bold",
-    fontFamily: "Open Sans",
     fontSize: "12px",
     cursor: "pointer",
   },
@@ -69,7 +67,6 @@ const userSummaryStyles = {
     borderWidth: "0px",
     color: "#D7354A",
     fontWeight: "bold",
-    fontFamily: "Open Sans",
     fontSize: "12px",
     cursor: "pointer",
   },
@@ -82,7 +79,6 @@ const userSummaryStyles = {
   summaryText1: {
     display: ["none", "none", "inline", "inline", "inline", "inline"],
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "14px",
   },
 };

@@ -7,7 +7,6 @@ import {
 	Text,
 	Textarea,
 } from '@chakra-ui/react';
-import '@fontsource/open-sans';
 import { auth, googleAuthProvider } from 'lib/firebase';
 import { UserContext } from 'lib/UserDataProvider';
 import { useContext, useEffect, useState } from 'react';
@@ -41,6 +40,8 @@ const Step2 = (props) => {
 		setInfo(false);
 	}, [userDataContext]);
 
+
+	// suggested when user enters a gmail in the input field
 	const SignInWithGoogle = () => {
 		auth.currentUser
 			.linkWithPopup(googleAuthProvider)
@@ -89,6 +90,8 @@ const Step2 = (props) => {
 			[e.target.name]: e.target.value,
 		});
 		// console.log(e.target.value);
+		
+		// regex to check if mail is gmail id or not
 		const regex = /^[a-z0-9](\.?[a-z0-9]){3,}@gmail\.com$/;
 		if (regex.test(e.target.value)) {
 			setShowLink(true);

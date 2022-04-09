@@ -127,7 +127,6 @@ export function ProductsBucket({
         <Text
           sx={{ 
             mt: "-4px",
-            fontFamily: "Open Sans",
             fontWeight: "bold",
             fontSize: "18px",
             py: "4px",

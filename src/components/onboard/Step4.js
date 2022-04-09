@@ -1,5 +1,4 @@
 import { Button, Container, Flex, FormLabel, Heading, Input, Stack, useToast } from '@chakra-ui/react';
-import '@fontsource/open-sans';
 import axios from 'axios';
 import { CUIAutoComplete } from 'chakra-ui-autocomplete';
 import { authapi } from "lib/api";
@@ -222,7 +221,6 @@ const Step4 = (props) => {
 	return (
 		<>
 			<Container
-				fontFamily={'Open Sans'}
 				maxW={'container.md'}
 				p={0}
 				align='center'

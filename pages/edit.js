@@ -154,7 +154,7 @@ const EditProfile = ({ u_data }) => {
 						<FormLabel fontSize={'lg'}>Full Name</FormLabel>
 						<Input
 							name='name'
-							bg='white'
+							// bg='white'
 							defaultValue={u_data[0].u_name}
 							focusBorderColor='#E78692'
 							_hover={{ borderColor: '#E78592' }}
@@ -171,7 +171,7 @@ const EditProfile = ({ u_data }) => {
 						<Textarea
 							name='about'
 							type='text'
-							bg='white'
+							// bg='white'
 							focusBorderColor='#E78692'
 							_hover={{ borderColor: '#E78592' }}
 							borderColor='#E78592'

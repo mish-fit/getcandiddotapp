@@ -192,7 +192,6 @@ const style = {
   addNewText: {
     color: "white",
     fontWeight: "medium",
-    fontFamily: "Open Sans",
     fontSize: "32px",
     textAlign: "center",
   },
@@ -202,7 +201,6 @@ const style = {
   },
   topHeader: {
     mt:"8px",
-    fontFamily: "Open Sans",
     color: "#D7354A",
     fontWeight: "Bold",
     fontSize: "20px",
@@ -215,7 +213,6 @@ const style = {
   },
   save: {
     mr:"4px",
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "16px",
   },
@@ -225,7 +222,6 @@ const style = {
     borderBottomColor: "#D7354A",
   },
   subHeader: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "24px",
   },

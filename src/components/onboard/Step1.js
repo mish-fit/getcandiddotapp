@@ -1,5 +1,4 @@
 import { Button, Flex, FormLabel, Heading, Input } from '@chakra-ui/react';
-import '@fontsource/open-sans';
 import debounce from 'lodash.debounce';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
@@ -13,14 +12,8 @@ const Step1 = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [userDataContext, user] = useContext(UserContext);
 
-	// useEffect(()=>{
-	// console.log('Step1', userDataContext.userData);
-	// 	const fetchData = async ()=>{
-	// 		const ref = firestore.doc(`users/${userDataContext.userSignInInfo.user.uid}`);
-	// 		console.log(ref.get());
-	// 	}
-	// },[])
-
+  // Hit the database for username match after each debounced change
+  // useCallback is required for debounce to work
 	const checkUsername = useMemo(
 		() =>
 			debounce(async (username) => {

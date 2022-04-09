@@ -19,7 +19,6 @@ const socialHandlesStyles = {
     flexDirection: "column",
   },
   heading: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "12px",
     py: "4px",
@@ -39,7 +38,6 @@ const socialHandlesStyles = {
     borderRadius: "10px",
   },
   socialText: {
-    fontFamily: "Open Sans",
     fontSize: "8px",
     color: "#646464",
     textAlign: "center",
@@ -56,7 +54,6 @@ const socialHandlesStyles = {
     textAlign: "center",
   },
   addbuttonText: {
-    fontFamily: "Open Sans",
     fontWeight: "bold",
     fontSize: "12px",
     color: "#FFFFFF",
@@ -70,7 +67,6 @@ const socialHandlesStyles = {
       ml: "4px",
       fontSize: "16px",
       fontWeight: "bold",
-      fontFamily: "Open Sans",
       color: "#D7354A",
   }
 }

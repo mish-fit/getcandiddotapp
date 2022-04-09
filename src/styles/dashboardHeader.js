@@ -88,7 +88,6 @@ const dashboardHeaderStyles = {
     alignItems: "center",
 
     navLink: {
-      fontFamily: "Open Sans",
       fontSize: "24px",
       color: "#323232",
       fontWeight: "bold",
