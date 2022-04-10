@@ -6,6 +6,7 @@ import NoSSR from "react-no-ssr";
 import { useEffect, useState } from "react";
 import { IoReorderFour } from "react-icons/io5";
 import { MdOutlineCancel, MdOutlineDoneOutline } from "react-icons/md";
+import showProductsLinksStyles from "styles/ShowLinksProducts";
 // Add a custom Link
 export function ShowProducts({
   data,
@@ -93,10 +94,10 @@ export function ShowProducts({
 
   return (
   <Flex>
-    <Flex sx={{ width:["200px","480px","704px","704px","704px","704px"], mx:"auto", flexDirection:"column" }} id="recos" display={toggle ? 'none' : null}>
-    <Flex alignItems={'center'} justifyContent={'space-between'} mx={'16px'} my={'4px'}>
-      <Heading size={'md'} textDecoration={"underline"} textUnderlineOffset={"2px"}>Recommendations</Heading>
-    <Button onClick={()=>{setToggle(!toggle)}} size={'sm'} w='fit-content' ><IoReorderFour size={'24px'}/></Button>
+    <Flex sx={showProductsLinksStyles.container} id="recos" display={toggle ? 'none' : null}>
+    <Flex sx={showProductsLinksStyles.headingFlex} >
+      <Heading sx={showProductsLinksStyles.headingText}>Recommendations</Heading>
+    <Button onClick={()=>{setToggle(!toggle)}} sx={showProductsLinksStyles.headingButton} ><IoReorderFour size={'24px'}/></Button>
     </Flex>
     {buckets.map((item, index) => {
       return (
@@ -123,12 +124,12 @@ export function ShowProducts({
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable">
         {(provided) => (
-          <Flex {...provided.droppableProps} ref={provided.innerRef} sx={{ width:["200px","480px","704px","704px","704px","704px"], mx:"auto", flexDirection:"column" }} display={toggle ? null : 'none'} >
-          <Flex alignItems={'center'} justifyContent={'space-between'} mx={'16px'} my={'4px'}>
-            <Heading textDecoration={"underline"} textUnderlineOffset={"2px"} size={'md'}>Reorder Recos Buckets</Heading>
+          <Flex {...provided.droppableProps} ref={provided.innerRef} sx={showProductsLinksStyles.container} display={toggle ? null : 'none'} >
+          <Flex sx={showProductsLinksStyles.headingFlex}>
+            <Heading sx={showProductsLinksStyles.headingText}>Reorder Recos Buckets</Heading>
           <Flex>
-            <Button onClick={handleCancel} size={'sm'} w='fit-content' mr='4px'><MdOutlineCancel size={20}/></Button>
-            <Button onClick={handleSave} size={'sm'} w='fit-content'><MdOutlineDoneOutline size={20}  color="#D7354A"/></Button>
+            <Button onClick={handleCancel} sx={showProductsLinksStyles.headingButton} mr='4px'><MdOutlineCancel size={20}/></Button>
+            <Button onClick={handleSave} sx={showProductsLinksStyles.headingButton}><MdOutlineDoneOutline size={20}  color="#D7354A"/></Button>
           </Flex>
           </Flex>
             {items.map((item, index) => (
@@ -142,18 +143,7 @@ export function ShowProducts({
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                  sx={{
-                    flexDirection: "row",
-                    p: "8px",
-                    // py: "16px",
-                    backgroundColor: "#df5d6e",
-                    // color: "white",
-                    mx: "16px",
-                    width:["sm","md","2xl","2xl","2xl","2xl"],
-                    height: "64px",
-                    my: "8px",
-                    justifyContent: "center",
-                    alignItems: "center"}}
+                    sx={showProductsLinksStyles.listFlex}
                     >
                  <Text>
                    {item.name}

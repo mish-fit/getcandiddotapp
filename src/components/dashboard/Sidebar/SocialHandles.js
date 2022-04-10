@@ -177,7 +177,7 @@ export function SocialHandles({ social, data, cookie }) {
         </Button>
         <Flex sx={socialHandlesStyles.addButton1}>
         {
-          !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={"sm"}><Image src={rearrange} h="16px" alt="rearrange log"></Image></Button> :
+          !toggle ? <Button  onClick={()=>{setToggle(!toggle)}} h={"20px"} backgroundColor={"transparent"} _active={{backgroundColor:"transparent"}} _hover={{backgroundColor:"transparent", ring:0}}><Image src={rearrange} h="16px" alt="rearrange log"></Image></Button> :
           <Flex display={"inline"}>
             <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={16}/></Button>
             <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={16} color="#D7354A"/></Button>

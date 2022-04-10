@@ -6,6 +6,7 @@ import NoSSR from "react-no-ssr";
 import { useEffect, useState } from "react";
 import { IoReorderFour } from "react-icons/io5";
 import { MdOutlineCancel, MdOutlineDoneOutline } from "react-icons/md";
+import showProductsLinksStyles from "styles/ShowLinksProducts";
 
 // Add a custom Link
 export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie, linksBucketsHandler }) {
@@ -103,9 +104,9 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie,
     // </Flex>
 
   <Flex>
-    <Flex sx={{ width:"fit-content", mx:"auto", flexDirection:"column" }} id="links" display={toggle ? 'none' : null}>
-    <Flex alignItems={'center'} justifyContent={'space-between'} mx={'16px'} my={'4px'}>
-      <Heading size={'md'} textDecoration={"underline"} textUnderlineOffset={"2px"}>Links</Heading>
+    <Flex sx={showProductsLinksStyles.container}  width="fit-content" id="links" display={toggle ? 'none' : null}>
+    <Flex sx={showProductsLinksStyles.headingFlex} >
+      <Heading sx={showProductsLinksStyles.headingText}>Links</Heading>
     <Button onClick={()=>{setToggle(!toggle)}} size={'sm'} w='fit-content' ><IoReorderFour size={'24px'}/></Button>
     </Flex>
     {buckets.map((item, index) => {
@@ -134,11 +135,11 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie,
       <Droppable droppableId="droppable">
         {(provided) => (
           <Flex {...provided.droppableProps} ref={provided.innerRef} sx={{ width:["200px","480px","704px","704px","704px","704px"], mx:"auto", flexDirection:"column" }} display={toggle ? null : 'none'} >
-          <Flex alignItems={'center'} justifyContent={'space-between'} mx={'16px'} my={'4px'}>
-            <Heading size={'md'} textDecoration={"underline"} textUnderlineOffset={"2px"}>Reorder Links Buckets</Heading>
+          <Flex sx={showProductsLinksStyles.headingFlex}>
+            <Heading sx={showProductsLinksStyles.headingText}>Reorder Links Buckets</Heading>
           <Flex>
-            <Button onClick={handleCancel} size={'sm'} w='fit-content' mr='4px'><MdOutlineCancel size={20}/></Button>
-            <Button onClick={handleSave} size={'sm'} w='fit-content'><MdOutlineDoneOutline size={20}  color="#D7354A"/></Button>
+            <Button onClick={handleCancel} sx={showProductsLinksStyles.headingButton} mr='4px'><MdOutlineCancel size={20}/></Button>
+            <Button onClick={handleSave} sx={showProductsLinksStyles.headingButton}><MdOutlineDoneOutline size={20}  color="#D7354A"/></Button>
           </Flex>
           </Flex>
             {items.map((item, index) => (
@@ -152,18 +153,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie,
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    sx={{
-                    flexDirection: "row",
-                    p: "8px",
-                    // py: "16px",
-                    backgroundColor: "#df5d6e",
-                    // color: "white",
-                    mx: "16px",
-                    width:["sm","md","2xl","2xl","2xl","2xl"],
-                    height: "64px",
-                    my: "8px",
-                    justifyContent: "center",
-                    alignItems: "center"}}
+                    sx={showProductsLinksStyles.listFlex}
                     >
                  <Text>
                    {item.name}
