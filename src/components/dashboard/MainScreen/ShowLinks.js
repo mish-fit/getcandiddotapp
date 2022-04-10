@@ -105,7 +105,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie,
 
   <Flex>
     <Flex sx={showProductsLinksStyles.container}  width="fit-content" id="links" display={toggle ? 'none' : null}>
-    <Flex sx={showProductsLinksStyles.headingFlex} >
+    <Flex sx={showProductsLinksStyles.headingFlex} display={bucketsArr.length>1 ? null : 'none'}>
       <Heading sx={showProductsLinksStyles.headingText}>Links</Heading>
     <Button onClick={()=>{setToggle(!toggle)}} size={'sm'} w='fit-content' ><IoReorderFour size={'24px'}/></Button>
     </Flex>
@@ -123,7 +123,7 @@ export function ShowLinks({ data, bucketData, deleteItem, editLinkModal, cookie,
             deleteItem(item);
             // console.log("recosshow", item);
           }}
-          editProductModal={(item) => editProductModal(item)}
+          editLinkModal={(item) => editLinkModal(item)}
           reorderedToggle={reorderedHandler}
           showBucketsHandler={showBucketsHandler}
         />
