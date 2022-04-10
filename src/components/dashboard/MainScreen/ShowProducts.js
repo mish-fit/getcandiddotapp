@@ -95,7 +95,9 @@ export function ShowProducts({
   return (
   <Flex>
     <Flex sx={showProductsLinksStyles.container} id="recos" display={toggle ? 'none' : null}>
-    <Flex sx={showProductsLinksStyles.headingFlex} >
+    <Flex sx={showProductsLinksStyles.headingFlex} 
+    // display={bucketsArr.length>1 ? null : 'none'}
+    >
       <Heading sx={showProductsLinksStyles.headingText}>Recommendations</Heading>
     <Button onClick={()=>{setToggle(!toggle)}} sx={showProductsLinksStyles.headingButton} ><IoReorderFour size={'24px'}/></Button>
     </Flex>
