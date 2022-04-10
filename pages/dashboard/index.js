@@ -124,6 +124,7 @@ export default function Dashboard({
         others: {},
       }
     ]
+    if(links.length>1){
     let loopState = true;
     for(let i=0; i<2; i++){        
       if(initialLinks[i].title === links[i].title &&
@@ -145,6 +146,7 @@ export default function Dashboard({
       }
     }
     setInitState(loopState);
+  }
   },[links, recos, initState])
 
   useEffect(() => {
