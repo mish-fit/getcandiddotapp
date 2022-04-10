@@ -21,6 +21,10 @@ const addButtonsStyles = {
   flex: {
     ml:["0px","0px","-8px","-8px","-8px","-8px"],
     backgroundColor: "transparent",
+  _focus: {
+    ring: 1,
+    ringColor: "#E78692",
+  },
     // flexDirection: "row",
     // justifyContent: "space-between",
     // alignItems: "center",
@@ -45,7 +49,6 @@ const addButtonsStyles = {
   addbuttonText: {
     ml: "6px",
     fontWeight: "bold",
-    fontSize: "16px",
     color: "#D7354A",
   },
   showAnalytics: {
@@ -75,7 +78,7 @@ const addButtonsStyles = {
   button: {
     fontSize: "16px",
     color: "#ffff",
-    fontWeight: 700,
+    fontWeight: "bold",
     borderRadius: "8px",
     height: ["48px", null, null, null, null, "60px", "60px"],
     display: "inline-flex",

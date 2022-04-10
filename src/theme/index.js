@@ -9,7 +9,7 @@ import '@fontsource/open-sans';
 
 const brandRing = {
   _focus: {
-    ring: 2,
+    ring: 1,
     ringColor: "brand.500",
   },
 };
@@ -46,6 +46,7 @@ const checkboxStyles = {
 };
 
 const buttonStyles = {
+  ...brandRing,
   variants: {
     primary: (props) => ({
       ...brandRing,
@@ -63,6 +64,13 @@ const buttonStyles = {
       },
     }),
   },
+
+  secondary: (props) => ({
+    ...brandRing,
+    fontSize:'lg',
+    height:50,
+    backgroundColor: "transparent",
+  }),
 };
 
 const tabStyles = {

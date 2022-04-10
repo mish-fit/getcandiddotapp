@@ -35,7 +35,7 @@ const socialHandlesStyles = {
   social: {
     width: "20px",
     height: "20px",
-    borderRadius: "10px",
+    borderRadius: "5px",
   },
   socialText: {
     fontSize: "8px",

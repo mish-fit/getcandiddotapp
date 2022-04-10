@@ -45,7 +45,7 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
           sx={addButtonsStyles.addbutton}
           onClick={addProducts}
         >
-          <Button sx={addButtonsStyles.flex}>
+          <Button sx={addButtonsStyles.flex} >
             <BsPlusCircleFill color="#D7354A" />
             <Text sx={addButtonsStyles.addbuttonText}>Recommend Products</Text>
           </Button>

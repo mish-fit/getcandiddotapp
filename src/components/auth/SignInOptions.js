@@ -128,12 +128,12 @@ export function SignInOptions() {
               // value={mynumber}
               // variant={"primary"}
               // bg="white"
-              // focusBorderColor="#E78692"
               // borderColor={"black"}
               // border="1px"
               // height={50}
               // fontSize={"lg"}
               // width={"full"}
+              // focusBorderColor="#E78692"
               type="tel"
               onChange={(e) => {
                 setNumber(e.target.value);

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { Flex } from "@chakra-ui/react";
 import { LinksBucket } from "./LinksBucket";
 import { useEffect } from "react";
+import showProductsLinksStyles from "styles/ShowLinksProducts";
 
 // Add a custom Link
 export function ShowLinks({ data, bucketData }) {
@@ -24,7 +25,7 @@ export function ShowLinks({ data, bucketData }) {
   };
 
   return (
-    <Flex sx={{ width:"fit-content", mx:"auto" }} flexDirection={"column"}>
+    <Flex sx={showProductsLinksStyles.container} width="fit-content">
       {buckets.map((item, index) => {
         return (
           <LinksBucket
