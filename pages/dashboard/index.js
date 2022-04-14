@@ -279,34 +279,34 @@ export async function getServerSideProps(context) {
 
   const fetchProduct = async () => {
     try {
-        let link = ''
+        let link = 'https://www.purplle.com/product/blue-heaven-prep-and-fix-setting-mist'
         if(link.toString().substring(0, 8) !== "https://"){
           link = "https://" + link;
         }
         if(link.toString().substring(8,12) !== "www."){
           link = link.slice(0, 8) + 'www.' + link.slice(8);
         }
-        console.log(link)
+        // console.log(link)
         let site='';
         let i=12;
         while(link.charAt(i)!=='.'){
           site+=link.charAt(i);
           i++;
         }
-        console.log(site)
-        console.log('link', link)
+        // console.log(site)
+        // console.log('link', link)
         const response = await axios.get(link);
         const html = response.data;
         const $ = cheerio.load(html);
-        const i1 = $('#f271f8e29560878 > div > div > span > a > span')
-        console.log(i1.text())
-        const yid = $('#watch7-content > meta:nth-child(5)')
-        const yname = $('#watch7-content > span:nth-child(9) > link:nth-child(2)')
-        const yid1 = $('#watch7-content > span:nth-child(9) > link:nth-child(1)')
-        console.log(yid.attr('content'))
-        console.log(yid1.attr('href'))
-        console.log(yname.attr('content'))
-        
+        // const i1 = $('#f271f8e29560878 > div > div > span > a > span')
+        // console.log(i1.text())
+        // const yid = $('#watch7-content > meta:nth-child(5)')
+        // const yname = $('#watch7-content > span:nth-child(9) > link:nth-child(2)')
+        // const yid1 = $('#watch7-content > span:nth-child(9) > link:nth-child(1)')
+        // console.log(yid.attr('content'))
+        // console.log(yid1.attr('href'))
+        // console.log(yname.attr('content'))
+        // console.log($('#body').text())
         const productData = [];
 
       //not working
@@ -321,41 +321,54 @@ export async function getServerSideProps(context) {
         const amazon = () => {
           const title = $('#productTitle')
           const image = $('#landingImage')
-          const price = $('#corePrice_desktop > div > table > tbody > tr:nth-child(2) > td.a-span12 > span.a-price.a-text-price.a-size-medium.apexPriceToPay > span:nth-child(2)')
-          const rating = $('#acrPopover > span.a-declarative > a > i.a-icon.a-icon-star.a-star-4-5')
-          productData.push(title.text().split("  ").join(""),link,image.attr('src'),price.text(),rating.text())
+          const rating = $('#acrPopover > span.a-declarative > a > i.a-icon.a-icon-star')
+          const discountPrice = $('#corePrice_desktop > div > table > tbody > tr:nth-child(2) > td.a-span12 > span.a-price.a-text-price.a-size-medium.apexPriceToPay > span:nth-child(2)')
+          const mrp = $('#corePrice_desktop > div > table > tbody > tr:nth-child(1) > td.a-span12.a-color-secondary.a-size-base > span.a-price.a-text-price.a-size-base > span:nth-child(2)')
+          const discount=$('#corePrice_desktop > div > table > tbody > tr:nth-child(3) > td.a-span12.a-color-price.a-size-base > span.a-color-price')
+          const description=$('#feature-bullets > ul')
+          productData.push(title.text().split("  ").join(""),link,image.attr('src'),rating.text(),discountPrice.text(),mrp.text(),discount.text(),description.text());
         }
 
         const flipkart = () => {
-          const title = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div:nth-child(1) > h1 > span')
+          const title = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div:nth-child(1) > h1 > span')
           const image = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-5-12._78xt5Y > div:nth-child(1) > div > div._3li7GG > div._1BweB8 > div._3kidJX > div.CXW8mj._3nMexc > img')
-          const price = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div > div.dyC4hf > div.CEmiEU > div > div._30jeq3._16Jk6d')
-          const rating = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div.aMaAEs > div:nth-child(2) > div > div > span > div')
-          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text());
+          const mrp = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div:nth-child(2)')
+          const discountPrice = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div:nth-child(1)')
+          const discount = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(3) > div > div.dyC4hf > div.CEmiEU > div > div:nth-child(3)')
+          const rating = $('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(2) > div.aMaAEs > div:nth-child(2) ')
+          const description=$('#container > div > div._2c7YLP.UtUXW0._6t1WkM._3HqJxg > div._1YokD2._2GoDe3 > div._1YokD2._3Mn1Gg.col-8-12 > div:nth-child(9) > div:nth-child(1) > div > div._2418kt > ul')
+          productData.push(title.text(),link,image.attr('src'),rating.text(),discountPrice.text(),mrp.text(),discount.text(),description.text());
         }
 
         const nykaa = () => {
           const title = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > h1')
           const image = $('#app > div > div > div.css-11ayi09 > div.css-o21o8r > div.css-ov1ktg > div.productSelectedImage.css-eyk94w > div > div > img')
-          const price = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-f5j3vf > div > span.css-1jczs19')
+          const mrp = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-f5j3vf > div > span.css-u05rr > span')
+          const discountPrice = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-f5j3vf > div > span.css-1jczs19')
+          const discount = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-f5j3vf > div > span.css-2w3ruv')
           const rating = $('#app > div > div > div.css-11ayi09 > div.css-1ufhqkr > div > div.css-1d5wdox > div.css-173satf > div.css-4zp2mz > div.css-m6n3ou')
-          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text())
+          productData.push(title.text(),link,image.attr('src'),discountPrice.text(),mrp.text(),rating.text())
         }
 
         const meesho = () => {
           const title = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > span')
           const image = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.eewkZT > div > div.Card__BaseCard-sc-b3n78k-0.cWVjzZ.ProductCard__Container-sc-camkhj-0.gjLyQd.ProductCard__Container-sc-camkhj-0.gjLyQd > div.ProductDesktopImage__ImageWrapperDesktop-sc-8sgxcr-0.echLZw > div > img')
-          const price = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.gdwhYz.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx > h4')
+          const discountPrice = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.gdwhYz.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx > h4')
+          const mrp=$('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.gdwhYz.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx > p')
+          const discount=$('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.gdwhYz.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx.ShippingInfo__PriceRow-sc-dflqn4-2.NQjqx > span.Text__StyledText-sc-oo0kvp-0.kGYFqT')
           const rating = $('#__next > div.sc-bczRLJ.Pagestyled__ContainerStyled-sc-ynkej6-0.eNeMob.kEgYzU > div > div.sc-dkzDqf.ecjLHH > div.Card__BaseCard-sc-b3n78k-0.gguLc.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh.ShippingInfo__DetailCard-sc-dflqn4-0.dOonFh > div.Card__BaseCard-sc-b3n78k-0.fpIkxz.ShippingInfo__RatingSection-sc-dflqn4-12.hqUvHB.ShippingInfo__RatingSection-sc-dflqn4-12.hqUvHB > span > span.Rating__StyledPill-sc-5nayi4-0 > span')
-          productData.push(title.text(),link,image.attr('src'),price.text(),rating.text())
+          productData.push(title.text(),link,image.attr('src'),discountPrice.text(),rating.text())
         }
 
         const snapdeal = () => {
           const title = $('#productOverview > div.col-xs-14.right-card-zoom.reset-padding > div > div.pdp-fash-topcenter-inner.layout > div.row > div.col-xs-18 > h1')
           const image = $('#bx-slider-left-image-panel > li:nth-child(1) > img')
-          const price = $('#buyPriceBox > div.row.reset-margin > div.col-xs-14.reset-padding.padL8 > div.disp-table > div.pdp-e-i-PAY-r.disp-table-cell.lfloat > span.pdp-final-price > span')
+          const mrp=$('#buyPriceBox > div.row.reset-margin > div.col-xs-14.reset-padding.padL8 > div.disp-table > div.pdp-e-i-PAY-r.disp-table-cell.lfloat > div.pdpCutPrice')
+          const discount=$('#buyPriceBox > div.row.reset-margin > div.col-xs-14.reset-padding.padL8 > div.disp-table > div.pdp-e-i-PAY-r.disp-table-cell.lfloat > span.pdpDiscount > span')
+          //get different discount price format
+          const discountPrice = $('#buyPriceBox > div.row.reset-margin > div.col-xs-14.reset-padding.padL8 > div.disp-table > div.pdp-e-i-PAY-r.disp-table-cell.lfloat > span.pdp-final-price > span')
           const rating = $('#productOverview > div.col-xs-14.right-card-zoom.reset-padding > div > div.pdp-fash-topcenter-inner.layout > div.pdp-e-i-ratereviewQA.marT10 > div.pdp-e-i-ratings > div > span.avrg-rating')
-          productData.push(title.text().split("\n   \t\t\t").join(""),link,image.attr('src'),price.text(),rating.text());
+          productData.push(title.text().split("\n   \t\t\t").join(""),link,image.attr('src'),discountPrice.text(),rating.text());
         }
         
         //not working
