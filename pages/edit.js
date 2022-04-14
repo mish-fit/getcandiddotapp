@@ -1,6 +1,5 @@
 import {
-	Button,
-	Flex, FormLabel, Heading, Image, Input, Text, Textarea, useToast
+	Button,	Flex, FormLabel, Heading, Image, Input, Text, Textarea, useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { Layout } from 'components/onboard/Layout';
@@ -11,12 +10,16 @@ import { UserContext } from 'lib/UserDataProvider';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import nookies from 'nookies';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { IoCloseCircle } from 'react-icons/io5';
 import editStyles from 'styles/edit';
-
+import { firestore } from 'lib/firebase';
+import debounce from 'lodash.debounce';
 const EditProfile = ({ u_data }) => {
+	// console.log(u_data);
 	const [state, setState] = useState({
+		u_id: '',
+		username: '',
 		name: '',
 		about: '',
 	});
@@ -25,12 +28,36 @@ const EditProfile = ({ u_data }) => {
 	const [userDataContext, user] = useContext(UserContext);
 	const [image, setImage] = useState({ preview: '', raw: '' });
 	const [imageSelected, setImageSelected] = useState(false);
+
+	// const [formValue, setFormValue] = useState('');
+	const [isValid, setIsValid] = useState(false);
+	const [loading, setLoading] = useState(false);
+
 	let hiddenInput = null;
+	const checkUsername = useMemo(
+		() =>
+			debounce(async (username) => {
+				if (username.length >= 3) {
+					const ref = firestore.doc(`usernames/${username}`);
+					const { exists } = await ref.get();
+					// console.log('Firestore read executed!');
+					setIsValid(!exists);
+					setLoading(false);
+				}
+			}, 500),
+		[]
+	);
+
+	useEffect(() => {
+		checkUsername(state.username);
+	}, [checkUsername, state.username]);
 
 	useEffect((e) => {
 		if (u_data[0]) {
 			setState({
 				...state,
+				u_id: u_data[0].u_id,
+				username: u_data[0].u_uuid,
 				name: u_data[0].u_name,
 				about: u_data[0].u_about,
 			});
@@ -97,9 +124,9 @@ const EditProfile = ({ u_data }) => {
 			},
 			{ timeout: 5000 }
 		).then((res) => {
-			// console.log('Success', res.data);
+			console.log('Success', res.data);
 			toast({
-				title: 'Profile Updated',
+				title: 'Profile Updated Successfully',
 				description: '',
 				status: 'success',
 				duration: 1000,
@@ -130,6 +157,97 @@ const EditProfile = ({ u_data }) => {
 		router.push('/dashboard');
 	};
 
+
+	const onChangeUsername = (e) => {
+		// Force form value typed in form to match correct format
+		const val = e.target.value.toLowerCase();
+		const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
+		// Only set form value if length is < 3 OR it passes regex
+		if (val.length < 3) {
+			const newState = {...state};
+			newState.username=val;
+			setState(newState);
+			setLoading(false);
+			setIsValid(false);
+		}
+
+		if (re.test(val)) {
+			const newState1 = {...state};
+			newState1.username=val;
+			setState(newState1);
+			setLoading(true);
+			setIsValid(false);
+		}
+	};
+
+
+	const updateUsername = (e) => {
+		e.preventDefault();
+		console.log(state.username);
+	//updating usernames collection
+	firestore.collection("usernames").doc(u_data[0].u_uuid)
+  .get()
+  .then(function(doc) {
+    if (doc.exists) {
+			let data = doc.data();
+			firestore.collection("usernames").doc(state.username).set(data)
+			.then(function(){
+				firestore.collection("usernames").doc(u_data[0].u_uuid).delete();
+			});
+    }
+		else {
+      console.log("No such document!");
+    }
+  }).catch(function(error) {
+    console.log("Error while updating usernames collection:", error);
+  });
+
+	//updating users collection
+	firestore.collection("users").doc(u_data[0].u_id).update({
+		username:state.username
+	})
+	// .then(function(){
+	// 	toast({
+	// 		title: 'Username Updated Successfully',
+	// 		description: '',
+	// 		status: 'success',
+	// 		duration: 1000,
+	// 		isClosable: true,
+	// 	});
+	// })
+	.catch(function(error) {
+    console.log("Error while updating users collection:", error);
+  });
+
+	const u_username = {
+		u_id: u_data[0].u_id,
+		u_uuid: state.username,
+	};
+	console.log(u_username);
+
+	// API Call: Update User Data
+	axios(
+		{
+			method: 'post',
+			url: `${authapi}user/update`,
+			data: u_username,
+			options: origin,
+		},
+		{ timeout: 5000 }
+	).then((res) => {
+		console.log('Success', res.data);
+		toast({
+			title: 'Username Updated Successfully',
+			description: '',
+			status: 'success',
+			duration: 1000,
+			isClosable: true,
+		});
+	});
+
+}
+
 	return (
 		<Layout>
 			<Head>
@@ -154,7 +272,7 @@ const EditProfile = ({ u_data }) => {
 						<FormLabel fontSize={'lg'}>Full Name</FormLabel>
 						<Input
 							name='name'
-							// bg='white'
+							bg='white'
 							defaultValue={u_data[0].u_name}
 							focusBorderColor='#E78692'
 							_hover={{ borderColor: '#E78592' }}
@@ -171,7 +289,7 @@ const EditProfile = ({ u_data }) => {
 						<Textarea
 							name='about'
 							type='text'
-							// bg='white'
+							bg='white'
 							focusBorderColor='#E78692'
 							_hover={{ borderColor: '#E78592' }}
 							borderColor='#E78592'
@@ -259,12 +377,70 @@ const EditProfile = ({ u_data }) => {
 								Save
 							</Button>
 						</Flex>
+						<FormLabel fontWeight ={"bold"} fontSize={'lg'} mt={"32px"}>Change Your Username Below</FormLabel>
+						<Input
+							name='username'
+							bg='white'
+							value={state.username}
+							// defaultValue={u_data[0].u_uuid}
+							focusBorderColor='#E78692'
+							_hover={{ borderColor: '#E78592' }}
+							borderColor='#E78592'
+							height={50}
+							width={'md'}
+							fontSize={'lg'}
+							mt='4px'
+							mb='2px'
+							onChange={onChangeUsername}
+						/>
+
+						<UsernameMessage
+								username={state.username}
+								isValid={isValid}
+								loading={loading}
+							/>
+						<Button onClick={updateUsername} disabled={!isValid} mt='8px' h='50px'>Update Username</Button>
 					</Flex>
 				</form>
 			</Flex>
 		</Layout>
 	);
 };
+
+
+function UsernameMessage({ username, isValid, loading }) {
+	if (loading) {
+		return <FormLabel >Checking...</FormLabel>;
+	} else if (isValid) {
+		return (
+			<FormLabel >
+				{username} is available!
+			</FormLabel>
+		);
+	} 
+	else if (username)
+	{
+		if(username.length<3){
+			return (
+				<FormLabel>Username must be 3 or more letters.</FormLabel>
+			)
+		}
+		else if(!isValid){
+			return (
+				<FormLabel >
+					That username is taken. Try another username!
+				</FormLabel>
+			);
+		}
+	} else {
+		return (
+			<FormLabel fontSize={15}>
+				Usernames can only contain letters and numbers.
+			</FormLabel>
+		);
+	}
+}
+
 
 export async function getServerSideProps(context) {
 	const cookie = nookies.get(context).token;

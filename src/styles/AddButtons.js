@@ -21,10 +21,6 @@ const addButtonsStyles = {
   flex: {
     ml:["0px","0px","-8px","-8px","-8px","-8px"],
     backgroundColor: "transparent",
-  _focus: {
-    ring: 1,
-    ringColor: "#E78692",
-  },
     // flexDirection: "row",
     // justifyContent: "space-between",
     // alignItems: "center",

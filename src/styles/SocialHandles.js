@@ -43,6 +43,10 @@ const socialHandlesStyles = {
     textAlign: "center",
   },
   addbutton: {
+    _focus: {
+      ring: 1,
+      ringColor: "#E78692",
+    },
     // ml:["auto", "auto", "16px", "16px", "16px", "16px"],
     cursor: "pointer",
     backgroundColor: "transparent",

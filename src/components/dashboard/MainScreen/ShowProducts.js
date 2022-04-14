@@ -35,13 +35,38 @@ export function ShowProducts({
     setBuckets(bucketsArr);
   },[])
 
+  // useEffect(()=>{
+
+  //   console.log('bucketData', bucketData);
+  //   function mapOrder (array, order, key) {
+  //     array.sort( function (a, b) {
+  //       var A = a[key], B = b[key];
+  //       console.log('  A  ', A, '  B  ', B, 'order.indexOf(A)', order.indexOf(A), 'order.indexOf(B)', order.indexOf(B));
+  //       if (order.indexOf(A) < order.indexOf(B)) {
+  //         return 1;
+  //       } else {
+  //         return -1;
+  //       }
+  //     });
+  //     return array;
+  //   };
+
+  //   const updatedBucketData = mapOrder(bucketData, bucketsArr, 'name');
+  //   console.log('Ordered:', JSON.stringify(updatedBucketData));
+
+  //   updatedBucketData.forEach((element, idx) => {
+  //     updatedBucketData.others={}
+  //   })
+  //   console.log(updatedBucketData)
+  //   setItems(updatedBucketData);
+  // }, [bucketData, bucketsArr])
+
   useEffect(()=>{
     setItems(bucketData);
     setCancelState(bucketData);
   }, [bucketData])
 
   useEffect(()=>{
-    
     console.log('data', data)
     console.log('bucketData',bucketData);
     console.log('bucketsArr',bucketsArr);
@@ -99,7 +124,7 @@ export function ShowProducts({
     // display={bucketsArr.length>1 ? null : 'none'}
     >
       <Heading sx={showProductsLinksStyles.headingText}>Recommendations</Heading>
-    <Button onClick={()=>{setToggle(!toggle)}} sx={showProductsLinksStyles.headingButton} ><IoReorderFour size={'24px'}/></Button>
+    <Button onClick={()=>{setToggle(!toggle)}} sx={showProductsLinksStyles.headingButton} size={'sm'}><IoReorderFour size={'24px'}/></Button>
     </Flex>
     {buckets.map((item, index) => {
       return (
