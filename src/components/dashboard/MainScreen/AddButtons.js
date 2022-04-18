@@ -7,7 +7,7 @@ import { IoMdAnalytics } from "react-icons/io";
 import addButtonsStyles from "styles/AddButtons";
 
 // Add a custom Link
-export function AddButtons({ addLink, addProduct, showAnalytics }) {
+export function AddButtons({ addLink, addProduct, showAnalytics, addHeader }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
   useEffect(() => {
@@ -24,6 +24,10 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
   const analytics = () => {
     showAnalytics();
   };
+
+  const addHeaders = () => {
+    addHeader()
+  }
 
   return (
     <Flex as="container" sx={addButtonsStyles.container}>
@@ -43,19 +47,19 @@ export function AddButtons({ addLink, addProduct, showAnalytics }) {
         <Flex
           as="addbutton"
           sx={addButtonsStyles.addbutton}
-          onClick={addProducts}
+          onClick={addHeader}
         >
           <Button sx={addButtonsStyles.flex} >
             <BsPlusCircleFill color="#D7354A" />
-            <Text sx={addButtonsStyles.addbuttonText}>Recommend Products</Text>
+            <Text sx={addButtonsStyles.addbuttonText}>Add Header</Text>
           </Button>
         </Flex>
-        <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addLinks}>
+        {/* <Flex as="addbutton" sx={addButtonsStyles.addbutton} onClick={addLinks}>
           <Button sx={addButtonsStyles.flex}>
             <BsPlusCircleFill color="#D7354A" />
             <Text sx={addButtonsStyles.addbuttonText}>Custom Links</Text>
           </Button>
-        </Flex>
+        </Flex> */}
       </Flex>
     </Flex>
   );

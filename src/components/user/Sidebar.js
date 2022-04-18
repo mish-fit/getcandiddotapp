@@ -16,7 +16,7 @@ export function Sidebar({ socials, user, summary }) {
       sx={{flexDirection:"column"}}
     >
       <UserCard data={user} />
-      <UserSummary data={summary} />
+      {/* <UserSummary data={summary} /> */}
       <SocialHandles data={currentSocials} />
     </Flex>
   );

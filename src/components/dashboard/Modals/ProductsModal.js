@@ -6,7 +6,7 @@ import debounce from "lodash.debounce";
 import Lottie from "lottie-react";
 import { nanoid } from "nanoid";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import { BiCategoryAlt, BiLink } from "react-icons/bi";
 import { BsCheckCircleFill, BsPlusCircleFill } from "react-icons/bs";
 import { IoCloseCircle, IoCloseCircleOutline } from "react-icons/io5";
@@ -28,10 +28,11 @@ export function ProductsModal({
   maxSortId,
   cookie,
   newItem,
+  selectedBucket,
 }) {
   const toast = useToast();
   const [refreshScreen, setRefreshScreen] = React.useState(false);
-  const [a, setA] = React.useState(buckets.recos);
+  const [recosArr, setRecosArr] = React.useState(buckets.recos);
   const [input, setInput] = React.useState(false);
   const [image, setImage] = React.useState({ preview: "", raw: "" });
   const [imageName, setImageName] = React.useState(nanoid());
@@ -52,7 +53,7 @@ export function ProductsModal({
     u_name: user[0].u_name,
     prod_name: "",
     cat_name: "",
-    bucket: "My Recos",
+    bucket: selectedBucket,
     photo: "",
     prod_link: "",
     aff_code: "",
@@ -60,6 +61,28 @@ export function ProductsModal({
     others: {},
   });
 
+  useEffect(() => {
+    setValues({
+      ...values,
+      bucket: selectedBucket,
+      others: {},
+    });
+  }, [selectedBucket])
+  
+  // React.useEffect(()=>{
+  //   let newRecosArr=[...recosArr];
+  //   // var selectedIndex = newRecosArr.map(function(item) {return item.name; }).indexOf(selectedBucket);
+  //   // console.log('selectedIndex',selectedIndex)
+  //   // newRecosArr.splice(selectedIndex, 0);
+    
+  //   // newRecosArr = newRecosArr.filter(item => item.name !== selectedBucket);
+  //   // newRecosArr.unshift(selectedBucket);
+
+  //   newRecosArr.sort(function(x,y){ return x.name == selectedBucket ? -1 : y == selectedBucket ? 1 : 0; });
+
+  //   console.log('newRecosArr',newRecosArr);
+  //   setRecosArr(newRecosArr);
+  // },[selectedBucket])
   React.useEffect(() => {
     // console.log("bUCKETR STRING", imageName);
     axios
@@ -208,7 +231,7 @@ export function ProductsModal({
   const onSaveBucket = (item) => {
     // console.log(values);
     setValues({ ...values, bucket: item.name });
-    setA([...a, item]);
+    setRecosArr([...recosArr, item]);
     setInput(false);
     const options = {
       headers: {
@@ -217,7 +240,7 @@ export function ProductsModal({
       },
     };
 
-    const newBuckets = { ...buckets, recos: [...a, item] };
+    const newBuckets = { ...buckets, recos: [...recosArr, item] };
 
     axios(
       {
@@ -321,7 +344,7 @@ export function ProductsModal({
           Origin: "localhost:3000",
         },
       };
-
+      console.log(body)
       axios(
         {
           method: "post",
@@ -370,7 +393,7 @@ export function ProductsModal({
       u_name: user[0].u_name,
       prod_name: "",
       cat_name: "",
-      bucket: "My Recos",
+      bucket: selectedBucket,
       photo: "",
       prod_link: "",
       aff_code: "",
@@ -706,7 +729,7 @@ export function ProductsModal({
                             value={values.aff_code}
                           />
                         </Flex>
-                        <Flex
+                        {/* <Flex
                           sx={{
                             mr: "16px",
                             mt: ["16px", "16px", null],
@@ -734,10 +757,10 @@ export function ProductsModal({
                               <Text>{values.bucket}</Text>
                             </MenuButton>
                             <MenuList>
-                              {a.map((item, index) => {
+                              {recosArr.map((item, index) => {
                                 return (
-                                  <MenuItem key={index.toString()}>
-                                    <Flex onClick={() => onSelectItem(item)}>
+                                  <MenuItem key={index.toString()} onClick={() => onSelectItem(item)}>
+                                    <Flex>
                                       <Text>{item.name}</Text>
                                     </Flex>
                                   </MenuItem>
@@ -752,7 +775,7 @@ export function ProductsModal({
                               </MenuItem>
                             </MenuList>
                           </Menu>
-                        </Flex>
+                        </Flex> */}
                       </Flex>
                     )}
                   </Flex>

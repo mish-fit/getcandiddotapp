@@ -18,7 +18,7 @@ export function ShowProducts({ data, bucketData }) {
 
   return (
     <Flex sx={showProductsLinksStyles.container}>
-      {buckets.map((item, index) => {
+      {bucketData.map((item, index) => {
         return (
           <ProductsBucket
             key={index}

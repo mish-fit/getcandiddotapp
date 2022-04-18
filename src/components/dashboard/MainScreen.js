@@ -14,7 +14,7 @@ import { AnalyticsModal } from "./Modals/AnalyticsModal";
 import { event } from "analytics/ga";
 import axios from "axios";
 import { authapi } from "lib/api"; 
-
+import { BucketsModal } from "./Modals/BucketModal";
 let Element = Scroll.Element;
 
 // Add a custom Link
@@ -30,33 +30,37 @@ export function MainScreen({
   const [isOpenLinksModal, setOpenLinksModal] = React.useState(false);
   const [isOpenProductsModal, setOpenProductsModal] = React.useState(false);
   const [isOpenAnalyticsModal, setOpenAnalyticsModal] = React.useState(false);
-
   const [isOpenEditLinksModal, setOpenEditLinksModal] = React.useState(false);
+  const [isOpenEditProductsModal, setOpenEditProductsModal] = React.useState(false);
+  const [isOpenBucketsModal, setOpenBucketsModal] = React.useState(false);
   const [editLinkItem, setEditLinkItem] = React.useState({});
-  const [isOpenEditProductsModal, setOpenEditProductsModal] =
-    React.useState(false);
   const [editProductItem, setEditProductItem] = React.useState({});
-
   const [currentLinks, setCurrentLinks] = React.useState(links);
   const [currentRecos, setCurrentRecos] = React.useState(recos);
   const [newRecos, setNewRecos] = React.useState([]);
   const [newLinks, setNewLinks] = React.useState([]);
   const [dbLinks, setDbLinks] = React.useState(links);
   const [dbRecos, setDbRecos] = React.useState(recos);
+  const [selectedBucket, setSelectedBucket] = React.useState(null);
 
   const [recosBuckets, setRecosBuckets]=useState(JSON.parse(buckets).recos);
   const [linksBuckets, setLinksBuckets]=useState(JSON.parse(buckets).links);
 
+  // React.useEffect((e) => {
+  //   if(selectedBucket!==null){
+  //   setSelectedBucket(selectedBucket);
+  // }},[selectedBucket]);
   React.useEffect(() => {
-console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0))
-// console.log('maxbucket',JSON.parse(buckets));
-// console.log('maxbucket',);
+  console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0))
+  // console.log('maxbucket',JSON.parse(buckets));
+  // console.log('maxbucket',);
     // console.log("MAINSCREEN UFX");
     console.log("CUR LINKS", currentLinks);
     // console.log("NEW LINKS", newLinks);
     // console.log("DB LINKS", dbLinks);
     // console.log("CUR PRODUCTS", currentRecos);
     // console.log("Main Screen", editLinkItem);
+    console.log("selected bucket", selectedBucket);
 
     setCurrentLinks([...dbLinks, ...newLinks]);
   }, [isOpenLinksModal, dbLinks, newLinks, isOpenEditLinksModal]);
@@ -79,6 +83,10 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
     // console.log("close");
     setOpenAnalyticsModal(false);
   };
+
+  const onCloseBucketsModal = (item) => {
+    setOpenBucketsModal(false);
+  }
 
   const newReco = (item) => {
     setNewRecos([...newRecos, ...item]);
@@ -367,6 +375,56 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
       .catch((e) => console.log(e));
   }
 
+
+  const onSaveBucket = (item) => {
+    // console.log(values);
+    // setValues({ ...values, bucket: item.name });
+    setRecosBuckets([...recosBuckets, item]);
+    setOpenBucketsModal(false);
+    const options = {
+      headers: {
+        Authorization: `bearer ${cookie}`,
+        Origin: "localhost:3000",
+      },
+    };
+
+    const newBuckets = { ...buckets, recos: [...recosBuckets, item] };
+
+    axios(
+      {
+        method: "post",
+        url: `${authapi}buckets`,
+        data: {
+          u_id: user[0].u_id,
+          u_buckets: newBuckets,
+        },
+        options: options,
+      },
+      { timeout: 5000 }
+    )
+      .then((res) => {
+        toast({
+          title: "New Bucket Added",
+          description: "",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+      })
+      .catch((e) => {
+        // console.log(e);
+      });
+  };
+
+  const onCancelBucket = () => {
+    setOpenBucketsModal(false);
+  };
+
+  const selectBucket = (item) => {
+    console.log(selectedBucket);
+    setSelectedBucket(item);
+  }
+
   return (
     <Flex sx={mainScreenStyles.container}>
       <LinksModal
@@ -388,6 +446,7 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
         user={user}
         cookie={cookie}
         newItem={(item) => newReco(item)}
+        selectedBucket={selectedBucket}
       />
       <AnalyticsModal
         isOpen={isOpenAnalyticsModal}
@@ -395,6 +454,12 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
         user={user}
         linkAnalytics={linkAnalytics}
         prodAnalytics={prodAnalytics}
+      />
+      <BucketsModal
+        isOpen={isOpenBucketsModal}
+        onClose={(item) => onCancelBucket(item)}
+        bucketsMaxSortId={Math.max(...JSON.parse(buckets).links.map((o) => o.sort_id), 0)}
+        onSave={(item) => onSaveBucket(item)}
       />
       <EditLinksModal
         isOpen={isOpenEditLinksModal}
@@ -437,6 +502,12 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
           });
           setOpenAnalyticsModal(true);
         }}
+        addHeader={() => {
+          event("SIGNED_IN_USER_ADD_HEADER_MODAL", {
+            user: user,
+          });
+          setOpenBucketsModal(true);
+        }}
       />
 
       <Divider />
@@ -455,9 +526,16 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
             editProduct(item);
           }}
           recosBucketsHandler={recosBucketsHandler}
+          addProduct={() => {
+            event("SIGNED_IN_USER_ADD_RECOS_MODAL", {
+              user: user,
+            });
+            setOpenProductsModal(true);
+          }}
+          selectedBucket={(item) => selectBucket(item)}
         />
       </Element>
-      <Divider />
+      {/* <Divider />
       <Element name="links">
         <ShowLinks
           id="links"
@@ -474,7 +552,7 @@ console.log('max',Math.max(...JSON.parse(buckets).recos.map((o) => o.sort_id), 0
           }}
           linksBucketsHandler={linksBucketsHandler}
         />
-      </Element>
+      </Element> */}
     </Flex>
   );
 }

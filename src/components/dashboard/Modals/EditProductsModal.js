@@ -739,7 +739,7 @@ export function EditProductsModal({
                             defaultValue={values.aff_code}
                           />
                         </Flex>
-                        <Flex
+                        {/* <Flex
                           sx={{
                             mr: "16px",
                             mt: ["16px", "16px", null],
@@ -784,7 +784,7 @@ export function EditProductsModal({
                               </MenuItem>
                             </MenuList>
                           </Menu>
-                        </Flex>
+                        </Flex> */}
                       </Flex>
                     )}
                   </Flex>
@@ -796,11 +796,11 @@ export function EditProductsModal({
                 </Flex>
               </Flex>
             </Flex>
-            <Flex sx={productsModalStyles.row4}>
+            {/* <Flex sx={productsModalStyles.row4}>
               <Flex onClick={isSaveClicked ? null : savenadd} sx={{ cursor: "pointer" }}>
                 <BsPlusCircleFill color="#D7354A" size="32px" sx={{}} />
               </Flex>
-            </Flex>
+            </Flex> */}
           </Flex>
         </ModalContent>
       </Modal>

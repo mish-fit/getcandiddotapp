@@ -56,7 +56,7 @@ export function Sidebar({
         masterSocials={masterSocials}
       />
       <UserCard data={user} />
-      <UserSummary data={summary} />
+      {/* <UserSummary data={summary} /> */}
       <SocialHandles
         social={() => {
           event("SIGNED_IN_USER_OPEN_SOCIAL_MODAL", { user: user });

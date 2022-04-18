@@ -14,7 +14,9 @@ export function ShowProducts({
   cookie,
   deleteItem,
   editProductModal,
-  recosBucketsHandler
+  recosBucketsHandler,
+  addProduct,
+  selectedBucket,
 }) {
   const router = useRouter();
   const [toggle, setToggle] = useState(false);
@@ -75,9 +77,6 @@ export function ShowProducts({
   // useEffect(()=>{
   //   console.log(reorderedToggle)
   // },[reorderedToggle])
-  const addLinks = () => {
-    // console.log("add links");
-  };
 
   function onDragEnd(result) {
     if (!result.destination) {
@@ -89,6 +88,7 @@ export function ShowProducts({
     console.log("onDragEnd newitems",newItems);
     setItems(newItems)
   }
+  
   const reorderedHandler=(curToggle)=>{
     console.log('reached reordered', curToggle)
     setReorderedToggle(curToggle); 
@@ -126,8 +126,7 @@ export function ShowProducts({
       <Heading sx={showProductsLinksStyles.headingText}>Recommendations</Heading>
     <Button onClick={()=>{setToggle(!toggle)}} sx={showProductsLinksStyles.headingButton} size={'sm'}><IoReorderFour size={'24px'}/></Button>
     </Flex>
-    {buckets.map((item, index) => {
-      return (
+    {items.map((item, index) => (
         <ProductsBucket
           key={index}
           bucketName={bucketData[index].name}
@@ -143,9 +142,10 @@ export function ShowProducts({
           editProductModal={(item) => editProductModal(item)}
           reorderedToggle={reorderedHandler}
           showBucketsHandler={showBucketsHandler}
+          addProduct={addProduct}
+          selectedBucket={selectedBucket}
         />
-        );
-      })}
+    ))}
     </Flex>
     <NoSSR>
     <DragDropContext onDragEnd={onDragEnd}>

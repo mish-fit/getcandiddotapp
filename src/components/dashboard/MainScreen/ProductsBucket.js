@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { authapi } from "lib/api";
 import rearrange from "assets/rearrange.png";
 import { MdOutlineCancel, MdOutlineDone, MdOutlineDoneOutline } from "react-icons/md";
+import { BsPlusCircle, BsPlusCircleDotted } from "react-icons/bs";
 // Add a custom Link
 export function ProductsBucket({
   bucketName,
@@ -19,6 +20,8 @@ export function ProductsBucket({
   cookie,
   deleteItem,
   editProductModal,
+  addProduct,
+  selectedBucket,
 }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const [items, setItems]= useState(data);
@@ -34,7 +37,7 @@ export function ProductsBucket({
   }, [data])
 
   useEffect(()=>{
-    // console.log("onDragEnd items", items);
+    // console.log("onDragEnd items", data, link, bucketName);
   },[items])
 
   function onDragEnd(result) {
@@ -105,23 +108,23 @@ export function ProductsBucket({
     }
   };
 
+  const addProducts = () => {
+    addProduct();
+  }
+
+  const selectedBucketHandler = () => {
+    selectedBucket(bucketName);
+  }
+
   return (
-    <Flex sx={productsBucketStyles.container} display={data.length ? null : 'none'}>
+    <Flex sx={productsBucketStyles.container} 
+    // display={data.length ? null : 'none'}
+    >
       <Flex
         mx={ toggle ? ["-72px","0px","0px","0px","0px","0px"] : ["-72px","16px","16px","16px","16px","16px"]}
         sx={{
 					justifyContent: ['space-between', 'space-between', 'space-between', 'space-between', 'space-between', 'space-between'],
-          cursor:
-            link && link.length != 0 && link.link && isURL(link.link.toString())
-              ? "pointer"
-              : "default",
-          backgroundColor: "white",
         }}
-        onClick={
-          link && link.length != 0 && link.link && isURL(link.link.toString())
-            ? bucketLinkClick
-            : null
-        }
       >
       <Flex>
         <Text
@@ -130,6 +133,11 @@ export function ProductsBucket({
             fontWeight: "bold",
             fontSize: "18px",
             py: "4px",
+            cursor:
+            link && link.length != 0 && link.link && isURL(link.link.toString())
+              ? "pointer"
+              : "default",
+          backgroundColor: "white",
             color:
               link &&
               link.length != 0 &&
@@ -138,6 +146,11 @@ export function ProductsBucket({
                 ? "#2A5DB0"
                 : "#323232",
           }}
+          onClick={
+          link && link.length != 0 && link.link && isURL(link.link.toString())
+            ? bucketLinkClick
+            : null
+        }
         >
           {bucketName}
         </Text>
@@ -147,7 +160,7 @@ export function ProductsBucket({
         </Flex> */}
         <Flex mb="8px" display={reorderToggle ? null: 'none'}>
           {
-            !toggle ? <Button ml={"16px"} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
+            !toggle ? <Button ml={"16px"} display={data.length>1 ? null : 'none'} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
             <Flex display={"inline"}>
               <Button ml={"16px"} onClick={handleCancel} size={'sm'}><MdOutlineCancel size={20}/></Button>
               <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
@@ -174,12 +187,12 @@ export function ProductsBucket({
           );
         })}
       </Flex> */}
-
     
       <NoSSR>
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Droppable droppableId="droppable" isDropDisabled={!toggle}>
 					{(provided) => (
+            <Flex>
 						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={productsBucketStyles.grid} backgroundColor={toggle ? "gray.100" : ""} display={reorderToggle ? null : 'none'}>
 							{items.map((item, index) => (
 								<Draggable
@@ -204,15 +217,30 @@ export function ProductsBucket({
                         deleteItem(item);
                       }}
                       editProductModal={(item) => editProductModal(item)}
+                      addProduct={addProduct}
                     />
                   {/* ) */}
-										
 										</Flex>
 									)}
 								</Draggable>
 							))}
+              <Flex
+              onClick={addProducts}
+              mx={'16px'}
+              my={'8px'}
+            >
+              <Button 
+              width={'200px'}
+              height={'240px'}
+              onClick={selectedBucketHandler}
+              >
+                <BsPlusCircleDotted size={64} color="#D7354A"/>
+            {/* <Text >Add Products</Text> */}
+          </Button>
+          </Flex>
 						{provided.placeholder}
 						</Flex>
+        </Flex>
 					)}
 				</Droppable>
 			</DragDropContext>

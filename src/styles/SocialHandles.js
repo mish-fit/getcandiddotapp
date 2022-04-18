@@ -2,7 +2,7 @@ const socialHandlesStyles = {
   container: {
     width: ["300px","300px","300px","300px","300px","300px"],
     mx:"auto",
-    mt: "12px",
+    mt: "32px",
     flexDirection: "column",
   },
   grid: {
