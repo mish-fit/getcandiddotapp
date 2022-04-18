@@ -255,7 +255,6 @@ export function SocialModal({
               <BsCheckCircleFill color="#D7354A" size={15} sx={{ ml: "6px" }} />
             </Flex>
           </Flex>
-
           <Flex sx={socialModalStyles.row3}>
             <Flex sx={socialModalStyles.lottie}>
               <Lottie animationData={smm} />

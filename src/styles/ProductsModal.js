@@ -114,7 +114,7 @@ const productsModalStyles = {
     width: "100%",
     height: "48px",
     mt: "8px",
-    pr: "8px",
+    // pr: "8px",
   },
   imageContainer: {
     width: "100%",

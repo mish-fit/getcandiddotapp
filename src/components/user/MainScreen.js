@@ -25,14 +25,14 @@ export function MainScreen({ links, recos, user, buckets }) {
             bucketData={JSON.parse(buckets).recos}
           />
         </Element>
-        <Divider />
+        {/* <Divider />
         <Element name="links">
           <ShowLinks
             id="links"
             data={currentLinks}
             bucketData={JSON.parse(buckets).links}
           />
-        </Element>
+        </Element> */}
       </Flex>
     </>
   );

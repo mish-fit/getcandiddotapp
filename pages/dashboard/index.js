@@ -279,7 +279,7 @@ export async function getServerSideProps(context) {
 
   const fetchProduct = async () => {
     try {
-        let link = 'https://www.purplle.com/product/blue-heaven-prep-and-fix-setting-mist'
+        let link = 'https://www.myntra.com/kurta-sets/khushal-k/khushal-k-women-black-ethnic-motifs-printed-kurta-with-palazzos--with-dupatta/17048614/buy'
         if(link.toString().substring(0, 8) !== "https://"){
           link = "https://" + link;
         }
@@ -297,7 +297,7 @@ export async function getServerSideProps(context) {
         // console.log('link', link)
         const response = await axios.get(link);
         const html = response.data;
-        const $ = cheerio.load(html);
+        const $ = cheerio.load(html, { decodeEntities: false });
         // const i1 = $('#f271f8e29560878 > div > div > span > a > span')
         // console.log(i1.text())
         // const yid = $('#watch7-content > meta:nth-child(5)')
@@ -311,11 +311,21 @@ export async function getServerSideProps(context) {
 
       //not working
       const myntra = () => {
-        const title = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > h1.pdp-name')
-        const image = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.image-grid-container.common-clearfix > div.desktop-image-zoom-container > div > div.desktop-image-zoom-image-container > img')
-        const price = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > p.pdp-discount-container > span.pdp-price > strong')
-        const rating = $('#mountRoot > div > div > div > main > div.pdp-details.common-clearfix > div.pdp-description-container > div.pdp-price-info > div > div > div:nth-child(1)')
-        productData.push(brand.text() + title.text(),link,image.attr('src'),price.text(),rating.text());
+        var g=$('script').map((idx, el) => $(el).html()).toArray();
+        for(let s in g){
+          if(g[s].includes('pdpData')){
+            const data = JSON.parse(g[s].substring(15, g[s].length))
+            console.log(data)
+            const title=data['pdpData']['name'];
+            const image=data['pdpData']['media']['albums'][0]['images'][0]['src']
+            const mrp=data['pdpData']['price']['mrp'];
+            const discountPrice = data['pdpData']['price']['discounted'];
+            const rating = data['pdpData']['ratings']['averageRating'];
+            const discount = data['pdpData']['discounts'][0]['label'];
+            const description = data['pdpData']['descriptors'][0]['description'].replace( /(<([^>]+)>)/ig, '');
+            productData.push(title, link, image, rating, mrp, discountPrice, discount);
+          }
+        }
       }
 
         const amazon = () => {

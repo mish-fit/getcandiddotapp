@@ -11,7 +11,7 @@ const addButtonsStyles = {
       // "space-between",
       // "space-between",
     ],
-    flexDirection: ["column","column","row","row","row","row"],
+    // flexDirection: ["column","column","row","row","row","row"],
     // alignItems: "flex-start",
     // width: ["100%", "100%", null],
   },
@@ -21,6 +21,10 @@ const addButtonsStyles = {
   flex: {
     ml:["0px","0px","-8px","-8px","-8px","-8px"],
     backgroundColor: "transparent",
+    _focus: {
+      ring: 1,
+      ringColor: "#E78692",
+    },
     // flexDirection: "row",
     // justifyContent: "space-between",
     // alignItems: "center",

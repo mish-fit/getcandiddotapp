@@ -28,6 +28,7 @@ const EditProfile = ({ u_data }) => {
 	const [userDataContext, user] = useContext(UserContext);
 	const [image, setImage] = useState({ preview: '', raw: '' });
 	const [imageSelected, setImageSelected] = useState(false);
+	const [toggle, setToggle]=useState(false);
 
 	// const [formValue, setFormValue] = useState('');
 	const [isValid, setIsValid] = useState(false);
@@ -183,8 +184,8 @@ const EditProfile = ({ u_data }) => {
 
 
 	const updateUsername = (e) => {
-		e.preventDefault();
-		console.log(state.username);
+	e.preventDefault();
+	console.log(state.username);
 	//updating usernames collection
 	firestore.collection("usernames").doc(u_data[0].u_uuid)
   .get()
@@ -245,7 +246,7 @@ const EditProfile = ({ u_data }) => {
 			isClosable: true,
 		});
 	});
-
+	router.push('/dashboard');
 }
 
 	return (
@@ -254,9 +255,9 @@ const EditProfile = ({ u_data }) => {
 				<title>Edit Profile</title>
 				<meta name='viewport' content='initial-scale=1, width=device-width' />
 			</Head>
-			<Flex w='100%'>
+
 				<form onSubmit={save}>
-					<Flex flexDirection={'column'} margin={6}>
+					<Flex flexDirection={'column'} mx='16px' mb='16px' display={toggle ? "none" : null}>
 						<Heading size={'lg'} textAlign={{ base: 'center', md: 'left' }}>
 							Edit Profile
 						</Heading>
@@ -377,32 +378,67 @@ const EditProfile = ({ u_data }) => {
 								Save
 							</Button>
 						</Flex>
-						<FormLabel fontWeight ={"bold"} fontSize={'lg'} mt={"32px"}>Change Your Username Below</FormLabel>
-						<Input
-							name='username'
-							bg='white'
-							value={state.username}
-							// defaultValue={u_data[0].u_uuid}
-							focusBorderColor='#E78692'
-							_hover={{ borderColor: '#E78592' }}
-							borderColor='#E78592'
-							height={50}
-							width={'md'}
-							fontSize={'lg'}
-							mt='4px'
-							mb='2px'
-							onChange={onChangeUsername}
-						/>
-
-						<UsernameMessage
-								username={state.username}
-								isValid={isValid}
-								loading={loading}
-							/>
-						<Button onClick={updateUsername} disabled={!isValid} mt='8px' h='50px'>Update Username</Button>
+						<Text sx={{textDecorationLine:'underline', textUnderlineOffset:'2px', mx:'auto', mt:'16px', cursor:'pointer'}}
+						onClick={()=>setToggle(!toggle)}>
+						Want to change username? Click here!</Text>
 					</Flex>
 				</form>
+			<Flex>
+			<Flex flexDirection={'column'} mx='16px' display={!toggle ? 'none' : null}>
+			<Heading size={'lg'} textAlign={{ base: 'center', md: 'left' }}>
+				Edit Username
+			</Heading>
+			<FormLabel
+				size={'md'}
+				margin='8px'
+				marginLeft='0px'
+				paddingBottom='1rem'
+				textAlign={{ base: 'center', md: 'left' }}
+			>
+				Edit your username below and click on update.
+			</FormLabel>
+			<FormLabel fontSize={'lg'} mt={"16px"}>Enter New Username! </FormLabel>
+			<Input
+				name='username'
+				bg='white'
+				value={state.username}
+				// defaultValue={u_data[0].u_uuid}
+				focusBorderColor='#E78692'
+				_hover={{ borderColor: '#E78592' }}
+				borderColor='#E78592'
+				height={50}
+				width={'md'}
+				fontSize={'lg'}
+				mt='4px'
+				mb='2px'
+				onChange={onChangeUsername}
+			/>
+
+			<UsernameMessage
+					username={state.username}
+					isValid={isValid}
+					loading={loading}
+				/>
+			<Flex justifyContent={'space-between'} mt="16px">
+					<Button fontSize={'lg'} width={120} height={50} onClick={()=>{setToggle(!toggle)}}>
+						Back
+					</Button>
+					<Button
+						bg={'#D7354A'}
+						_hover={{ bg: '#C23043' }}
+						color='white'
+						borderRadius={10}
+						fontSize={'lg'}
+						width={120}
+						height={50}
+						onClick={updateUsername}
+						disabled={!isValid}
+					>
+						Update
+					</Button>
+				</Flex>
 			</Flex>
+		</Flex>
 		</Layout>
 	);
 };
