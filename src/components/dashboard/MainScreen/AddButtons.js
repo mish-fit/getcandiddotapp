@@ -11,7 +11,7 @@ export function AddButtons({ addLink, addProduct, showAnalytics, addHeader }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const router = useRouter();
   useEffect(() => {
-    // console.log("isLargerThan768", isLargerThan768);
+    console.log("isLargerThan768", isLargerThan768);
   }, [isLargerThan768]);
   const addLinks = () => {
     addLink();
