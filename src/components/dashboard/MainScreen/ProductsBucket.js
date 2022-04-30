@@ -22,82 +22,84 @@ export function ProductsBucket({
   editProductModal,
   addProduct,
   selectedBucket,
+  column,
+  curToggle,
 }) {
   const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const [items, setItems]= useState(data);
-  const [toggle, setToggle] = useState(false);
-  const [reorderToggle, setReorderToggle] = useState(true);
-  const [cancelState, setCancelState] = useState(data);
+  // const [toggle, setToggle] = useState(curToggle);
+  // const [reorderToggle, setReorderToggle] = useState(true);
+  // const [cancelState, setCancelState] = useState(data);
   const toast = useToast();
-
+// console.log(toggle)
   useEffect(()=>{
     // console.log("onDragEnd data", data);
     setItems(data);
-    setCancelState(items);
+    // setCancelState(items);
   }, [data])
 
   useEffect(()=>{
     // console.log("onDragEnd items", data, link, bucketName);
   },[items])
 
-  function onDragEnd(result) {
-    if (!result.destination) {
-      return;
-    }
-    const newItems = [...items];
-    const [removed] = newItems.splice(result.source.index, 1);
-    newItems.splice(result.destination.index, 0, removed);
-    console.log("onDragEnd newitems",newItems);
-    setItems(newItems)
-  }
+  // function onDragEnd(result) {
+  //   if (!result.destination) {
+  //     return;
+  //   }
+  //   const newItems = [...items];
+  //   const [removed] = newItems.splice(result.source.index, 1);
+  //   newItems.splice(result.destination.index, 0, removed);
+  //   console.log("onDragEnd newitems",newItems);
+  //   setItems(newItems)
+  // }
 
-  const handleCancel = () => {
-    setToggle(!toggle);
-    setItems(cancelState);
-  }
+  // const handleCancel = () => {
+  //   setToggle(!toggle);
+  //   setItems(cancelState);
+  // }
   
-  const handleSave = () => {
-    setToggle(!toggle);
-    setCancelState(items);
+  // const handleSave = () => {
+  //   setToggle(!toggle);
+  //   setCancelState(items);
 
-    const body = [...items];
-    body.forEach((element, idx) => {
-      element.sort_id = idx;
-      element.others = {};
-    });
+  //   const body = [...items];
+  //   body.forEach((element, idx) => {
+  //     element.sort_id = idx;
+  //     element.others = {};
+  //   });
     
-    console.log(body);
+  //   console.log(body);
 
-    const options = {
-      headers: {
-        Authorization: `bearer ${cookie}`,
-        Origin: "localhost:3000",
-      },
-    };
+  //   const options = {
+  //     headers: {
+  //       Authorization: `bearer ${cookie}`,
+  //       Origin: "localhost:3000",
+  //     },
+  //   };
 
-    axios(
-      {
-        method: "post",
-        url: `${authapi}recos`,
-        data: { recos_array: JSON.stringify(body)},
-        options: options,
-      },
-      { timeout: 2000 }
-    )
-      .then((res) => {
-        // console.log(res);
-        toast({
-          title: "Recos Reordered",
-          description: "",
-          status: "success",
-          duration: 1000,
-          isClosable: true,
-        });
-      })
-      .catch((e) => {
-        // console.log(e);
-      });
-  }
+  //   axios(
+  //     {
+  //       method: "post",
+  //       url: `${authapi}recos`,
+  //       data: { recos_array: JSON.stringify(body)},
+  //       options: options,
+  //     },
+  //     { timeout: 2000 }
+  //   )
+  //     .then((res) => {
+  //       // console.log(res);
+  //       toast({
+  //         title: "Recos Reordered",
+  //         description: "",
+  //         status: "success",
+  //         duration: 1000,
+  //         isClosable: true,
+  //       });
+  //     })
+  //     .catch((e) => {
+  //       // console.log(e);
+  //     });
+  // }
 
   const bucketLinkClick = () => {
     event("SIGNED_IN_USER_BUCKET_LINK_CLICK", link.link);
@@ -121,7 +123,7 @@ export function ProductsBucket({
     // display={data.length ? null : 'none'}
     >
       <Flex
-        mx={ toggle ? ["-72px","0px","0px","0px","0px","0px"] : ["-72px","16px","16px","16px","16px","16px"]}
+        mx={ curToggle ? ["-72px","0px","0px","0px","0px","0px"] : ["-72px","16px","16px","16px","16px","16px"]}
         sx={{
 					justifyContent: ['space-between', 'space-between', 'space-between', 'space-between', 'space-between', 'space-between'],
         }}
@@ -137,7 +139,7 @@ export function ProductsBucket({
             link && link.length != 0 && link.link && isURL(link.link.toString())
               ? "pointer"
               : "default",
-          backgroundColor: "white",
+          backgroundColor : curToggle ? "gray.100" : "white",
             color:
               link &&
               link.length != 0 &&
@@ -155,10 +157,7 @@ export function ProductsBucket({
           {bucketName}
         </Text>
         </Flex>
-        {/* <Flex mt='2px' display={reorderToggle ? 'none': null}>
-          <IoReorderFour size={'24px'}/>
-        </Flex> */}
-        <Flex mb="8px" display={reorderToggle ? null: 'none'}>
+        {/* <Flex mb="8px" display={reorderToggle ? null: 'none'}>
           {
             !toggle ? <Button ml={"16px"} display={data.length>1 ? null : 'none'} onClick={()=>{setToggle(!toggle)}} size={'sm'}><Image src={rearrange} h="4" alt="rearrange log"></Image></Button> :
             <Flex display={"inline"}>
@@ -166,7 +165,7 @@ export function ProductsBucket({
               <Button ml={"6px"} onClick={handleSave} size={'sm'}><MdOutlineDoneOutline size={20} color="#D7354A"/></Button>
             </Flex>
           }
-        </Flex>
+        </Flex> */}
       </Flex>
       <Divider mb="8px" display={isLargerThan768 ? "none" : "block"} />
 
@@ -187,8 +186,7 @@ export function ProductsBucket({
           );
         })}
       </Flex> */}
-    
-      <NoSSR>
+      {/* <NoSSR>
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Droppable droppableId="droppable" isDropDisabled={!toggle}>
 					{(provided) => (
@@ -208,7 +206,6 @@ export function ProductsBucket({
 											{...provided.dragHandleProps}
 										>
 
-                  {/* isURL(item.prod_link, { require_tld: true }) && ( */}
                     <ProductsCard
                       key={index}
                       item={item}
@@ -219,7 +216,6 @@ export function ProductsBucket({
                       editProductModal={(item) => editProductModal(item)}
                       addProduct={addProduct}
                     />
-                  {/* ) */}
 										</Flex>
 									)}
 								</Draggable>
@@ -235,7 +231,6 @@ export function ProductsBucket({
               onClick={selectedBucketHandler}
               >
                 <BsPlusCircleDotted size={64} color="#D7354A"/>
-            {/* <Text >Add Products</Text> */}
           </Button>
           </Flex>
 						{provided.placeholder}
@@ -244,6 +239,80 @@ export function ProductsBucket({
 					)}
 				</Droppable>
 			</DragDropContext>
+      </NoSSR> */}
+      <NoSSR>
+      <Droppable droppableId={column.id}>
+      {(provided) => (
+            <Flex>
+						<Flex {...provided.droppableProps} ref={provided.innerRef} sx={productsBucketStyles.grid} backgroundColor={curToggle ? "gray.100" : ""} >
+							{column.list.map((item, index) => (
+								<Draggable
+									draggableId={item.sort_id.toString()}
+									key={item.id}
+									index={index}
+                  isDragDisabled={!curToggle}
+								>
+									{(provided) => (
+										<Flex
+											ref={provided.innerRef}
+											{...provided.draggableProps}
+											{...provided.dragHandleProps}
+										>
+
+                    <ProductsCard
+                      key={index}
+                      item={item}
+                      deleteItem={(item) => {
+                        // console.log("recosbucket", item);
+                        deleteItem(item);
+                      }}
+                      editProductModal={(item) => editProductModal(item)}
+                      addProduct={addProduct}
+                      index={index}
+                      curToggle={curToggle}
+                    />
+										</Flex>
+									)}
+								</Draggable>
+							))}
+              <Flex
+              onClick={addProducts}
+              mx={'16px'}
+              my={'8px'}
+              >
+                <Button 
+                width={'200px'}
+                height={'240px'}
+                onClick={selectedBucketHandler}
+                >
+                  <BsPlusCircleDotted size={64} color="#D7354A"/>
+                </Button>
+              </Flex>
+						{provided.placeholder}
+						</Flex>
+        </Flex>
+					)}
+        {/* {(provided) => (
+          <Flex ref={provided.innerRef}>
+            <Flex>
+              {column.list.map((item, index) => {
+                return <ProductsCard 
+                      key={index}
+                      item={item}
+                      deleteItem={(item) => {
+                        // console.log("recosbucket", item);
+                        deleteItem(item);
+                      }}
+                      editProductModal={(item) => editProductModal(item)}
+                      addProduct={addProduct}
+                      index={index}
+                      />;
+              })}
+              {provided.placeholder}
+            </Flex>
+          </Flex>
+        )} */}
+      </Droppable>
       </NoSSR>
     </Flex>
   );

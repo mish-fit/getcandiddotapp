@@ -188,14 +188,14 @@ export default function Dashboard({
       {menuClick ? <MenuPopup /> : null}
       {/* <Flex as="container" sx={dashboardStyles.container}>
         <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar"> */}
-          <Sidebar
+          {/* <Sidebar
             socials={socials}
             user={user}
             summary={summary}
             cookie={cookies[0]}
             buckets={buckets}
             masterSocials={masterSocials}
-          />
+          /> */}
         {/* </Flex> */}
         {/* <Flex as="mainscreen" sx={dashboardStyles.mainscreen}> */}
           <MainScreen
