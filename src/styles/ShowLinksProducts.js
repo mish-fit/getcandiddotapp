@@ -7,7 +7,7 @@ const showProductsLinksStyles = {
 	headingFlex: {
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		mx: '16px',
+		// mx: '16px',
 		my: '4px',
 	},
 	headingText: {
@@ -17,6 +17,7 @@ const showProductsLinksStyles = {
 	},
 	headingButton: {
 		size: 'sm',
+		
 		w: 'fit-content',
 	},
 	listFlex: {

@@ -267,12 +267,13 @@ export function MainScreen({
     };
 
     const orderedRecos = mapOrder(currentRecos, curRecosBuckets, 'bucket');
-    console.log('Ordered:', JSON.stringify(orderedRecos));
-
+    // console.log('Ordered:', JSON.stringify(orderedRecos));
+    console.log('first',currentRecos);
+    console.log('second',curRecosBuckets);
     orderedRecos.forEach((element, idx) => {
       element.others={}
     })
-    console.log(orderedRecos)
+    console.log('orderedRecos', orderedRecos);
 
     //Buckets updation
     setRecosBuckets(prev);
