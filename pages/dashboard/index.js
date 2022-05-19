@@ -186,18 +186,18 @@ export default function Dashboard({
       { ( links.length===2 && recos.length===2 && socials.length===0 && initState ) ? <DynamicIntro/> : <></>}
       <Divider />
       {menuClick ? <MenuPopup /> : null}
-      {/* <Flex as="container" sx={dashboardStyles.container}>
-        <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar"> */}
-          {/* <Sidebar
+      <Flex as="container" sx={dashboardStyles.container}>
+        <Flex as="sidebar" sx={dashboardStyles.sidebar} id="sidebar">
+          <Sidebar
             socials={socials}
             user={user}
             summary={summary}
             cookie={cookies[0]}
             buckets={buckets}
             masterSocials={masterSocials}
-          /> */}
-        {/* </Flex> */}
-        {/* <Flex as="mainscreen" sx={dashboardStyles.mainscreen}> */}
+          />
+        </Flex>
+        <Flex as="mainscreen" sx={dashboardStyles.mainscreen}>
           <MainScreen
             links={links}
             recos={recos}
@@ -207,8 +207,8 @@ export default function Dashboard({
             linkAnalytics={linkAnalytics}
             prodAnalytics={prodAnalytics}
           />
-        {/* </Flex> */}
-      {/* </Flex> */}
+        </Flex>
+      </Flex>
     </div>
   );
 }

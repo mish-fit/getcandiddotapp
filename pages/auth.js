@@ -1,15 +1,31 @@
 import { firebaseAdmin } from "lib/firebaseadmin";
-import { UserContext } from 'lib/UserDataProvider';
 import Head from "next/head";
 import { useRouter } from 'next/router';
 import nookies from "nookies";
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { setName, setUsername, setMail, setPhone, setAbout, setProfileImage, setAffiliateCodes } from "store/actions/authActions";
 import { SignInOptions } from '../src/components/auth/SignInOptions';
-
 export default function Auth(props) {
 	const router = useRouter()
-	const [ userDataContext, user ] = useContext(UserContext);
 	const [ show, setShow ] = useState(true);
+	const dispatch = useDispatch();
+	const authCtx= useSelector(state => state.auth);
+	
+	useEffect(()=>{
+		dispatch(setName("john"));
+		dispatch(setUsername("user"));
+		dispatch(setMail("akljsdf@gmail.com"));
+		dispatch(setPhone("+9173"));
+		dispatch(setAbout("asdfjk23"));
+		dispatch(setProfileImage("asdfhj"));
+		dispatch(setAffiliateCodes([1,2,3]));
+	},[])
+	useEffect(()=>{
+		console.log('auth',authCtx);
+	},[authCtx])
+	
+	// console.log(userDataContext);
 	// auth.signOut();
 	// useEffect(()=>{
 	// 	if(userDataContext.userSignInInfo.user && !userDataContext.userData.username){

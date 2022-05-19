@@ -1,6 +1,6 @@
 import { Flex, HStack, Text } from "@chakra-ui/react";
 import Logo from "components/logo";
-import { DrawerProvider } from "contexts/drawer/drawer.provider";
+// import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { useRouter } from "next/router";
 import { Link as ScrollLink } from "react-scroll";
 import headerStyles from "styles/header";
@@ -12,7 +12,7 @@ export default function Header({ className }) {
   const { locale } = useRouter();
   const lang = translation[locale].HeaderSection.Header;
   return (
-    <DrawerProvider>
+    // <DrawerProvider>
       <Flex sx={headerStyles.header} className={className}>
         <Flex sx={headerStyles.container}>
           <Flex>
@@ -53,6 +53,6 @@ export default function Header({ className }) {
           </Flex>
         </Flex>
       </Flex>
-    </DrawerProvider>
+    // </DrawerProvider>
   );
 }

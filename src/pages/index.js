@@ -1,6 +1,6 @@
 import Layout from "components/layout";
 import SEO from "components/seo";
-import { StickyProvider } from "contexts/app/app.provider";
+// import { StickyProvider } from "contexts/app/app.provider";
 import React from "react";
 import Banner from "sections/banner";
 import Banner1 from "sections/banner1";
@@ -15,7 +15,7 @@ import Video from "sections/video";
 
 export default function IndexPage() {
   return (
-      <StickyProvider>
+      // <StickyProvider>
         <Layout>
           <SEO
             title="Startup Hosting Classic Landing"
@@ -31,6 +31,6 @@ export default function IndexPage() {
           <Video />
           <FaqTwo />
         </Layout>
-      </StickyProvider>
+      // </StickyProvider>
   );
 }

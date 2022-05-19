@@ -2,7 +2,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { initOptimize } from "analytics/go";
 import Layout from "components/layout";
 import SEO from "components/seo";
-import { StickyProvider } from "contexts/app/app.provider";
+// import { StickyProvider } from "contexts/app/app.provider";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -63,7 +63,7 @@ export default function Home() {
         <title>Dashboard</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <StickyProvider>
+      {/* <StickyProvider> */}
         <Layout>
           <SEO
             title="Get your free CNDD link"
@@ -78,7 +78,7 @@ export default function Home() {
           <ProductFeature />
           <FaqTwo addQuestion={() => setOpenLinksModal(true)} />
         </Layout>
-      </StickyProvider>
+      {/* </StickyProvider> */}
     </Flex>
   );
 }

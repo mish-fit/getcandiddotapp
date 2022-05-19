@@ -8,9 +8,13 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
 import { Layout } from "./Layout";
+import { useSelector, useDispatch } from "react-redux";
+import { setName, setUsername, setMail, setPhone, setAbout, setProfileImage, setAffiliateCodes } from "store/actions/authActions";
 
 const Step3 = (props) => {
   const [userDataContext, user] = useContext(UserContext);
+	const dispatch = useDispatch();
+	const authCtx= useSelector(state => state.auth);
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [imageSelected, setImageSelected] = useState(false);
   const [isNextClicked, setIsNextClicked] = useState(true);
@@ -23,7 +27,7 @@ const Step3 = (props) => {
     if (image.preview !== "") {
       setImageSelected(true);
     }
-  }, [image, userDataContext.userData]);
+  }, [image, authCtx.userData]);
   // console.log(userDataContext.userData);
   // console.log(userDataContext.userSignInInfo);
 
@@ -68,19 +72,22 @@ const Step3 = (props) => {
     if (imageSelected) {
       new_profile_image =
         s3url + userDataContext.userSignInInfo.user.uid + ".png";
-      userDataContext.setProfileImage(
-        s3url + userDataContext.userSignInInfo.user.uid + ".png"
-      );
+      // userDataContext.setProfileImage(
+      //   s3url + userDataContext.userSignInInfo.user.uid + ".png"
+      // );
+      dispatch(setProfileImage(s3url + userDataContext.userSignInInfo.user.uid + ".png"));
     }
-    if (userDataContext.userData.name === "") {
-      userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
-      userDataContext.setMail(userDataContext.userSignInInfo.user.email);
+    if (authCtx.userData.name === "") {
+      // userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
+      dispatch(setName(userDataContext.userSignInInfo.user.displayName));
+      // userDataContext.setMail(userDataContext.userSignInInfo.user.email);
+      dispatch(setMail(userDataContext.userSignInInfo.user.email));
     }
 
     // batches the all the data to be sent to the firestore
     const batch = firestore.batch();
     const usernameDoc = firestore.doc(
-      `usernames/${userDataContext.userData.username}`
+      `usernames/${authCtx.userData.username}`
     );
     batch.set(usernameDoc, { uid: userDataContext.userSignInInfo.user.uid });
 
@@ -88,12 +95,12 @@ const Step3 = (props) => {
       `users/${userDataContext.userSignInInfo.user.uid}`
     );
     batch.set(userDoc, {
-      username: userDataContext.userData.username,
-      name: userDataContext.userData.name,
+      username: authCtx.userData.username,
+      name: authCtx.userData.name,
       profile_image: new_profile_image,
-      mail: userDataContext.userData.mail,
-      phone: userDataContext.userData.phone,
-      about: userDataContext.userData.about,
+      mail: authCtx.userData.mail,
+      phone: authCtx.userData.phone,
+      about: authCtx.userData.about,
       affiliateCodes: [],
     });
     await batch.commit();
@@ -102,14 +109,14 @@ const Step3 = (props) => {
     const u_data = {
       u_id: userDataContext.userSignInInfo.user.uid,
       u_name:
-        userDataContext.userData.name ||
+        authCtx.userData.name ||
         userDataContext.userSignInInfo.user.displayName,
       u_profile_image: new_profile_image,
       u_cover_image: "",
-      u_uuid: userDataContext.userData.username,
-      u_email: userDataContext.userData.mail,
-      u_phone: userDataContext.userData.phone,
-      u_about: userDataContext.userData.about,
+      u_uuid: authCtx.userData.username,
+      u_email: authCtx.userData.mail,
+      u_phone: authCtx.userData.phone,
+      u_about: authCtx.userData.about,
       u_gender: "",
       u_dob: "",
       expo_token: "",
@@ -182,7 +189,7 @@ const Step3 = (props) => {
         {
           id: "",
           u_id: userDataContext.userSignInInfo.user.uid,
-          u_name: userDataContext.userData.name ||
+          u_name: authCtx.userData.name ||
           userDataContext.userSignInInfo.user.displayName,
           prod_name: "Apple MacBook Air (M1, 2020)",
           cat_name: "Laptop",
@@ -196,7 +203,7 @@ const Step3 = (props) => {
         {
           id: "",
           u_id: userDataContext.userSignInInfo.user.uid,
-          u_name: userDataContext.userData.name ||
+          u_name: authCtx.userData.name ||
           userDataContext.userSignInInfo.user.displayName,
           prod_name: "Samsung Galaxy F22",
           cat_name: "Mobile",
@@ -238,7 +245,7 @@ const Step3 = (props) => {
         {
           id: "",
           u_id: userDataContext.userSignInInfo.user.uid,
-          u_name: userDataContext.userData.name ||
+          u_name: authCtx.userData.name ||
           userDataContext.userSignInInfo.user.displayName,
           title: "Candid Home",
           link: "https://cndd.in/home",
@@ -252,7 +259,7 @@ const Step3 = (props) => {
         {
           id: "",
           u_id: userDataContext.userSignInInfo.user.uid,
-          u_name: userDataContext.userData.name ||
+          u_name: authCtx.userData.name ||
           userDataContext.userSignInInfo.user.displayName,
           title: "Candid Blog",
           link: "https://medium.com/@cndd_india",

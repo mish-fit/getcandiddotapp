@@ -1,16 +1,20 @@
 import Drawer from "components/drawer";
 import Logo from "components/logo";
-import { DrawerContext } from "contexts/drawer/drawer.context";
+// import { DrawerContext } from "contexts/drawer/drawer.context";
 import { auth } from 'lib/firebase';
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { Box, Button } from "@chakra-ui/react";
 import dahsboardMobileDrawerStyes from "styles/dashboardMobileDrawer";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setToggle } from "store/actions/drawerActions";
 const MobileDrawer = () => {
-  const { state, dispatch } = useContext(DrawerContext);
+  // const { state, dispatch } = useContext(DrawerContext);
+  
+	const dispatch = useDispatch();
+	const drawerCtx= useSelector(state => state.drawer);
   const router= useRouter();
   
   const signout = () => {
@@ -24,9 +28,7 @@ const MobileDrawer = () => {
 
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
-    dispatch({
-      type: "TOGGLE",
-    });
+    dispatch(setToggle());
   }, [dispatch]);
 
   return (
@@ -37,7 +39,7 @@ const MobileDrawer = () => {
           <IoMdMenu size="22px" />
         </Box>
       }
-      open={state.isOpen}
+      open={drawerCtx.isOpen}
       toggleHandler={toggleHandler}
       closeButton={<IoMdClose size="24px" color="#02073E" />}
       drawerStyle={dahsboardMobileDrawerStyes.drawer}

@@ -1,6 +1,6 @@
 import Drawer from "components/drawer";
 import Logo from "components/logo";
-import { DrawerContext } from "contexts/drawer/drawer.context";
+// import { DrawerContext } from "contexts/drawer/drawer.context";
 import React, { useContext } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
@@ -8,15 +8,16 @@ import { Link as ScrollLink } from "react-scroll";
 import { Box, Button } from "@chakra-ui/react";
 import menuItems from "./header.data";
 import headerMobileDrawerStyles from "styles/headerMobileDrawer";
+import { useSelector, useDispatch } from "react-redux";
+import { setToggle } from "store/actions/drawerActions";
 
 const MobileDrawer = () => {
-  const { state, dispatch } = useContext(DrawerContext);
-
+  // const { state, dispatch } = useContext(DrawerContext);
+	const dispatch = useDispatch();
+	const drawerCtx= useSelector(state => state.drawer);
   // Toggle drawer
   const toggleHandler = React.useCallback(() => {
-    dispatch({
-      type: "TOGGLE",
-    });
+    dispatch(setToggle());
   }, [dispatch]);
 
   return (
@@ -27,7 +28,7 @@ const MobileDrawer = () => {
           <IoMdMenu size="22px" />
         </Box>
       }
-      open={state.isOpen}
+      open={drawerCtx.isOpen}
       toggleHandler={toggleHandler}
       closeButton={<IoMdClose size="24px" color="#02073E" />}
       drawerStyle={headerMobileDrawerStyles.drawer}

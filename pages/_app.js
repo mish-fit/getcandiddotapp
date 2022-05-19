@@ -12,6 +12,8 @@ import "react-modal-video/css/modal-video.min.css";
 import { useUserData } from "../src/lib/hooks";
 import theme from "../src/theme/index";
 import "./../styles/normalize.css";
+import { Provider } from "react-redux";
+import store from "../src/store/index";
 
 // import TagManager from "react-gtm-module";
 
@@ -35,10 +37,12 @@ export default function CustomApp({ Component, pageProps }) {
    */
 
   return (
-      <UserDataProvider>
+    <Provider store={store}>
+      <UserDataProvider> 
         <ChakraProvider theme={theme}>
           <Component {...pageProps} />
         </ChakraProvider>
       </UserDataProvider>
+    </Provider>
   );
 }
