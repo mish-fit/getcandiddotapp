@@ -5,12 +5,16 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { firestore } from '../../lib/firebase';
 import { UserContext } from '../../lib/UserDataProvider';
 import { Layout } from './Layout';
+import { useSelector, useDispatch } from "react-redux";
+import { setName, setUsername, setMail, setPhone, setAbout, setProfileImage, setAffiliateCodes } from "store/actions/authActions";
 
 const Step1 = (props) => {
+	const [userDataContext, user] = useContext(UserContext);
+	const dispatch = useDispatch();
+	const authCtx= useSelector(state => state.auth);
 	const [formValue, setFormValue] = useState('');
 	const [isValid, setIsValid] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [userDataContext, user] = useContext(UserContext);
 
   // Hit the database for username match after each debounced change
   // useCallback is required for debounce to work
@@ -34,7 +38,8 @@ const Step1 = (props) => {
 
 	const next = async (e) => {
 		e.preventDefault();
-		userDataContext.setUsername(formValue);
+		// userDataContext.setUsername(formValue);
+		dispatch(setUsername(formValue));
 
 		// console.log(userDataContext.userData);
 		const userDoc = firestore.doc(

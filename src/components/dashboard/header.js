@@ -7,7 +7,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import Logo from "components/logo";
-import { DrawerProvider } from "contexts/drawer/drawer.provider";
+// import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { auth } from "lib/firebase";
 import { useRouter } from "next/router";
 import React from "react";
@@ -70,7 +70,6 @@ export default function Header({ menu, menuActive, data }) {
    }
 
   return (
-    <DrawerProvider>
       <header sx={dashboardHeaderStyles.header}>
         <Flex sx={dashboardHeaderStyles.container} >
           <Flex as="logo">
@@ -133,6 +132,5 @@ export default function Header({ menu, menuActive, data }) {
           <MobileDrawer />
         </Flex>
       </header>
-    </DrawerProvider>
   );
 }

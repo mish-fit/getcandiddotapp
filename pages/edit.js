@@ -6,17 +6,22 @@ import { Layout } from 'components/onboard/Layout';
 import { authapi, nonauthapi, s3url } from 'lib/api';
 import { UploadImageToS3WithNativeSdk } from 'lib/aws';
 import { firebaseAdmin } from 'lib/firebaseadmin';
-import { UserContext } from 'lib/UserDataProvider';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import nookies from 'nookies';
-import { useContext, useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { IoCloseCircle } from 'react-icons/io5';
 import editStyles from 'styles/edit';
 import { firestore } from 'lib/firebase';
 import debounce from 'lodash.debounce';
+import { setName, setUsername, setMail, setPhone, setAbout, setProfileImage, setAffiliateCodes } from "store/actions/authActions";
+import { useSelector, useDispatch } from "react-redux";
+
 const EditProfile = ({ u_data }) => {
-	// console.log(u_data);
+	console.log(u_data);
+	const dispatch = useDispatch();
+	const authCtx= useSelector(state => state.auth);
+
 	const [state, setState] = useState({
 		u_id: '',
 		username: '',
@@ -25,7 +30,6 @@ const EditProfile = ({ u_data }) => {
 	});
 	const router = useRouter();
 	const toast = useToast();
-	const [userDataContext, user] = useContext(UserContext);
 	const [image, setImage] = useState({ preview: '', raw: '' });
 	const [imageSelected, setImageSelected] = useState(false);
 	const [toggle, setToggle]=useState(false);
@@ -55,6 +59,7 @@ const EditProfile = ({ u_data }) => {
 
 	useEffect((e) => {
 		if (u_data[0]) {
+			
 			setState({
 				...state,
 				u_id: u_data[0].u_id,

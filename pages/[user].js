@@ -3,7 +3,7 @@ import { Link } from "components/link";
 import { MainScreen } from "components/user/MainScreen";
 import { Sidebar } from "components/user/Sidebar";
 import { UserNotFound } from "components/user/UserNotFound";
-import { DrawerProvider } from "contexts/drawer/drawer.provider";
+// import { DrawerProvider } from "contexts/drawer/drawer.provider";
 import { ampapi, ampdashboard, ampsecret, nonauthapi } from "lib/api";
 import Lottie from "lottie-react";
 import Head from "next/head";
@@ -69,7 +69,7 @@ export default function User({ links, recos, user, socials, buckets }) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href={user[0].u_profile_image} />
       </Head>
-      <DrawerProvider>
+      {/* <DrawerProvider> */}
         <header sx={userStyles.header}>
           <Flex sx={userStyles.headerContainer}>
             <Flex as="logo" sx={userStyles.logouserStyles}>
@@ -92,7 +92,7 @@ export default function User({ links, recos, user, socials, buckets }) {
             </Flex>
           </Flex>
         </header>
-      </DrawerProvider>
+      {/* </DrawerProvider> */}
       <Divider/>
       {/* <Flex as="container" sx={userStyles.container}>
         <Flex as="sidebar" sx={userStyles.sidebar}> */}

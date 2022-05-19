@@ -4,12 +4,13 @@ const dashboardStyles = {
     flex: 1,
     maxWidth: "100%",
     display: "flex",
-    flexDirection: ["column", "column", "row", "row", "row", "row"],
+    flexDirection: ["column", "column", "column", "column", "column", "column"],
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },
   mainscreen: {
     flex: [1, 1, 1, 2, 3, 3],
+    width: "100%",
   },
   sidebar: {
     p: "4px",

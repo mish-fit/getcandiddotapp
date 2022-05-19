@@ -208,15 +208,12 @@ export function ShowProducts({
     console.log('oldData', data);
     console.log('newData', body);
     
-    // console.log(body);
-    console.log('reached')
     const options = {
       headers: {
         Authorization: `bearer ${cookie}`,
         Origin: "localhost:3000",
       },
     };
-    console.log('reached')
     axios(
       {
         method: "post",
@@ -227,8 +224,6 @@ export function ShowProducts({
       { timeout: 2000 }
       )
       .then((res) => {
-        console.log('reached')
-        // console.log(res);
         toast({
           title: "Recos Reordered",
           description: "",
@@ -238,7 +233,6 @@ export function ShowProducts({
         });
       })
       .catch((e) => {
-        console.log('reached')
         // console.log(e);
       });
     }

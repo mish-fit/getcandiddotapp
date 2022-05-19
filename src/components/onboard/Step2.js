@@ -13,9 +13,15 @@ import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Layout } from './Layout';
 
+import { useSelector, useDispatch } from "react-redux";
+import { setName, setUsername, setMail, setPhone, setAbout, setProfileImage, setAffiliateCodes } from "store/actions/authActions";
+
 const Step2 = (props) => {
 	// const name= useRef();
 	// const mail=useRef();
+	const [userDataContext, user] = useContext(UserContext);
+	const dispatch = useDispatch();
+	const authCtx= useSelector(state => state.auth);
 	const [state, setState] = useState({
 		name: '',
 		mail: '',
@@ -25,20 +31,15 @@ const Step2 = (props) => {
 	const [mailInput, setMailInput] = useState(true);
 	const [info, setInfo] = useState(false);
 
-	const [userDataContext, user] = useContext(UserContext);
 
 	useEffect(() => {
-		// console.log('Step2', userDataContext.userData);
-	}, [userDataContext.userData]);
-
-	useEffect(() => {
-		if (userDataContext.userData.phone === '+91') {
+		if (authCtx.userData.phone === '+91') {
 			setMailInput(false);
 		}
 
 		setShowLink(false);
 		setInfo(false);
-	}, [userDataContext]);
+	}, [authCtx.userData.phone]);
 
 
 	// suggested when user enters a gmail in the input field
@@ -69,16 +70,20 @@ const Step2 = (props) => {
 
 	const next = (e) => {
 		e.preventDefault();
-		if (userDataContext.userData.mail === null) {
-			userDataContext.setMail(userDataContext.userSignInInfo.user.email);
-			// userDataContext.setName(userDataContext.userSignInInfo.user.displayName);
+		if (authCtx.userData.mail === null) {
+			// userDataContext.setMail(userDataContext.userSignInInfo.user.email);
+			dispatch(setMail(userDataContext.userSignInInfo.user.email));
+			// userDataContext.setName(userDataContext.userSignInInfo.user.displayName); // old
 		}
-		if (userDataContext.userData.mail !== null) {
-			userDataContext.setMail(state.mail);
+		if (authCtx.userData.mail !== null) {
+			// userDataContext.setMail(state.mail);
+			dispatch(setMail(state.mail));
 		}
 
-		userDataContext.setName(state.name);
-		userDataContext.setAbout(state.about);
+		// userDataContext.setName(state.name);
+		dispatch(setName(state.name));
+		// userDataContext.setAbout(state.about);
+		dispatch(setAbout(state.about));
 		// console.log('Next', userDataContext.userData);
 		props.nextStep();
 	};
